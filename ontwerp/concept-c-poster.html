@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concept C | De poster | Indoor SGW</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- Concept C: De poster. Kleurvlakken, gigantische letters, foto's in de tekst en stickers. -->
+<style>
+:root{
+  --primary:#426C87;--primary-dark:#1F506C;--navy:#163B50;--ink:#0F2C3D;
+  --gold:#EAB200;--gold-50:#FDF6DE;--blue-50:#F1F5F8;--blue-100:#E2EAF0;--blue-300:#9DB5C5;
+  --text:#3A434F;--white:#fff;--head:"Montserrat",Arial,sans-serif;--body:Verdana,Geneva,sans-serif;
+  --r:24px;--r-lg:40px;--pill:999px;--g:clamp(14px,3vw,32px);--ease:cubic-bezier(.22,1,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--white);color:var(--text);font:16px/1.7 var(--body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--head);color:var(--navy);margin:0;letter-spacing:-.05em;line-height:.9}
+p{margin:0}
+.frame{padding:var(--g)}
+.inner{max-width:1360px;margin-inline:auto}
+:focus-visible{outline:3px solid var(--navy);outline-offset:3px;border-radius:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:56px;padding:0 30px;border-radius:var(--pill);font:800 15px/1 var(--head);transition:background .3s,transform .3s var(--ease);white-space:nowrap}
+.btn:active{transform:scale(.97)}
+.btn--navy{background:var(--navy);color:#fff}.btn--navy:hover{background:var(--primary-dark)}
+.btn--gold{background:var(--gold);color:var(--navy)}.btn--gold:hover{background:#F6C21C}
+.btn--white{background:#fff;color:var(--navy)}.btn--white:hover{background:var(--blue-50)}
+.btn--ghost{box-shadow:inset 0 0 0 2px var(--navy);color:var(--navy)}.btn--ghost:hover{background:rgba(22,59,80,.08)}
+
+/* poster hero */
+.poster{background:var(--gold);border-radius:var(--r-lg);padding:clamp(20px,3vw,36px) clamp(20px,4vw,56px) clamp(32px,5vw,64px);position:relative;overflow:hidden}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand img{height:54px;width:auto}
+.menu{display:flex;gap:28px;font:700 15px var(--head);color:var(--navy)}
+.menu a{position:relative}
+.menu a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;background:var(--navy);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.menu a:hover::after{transform:scaleX(1)}
+.title{margin-top:clamp(40px,7vw,96px);font-weight:900;font-size:clamp(56px,12.6vw,200px);line-height:.86;letter-spacing:-.065em}
+.title .ph{display:inline-block;vertical-align:middle;height:.72em;width:1.7em;border-radius:var(--pill);overflow:hidden;margin:0 .06em;transform:translateY(-.06em)}
+.title .ph img{width:100%;height:100%;object-fit:cover}
+.title .ph--sm{width:1.05em}
+.poster__row{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-top:clamp(32px,4vw,56px)}
+.poster__row p{max-width:40ch;font-size:18px;color:var(--navy)}
+.poster__row p strong{font-family:var(--head);font-weight:800}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.sticker{position:absolute;right:clamp(20px,8vw,140px);bottom:clamp(150px,15vw,220px);width:clamp(110px,12vw,170px);aspect-ratio:1;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;text-align:center;transform:rotate(-10deg);font:800 clamp(14px,1.4vw,18px)/1.15 var(--head);box-shadow:0 14px 30px rgba(22,59,80,.25)}
+.sticker b{display:block;font-size:2em;font-weight:900;color:var(--gold);letter-spacing:-.04em}
+
+/* drie vlakken */
+.blocks{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:var(--g);margin-top:var(--g)}
+.block{border-radius:var(--r-lg);padding:clamp(24px,3vw,40px);min-height:520px;display:flex;flex-direction:column;position:relative;overflow:hidden;isolation:isolate;transition:transform .5s var(--ease)}
+.block:hover{transform:translateY(-6px)}
+.block h2{font-weight:900;font-size:clamp(48px,6vw,96px)}
+.block p{margin-top:16px;max-width:30ch;font-size:16px}
+.block .btn{margin-top:auto;align-self:flex-start}
+.block--navy{background:var(--navy);color:rgba(255,255,255,.78)}
+.block--navy h2{color:#fff}
+.block--navy .bg{position:absolute;inset:auto 0 0 0;height:58%;z-index:-1}
+.block--navy .bg img{width:100%;height:100%;object-fit:cover;opacity:.55;-webkit-mask-image:linear-gradient(180deg,transparent,#000 50%);mask-image:linear-gradient(180deg,transparent,#000 50%)}
+.block--blue{background:var(--blue-100)}
+.block--line{background:var(--white);box-shadow:inset 0 0 0 2px var(--navy)}
+.big-price{font:900 clamp(64px,7vw,112px)/.85 var(--head);color:var(--navy);letter-spacing:-.06em;margin-top:28px}
+.big-price small{display:block;font-size:15px;font-weight:700;letter-spacing:0;margin-top:12px;color:var(--text)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.chip{padding:8px 14px;border-radius:var(--pill);background:var(--blue-50);font:700 13px var(--head);color:var(--navy)}
+
+/* hindernissen strook */
+.strip{margin-top:clamp(80px,10vw,140px)}
+.strip__head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:32px}
+.strip h2{font-weight:900;font-size:clamp(40px,6vw,96px);max-width:14ch}
+.rail{display:flex;gap:var(--g);overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.fence{flex:0 0 clamp(240px,26vw,360px);scroll-snap-align:start;position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:3/4}
+.fence img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.fence:hover img{transform:scale(1.05)}
+.fence figcaption{position:absolute;left:14px;right:14px;bottom:14px;display:flex;justify-content:space-between;align-items:center;gap:8px;background:#fff;border-radius:var(--pill);padding:8px 8px 8px 20px;font:800 16px var(--head);color:var(--navy)}
+.lvl{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--gold);font:900 15px var(--head)}
+.arrows{display:flex;gap:8px}
+.arrows button{width:56px;height:56px;border-radius:50%;border:0;background:var(--navy);color:#fff;cursor:pointer;display:grid;place-items:center;transition:background .3s}
+.arrows button:hover{background:var(--primary-dark)}
+
+/* statement */
+.statement{margin-top:clamp(80px,10vw,140px);background:var(--navy);border-radius:var(--r-lg);padding:clamp(40px,7vw,112px) clamp(24px,6vw,96px);color:rgba(255,255,255,.7)}
+.statement h2{color:#fff;font-weight:900;font-size:clamp(36px,5.8vw,92px);line-height:.98;letter-spacing:-.05em}
+.statement .ph{display:inline-block;vertical-align:middle;height:.8em;width:1.6em;border-radius:var(--pill);overflow:hidden;transform:translateY(-.06em)}
+.statement .ph img{width:100%;height:100%;object-fit:cover}
+.statement h2 em{font-style:normal;color:var(--gold)}
+.statement__row{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-top:clamp(32px,4vw,56px)}
+.statement__row p{max-width:48ch;font-size:17px}
+
+/* sponsoren */
+.spons{margin-top:clamp(80px,10vw,140px);text-align:center}
+.spons h2{font-weight:900;font-size:clamp(32px,4vw,56px)}
+.names{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 28px;max-width:1100px;margin:32px auto 36px;font:800 clamp(16px,1.5vw,20px)/1.6 var(--head);color:var(--blue-300)}
+.names span{transition:color .2s}.names span:hover{color:var(--navy)}
+
+/* footer */
+.foot{margin-top:clamp(80px,10vw,140px);background:var(--gold);border-radius:var(--r-lg);padding:clamp(28px,4vw,56px);color:var(--navy);overflow:hidden}
+.foot__top{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.foot nav{display:grid;grid-template-columns:repeat(3,auto);gap:10px 40px;font:700 15px var(--head)}
+.foot__word{font:900 clamp(64px,17vw,270px)/.8 var(--head);letter-spacing:-.07em;margin-top:clamp(40px,6vw,80px);white-space:nowrap}
+.foot__bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:28px;font-size:14px}
+
+@media (max-width:1080px){
+  .menu{display:none}
+  .blocks{grid-template-columns:1fr 1fr}
+  .block--navy{grid-column:1/-1;min-height:440px}
+  .poster__row{flex-direction:column;align-items:flex-start}
+}
+@media (max-width:640px){
+  .poster{border-radius:30px}
+  .nav .btn{height:46px;padding:0 20px}
+  .brand img{height:46px}
+  .title{margin-top:48px;font-size:clamp(46px,14.5vw,72px)}
+  .sticker{bottom:auto;right:16px;top:20px;width:84px;font-size:11px;position:absolute}.poster .nav{padding-right:96px}
+  .cta .btn{flex:1 1 100%}
+  .blocks{grid-template-columns:1fr}
+  .block{min-height:380px;border-radius:30px}
+  .arrows{display:none}
+  .statement,.foot{border-radius:30px}
+  .foot nav{grid-template-columns:repeat(2,auto)}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="frame"><div class="inner">
+
+<header class="poster">
+  <div class="nav">
+    <a class="brand" href="#" aria-label="Indoor SGW"><img src="../assets/logo/logo-blauw.png" alt="" width="500" height="573"></a>
+    <nav class="menu" aria-label="Hoofdmenu"><a href="#">Wedstrijd</a><a href="#">Trainingen</a><a href="#">Hindernissen</a><a href="#">Over ons</a><a href="#">Sponsoren</a><a href="#">Contact</a></nav>
+    <a class="btn btn--navy" href="https://www.mijnknhs.nl/Game/W183853?expandHeader=True" target="_blank" rel="noopener">Inschrijven</a>
+  </div>
+
+  <h1 class="title">De cross <span class="ph"><img src="../assets/img/opsprong.jpg" alt=""></span><br>gaat naar <span class="ph ph--sm"><img src="../assets/img/heuvel.jpg" alt=""></span> binnen.</h1>
+
+  <div class="sticker" aria-hidden="true"><span><b>20+</b>jaar Indoor SGW</span></div>
+
+  <div class="poster__row">
+    <p><strong>Dé Indoor SGW van Nederland.</strong> Op 28, 29 en 30 december bij manege Het Zwarte Water in De Mortel.</p>
+    <div class="cta">
+      <a class="btn btn--navy" href="https://www.mijnknhs.nl/Game/W183853?expandHeader=True" target="_blank" rel="noopener">Inschrijven voor de wedstrijd</a>
+      <a class="btn btn--ghost" href="#">Aanmelden voor een training</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="blocks" aria-label="Meedoen">
+    <a class="block block--navy" href="#">
+      <h2>Rijden</h2>
+      <p>Dressuur en springen op 29 december, de cross op 30 december. Alles binnen, net als buiten.</p>
+      <span class="btn btn--gold">Bekijk de wedstrijd</span>
+      <div class="bg"><img src="../assets/img/hal-overzicht.jpg" alt=""></div>
+    </a>
+    <a class="block block--blue" href="#">
+      <h2>Trainen</h2>
+      <p>Op 28 en 29 december, met erkende instructeurs en in een groep van je eigen niveau.</p>
+      <div class="big-price">€30<small>per uur per combinatie</small></div>
+      <span class="btn btn--navy" style="margin-top:auto">Aanmelden</span>
+    </a>
+    <a class="block block--line" href="#">
+      <h2>Blijven</h2>
+      <p>Stalling voor je paard of pony en overnachten regel je via Het Zwarte Water.</p>
+      <div class="chips"><span class="chip">Stalling</span><span class="chip">Overnachten</span><span class="chip">Vrachtwagen op eigen stroom</span></div>
+      <span class="btn btn--ghost" style="margin-top:auto">Meer over stalling</span>
+    </a>
+  </section>
+
+  <section class="strip" aria-labelledby="hind">
+    <div class="strip__head">
+      <h2 id="hind">Meer dan twintig hindernissen</h2>
+      <div class="arrows">
+        <button type="button" aria-label="Vorige" data-dir="-1"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M13 8H3M7 4 3 8l4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" aria-label="Volgende" data-dir="1"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+    <div class="rail" id="rail">
+      <figure class="fence" style="margin:0"><img src="../assets/img/heuvel.jpg" alt="" loading="lazy"><figcaption>De heuvel</figcaption></figure>
+      <figure class="fence" style="margin:0"><img src="../assets/img/opsprong.jpg" alt="" loading="lazy"><figcaption>Opsprong</figcaption></figure>
+      <figure class="fence" style="margin:0"><img src="../assets/img/boomstammen.jpg" alt="" loading="lazy"><figcaption>Boomstammen</figcaption></figure>
+      <figure class="fence" style="margin:0"><img src="../assets/img/tonnen.jpg" alt="" loading="lazy"><figcaption>Tonnen</figcaption></figure>
+      <figure class="fence" style="margin:0"><img src="../assets/img/wagenwielen.jpg" alt="" loading="lazy"><figcaption>Wagenwielen</figcaption></figure>
+      <figure class="fence" style="margin:0"><img src="../assets/img/boerenwagen.jpg" alt="" loading="lazy"><figcaption>Boerenwagen</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="statement" aria-labelledby="st">
+    <h2 id="st">Sinds 1999 <span class="ph"><img src="../assets/img/bestuur.jpg" alt=""></span> door ruiters, <em>voor ruiters.</em></h2>
+    <div class="statement__row">
+      <p>Het begon met een groep eventingruiters die hun paarden in de winter fit wilden houden. Na wat borrels en goede gesprekken stond de eerste training op de planning. Nu organiseert een vaste groep vrijwilligers elk jaar de gezelligste Indoor SGW van Nederland.</p>
+      <a class="btn btn--gold" href="#">Lees ons verhaal</a>
+    </div>
+  </section>
+
+  <section class="spons" aria-labelledby="sp">
+    <h2 id="sp">Dankjewel, sponsoren</h2>
+    <div class="names" id="names"></div>
+    <a class="btn btn--navy" href="#">Word sponsor</a>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot__top">
+    <p style="max-width:32ch;font-weight:600">Vragen? Mail ons op <a href="mailto:info@indoorsgw.nl" style="text-decoration:underline">info@indoorsgw.nl</a> of kijk bij contact.</p>
+    <nav aria-label="Footer"><a href="#">Wedstrijd</a><a href="#">Trainingen</a><a href="#">Hindernissen</a><a href="#">Vraagprogramma</a><a href="#">Uitslagen</a><a href="#">Stalling</a><a href="#">Over ons</a><a href="#">Sponsoren</a><a href="#">Contact</a></nav>
+  </div>
+  <div class="foot__word" aria-hidden="true">Indoor SGW</div>
+  <div class="foot__bottom"><span>© 2026 Stichting Indoor SGW</span><span>Website door EquiMarketing</span></div>
+</footer>
+
+</div></div>
+
+<script>
+const sponsors=["Africhtingstal Fried van Stiphout","HWC Uitzendorganisatie","Hotel & Restaurant Keizersberg","Agri & Wood","Firma Veveha","Wetering.nl","Havens paardenvoeders","Loonwerkbedrijf Peters","Van Boxmeer","Varkenshandel Peters","Chuths","Steeghs aanhangwagens","De Wieken diervoeders","Gebitsverzorging Huub Korsten","Twan de Bruijn Trucks & Trailers","Walkro Grondstoffen","Coppelmans tuincentrum","Ruitershop Boxmeer","Schaap Agri Service","EquiMarketing","Dieroptimaal","Oorlogsmuseum","Geert & Henk Trading","Equipe Paardenverzekeringen","odD Fotografie","Wout Kuijpers","Skiddar Saddles","Van den Tillaart","NFE","Wijenberg"];
+document.getElementById('names').innerHTML=sponsors.map(n=>`<span>${n}</span>`).join('');
+const rail=document.getElementById('rail');
+document.querySelectorAll('.arrows button').forEach(b=>b.addEventListener('click',()=>rail.scrollBy({left:b.dataset.dir*rail.firstElementChild.offsetWidth,behavior:'smooth'})));
+</script>
+</body>
+</html>

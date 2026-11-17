@@ -1,0 +1,1341 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Indoor SGW Design System</title>
+<meta name="description" content="Stylesheet en design system van Indoor SGW: kleuren, typografie, componenten, patronen en tone of voice.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   DESIGN TOKENS  ·  Indoor SGW
+   Bron: Elementor global kit (post-5.css) van indoorsgw.nl
+   ========================================================= */
+:root{
+  /* Merkkleuren (uit de Elementor kit) */
+  --primary:      #426C87;  /* staalblauw, primaire knop  (kit: accent / a57afc7) */
+  --primary-dark: #1F506C;  /* petrolblauw, hover + donkere vlakken (kit: secondary / da14440) */
+  --navy:         #163B50;  /* afgeleid: nog donkerder petrol voor diepe secties */
+  --accent:       #EAB200;  /* goudgeel, highlight, altijd met donkere tekst (kit: 8a97eef) */
+  --accent-dark:  #C99A00;  /* hover op accent */
+
+  /* Tints van het merkblauw (afgeleid) */
+  --blue-50:  #F1F5F8;
+  --blue-100: #E2EAF0;
+  --blue-200: #C5D4DE;
+  --blue-300: #9DB5C5;
+  --accent-50:#FDF6DE;
+
+  /* Ink en neutralen */
+  --ink:      #000000;  /* lopende tekst, kit text-kleur */
+  --grey:     #5B6670;  /* secundaire tekst */
+  --white:    #FFFFFF;
+  --grey-50:  #F7F8FA;
+  --grey-100: #EEF1F5;
+  --grey-200: #E1E6EC;
+  --grey-300: #C9D0DA;
+  --grey-400: #9AA3B2;
+  --grey-700: #3A434F;
+
+  /* Feedback */
+  --success: #2A7349;
+  --error:   #B3261E;
+  --warning: #8F5B00;
+
+  /* Typografie */
+  --heading: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --body:    Verdana, Geneva, "DejaVu Sans", sans-serif;
+  --display: "Montserrat", "Helvetica Neue", Arial, sans-serif; /* marketing: 800/900, italic 800 */
+
+  --fs-h1: clamp(2rem, 1.4rem + 2.6vw, 3.25rem);
+  --fs-h2: clamp(1.6rem, 1.25rem + 1.5vw, 2.5rem);
+  --fs-h3: clamp(1.25rem, 1.1rem + .6vw, 1.625rem);
+  --fs-h4: 1.125rem;
+  --fs-body: 1rem;
+  --fs-small: .875rem;
+  --fs-xs: .75rem;
+
+  /* Spacing (4px basis) */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px; --s-5: 24px;
+  --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px; --s-10: 128px;
+
+  /* Layout */
+  --max-w: 1200px;
+
+  /* Radius (dominant in bron: 20px en 50px) */
+  --r-xs: 4px; --r-sm: 8px; --r: 20px; --r-lg: 32px; --r-pill: 50px;
+
+  /* Schaduw */
+  --shadow-sm: 0 1px 2px rgba(22,59,80,.08), 0 2px 6px rgba(22,59,80,.06);
+  --shadow:    0 4px 14px rgba(22,59,80,.10), 0 8px 28px rgba(22,59,80,.08);
+  --shadow-lg: 0 18px 50px rgba(22,59,80,.20);
+
+  /* Motion */
+  --t: .35s cubic-bezier(.4,0,.2,1);
+  --t-lg: .6s cubic-bezier(.22,1,.36,1);
+}
+
+/* ---------- Basis ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--body);font-size:var(--fs-body);line-height:1.65;color:var(--ink);background:var(--white);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--primary-dark)}
+a:hover{color:var(--primary)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+h1,h2,h3,h4,h5{font-family:var(--heading);line-height:1.15;margin:0 0 .5em;color:var(--primary-dark)}
+h1,h2{font-weight:700;text-transform:uppercase;letter-spacing:.01em}
+h3,h4{font-weight:600;text-transform:uppercase;letter-spacing:.02em}
+h1{font-size:var(--fs-h1)} h2{font-size:var(--fs-h2)} h3{font-size:var(--fs-h3)} h4{font-size:var(--fs-h4)}
+p{margin:0 0 1em}
+code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em}
+code{background:var(--grey-100);padding:2px 6px;border-radius:var(--r-xs)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* ---------- Document layout ---------- */
+.ds{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+.ds-nav{position:sticky;top:0;height:100vh;overflow:auto;background:var(--navy);color:#fff;padding:var(--s-5) var(--s-4)}
+.ds-nav img{width:84px;margin:0 auto var(--s-3)}
+.ds-nav .ttl{font-family:var(--heading);font-weight:700;text-transform:uppercase;text-align:center;font-size:.9rem;letter-spacing:.06em;margin-bottom:var(--s-5)}
+.ds-nav .grp{font-family:var(--heading);font-size:var(--fs-xs);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:var(--s-5) 0 var(--s-2) var(--s-2)}
+.ds-nav a{display:block;color:rgba(255,255,255,.82);text-decoration:none;font-size:.82rem;padding:5px var(--s-2);border-radius:var(--r-sm);font-family:var(--heading);font-weight:500}
+.ds-nav a:hover,.ds-nav a.on{background:rgba(255,255,255,.1);color:#fff}
+.ds-main{min-width:0}
+.sec{padding:var(--s-8) clamp(16px,4vw,64px);border-bottom:1px solid var(--grey-200)}
+.sec>.inner{max-width:var(--max-w);margin:0 auto}
+.sec-tag{font-family:var(--heading);font-size:var(--fs-xs);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);margin-bottom:var(--s-2)}
+.lead{font-size:1.05rem;color:var(--grey-700);max-width:70ch}
+.note{background:var(--blue-50);border-left:4px solid var(--primary);padding:var(--s-4) var(--s-5);border-radius:0 var(--r-sm) var(--r-sm) 0;font-size:var(--fs-small);margin:var(--s-5) 0}
+.note.warn{background:var(--accent-50);border-color:var(--accent)}
+.ask{background:#FFF3F2;border:1px dashed var(--error);color:var(--error);padding:2px 8px;border-radius:var(--r-xs);font-size:var(--fs-small);font-family:var(--heading);font-weight:600}
+.grid{display:grid;gap:var(--s-5)}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.demo{border:1px solid var(--grey-200);border-radius:var(--r);padding:var(--s-6);background:#fff}
+.demo.grey{background:var(--grey-50)}
+.demo-label{font-family:var(--heading);font-size:var(--fs-xs);font-weight:600;color:var(--grey);text-transform:uppercase;letter-spacing:.1em;margin-bottom:var(--s-3)}
+.row{display:flex;flex-wrap:wrap;gap:var(--s-3);align-items:center}
+.sub{font-family:var(--heading);font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);margin:var(--s-7) 0 var(--s-4)}
+table{border-collapse:collapse;width:100%;font-size:var(--fs-small)}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--grey-200);vertical-align:top}
+th{font-family:var(--heading);font-weight:600;text-transform:uppercase;font-size:var(--fs-xs);letter-spacing:.08em;color:var(--grey)}
+.tbl-wrap{overflow-x:auto}
+
+/* ---------- Intro ---------- */
+.hero-ds{position:relative;color:#fff;background:var(--navy) url("assets/img/hal-overzicht.jpg") center/cover;padding:var(--s-9) clamp(16px,4vw,64px);overflow:hidden}
+.hero-ds::before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(22,59,80,.94) 30%,rgba(22,59,80,.55))}
+.hero-ds>*{position:relative}
+.hero-ds h1{color:#fff;max-width:16ch}
+.hero-ds p{max-width:60ch;opacity:.92}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:var(--s-4);margin-top:var(--s-6);max-width:900px}
+.fact{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:var(--r-sm);padding:var(--s-4)}
+.fact b{display:block;font-family:var(--heading);font-size:var(--fs-xs);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+.fact span{font-size:var(--fs-small)}
+
+/* ---------- Logo ---------- */
+.logo-tile{border-radius:var(--r);display:grid;place-items:center;padding:var(--s-6);min-height:240px;border:1px solid var(--grey-200)}
+.logo-tile img{width:150px}
+.logo-tile.dark{background:var(--primary-dark);border-color:var(--primary-dark)}
+.logo-tile.navy{background:var(--navy);border-color:var(--navy)}
+.logo-tile.photo{background:url("assets/img/heuvel.jpg") center/cover;position:relative}
+.logo-tile.photo::before{content:"";position:absolute;inset:0;background:rgba(22,59,80,.55);border-radius:var(--r)}
+.logo-tile.photo img{position:relative}
+.logo-cap{font-size:var(--fs-small);margin-top:var(--s-2);color:var(--grey)}
+.clear{position:relative;display:inline-block;padding:28px;background:repeating-linear-gradient(45deg,var(--blue-100) 0 6px,#fff 6px 12px);border-radius:var(--r-sm)}
+.clear img{width:120px;background:#fff}
+.dodont li{margin-bottom:6px}
+.do{color:var(--success)} .dont{color:var(--error)}
+
+/* ---------- Kleur ---------- */
+.swatch{border-radius:var(--r);overflow:hidden;border:1px solid var(--grey-200);background:#fff}
+.swatch .chip{height:120px;display:flex;align-items:flex-end;justify-content:space-between;padding:var(--s-3);font-family:var(--heading);font-weight:700;font-size:var(--fs-small)}
+.swatch .meta{padding:var(--s-4);font-size:var(--fs-small)}
+.swatch .meta b{font-family:var(--heading);display:block;font-size:.95rem;text-transform:uppercase;letter-spacing:.04em}
+.swatch .meta .mono{color:var(--grey)}
+.cr{display:inline-block;font-family:var(--heading);font-size:var(--fs-xs);font-weight:700;padding:2px 8px;border-radius:var(--r-pill);margin:6px 4px 0 0}
+.cr.ok{background:#E6F2EA;color:var(--success)} .cr.no{background:#FBE9E7;color:var(--error)}
+.tints{display:flex;border-radius:var(--r-sm);overflow:hidden;border:1px solid var(--grey-200)}
+.tints div{flex:1;height:64px;display:flex;align-items:flex-end;padding:6px;font-size:10px;font-family:ui-monospace,monospace}
+
+/* ---------- Typografie ---------- */
+.type-row{display:grid;grid-template-columns:150px 1fr;gap:var(--s-5);padding:var(--s-5) 0;border-bottom:1px solid var(--grey-200);align-items:baseline}
+.type-row .spec{font-size:var(--fs-xs);color:var(--grey);font-family:ui-monospace,monospace;line-height:1.5}
+.weights span{font-family:var(--heading);font-size:1.4rem;margin-right:var(--s-5)}
+
+/* ---------- Spacing / radius / schaduw ---------- */
+.sp{display:grid;grid-template-columns:80px 70px 1fr;align-items:center;gap:var(--s-4);margin-bottom:8px;font-size:var(--fs-small)}
+.sp i{display:block;height:14px;background:var(--primary);border-radius:3px}
+.rad,.shd{height:110px;background:var(--blue-50);border:2px solid var(--primary);display:grid;place-items:center;font-family:var(--heading);font-weight:600;font-size:var(--fs-small);text-align:center}
+.shd{border:none;background:#fff;border-radius:var(--r)}
+
+/* ---------- Tone of voice ---------- */
+.tov-card{background:var(--blue-50);border-radius:var(--r);padding:var(--s-5)}
+.tov-card h4{margin-bottom:var(--s-2)}
+.spectrum{margin:var(--s-3) 0}
+.spectrum .bar{position:relative;height:8px;background:var(--grey-200);border-radius:4px;margin:6px 0}
+.spectrum .bar i{position:absolute;top:-5px;width:18px;height:18px;border-radius:50%;background:var(--primary);border:3px solid #fff;box-shadow:var(--shadow-sm)}
+.spectrum .ends{display:flex;justify-content:space-between;font-size:var(--fs-xs);color:var(--grey);font-family:var(--heading);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.example{border-left:4px solid var(--accent);padding:var(--s-3) var(--s-4);background:#fff;border-radius:0 var(--r-sm) var(--r-sm) 0;margin-bottom:var(--s-3)}
+.example small{display:block;font-family:var(--heading);font-weight:700;font-size:var(--fs-xs);letter-spacing:.1em;text-transform:uppercase;color:var(--grey)}
+.wordlist span{display:inline-block;padding:4px 12px;border-radius:var(--r-pill);margin:0 6px 6px 0;font-size:var(--fs-small)}
+.wl-yes span{background:#E6F2EA;color:var(--success)}
+.wl-no span{background:#FBE9E7;color:var(--error);text-decoration:line-through}
+
+/* =========================================================
+   COMPONENTEN (kopieerbaar)
+   ========================================================= */
+/* Knoppen */
+.btn{--bg:var(--primary);--fg:#fff;--bd:var(--primary);display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--heading);font-weight:500;text-transform:uppercase;letter-spacing:.06em;font-size:.875rem;line-height:1;padding:14px 26px;border-radius:var(--r);border:2px solid var(--bd);background:var(--bg);color:var(--fg);text-decoration:none;cursor:pointer;transition:background var(--t),border-color var(--t),color var(--t),transform var(--t)}
+.btn svg{width:18px;height:18px}
+.btn:hover{--bg:var(--primary-dark);--bd:var(--primary-dark);color:var(--fg)}
+.btn:active{transform:translateY(1px)}
+.btn-secondary{--bg:var(--primary-dark);--bd:var(--primary-dark)}
+.btn-secondary:hover{--bg:var(--navy);--bd:var(--navy)}
+.btn-accent{--bg:var(--accent);--bd:var(--accent);--fg:var(--ink);font-weight:700}
+.btn-accent:hover{--bg:var(--accent-dark);--bd:var(--accent-dark);--fg:var(--ink)}
+.btn-outline{--bg:transparent;--fg:var(--primary-dark);--bd:var(--primary)}
+.btn-outline:hover{--bg:var(--primary);--fg:#fff;--bd:var(--primary)}
+.btn-ghost{--bg:transparent;--fg:var(--primary-dark);--bd:transparent;padding-left:8px;padding-right:8px}
+.btn-ghost:hover{--bg:var(--blue-50);--fg:var(--primary-dark);--bd:transparent}
+.btn-ondark{--bg:#fff;--fg:var(--primary-dark);--bd:#fff}
+.btn-ondark:hover{--bg:var(--accent);--bd:var(--accent);--fg:var(--ink)}
+.btn-outline-light{--bg:transparent;--fg:#fff;--bd:rgba(255,255,255,.7)}
+.btn-outline-light:hover{--bg:#fff;--fg:var(--primary-dark);--bd:#fff}
+.btn-sm{padding:9px 16px;font-size:.75rem}
+.btn-lg{padding:18px 34px;font-size:1rem}
+.btn[disabled],.btn.is-disabled{--bg:var(--grey-200);--bd:var(--grey-200);--fg:var(--grey-400);cursor:not-allowed;transform:none}
+
+/* Badges */
+.badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--heading);font-weight:700;font-size:var(--fs-xs);letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:var(--r-pill);background:var(--blue-100);color:var(--primary-dark)}
+.badge svg{width:14px;height:14px}
+.badge-accent{background:var(--accent);color:var(--ink)}
+.badge-dark{background:var(--primary-dark);color:#fff}
+.badge-outline{background:transparent;border:1.5px solid var(--primary);color:var(--primary-dark)}
+.badge-success{background:#E6F2EA;color:var(--success)}
+.badge-error{background:#FBE9E7;color:var(--error)}
+.badge-level{background:#fff;border:1.5px solid var(--grey-300);color:var(--ink);min-width:30px;justify-content:center}
+
+/* Kaarten */
+.card{background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-sm);transition:transform var(--t),box-shadow var(--t);display:flex;flex-direction:column;text-decoration:none;color:inherit}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow);color:inherit}
+.card-img{aspect-ratio:16/10;overflow:hidden;position:relative}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform var(--t-lg)}
+.card:hover .card-img img{transform:scale(1.05)}
+.card-img .badge{position:absolute;top:12px;left:12px}
+.card-body{padding:var(--s-5);display:flex;flex-direction:column;gap:var(--s-2);flex:1}
+.card-body h3{font-size:1.15rem;margin:0}
+.card-body p{font-size:var(--fs-small);color:var(--grey-700);margin:0}
+.card-link{margin-top:auto;padding-top:var(--s-3);font-family:var(--heading);font-weight:600;text-transform:uppercase;font-size:var(--fs-xs);letter-spacing:.1em;color:var(--primary);display:inline-flex;align-items:center;gap:6px}
+.card-link svg{width:16px;height:16px;transition:transform var(--t)}
+.card:hover .card-link svg{transform:translateX(4px)}
+.card-info{background:var(--primary-dark);color:#fff;padding:var(--s-6);border-radius:var(--r);display:flex;flex-direction:column;gap:var(--s-3)}
+.card-info h3{color:#fff;margin:0}
+.card-info .price{font-family:var(--heading);font-weight:800;font-size:2rem;color:var(--accent)}
+.card-info ul{margin:0;padding-left:1.1em;font-size:var(--fs-small);opacity:.92}
+.card-day{display:flex;gap:var(--s-4);align-items:center;padding:var(--s-4);border:1px solid var(--grey-200);border-radius:var(--r);background:#fff;transition:border-color var(--t),box-shadow var(--t)}
+.card-day:hover{border-color:var(--primary);box-shadow:var(--shadow-sm)}
+.card-day .date{flex:none;width:68px;height:68px;border-radius:var(--r-sm);background:var(--accent);display:grid;place-items:center;text-align:center;font-family:var(--heading);line-height:1}
+.card-day .date b{font-size:1.6rem;font-weight:800;display:block}
+.card-day .date small{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.card-day h4{margin:0 0 2px;color:var(--ink)}
+.card-day p{margin:0;font-size:var(--fs-small);color:var(--grey)}
+
+/* USP strip */
+.usp{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));background:var(--primary-dark);border-radius:var(--r);overflow:hidden}
+.usp div{padding:var(--s-5);color:#fff;display:flex;gap:var(--s-3);align-items:center;border-right:1px solid rgba(255,255,255,.12)}
+.usp div:last-child{border-right:none}
+.usp svg{width:34px;height:34px;color:var(--accent);flex:none}
+.usp b{display:block;font-family:var(--heading);font-weight:800;text-transform:uppercase;font-size:1.15rem;line-height:1.1}
+.usp span{font-size:var(--fs-xs);opacity:.85}
+
+/* Formulieren */
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:var(--s-4)}
+.field label,.legend{font-family:var(--heading);font-weight:600;font-size:var(--fs-small)}
+.field label .req{color:var(--error);font-weight:500;font-size:var(--fs-xs);margin-left:4px}
+.input,.select,.textarea{font:inherit;font-size:.95rem;color:var(--ink);background:#fff;border:1.5px solid var(--grey-300);border-radius:var(--r-sm);padding:12px 14px;width:100%;transition:border-color var(--t),box-shadow var(--t)}
+.input::placeholder,.textarea::placeholder{color:var(--grey-400)}
+.input:hover,.select:hover,.textarea:hover{border-color:var(--grey-400)}
+.input:focus,.select:focus,.textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 4px rgba(66,108,135,.18)}
+.input.is-error{border-color:var(--error)}
+.input.is-error:focus{box-shadow:0 0 0 4px rgba(179,38,30,.15)}
+.input:disabled{background:var(--grey-100);color:var(--grey-400);cursor:not-allowed}
+.help{font-size:var(--fs-xs);color:var(--grey)}
+.help.err{color:var(--error);display:flex;gap:4px;align-items:center}
+.help.err svg{width:14px;height:14px}
+.select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%231F506C' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:40px}
+.textarea{min-height:110px;resize:vertical}
+.check,.radio{display:flex;gap:10px;align-items:flex-start;font-size:.95rem;margin-bottom:10px;cursor:pointer}
+.check input,.radio input{appearance:none;flex:none;width:20px;height:20px;border:1.5px solid var(--grey-400);background:#fff;margin:2px 0 0;cursor:pointer;display:grid;place-items:center;transition:background var(--t),border-color var(--t)}
+.check input{border-radius:var(--r-xs)}
+.radio input{border-radius:50%}
+.check input:checked{background:var(--primary);border-color:var(--primary)}
+.check input:checked::after{content:"";width:10px;height:6px;border:2.5px solid #fff;border-top:0;border-right:0;transform:rotate(-45deg) translate(1px,-1px)}
+.radio input:checked{border-color:var(--primary);border-width:6px}
+.check input:focus-visible,.radio input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.range{width:100%;accent-color:var(--primary)}
+.range-val{font-family:var(--heading);font-weight:700;color:var(--primary-dark)}
+.steps{display:flex;align-items:center;gap:var(--s-3);margin-bottom:var(--s-5);font-family:var(--heading);font-size:var(--fs-small);font-weight:600}
+.steps .prog{flex:1;height:8px;background:var(--grey-200);border-radius:4px;overflow:hidden}
+.steps .prog i{display:block;height:100%;background:var(--primary);border-radius:4px}
+
+/* Tabs / segmented */
+.tabs [role=tablist]{display:inline-flex;gap:4px;background:var(--blue-50);padding:5px;border-radius:var(--r-pill);flex-wrap:wrap}
+.tab{font-family:var(--heading);font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:var(--fs-small);border:0;background:transparent;color:var(--primary-dark);padding:10px 22px;border-radius:var(--r-pill);cursor:pointer;transition:background var(--t),color var(--t)}
+.tab:hover{background:rgba(66,108,135,.12)}
+.tab[aria-selected=true]{background:var(--primary);color:#fff;box-shadow:var(--shadow-sm)}
+.tabpanel{padding:var(--s-5) 0 0}
+.tabpanel[hidden]{display:none}
+
+/* Accordion */
+.acc{border-top:1px solid var(--grey-200)}
+.acc-item{border-bottom:1px solid var(--grey-200)}
+.acc-btn{width:100%;display:flex;justify-content:space-between;align-items:center;gap:var(--s-4);background:none;border:0;padding:var(--s-5) 0;text-align:left;cursor:pointer;font-family:var(--heading);font-weight:600;font-size:1.05rem;color:var(--ink)}
+.acc-btn:hover{color:var(--primary)}
+.acc-btn .ic{flex:none;width:32px;height:32px;border-radius:50%;background:var(--blue-50);display:grid;place-items:center;color:var(--primary-dark);transition:transform var(--t),background var(--t)}
+.acc-btn .ic svg{width:18px;height:18px}
+.acc-btn[aria-expanded=true] .ic{transform:rotate(45deg);background:var(--accent);color:var(--ink)}
+.acc-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows var(--t)}
+.acc-panel>div{overflow:hidden}
+.acc-panel p{padding:0 var(--s-8) var(--s-5) 0;margin:0;color:var(--grey-700)}
+.acc-item.open .acc-panel{grid-template-rows:1fr}
+
+/* Slider (crossfade) */
+.slider{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:16/8;background:var(--navy)}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity var(--t-lg)}
+.slide.on{opacity:1}
+.slide img{width:100%;height:100%;object-fit:cover}
+.slide figcaption{position:absolute;left:0;right:0;bottom:0;padding:var(--s-7) var(--s-6) var(--s-6);color:#fff;background:linear-gradient(transparent,rgba(22,59,80,.85));font-family:var(--heading);font-weight:700;text-transform:uppercase;font-size:clamp(1rem,.8rem + 1vw,1.5rem)}
+.sl-arrow{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:var(--primary-dark);display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow-sm);transition:background var(--t)}
+.sl-arrow:hover{background:var(--accent);color:var(--ink)}
+.sl-arrow svg{width:22px;height:22px}
+.sl-prev{left:16px} .sl-next{right:16px}
+.sl-dots{position:absolute;right:var(--s-6);bottom:var(--s-6);display:flex;gap:8px}
+.sl-dots button{width:10px;height:10px;border-radius:5px;border:0;background:rgba(255,255,255,.55);cursor:pointer;padding:0;transition:width var(--t),background var(--t)}
+.sl-dots button[aria-current=true]{width:28px;background:var(--accent)}
+
+/* Modal + popover */
+.modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:var(--s-4);background:rgba(22,59,80,.6);backdrop-filter:blur(3px);opacity:0;visibility:hidden;transition:opacity var(--t),visibility var(--t)}
+.modal.open{opacity:1;visibility:visible}
+.modal-box{background:#fff;border-radius:var(--r);max-width:520px;width:100%;padding:var(--s-6);box-shadow:var(--shadow-lg);position:relative;transform:translateY(16px);transition:transform var(--t)}
+.modal.open .modal-box{transform:none}
+.modal-x{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;border:0;background:var(--grey-100);cursor:pointer;display:grid;place-items:center;color:var(--ink)}
+.modal-x:hover{background:var(--grey-200)}
+.modal-x svg{width:18px;height:18px}
+.pop-wrap{position:relative;display:inline-block}
+.popover{position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(6px);background:var(--navy);color:#fff;font-size:var(--fs-small);padding:var(--s-3) var(--s-4);border-radius:var(--r-sm);width:250px;box-shadow:var(--shadow);opacity:0;visibility:hidden;transition:opacity var(--t),transform var(--t),visibility var(--t);z-index:5}
+.popover::after{content:"";position:absolute;top:100%;left:50%;margin-left:-7px;border:7px solid transparent;border-top-color:var(--navy)}
+.pop-wrap.open .popover{opacity:1;visibility:visible;transform:translateX(-50%)}
+
+/* Iconen */
+.icons{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:var(--s-3)}
+.icons div{border:1px solid var(--grey-200);border-radius:var(--r-sm);padding:var(--s-4) var(--s-2);text-align:center;font-size:var(--fs-xs);color:var(--grey);font-family:ui-monospace,monospace}
+.icons svg{width:28px;height:28px;color:var(--primary-dark);margin:0 auto 8px;display:block}
+
+/* Sectie header */
+.eyebrow{display:inline-block;font-family:var(--heading);font-weight:700;font-size:var(--fs-small);letter-spacing:.16em;text-transform:uppercase;color:var(--primary);margin-bottom:var(--s-2)}
+.sh{max-width:680px}
+.sh.center{margin:0 auto;text-align:center}
+.sh h2{margin-bottom:var(--s-3)}
+.sh p{color:var(--grey-700);font-size:1.05rem}
+.on-dark .eyebrow{color:var(--accent)}
+.on-dark h2,.on-dark h3{color:#fff}
+.on-dark p{color:rgba(255,255,255,.85)}
+
+/* Navigatie */
+.site-nav{background:var(--primary-dark);color:#fff;border-radius:var(--r);position:relative}
+.site-nav .bar{display:flex;align-items:center;justify-content:space-between;gap:var(--s-4);padding:10px var(--s-5)}
+.site-nav .brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-family:var(--heading);font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.site-nav .brand img{width:42px}
+.site-nav ul{list-style:none;margin:0;padding:0;display:flex;gap:2px;flex-wrap:wrap}
+.site-nav ul a{display:flex;align-items:center;gap:4px;color:#fff;text-decoration:none;font-family:var(--heading);font-weight:500;text-transform:uppercase;font-size:.78rem;letter-spacing:.06em;padding:10px 12px;border-radius:var(--r-sm);transition:background var(--t),color var(--t)}
+.site-nav ul a svg{width:14px;height:14px}
+.site-nav ul a:hover{background:rgba(255,255,255,.1)}
+.site-nav ul a.active{color:var(--accent)}
+.site-nav .burger{display:none;background:none;border:0;color:#fff;cursor:pointer;padding:8px}
+.site-nav .burger svg{width:26px;height:26px}
+.nav-dd{position:relative}
+.nav-dd .dd{position:absolute;top:100%;left:0;min-width:200px;background:#fff;border-radius:var(--r-sm);box-shadow:var(--shadow);padding:6px;display:none;z-index:10}
+.nav-dd:hover .dd,.nav-dd:focus-within .dd{display:block}
+.nav-dd .dd a{color:var(--ink);text-transform:none;font-size:.85rem;letter-spacing:0}
+.nav-dd .dd a:hover{background:var(--blue-50);color:var(--primary-dark)}
+@media (max-width:980px){
+  .site-nav .burger{display:block}
+  .site-nav ul{display:none}
+  .site-nav.open ul{display:flex;flex-direction:column;padding:0 var(--s-4) var(--s-4)}
+  .nav-dd .dd{position:static;display:block;box-shadow:none;background:transparent;padding:0 0 0 var(--s-4)}
+  .nav-dd .dd a{color:rgba(255,255,255,.8)}
+}
+
+/* Footer */
+.site-footer{background:var(--primary-dark);color:#fff;border-radius:var(--r);overflow:hidden}
+.site-footer .top{background:var(--navy);text-align:center;padding:12px;font-family:var(--heading);font-weight:700;text-transform:uppercase;font-size:var(--fs-small);letter-spacing:.08em}
+.site-footer .cols{display:grid;grid-template-columns:1.1fr repeat(3,1fr);gap:var(--s-6);padding:var(--s-7) var(--s-6)}
+.site-footer .cols img{width:120px}
+.site-footer h4{color:#fff;font-weight:700;font-size:1rem;border-left:3px solid var(--accent);padding-left:12px;margin-bottom:var(--s-4)}
+.site-footer ul{list-style:none;padding:0 0 0 15px;margin:0}
+.site-footer li{margin-bottom:8px}
+.site-footer a{color:rgba(255,255,255,.85);text-decoration:none;font-family:var(--heading);font-weight:500;text-transform:uppercase;font-size:.78rem;letter-spacing:.06em}
+.site-footer a:hover{color:var(--accent)}
+.site-footer .social{display:flex;gap:10px;margin-top:var(--s-4)}
+.site-footer .social a{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center}
+.site-footer .social a:hover{background:var(--accent);color:var(--ink)}
+.site-footer .social svg{width:18px;height:18px}
+.site-footer .bottom{border-top:1px solid rgba(255,255,255,.12);padding:14px var(--s-6);display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--s-3);font-size:var(--fs-xs);opacity:.8}
+@media (max-width:760px){.site-footer .cols{grid-template-columns:1fr 1fr}}
+
+/* Beeld */
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:160px;gap:var(--s-3)}
+.gallery figure{margin:0;border-radius:var(--r-sm);overflow:hidden;position:relative}
+.gallery figure.big{grid-column:span 2;grid-row:span 2}
+.gallery img{width:100%;height:100%;object-fit:cover;transition:transform var(--t-lg)}
+.gallery figure:hover img{transform:scale(1.05)}
+.gallery figcaption{position:absolute;left:8px;bottom:8px;background:rgba(0,0,0,.6);color:#fff;font-size:10px;padding:2px 8px;border-radius:var(--r-pill);font-family:ui-monospace,monospace}
+@media (max-width:760px){.gallery{grid-template-columns:repeat(2,1fr)}}
+.video-demo{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:16/7;background:url("assets/img/boerenwagen.jpg") center/cover;display:flex;align-items:center;padding:var(--s-6)}
+.video-demo::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.7),rgba(0,0,0,.25))}
+.video-demo>*{position:relative}
+.video-demo h2{color:#fff}
+
+/* Marketing & social */
+.mk{font-family:var(--display);font-weight:900;text-transform:uppercase;line-height:.95;letter-spacing:-.01em}
+.hl{background:var(--accent);color:var(--ink);padding:0 .18em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.hl-u{background:linear-gradient(transparent 62%,var(--accent) 62%)}
+.post{aspect-ratio:1;border-radius:var(--r);overflow:hidden;position:relative;color:#fff;display:flex;flex-direction:column;justify-content:space-between;padding:var(--s-5)}
+.post.p1{background:var(--primary-dark)}
+.post.p2{background:url("assets/img/heuvel.jpg") center/cover}
+.post.p2::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,59,80,.15),rgba(22,59,80,.9))}
+.post.p3{background:var(--accent);color:var(--ink)}
+.post>*{position:relative}
+.post .logo-s{width:54px}
+.post .mk{font-size:clamp(1.6rem,1rem + 2vw,2.4rem)}
+.post .date{font-family:var(--heading);font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:var(--fs-small)}
+.ribbon{display:inline-block;background:var(--accent);color:var(--ink);font-family:var(--heading);font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:var(--fs-small);padding:6px 14px;border-radius:var(--r-pill) 0 0 var(--r-pill)}
+.banner{border-radius:var(--r);overflow:hidden;display:grid;grid-template-columns:1.3fr 1fr;background:var(--primary-dark);color:#fff;min-height:240px}
+.banner .txt{padding:var(--s-6);display:flex;flex-direction:column;justify-content:center;gap:var(--s-3)}
+.banner .img{background:url("assets/img/tonnen.jpg") center/cover}
+@media (max-width:700px){.banner{grid-template-columns:1fr}.banner .img{min-height:160px}}
+
+/* Licht / donker */
+.ld{border-radius:var(--r);padding:var(--s-6)}
+.ld.l1{background:#fff;border:1px solid var(--grey-200)}
+.ld.l2{background:var(--blue-50)}
+.ld.d1{background:var(--primary-dark);color:#fff}
+.ld.d2{background:var(--navy);color:#fff}
+.ld h3{margin-bottom:var(--s-2)}
+.ld p{font-size:var(--fs-small)}
+
+/* Animatie */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity var(--t-lg),transform var(--t-lg)}
+.reveal.in{opacity:1;transform:none}
+.anim-box{height:90px;border-radius:var(--r-sm);background:var(--primary);color:#fff;display:grid;place-items:center;font-family:var(--heading);font-weight:600;font-size:var(--fs-small);cursor:pointer;transition:transform var(--t),background var(--t),box-shadow var(--t)}
+.anim-box.sink:hover{transform:translateY(6px)}
+.anim-box.lift:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.anim-box.color:hover{background:var(--primary-dark)}
+
+/* Statussen */
+.skel{background:linear-gradient(90deg,var(--grey-100) 25%,var(--grey-200) 37%,var(--grey-100) 63%);background-size:400% 100%;animation:shimmer 1.4s ease infinite;border-radius:var(--r-sm)}
+@keyframes shimmer{0%{background-position:100% 50%}100%{background-position:0 50%}}
+.spinner{width:40px;height:40px;border-radius:50%;border:4px solid var(--blue-100);border-top-color:var(--primary);animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.state{text-align:center;padding:var(--s-6) var(--s-4);border:1px dashed var(--grey-300);border-radius:var(--r);display:flex;flex-direction:column;align-items:center;gap:var(--s-2)}
+.state .ic{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--blue-50);color:var(--primary-dark)}
+.state .ic svg{width:26px;height:26px}
+.state.err .ic{background:#FBE9E7;color:var(--error)}
+.state h4{margin:var(--s-2) 0 0;color:var(--ink)}
+.state p{font-size:var(--fs-small);color:var(--grey);max-width:34ch;margin:0 0 var(--s-2)}
+.alert{display:flex;gap:var(--s-3);padding:var(--s-4);border-radius:var(--r-sm);font-size:var(--fs-small);align-items:flex-start}
+.alert svg{width:20px;height:20px;flex:none}
+.alert.ok{background:#E6F2EA;color:var(--success)}
+.alert.bad{background:#FBE9E7;color:var(--error)}
+.alert.warn{background:var(--accent-50);color:var(--warning)}
+
+/* 404 */
+.p404{border-radius:var(--r);overflow:hidden;position:relative;background:url("assets/img/opsprong.jpg") center/cover;color:#fff;text-align:center;padding:var(--s-9) var(--s-5)}
+.p404::before{content:"";position:absolute;inset:0;background:rgba(22,59,80,.82)}
+.p404>*{position:relative}
+.p404 .big{font-family:var(--display);font-weight:900;font-size:clamp(5rem,3rem + 8vw,9rem);line-height:1;color:var(--accent)}
+.p404 h2{color:#fff}
+
+/* Cookiebanner */
+.cookie{max-width:420px;background:#fff;border-radius:var(--r);box-shadow:var(--shadow-lg);padding:var(--s-5);border-top:4px solid var(--primary)}
+.cookie h4{color:var(--primary-dark);display:flex;gap:8px;align-items:center;margin-bottom:var(--s-2)}
+.cookie h4 svg{width:20px;height:20px}
+.cookie p{font-size:var(--fs-small);color:var(--grey-700)}
+.cookie .row{gap:8px}
+
+/* Sticky CTA (bestaand patroon op de site) */
+.float-cta{max-width:250px;background:#fff;border-radius:var(--r);box-shadow:var(--shadow);padding:var(--s-4);text-align:center;font-size:var(--fs-small)}
+
+/* Token tabel */
+.tok td:first-child{font-family:ui-monospace,monospace;white-space:nowrap}
+.tok .sw{display:inline-block;width:18px;height:18px;border-radius:4px;vertical-align:middle;margin-right:8px;border:1px solid var(--grey-300)}
+.copy{font-family:var(--heading);font-weight:600;font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.08em}
+pre.codeblock{background:var(--navy);color:#E2EAF0;border-radius:var(--r-sm);padding:var(--s-5);overflow:auto;font-size:.8rem;line-height:1.6;max-height:420px}
+
+/* Responsive document */
+@media (max-width:900px){
+  .ds{grid-template-columns:1fr}
+  .ds-nav{position:sticky;top:0;height:auto;z-index:50;padding:10px var(--s-4);display:flex;gap:4px;overflow-x:auto;white-space:nowrap;align-items:center}
+  .ds-nav img,.ds-nav .ttl,.ds-nav .grp{display:none}
+  .ds-nav a{flex:none}
+  .type-row{grid-template-columns:1fr;gap:6px}
+}
+</style>
+</head>
+<body>
+<div class="ds">
+
+<!-- ===================== ZIJNAVIGATIE ===================== -->
+<nav class="ds-nav" aria-label="Design system navigatie">
+  <img src="assets/logo/logo-wit.png" alt="Indoor SGW logo">
+  <div class="ttl">Design System</div>
+  <div class="grp">Fundament</div>
+  <a href="#intro">Intro</a>
+  <a href="#toon">Tone of voice</a>
+  <a href="#logo">Logo</a>
+  <a href="#kleur">Kleur</a>
+  <a href="#typo">Typografie</a>
+  <a href="#spacing">Spacing</a>
+  <a href="#radius">Radius en schaduw</a>
+  <div class="grp">Componenten</div>
+  <a href="#knoppen">Knoppen</a>
+  <a href="#badges">Badges</a>
+  <a href="#kaarten">Kaarten</a>
+  <a href="#usp">USP strip</a>
+  <a href="#formulier">Formulieren</a>
+  <a href="#tabs">Tabs</a>
+  <a href="#accordion">Accordion</a>
+  <a href="#slider">Slider</a>
+  <a href="#modal">Modal en popover</a>
+  <a href="#iconen">Iconen</a>
+  <a href="#sectieheader">Sectie header</a>
+  <div class="grp">Patronen</div>
+  <a href="#navigatie">Navigatie en footer</a>
+  <a href="#beeld">Beeld en video</a>
+  <a href="#marketing">Marketing en social</a>
+  <a href="#lichtdonker">Licht en donker</a>
+  <a href="#animatie">Animatie</a>
+  <a href="#statussen">Statussen</a>
+  <a href="#p404">404</a>
+  <a href="#cookie">Cookiebanner</a>
+  <a href="#vragen">Open vragen</a>
+  <a href="#tokens">Tokens</a>
+</nav>
+
+<main class="ds-main">
+
+<!-- ===================== INTRO ===================== -->
+<header class="hero-ds" id="intro">
+  <span class="eyebrow" style="color:var(--accent)">Design system · versie 1.0</span>
+  <h1>Indoor SGW stylesheet</h1>
+  <p>Eén plek voor alles wat je nodig hebt om iets te maken voor Indoor SGW: website, mail, advertentie of social post. Kleur, letters, knoppen en toon komen rechtstreeks uit de huidige site en zijn hier vastgelegd, zodat elke uiting klopt.</p>
+  <div class="facts">
+    <div class="fact"><b>Kleuren</b><span>Staalblauw, petrolblauw, goudgeel</span></div>
+    <div class="fact"><b>Fonts</b><span>Montserrat voor koppen, Verdana voor tekst</span></div>
+    <div class="fact"><b>Vorm</b><span>Zacht rond, 20px op knoppen en kaarten</span></div>
+    <div class="fact"><b>Toegankelijk</b><span>WCAG AA als ondergrens</span></div>
+    <div class="fact"><b>Toon</b><span>Gezellig, sportief, laagdrempelig. Jij en je.</span></div>
+  </div>
+</header>
+
+<!-- ===================== TONE OF VOICE ===================== -->
+<section class="sec" id="toon"><div class="inner">
+  <div class="sec-tag">01 · Fundament</div>
+  <h2>Tone of voice</h2>
+  <p class="lead">Indoor SGW is een wedstrijd van ruiters, voor ruiters, gedragen door vrijwilligers. Zo schrijven we ook: enthousiast, gewoon en uitnodigend. Je leest het en je wilt erbij zijn.</p>
+
+  <div class="grid g3" style="margin-top:var(--s-6)">
+    <div class="tov-card"><h4>Gezellig</h4><p style="font-size:var(--fs-small);margin:0">Tussen kerst en oud en nieuw, samen in de hal. We schrijven warm en persoonlijk, met de sfeer van een vereniging en niet van een bedrijf.</p></div>
+    <div class="tov-card"><h4>Sportief en uitdagend</h4><p style="font-size:var(--fs-small);margin:0">Een echte cross, maar dan binnen. Noem concreet wat er staat: de heuvel, de opsprongen, de afsprongen. Dat maakt nieuwsgierig.</p></div>
+    <div class="tov-card"><h4>Laagdrempelig</h4><p style="font-size:var(--fs-small);margin:0">Van pony tot paard, met of zonder SGW-ervaring. Geen moeilijke woorden waar het niet hoeft, wel de vaktermen die ruiters zelf gebruiken.</p></div>
+  </div>
+
+  <div class="grid g2" style="margin-top:var(--s-6)">
+    <div>
+      <div class="sub" style="margin-top:0">Spectrum</div>
+      <div class="spectrum"><div class="ends"><span>Formeel</span><span>Informeel</span></div><div class="bar"><i style="left:72%"></i></div></div>
+      <div class="spectrum"><div class="ends"><span>Zakelijk</span><span>Persoonlijk</span></div><div class="bar"><i style="left:78%"></i></div></div>
+      <div class="spectrum"><div class="ends"><span>Ingetogen</span><span>Uitgesproken</span></div><div class="bar"><i style="left:68%"></i></div></div>
+      <div class="spectrum"><div class="ends"><span>Deskundig</span><span>Laagdrempelig</span></div><div class="bar"><i style="left:62%"></i></div></div>
+      <div class="sub">Afspraken</div>
+      <ul style="font-size:var(--fs-small);padding-left:1.2em">
+        <li><b>Altijd jij en je.</b> Ook in formulieren, mails en juridische teksten waar het kan.</li>
+        <li><b>Ritme:</b> een mix. Korte zinnen voor energie, een langere zin om de sfeer te schetsen.</li>
+        <li><b>Uitroeptekens</b> mogen, maar spaarzaam. Eén per blok is genoeg.</li>
+        <li><b>Data</b> schrijf je uit: 28, 29 en 30 december. Geen streepjes tussen getallen.</li>
+        <li><b>Geen stijlstreepjes</b> in zinnen en geen streepje voor een eyebrow.</li>
+      </ul>
+    </div>
+    <div>
+      <div class="sub" style="margin-top:0">Voorbeeldzinnen</div>
+      <div class="example"><small>Hero</small>Een echte cross, maar dan binnen. Drie dagen dressuur, springen en cross in De Mortel.</div>
+      <div class="example"><small>Kopje</small>Klaar voor de heuvel?</div>
+      <div class="example"><small>Knop</small>Schrijf je in</div>
+      <div class="example"><small>Vertrouwen</small>Al meer dan 20 jaar georganiseerd door een vast team vrijwilligers.</div>
+      <div class="example"><small>Training</small>Train met erkende instructeurs en laat je paard alvast wennen aan de hal.</div>
+    </div>
+  </div>
+
+  <div class="grid g2" style="margin-top:var(--s-5)">
+    <div><div class="sub" style="margin-top:0">Woorden die passen</div>
+      <div class="wordlist wl-yes"><span>cross</span><span>SGW</span><span>combinatie</span><span>hindernis</span><span>vraagprogramma</span><span>startlijst</span><span>eventing</span><span>gezellig</span><span>uitdaging</span><span>vrijwilligers</span><span>de hal</span></div></div>
+    <div><div class="sub" style="margin-top:0">Woorden die we vermijden</div>
+      <div class="wordlist wl-no"><span>u</span><span>evenementenlocatie</span><span>beleving</span><span>innovatief</span><span>exclusief</span><span>oplossingen</span><span>gelieve</span><span>parcour (zonder s)</span></div></div>
+  </div>
+  <div class="note">Schrijf "parcours" met een s. Op de site staat nu nog "Crossparcour" in het menu. Zie de open vragen onderaan.</div>
+</div></section>
+
+<!-- ===================== LOGO ===================== -->
+<section class="sec" id="logo"><div class="inner">
+  <div class="sec-tag">02 · Fundament</div>
+  <h2>Logo en merk</h2>
+  <p class="lead">Het beeldmerk is een springend paard met ruiter, met "INDOOR SGW" in een boog erboven. Het logo is monochroom: wit op donker, zwart of petrolblauw op licht. Een full color versie bestaat (nog) niet.</p>
+
+  <div class="grid g4" style="margin-top:var(--s-6)">
+    <div><div class="logo-tile dark"><img src="assets/logo/logo-wit.png" alt="Indoor SGW logo wit"></div><div class="logo-cap"><b>Wit</b> op petrolblauw. Standaard voor header en footer.</div></div>
+    <div><div class="logo-tile photo"><img src="assets/logo/logo-wit.png" alt="Indoor SGW logo wit op foto"></div><div class="logo-cap"><b>Wit</b> op foto, altijd met donkere overlay.</div></div>
+    <div><div class="logo-tile"><img src="assets/logo/logo-zwart.png" alt="Indoor SGW logo zwart"></div><div class="logo-cap"><b>Zwart</b> op wit. Voor print en zwart wit.</div></div>
+    <div><div class="logo-tile" style="background:var(--blue-50)"><img src="assets/logo/logo-blauw.png" alt="Indoor SGW logo petrolblauw"></div><div class="logo-cap"><b>Petrolblauw</b> op licht. Afgeleid van de zwarte versie.</div></div>
+  </div>
+
+  <div class="grid g2" style="margin-top:var(--s-7);align-items:start">
+    <div>
+      <div class="sub" style="margin-top:0">Vrije ruimte en minimaal formaat</div>
+      <div class="clear"><img src="assets/logo/logo-zwart.png" alt="Logo met vrije ruimte"></div>
+      <p style="font-size:var(--fs-small);margin-top:var(--s-3)">Houd rondom minimaal de hoogte van de letter "S" vrij. Kleinste formaat: <b>40px breed</b> op scherm, <b>15 mm</b> in print. Kleiner wordt de tekst in de boog onleesbaar.</p>
+    </div>
+    <div class="dodont">
+      <div class="sub" style="margin-top:0">Wel en niet</div>
+      <ul style="list-style:none;padding:0;font-size:var(--fs-small)">
+        <li class="do">✓ Wit op petrolblauw, navy of een donkere foto-overlay</li>
+        <li class="do">✓ Zwart of petrolblauw op wit en lichte tints</li>
+        <li class="do">✓ Altijd in verhouding schalen</li>
+        <li class="dont">✗ Het logo in staalblauw of goudgeel zetten</li>
+        <li class="dont">✗ Wit logo op een drukke foto zonder overlay</li>
+        <li class="dont">✗ Paard en tekst los van elkaar gebruiken</li>
+        <li class="dont">✗ Schaduw, gloed of omlijning toevoegen</li>
+        <li class="dont">✗ Uitrekken, draaien of de boogtekst aanpassen</li>
+      </ul>
+    </div>
+  </div>
+  <div class="note warn">Geen losse bestanden ontvangen. De logo's komen van de live site. Een vectorversie (SVG of AI) en een eventuele horizontale variant zijn welkom: <span class="ask">VRAAG AAN KLANT: is er een SVG van het logo?</span></div>
+</div></section>
+
+<!-- ===================== KLEUR ===================== -->
+<section class="sec" id="kleur"><div class="inner">
+  <div class="sec-tag">03 · Fundament</div>
+  <h2>Kleurenpalet</h2>
+  <p class="lead">De merkkleuren komen uit de Elementor global kit van indoorsgw.nl. Staalblauw is de primaire knop, petrolblauw draagt de donkere vlakken en goudgeel is het accent. Geel staat nooit achter witte tekst.</p>
+
+  <div class="sub">Merkkleuren</div>
+  <div class="grid g4">
+    <div class="swatch"><div class="chip" style="background:#426C87;color:#fff"><span>Aa</span><span>5.64</span></div><div class="meta"><b>Staalblauw</b><span class="mono">#426C87 · --primary</span><p style="margin:6px 0 0">Primaire knop, links, actieve tab.</p><span class="cr ok">Wit AA 5.64</span><span class="cr no">Zwart 3.73</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#1F506C;color:#fff"><span>Aa</span><span>8.67</span></div><div class="meta"><b>Petrolblauw</b><span class="mono">#1F506C · --primary-dark</span><p style="margin:6px 0 0">Navigatie, footer, koppen, hover.</p><span class="cr ok">Wit AAA 8.67</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#163B50;color:#fff"><span>Aa</span><span>11.83</span></div><div class="meta"><b>Navy</b><span class="mono">#163B50 · --navy</span><p style="margin:6px 0 0">Afgeleid. Diepe secties en overlays.</p><span class="cr ok">Wit AAA 11.83</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#EAB200;color:#000"><span>Aa</span><span>10.87</span></div><div class="meta"><b>Goudgeel</b><span class="mono">#EAB200 · --accent</span><p style="margin:6px 0 0">Highlights, badges, datums, focus.</p><span class="cr ok">Zwart AAA 10.87</span><span class="cr no">Wit 1.93</span></div></div>
+  </div>
+
+  <div class="sub">Tints</div>
+  <div class="tints">
+    <div style="background:#F1F5F8">50</div><div style="background:#E2EAF0">100</div><div style="background:#C5D4DE">200</div><div style="background:#9DB5C5">300</div><div style="background:#426C87;color:#fff">500</div><div style="background:#1F506C;color:#fff">700</div><div style="background:#163B50;color:#fff">900</div><div style="background:#FDF6DE">acc 50</div><div style="background:#EAB200">acc</div><div style="background:#C99A00">acc dk</div>
+  </div>
+
+  <div class="sub">Neutralen</div>
+  <div class="tints">
+    <div style="background:#fff">white</div><div style="background:#F7F8FA">50</div><div style="background:#EEF1F5">100</div><div style="background:#E1E6EC">200</div><div style="background:#C9D0DA">300</div><div style="background:#9AA3B2">400</div><div style="background:#5B6670;color:#fff">grey</div><div style="background:#3A434F;color:#fff">700</div><div style="background:#000;color:#fff">ink</div>
+  </div>
+  <p style="font-size:var(--fs-small);color:var(--grey);margin-top:var(--s-3)"><b>Ink</b> is puur zwart (#000000), zoals de tekstkleur in de kit. <b>Grey</b> #5B6670 haalt 5.87 op wit en mag voor secundaire tekst.</p>
+
+  <div class="sub">Feedback</div>
+  <div class="grid g3">
+    <div class="swatch"><div class="chip" style="background:#2A7349;color:#fff;height:70px"><span>Succes</span></div><div class="meta"><span class="mono">#2A7349 · --success</span><br><span class="cr ok">Wit AA 5.76</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#B3261E;color:#fff;height:70px"><span>Fout</span></div><div class="meta"><span class="mono">#B3261E · --error</span><br><span class="cr ok">Wit AA 6.54</span></div></div>
+    <div class="swatch"><div class="chip" style="background:#8F5B00;color:#fff;height:70px"><span>Waarschuwing</span></div><div class="meta"><span class="mono">#8F5B00 · --warning</span><br><span class="cr ok">Wit AA 5.73</span></div></div>
+  </div>
+  <div class="note">Feedbackkleuren staan niet in de huidige kit. Dit zijn voorstellen die bij het blauw passen en AA halen op wit.</div>
+</div></section>
+
+<!-- ===================== TYPOGRAFIE ===================== -->
+<section class="sec" id="typo"><div class="inner">
+  <div class="sec-tag">04 · Fundament</div>
+  <h2>Typografie</h2>
+  <p class="lead">Montserrat voor alles wat kop, knop of label is, meestal in hoofdletters. Verdana voor lopende tekst: breed, rustig en goed leesbaar op elk scherm. Verdana is een systeemfont en hoeft niet geladen te worden.</p>
+
+  <div class="type-row"><div class="spec">H1 · Montserrat 700<br>uppercase<br>clamp(2rem, 1.4rem + 2.6vw, 3.25rem)<br>lh 1.15</div><h1 style="margin:0">Indoor SGW 2026</h1></div>
+  <div class="type-row"><div class="spec">H2 · Montserrat 700<br>uppercase<br>clamp(1.6rem, 1.25rem + 1.5vw, 2.5rem)</div><h2 style="margin:0">Dé Indoor SGW van Nederland</h2></div>
+  <div class="type-row"><div class="spec">H3 · Montserrat 600<br>uppercase<br>clamp(1.25rem, 1.1rem + .6vw, 1.625rem)</div><h3 style="margin:0">De wedstrijd</h3></div>
+  <div class="type-row"><div class="spec">H4 · Montserrat 600<br>uppercase · 1.125rem</div><h4 style="margin:0">Trainingen op 28 en 29 december</h4></div>
+  <div class="type-row"><div class="spec">Eyebrow · Montserrat 700<br>uppercase · .875rem<br>letter-spacing .16em</div><span class="eyebrow" style="margin:0">Dressuur, springen en cross</span></div>
+  <div class="type-row"><div class="spec">Body · Verdana 400<br>1rem · lh 1.65</div><p style="margin:0">De wedstrijd is verdeeld over twee rijbakken en minimaal 20 crosshindernissen van allerlei formaten en soorten. Een echte heuvel, opsprongen, afsprongen en nog veel meer gave hindernissen maken het compleet.</p></div>
+  <div class="type-row"><div class="spec">Small · Verdana 400<br>.875rem</div><p style="margin:0;font-size:var(--fs-small)">Je inschrijving is pas definitief na bevestiging van de organisatie.</p></div>
+  <div class="type-row"><div class="spec">Label / knop · Montserrat 500<br>uppercase · .875rem<br>letter-spacing .06em</div><span style="font-family:var(--heading);font-weight:500;text-transform:uppercase;letter-spacing:.06em;font-size:.875rem">Bekijk het vraagprogramma</span></div>
+
+  <div class="sub">Gewichten Montserrat</div>
+  <div class="weights"><span style="font-weight:400">Regular 400</span><span style="font-weight:500">Medium 500</span><span style="font-weight:600">Semi 600</span><span style="font-weight:700">Bold 700</span><span style="font-weight:800">Extra 800</span><span style="font-weight:900">Black 900</span></div>
+  <p style="font-size:var(--fs-small);color:var(--grey);margin-top:var(--s-3)">400 tot 700 voor de website. 800 en 900 alleen voor marketing en social (zie Marketing).</p>
+</div></section>
+
+<!-- ===================== SPACING ===================== -->
+<section class="sec" id="spacing"><div class="inner">
+  <div class="sec-tag">05 · Fundament</div>
+  <h2>Spacing</h2>
+  <p class="lead">Een schaal op basis van 4px. Binnen componenten gebruik je s-2 tot s-5, tussen blokken s-6 tot s-7 en tussen secties s-8 of s-9.</p>
+  <div style="margin-top:var(--s-5)">
+    <div class="sp"><code>--s-1</code><span>4px</span><i style="width:4px"></i></div>
+    <div class="sp"><code>--s-2</code><span>8px</span><i style="width:8px"></i></div>
+    <div class="sp"><code>--s-3</code><span>12px</span><i style="width:12px"></i></div>
+    <div class="sp"><code>--s-4</code><span>16px</span><i style="width:16px"></i></div>
+    <div class="sp"><code>--s-5</code><span>24px</span><i style="width:24px"></i></div>
+    <div class="sp"><code>--s-6</code><span>32px</span><i style="width:32px"></i></div>
+    <div class="sp"><code>--s-7</code><span>48px</span><i style="width:48px"></i></div>
+    <div class="sp"><code>--s-8</code><span>64px</span><i style="width:64px"></i></div>
+    <div class="sp"><code>--s-9</code><span>96px</span><i style="width:96px"></i></div>
+    <div class="sp"><code>--s-10</code><span>128px</span><i style="width:128px"></i></div>
+  </div>
+  <p style="font-size:var(--fs-small);color:var(--grey)">Maximale contentbreedte: <code>--max-w: 1200px</code>. Zijmarge op mobiel minimaal 16px.</p>
+</div></section>
+
+<!-- ===================== RADIUS & SCHADUW ===================== -->
+<section class="sec" id="radius"><div class="inner">
+  <div class="sec-tag">06 · Fundament</div>
+  <h2>Radius en schaduw</h2>
+  <p class="lead">Op de site domineren 20px (knoppen, blokken) en 50px (pilvorm). Het merk is zacht rond, maar niet speels. Schaduwen zijn licht en hebben een blauwe ondertoon.</p>
+  <div class="grid g4" style="margin-top:var(--s-5)">
+    <div class="rad" style="border-radius:4px">--r-xs<br>4px</div>
+    <div class="rad" style="border-radius:8px">--r-sm<br>8px · inputs</div>
+    <div class="rad" style="border-radius:20px">--r<br>20px · knoppen, kaarten</div>
+    <div class="rad" style="border-radius:32px">--r-lg<br>32px</div>
+    <div class="rad" style="border-radius:50px">--r-pill<br>50px · badges, tabs</div>
+  </div>
+  <div class="grid g3" style="margin-top:var(--s-6)">
+    <div class="shd" style="box-shadow:var(--shadow-sm)">--shadow-sm<br>kaart in rust</div>
+    <div class="shd" style="box-shadow:var(--shadow)">--shadow<br>hover, dropdown</div>
+    <div class="shd" style="box-shadow:var(--shadow-lg)">--shadow-lg<br>modal, cookiebanner</div>
+  </div>
+</div></section>
+
+<!-- ===================== KNOPPEN ===================== -->
+<section class="sec" id="knoppen"><div class="inner">
+  <div class="sec-tag">07 · Componenten</div>
+  <h2>Knoppen</h2>
+  <p class="lead">Montserrat Medium in hoofdletters, 20px radius, net als op de site. Staalblauw is de primaire actie, hover gaat naar petrolblauw. Gebruik per blok maximaal één primaire knop.</p>
+  <div class="demo" style="margin-top:var(--s-5)">
+    <div class="demo-label">Varianten</div>
+    <div class="row">
+      <a href="#knoppen" class="btn">Schrijf je in</a>
+      <a href="#knoppen" class="btn btn-secondary">Lees meer</a>
+      <a href="#knoppen" class="btn btn-accent"><i data-lucide="calendar-days"></i>28, 29 en 30 december</a>
+      <a href="#knoppen" class="btn btn-outline">Bekijk hindernissen</a>
+      <a href="#knoppen" class="btn btn-ghost">Virtual tour <i data-lucide="arrow-right"></i></a>
+      <button class="btn" disabled>Inschrijving gesloten</button>
+    </div>
+  </div>
+  <div class="demo" style="margin-top:var(--s-4);background:var(--primary-dark);border-color:var(--primary-dark)">
+    <div class="demo-label" style="color:rgba(255,255,255,.7)">Op donker</div>
+    <div class="row">
+      <a href="#knoppen" class="btn btn-ondark">Schrijf je in</a>
+      <a href="#knoppen" class="btn btn-accent">Ik wil trainen</a>
+      <a href="#knoppen" class="btn btn-outline-light">Bekijk</a>
+    </div>
+  </div>
+  <div class="demo" style="margin-top:var(--s-4)">
+    <div class="demo-label">Maten</div>
+    <div class="row">
+      <a href="#knoppen" class="btn btn-sm">Klein</a>
+      <a href="#knoppen" class="btn">Standaard</a>
+      <a href="#knoppen" class="btn btn-lg">Groot</a>
+    </div>
+  </div>
+  <div class="note">Goudgele knoppen zijn voor één opvallende actie per pagina, bijvoorbeeld inschrijven in een donkere hero. Altijd met zwarte tekst.</div>
+</div></section>
+
+<!-- ===================== BADGES ===================== -->
+<section class="sec" id="badges"><div class="inner">
+  <div class="sec-tag">08 · Componenten</div>
+  <h2>Badges en labels</h2>
+  <div class="demo" style="margin-top:var(--s-5)">
+    <div class="row">
+      <span class="badge">Cross</span>
+      <span class="badge badge-accent"><i data-lucide="star"></i>Nieuw</span>
+      <span class="badge badge-dark">Wedstrijd</span>
+      <span class="badge badge-outline">Training</span>
+      <span class="badge badge-success"><i data-lucide="check"></i>Definitief</span>
+      <span class="badge badge-error">Wachtlijst</span>
+    </div>
+    <div class="demo-label" style="margin-top:var(--s-5)">Ponycategorie</div>
+    <div class="row">
+      <span class="badge badge-level">A</span><span class="badge badge-level">B</span><span class="badge badge-level">C</span><span class="badge badge-level">D</span><span class="badge badge-level">E</span><span class="badge badge-level">Paard</span>
+    </div>
+  </div>
+</div></section>
+
+<!-- ===================== KAARTEN ===================== -->
+<section class="sec" id="kaarten"><div class="inner">
+  <div class="sec-tag">09 · Componenten</div>
+  <h2>Kaarten</h2>
+  <p class="lead">Drie patronen die de site nodig heeft: een onderdeelkaart met foto, een infokaart voor trainingen en een dagkaart voor het programma.</p>
+  <div class="grid g3" style="margin-top:var(--s-5)">
+    <a class="card" href="#kaarten">
+      <div class="card-img"><img src="assets/img/heuvel.jpg" alt="Crosshindernis met heuvel in de hal" loading="lazy"><span class="badge badge-accent">Cross</span></div>
+      <div class="card-body"><h3>Hindernissen</h3><p>Een echte heuvel, opsprongen, afsprongen en nog veel meer. Alles om de cross naar binnen te halen.</p><span class="card-link">Bekijk hindernissen <i data-lucide="arrow-right"></i></span></div>
+    </a>
+    <a class="card" href="#kaarten">
+      <div class="card-img"><img src="assets/img/wagenwielen.jpg" alt="Hindernis met oude wagenwielen" loading="lazy"><span class="badge">Wedstrijd</span></div>
+      <div class="card-body"><h3>De wedstrijd</h3><p>Dressuur, springen en cross. Alle onderdelen komen aan bod, net als bij een outdoor cross.</p><span class="card-link">Lees meer <i data-lucide="arrow-right"></i></span></div>
+    </a>
+    <div class="card-info">
+      <span class="badge badge-accent" style="align-self:flex-start">Trainingen</span>
+      <h3>Train in de hal</h3>
+      <div class="price">€ 30 <small style="font-size:.9rem;font-weight:500;color:#fff">per uur per combinatie</small></div>
+      <ul><li>Voor paarden-, pony- en bixieruiters</li><li>Erkende instructeurs</li><li>Kosteloos annuleren tot 15 december</li></ul>
+      <a href="#kaarten" class="btn btn-accent" style="align-self:flex-start;margin-top:var(--s-2)">Ik wil trainen</a>
+    </div>
+  </div>
+  <div class="grid g3" style="margin-top:var(--s-5)">
+    <div class="card-day"><div class="date"><span><b>28</b><small>dec</small></span></div><div><h4>Trainingen</h4><p>Paard of pony, alle niveaus</p></div></div>
+    <div class="card-day"><div class="date"><span><b>29</b><small>dec</small></span></div><div><h4>Wedstrijd en trainingen</h4><p>Dressuur en springen</p></div></div>
+    <div class="card-day"><div class="date"><span><b>30</b><small>dec</small></span></div><div><h4>Wedstrijd</h4><p>De indoor cross</p></div></div>
+  </div>
+</div></section>
+
+<!-- ===================== USP ===================== -->
+<section class="sec" id="usp"><div class="inner">
+  <div class="sec-tag">10 · Componenten</div>
+  <h2>USP strip</h2>
+  <p class="lead">De drie feiten uit de homepage, aangevuld met de ervaring van de organisatie.</p>
+  <div class="usp" style="margin-top:var(--s-5)">
+    <div><i data-lucide="flag"></i><p style="margin:0"><b>25+</b><span>hindernissen</span></p></div>
+    <div><i data-lucide="graduation-cap"></i><p style="margin:0"><b>Trainingen</b><span>met erkende instructeurs</span></p></div>
+    <div><i data-lucide="calendar-days"></i><p style="margin:0"><b>3 dagen</b><span>28, 29 en 30 december</span></p></div>
+    <div><i data-lucide="heart-handshake"></i><p style="margin:0"><b>20+ jaar</b><span>sinds 1999</span></p></div>
+  </div>
+</div></section>
+
+<!-- ===================== FORMULIEREN ===================== -->
+<section class="sec" id="formulier"><div class="inner">
+  <div class="sec-tag">11 · Componenten</div>
+  <h2>Formulieren</h2>
+  <p class="lead">Gebaseerd op het inschrijfformulier voor de trainingen. Labels in Montserrat, invoer in Verdana, 8px radius en een duidelijke focusring.</p>
+  <div class="grid g2" style="margin-top:var(--s-5);align-items:start">
+    <form class="demo" onsubmit="return false">
+      <div class="steps"><span>Stap 1 van 3</span><div class="prog"><i style="width:33%"></i></div><span>33%</span></div>
+      <div class="field"><label for="f1">Voornaam ruiter<span class="req">verplicht</span></label><input id="f1" class="input" placeholder="Bijvoorbeeld Lieke"></div>
+      <div class="field"><label for="f2">E-mailadres<span class="req">verplicht</span></label><input id="f2" class="input is-error" value="lieke@" aria-invalid="true" aria-describedby="f2e"><span class="help err" id="f2e"><i data-lucide="alert-circle"></i>Vul een geldig e-mailadres in.</span></div>
+      <div class="field"><label for="f3">Kies type</label><select id="f3" class="select"><option>A pony</option><option>B pony</option><option>C pony</option><option>D pony</option><option>E pony</option><option selected>Paard</option></select></div>
+      <div class="field"><label for="f4">Opmerkingen</label><textarea id="f4" class="textarea" placeholder="Wil je samen trainen met iemand? Laat het ons weten."></textarea><span class="help">We proberen voorkeuren in te plannen, maar kunnen niets garanderen.</span></div>
+      <div class="field"><label for="f5">Niet beschikbaar</label><input id="f5" class="input" value="Manege Het Zwarte Water" disabled></div>
+      <div class="row"><button class="btn">Volgende</button><button class="btn btn-ghost" type="button">Opslaan en later verder</button></div>
+    </form>
+    <div class="demo">
+      <div class="legend" style="margin-bottom:var(--s-3)">Ervaring SGW</div>
+      <label class="radio"><input type="radio" name="ex" checked>Geen SGW-ervaring</label>
+      <label class="radio"><input type="radio" name="ex">B niveau</label>
+      <label class="radio"><input type="radio" name="ex">L niveau</label>
+      <label class="radio"><input type="radio" name="ex">M niveau</label>
+      <label class="radio"><input type="radio" name="ex">Z niveau</label>
+      <div class="legend" style="margin:var(--s-5) 0 var(--s-3)">Trainingsdagen</div>
+      <label class="check"><input type="checkbox" checked>28 december</label>
+      <label class="check"><input type="checkbox">29 december (wachtlijst)</label>
+      <div class="legend" style="margin:var(--s-5) 0 var(--s-2)">Hoogte hindernissen: <span class="range-val" id="rv">70</span> cm</div>
+      <input type="range" class="range" min="40" max="100" step="5" value="70" id="rg" aria-label="Hoogte hindernissen in centimeters">
+      <p class="help" style="margin-top:6px">Voorbeeld van een slider. Waarden zijn illustratief.</p>
+      <div class="legend" style="margin:var(--s-5) 0 var(--s-3)">Akkoord</div>
+      <label class="check"><input type="checkbox">Ik weet dat kosteloos annuleren kan tot 15 december.</label>
+    </div>
+  </div>
+</div></section>
+
+<!-- ===================== TABS ===================== -->
+<section class="sec" id="tabs"><div class="inner">
+  <div class="sec-tag">12 · Componenten</div>
+  <h2>Tabs</h2>
+  <p class="lead">Een segmented control in pilvorm. Handig voor de drie wedstrijdonderdelen of voor startlijsten per dag.</p>
+  <div class="tabs demo" style="margin-top:var(--s-5)" data-tabs>
+    <div role="tablist" aria-label="Onderdelen">
+      <button class="tab" role="tab" aria-selected="true" aria-controls="tp1" id="t1">Dressuur</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="tp2" id="t2" tabindex="-1">Springen</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="tp3" id="t3" tabindex="-1">Cross</button>
+    </div>
+    <div class="tabpanel" role="tabpanel" id="tp1" aria-labelledby="t1"><p>Het eerste onderdeel. Rustig beginnen en laten zien wat je samen kunt.</p></div>
+    <div class="tabpanel" role="tabpanel" id="tp2" aria-labelledby="t2" hidden><p>Een springparcours in de tweede rijbak. Het vraagprogramma laat per rubriek de hoogte zien.</p></div>
+    <div class="tabpanel" role="tabpanel" id="tp3" aria-labelledby="t3" hidden><p>Het hoogtepunt: minimaal 20 crosshindernissen in de hal, met een echte heuvel, opsprongen en afsprongen.</p></div>
+  </div>
+</div></section>
+
+<!-- ===================== ACCORDION ===================== -->
+<section class="sec" id="accordion"><div class="inner">
+  <div class="sec-tag">13 · Componenten</div>
+  <h2>Accordion</h2>
+  <p class="lead">Voor veelgestelde vragen. Antwoorden komen letterlijk uit de huidige site.</p>
+  <div class="acc" style="margin-top:var(--s-5);max-width:820px" data-acc>
+    <div class="acc-item open"><button class="acc-btn" aria-expanded="true" aria-controls="a1">Wat kost een training?<span class="ic"><i data-lucide="plus"></i></span></button><div class="acc-panel" id="a1"><div><p>Een training kost € 30 per uur per combinatie. Je inschrijving is pas definitief na bevestiging van de organisatie.</p></div></div></div>
+    <div class="acc-item"><button class="acc-btn" aria-expanded="false" aria-controls="a2">Tot wanneer kan ik kosteloos annuleren?<span class="ic"><i data-lucide="plus"></i></span></button><div class="acc-panel" id="a2"><div><p>Tot 15 december. Daarna rekenen we de volledige trainingskosten.</p></div></div></div>
+    <div class="acc-item"><button class="acc-btn" aria-expanded="false" aria-controls="a3">Kan ik mijn paard of pony stallen?<span class="ic"><i data-lucide="plus"></i></span></button><div class="acc-panel" id="a3"><div><p>Stalling en overnachting regel je via Het Zwarte Water in De Mortel, via info@hetzwartewater.nl. Overnachten in een vrachtwagen kan alleen met eigen stroom, er is ter plekke geen stroom beschikbaar.</p></div></div></div>
+    <div class="acc-item"><button class="acc-btn" aria-expanded="false" aria-controls="a4">Wanneer staan de startlijsten online?<span class="ic"><i data-lucide="plus"></i></span></button><div class="acc-panel" id="a4"><div><p>Startlijsten en uitslagen publiceren we pas als ze definitief zijn.</p></div></div></div>
+    <div class="acc-item"><button class="acc-btn" aria-expanded="false" aria-controls="a5">Ik wil met meerdere paarden trainen. Hoe werkt dat?<span class="ic"><i data-lucide="plus"></i></span></button><div class="acc-panel" id="a5"><div><p>Vul het formulier per paard of pony opnieuw in. Zo kunnen we alle inschrijvingen goed verwerken.</p></div></div></div>
+  </div>
+</div></section>
+
+<!-- ===================== SLIDER ===================== -->
+<section class="sec" id="slider"><div class="inner">
+  <div class="sec-tag">14 · Componenten</div>
+  <h2>Slider</h2>
+  <p class="lead">Crossfade met pijlen, dots en toetsenbordbediening. Draait niet automatisch, zodat niemand iets mist.</p>
+  <div class="slider" style="margin-top:var(--s-5)" data-slider aria-roledescription="carousel" aria-label="Hindernissen">
+    <figure class="slide on" style="margin:0"><img src="assets/img/hal-overzicht.jpg" alt="Overzicht van de hal met crosshindernissen"><figcaption>De hal in De Mortel</figcaption></figure>
+    <figure class="slide" style="margin:0"><img src="assets/img/heuvel.jpg" alt="De heuvel in de hal"><figcaption>Een echte heuvel</figcaption></figure>
+    <figure class="slide" style="margin:0"><img src="assets/img/tonnen.jpg" alt="Hindernis van houten tonnen"><figcaption>Tonnen, nummer 21</figcaption></figure>
+    <figure class="slide" style="margin:0"><img src="assets/img/opsprong.jpg" alt="Opsprong met boomstammen"><figcaption>Op en afsprongen</figcaption></figure>
+    <button class="sl-arrow sl-prev" aria-label="Vorige foto"><i data-lucide="chevron-left"></i></button>
+    <button class="sl-arrow sl-next" aria-label="Volgende foto"><i data-lucide="chevron-right"></i></button>
+    <div class="sl-dots"></div>
+  </div>
+</div></section>
+
+<!-- ===================== MODAL ===================== -->
+<section class="sec" id="modal"><div class="inner">
+  <div class="sec-tag">15 · Componenten</div>
+  <h2>Modal en popover</h2>
+  <p class="lead">Een modal voor korte bevestigingen of inschrijfinfo. Sluit met de knop, de achtergrond of Escape. De popover geeft korte uitleg bij een term.</p>
+  <div class="row" style="margin-top:var(--s-5);gap:var(--s-6)">
+    <button class="btn" data-open-modal="m1">Open modal</button>
+    <span class="pop-wrap" data-pop><button class="btn btn-outline" aria-expanded="false" aria-describedby="pp1">Wat is SGW?</button><span class="popover" role="tooltip" id="pp1">SGW staat voor samengestelde wedstrijd: dressuur, springen en cross in één wedstrijd.</span></span>
+  </div>
+  <div class="modal" id="m1" role="dialog" aria-modal="true" aria-labelledby="m1t">
+    <div class="modal-box">
+      <button class="modal-x" aria-label="Sluiten" data-close><i data-lucide="x"></i></button>
+      <span class="eyebrow">Inschrijving ontvangen</span>
+      <h3 id="m1t">Bedankt, je staat erop!</h3>
+      <p style="font-size:var(--fs-small);color:var(--grey-700)">We bevestigen je inschrijving zo snel mogelijk per mail. Pas dan is hij definitief. Tot in De Mortel!</p>
+      <div class="row" style="margin-top:var(--s-4)"><button class="btn" data-close>Top</button><button class="btn btn-ghost" data-close>Nog een combinatie</button></div>
+    </div>
+  </div>
+  <div class="note warn">De uitleg "samengestelde wedstrijd" voor SGW is gangbaar in de paardensport, maar staat niet op de site. <span class="ask">VRAAG AAN KLANT: klopt deze omschrijving?</span></div>
+</div></section>
+
+<!-- ===================== ICONEN ===================== -->
+<section class="sec" id="iconen"><div class="inner">
+  <div class="sec-tag">16 · Componenten</div>
+  <h2>Iconen</h2>
+  <p class="lead">Lucide, lijndikte 2, kleur petrolblauw of goudgeel op donker. De huidige site gebruikt Font Awesome. Bij een rebuild stappen we over op Lucide voor een rustiger, consistenter lijnbeeld.</p>
+  <div class="icons" style="margin-top:var(--s-5)">
+    <div><i data-lucide="calendar-days"></i>calendar-days</div>
+    <div><i data-lucide="flag"></i>flag</div>
+    <div><i data-lucide="trophy"></i>trophy</div>
+    <div><i data-lucide="medal"></i>medal</div>
+    <div><i data-lucide="graduation-cap"></i>graduation-cap</div>
+    <div><i data-lucide="list-ordered"></i>list-ordered</div>
+    <div><i data-lucide="clipboard-list"></i>clipboard-list</div>
+    <div><i data-lucide="timer"></i>timer</div>
+    <div><i data-lucide="map-pin"></i>map-pin</div>
+    <div><i data-lucide="warehouse"></i>warehouse</div>
+    <div><i data-lucide="truck"></i>truck</div>
+    <div><i data-lucide="mail"></i>mail</div>
+    <div><i data-lucide="facebook"></i>facebook</div>
+    <div><i data-lucide="instagram"></i>instagram</div>
+    <div><i data-lucide="users"></i>users</div>
+    <div><i data-lucide="heart-handshake"></i>heart-handshake</div>
+    <div><i data-lucide="view"></i>view</div>
+    <div><i data-lucide="mountain"></i>mountain</div>
+    <div><i data-lucide="trees"></i>trees</div>
+    <div><i data-lucide="arrow-right"></i>arrow-right</div>
+  </div>
+</div></section>
+
+<!-- ===================== SECTIE HEADER ===================== -->
+<section class="sec" id="sectieheader"><div class="inner">
+  <div class="sec-tag">17 · Componenten</div>
+  <h2>Sectie header</h2>
+  <p class="lead">Eyebrow, titel en ondertitel. De eyebrow is gewoon tekst, zonder streepje of lijntje ervoor.</p>
+  <div class="grid g2" style="margin-top:var(--s-5)">
+    <div class="demo"><div class="sh"><span class="eyebrow">Over de stichting</span><h2>Dé Indoor SGW van Nederland</h2><p>Al meer dan 20 jaar een begrip in de paardensport. Gedragen door een vast team vrijwilligers.</p></div></div>
+    <div class="demo on-dark" style="background:var(--primary-dark);border-color:var(--primary-dark)"><div class="sh center"><span class="eyebrow">Trainingen</span><h2>Train in de hal</h2><p>Met erkende instructeurs, in een groep die past bij jou en je paard.</p></div></div>
+  </div>
+</div></section>
+
+<!-- ===================== NAVIGATIE & FOOTER ===================== -->
+<section class="sec" id="navigatie"><div class="inner">
+  <div class="sec-tag">18 · Patronen</div>
+  <h2>Navigatie en footer</h2>
+  <p class="lead">Menu en footer met de echte structuur van indoorsgw.nl. Navigatie is sticky en petrolblauw. Onder 980px klapt het menu in.</p>
+
+  <nav class="site-nav" style="margin-top:var(--s-5)" aria-label="Hoofdmenu voorbeeld">
+    <div class="bar">
+      <a class="brand" href="#navigatie"><img src="assets/logo/logo-wit.png" alt="">Indoor SGW</a>
+      <button class="burger" aria-label="Menu openen" aria-expanded="false" data-burger><i data-lucide="menu"></i></button>
+      <ul>
+        <li><a href="#navigatie" class="active">Home</a></li>
+        <li class="nav-dd"><a href="#navigatie">Over ons <i data-lucide="chevron-down"></i></a><div class="dd"><a href="#navigatie">Hindernissen</a><a href="#navigatie">Virtual Tour</a></div></li>
+        <li class="nav-dd"><a href="#navigatie">Wedstrijd <i data-lucide="chevron-down"></i></a><div class="dd"><a href="#navigatie">Vraagprogramma</a><a href="#navigatie">Startlijsten</a><a href="#navigatie">Crossparcours</a><a href="#navigatie">Uitslagen</a></div></li>
+        <li><a href="#navigatie">Trainingen</a></li>
+        <li><a href="#navigatie">Sponsoren</a></li>
+        <li><a href="#navigatie">Stalling</a></li>
+        <li><a href="#navigatie">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <footer class="site-footer" style="margin-top:var(--s-6)">
+    <div class="top">Indoor SGW 2026 ©</div>
+    <div class="cols">
+      <div><img src="assets/logo/logo-wit.png" alt="Indoor SGW">
+        <div class="social"><a href="https://www.facebook.com/indoorsgw/" aria-label="Facebook"><i data-lucide="facebook"></i></a><a href="https://www.instagram.com/indoorsgw/" aria-label="Instagram"><i data-lucide="instagram"></i></a><a href="mailto:info@indoorsgw.nl" aria-label="Mail"><i data-lucide="mail"></i></a></div>
+      </div>
+      <div><h4>Algemeen</h4><ul><li><a href="#navigatie">Home</a></li><li><a href="#navigatie">Over ons</a></li><li><a href="#navigatie">Hindernissen</a></li><li><a href="#navigatie">Virtual Tour</a></li></ul></div>
+      <div><h4>Wedstrijd</h4><ul><li><a href="#navigatie">Wedstrijd</a></li><li><a href="#navigatie">Vraagprogramma</a></li><li><a href="#navigatie">Startlijsten</a></li><li><a href="#navigatie">Uitslagen</a></li></ul></div>
+      <div><h4>Trainingen</h4><ul><li><a href="#navigatie">Trainingen</a></li><li><a href="#navigatie">Sponsoren</a></li><li><a href="#navigatie">Contact</a></li></ul></div>
+    </div>
+    <div class="bottom"><span>Stichting Indoor SGW · <span class="ask" style="background:transparent;color:#FFB4AE;border-color:#FFB4AE">KVK: VRAAG AAN KLANT</span> · info@indoorsgw.nl</span><span>Development door EquiMarketing</span></div>
+  </footer>
+</div></section>
+
+<!-- ===================== BEELD ===================== -->
+<section class="sec" id="beeld"><div class="inner">
+  <div class="sec-tag">19 · Patronen</div>
+  <h2>Beeld en video</h2>
+  <p class="lead">De echte hal, de echte hindernissen. Groen van kerstbomen, warm hout en zand. Dat is het beeld van Indoor SGW: herkenbaar december, binnen.</p>
+  <div class="gallery" style="margin-top:var(--s-5)">
+    <figure class="big"><img src="assets/img/hal-overzicht.jpg" alt="Overzicht van de hal" loading="lazy"><figcaption>hal-overzicht.jpg</figcaption></figure>
+    <figure><img src="assets/img/heuvel.jpg" alt="Heuvel" loading="lazy"><figcaption>heuvel.jpg</figcaption></figure>
+    <figure><img src="assets/img/wagenwielen.jpg" alt="Wagenwielen" loading="lazy"><figcaption>wagenwielen.jpg</figcaption></figure>
+    <figure><img src="assets/img/tonnen.jpg" alt="Tonnen" loading="lazy"><figcaption>tonnen.jpg</figcaption></figure>
+    <figure><img src="assets/img/jump-20.jpg" alt="Hindernis 20" loading="lazy"><figcaption>jump-20.jpg</figcaption></figure>
+    <figure><img src="assets/img/boomstammen.jpg" alt="Boomstammen" loading="lazy"><figcaption>boomstammen.jpg</figcaption></figure>
+    <figure><img src="assets/img/kerstbomen-15a.jpg" alt="Hindernis 15A met kerstbomen" loading="lazy"><figcaption>kerstbomen-15a.jpg</figcaption></figure>
+    <figure class="big"><img src="assets/img/bestuur.jpg" alt="Bestuur van Stichting Indoor SGW" loading="lazy"><figcaption>bestuur.jpg</figcaption></figure>
+    <figure><img src="assets/img/opsprong.jpg" alt="Opsprong" loading="lazy"><figcaption>opsprong.jpg</figcaption></figure>
+    <figure><img src="assets/img/boerenwagen.jpg" alt="Boerenwagen" loading="lazy"><figcaption>boerenwagen.jpg</figcaption></figure>
+  </div>
+  <div class="grid g2" style="margin-top:var(--s-6)">
+    <div>
+      <div class="sub" style="margin-top:0">Richtlijnen foto</div>
+      <ul style="font-size:var(--fs-small);padding-left:1.2em">
+        <li>Liefst actie: combinaties over een hindernis, modder en zand dat opspat.</li>
+        <li>Laat de sfeer zien: kerstbomen, publiek, vrijwilligers aan het werk.</li>
+        <li>Warm en natuurlijk nabewerken. Geen zware filters.</li>
+        <li>Tekst op foto altijd met een petrolblauwe of zwarte overlay van minimaal 55%.</li>
+        <li>Fotografen vermelden als dat is afgesproken (bijvoorbeeld ODD fotografie).</li>
+      </ul>
+      <div class="note warn" style="margin-top:var(--s-3)">De huidige foto's tonen vooral lege hindernissen. Actiefoto's met ruiters zouden de site veel levendiger maken. <span class="ask">VRAAG AAN KLANT: zijn er actiefoto's van vorige edities?</span></div>
+    </div>
+    <div>
+      <div class="sub" style="margin-top:0">Video</div>
+      <div class="video-demo"><div><span class="eyebrow" style="color:var(--accent)">Hero video</span><h2 style="margin:0">Indoor SGW 2026</h2></div></div>
+      <p style="font-size:var(--fs-small);margin-top:var(--s-3)">De hero draait nu een YouTube achtergrondvideo. Advies: een eigen MP4 van maximaal een paar MB, <code>muted autoplay loop playsinline</code>, met een posterframe en een donkere overlay. Dat laadt sneller dan YouTube en toont geen YouTube-logo.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- ===================== MARKETING ===================== -->
+<section class="sec" id="marketing"><div class="inner">
+  <div class="sec-tag">20 · Patronen</div>
+  <h2>Marketing en social</h2>
+  <p class="lead">Voor advertenties en social mag het harder: Montserrat Black in hoofdletters, goudgele highlights op een woord en een lint voor de datum. Dit is een voorstel. De huidige site heeft nog geen aparte marketinglaag.</p>
+  <div class="grid g3" style="margin-top:var(--s-5)">
+    <div class="post p1"><img class="logo-s" src="assets/logo/logo-wit.png" alt=""><div class="mk">De cross gaat <span class="hl">naar binnen</span></div><div class="date">28, 29 en 30 december · De Mortel</div></div>
+    <div class="post p2"><span class="ribbon" style="align-self:flex-end;margin-right:calc(var(--s-5) * -1)">Inschrijving open</span><div><div class="mk">Klaar voor <span class="hl">de heuvel?</span></div><a class="btn btn-accent btn-sm" style="margin-top:var(--s-3)" href="#marketing">Schrijf je in</a></div></div>
+    <div class="post p3"><img class="logo-s" src="assets/logo/logo-zwart.png" alt=""><div class="mk">Train<br>in de hal</div><div class="date">€ 30 per uur per combinatie</div></div>
+  </div>
+  <div class="banner" style="margin-top:var(--s-5)">
+    <div class="txt"><span class="eyebrow" style="color:var(--accent);margin:0">Indoor SGW 2026</span><div class="mk" style="font-size:clamp(1.6rem,1rem + 2vw,2.6rem)">Dressuur, springen en <span class="hl-u">cross</span></div><p style="margin:0;opacity:.88;font-size:var(--fs-small)">Drie dagen tussen kerst en oud en nieuw, bij manege Het Zwarte Water.</p><a href="#marketing" class="btn btn-accent" style="align-self:flex-start">Schrijf je in</a></div>
+    <div class="img" role="img" aria-label="Hindernis van tonnen"></div>
+  </div>
+  <div class="note">Regels: maximaal één gele highlight per kop. Geel highlight altijd met zwarte tekst. Logo linksboven of linksonder, nooit over een highlight.</div>
+</div></section>
+
+<!-- ===================== LICHT / DONKER ===================== -->
+<section class="sec" id="lichtdonker"><div class="inner">
+  <div class="sec-tag">21 · Patronen</div>
+  <h2>Licht en donker</h2>
+  <p class="lead">Wissel af om ritme in een pagina te brengen. Lichte secties voor lezen en formulieren, donkere voor een statement, een CTA of de footer.</p>
+  <div class="grid g4" style="margin-top:var(--s-5)">
+    <div class="ld l1"><h3>Wit</h3><p>Standaard. Lopende tekst, formulieren, startlijsten.</p></div>
+    <div class="ld l2"><h3>Blue 50</h3><p>Rustige afwisseling. FAQ, info, kaartengrids.</p></div>
+    <div class="ld d1 on-dark"><h3>Petrol</h3><p>CTA blokken, USP strip, navigatie, footer.</p></div>
+    <div class="ld d2 on-dark"><h3>Navy</h3><p>Hero overlays en het allerbelangrijkste moment.</p></div>
+  </div>
+  <p style="font-size:var(--fs-small);color:var(--grey);margin-top:var(--s-4)">Nooit twee donkere secties direct na elkaar, behalve een CTA vlak boven de footer.</p>
+</div></section>
+
+<!-- ===================== ANIMATIE ===================== -->
+<section class="sec" id="animatie"><div class="inner">
+  <div class="sec-tag">22 · Patronen</div>
+  <h2>Animatie en reveal</h2>
+  <p class="lead">Bewegingsniveau: rustig. Een korte fade in bij scrollen en subtiele hovers. De site gebruikt nu fadeIn, fadeInDown en het "sink" hover effect van Elementor. Bij <code>prefers-reduced-motion</code> staat alles stil.</p>
+  <div class="grid g4" style="margin-top:var(--s-5)">
+    <div class="anim-box sink">Sink (hover)</div>
+    <div class="anim-box lift">Lift (hover)</div>
+    <div class="anim-box color">Kleur (hover)</div>
+    <div class="anim-box reveal" data-reveal>Reveal bij scroll</div>
+  </div>
+  <div class="tbl-wrap" style="margin-top:var(--s-5)"><table>
+    <tr><th>Token</th><th>Waarde</th><th>Gebruik</th></tr>
+    <tr><td><code>--t</code></td><td>.35s cubic-bezier(.4,0,.2,1)</td><td>Hover, kleur, kleine verschuivingen</td></tr>
+    <tr><td><code>--t-lg</code></td><td>.6s cubic-bezier(.22,1,.36,1)</td><td>Reveal, slider crossfade, foto zoom</td></tr>
+  </table></div>
+</div></section>
+
+<!-- ===================== STATUSSEN ===================== -->
+<section class="sec" id="statussen"><div class="inner">
+  <div class="sec-tag">23 · Patronen</div>
+  <h2>Statussen</h2>
+  <div class="grid g3" style="margin-top:var(--s-5)">
+    <div class="state"><div class="ic"><i data-lucide="list-ordered"></i></div><h4>Nog geen startlijst</h4><p>We publiceren de startlijsten zodra ze definitief zijn. Kom snel terug!</p><a class="btn btn-outline btn-sm" href="#statussen">Bekijk vraagprogramma</a></div>
+    <div class="state"><div class="spinner" role="status" aria-label="Laden"></div><h4>Even geduld</h4><p>De uitslagen worden geladen.</p>
+      <div style="width:100%;display:grid;gap:8px;margin-top:var(--s-2)"><div class="skel" style="height:14px"></div><div class="skel" style="height:14px;width:80%"></div><div class="skel" style="height:14px;width:60%"></div></div></div>
+    <div class="state err"><div class="ic"><i data-lucide="wifi-off"></i></div><h4>Dat ging mis</h4><p>Het formulier is niet verstuurd. Probeer het nog eens of mail ons op info@indoorsgw.nl.</p><button class="btn btn-sm">Opnieuw proberen</button></div>
+  </div>
+  <div class="grid g3" style="margin-top:var(--s-5)">
+    <div class="alert ok" role="status"><i data-lucide="check-circle-2"></i><span>Je inschrijving is ontvangen. Je krijgt een bevestiging per mail.</span></div>
+    <div class="alert warn"><i data-lucide="alert-triangle"></i><span>De training op 29 december zit vol. Je komt op de wachtlijst.</span></div>
+    <div class="alert bad" role="alert"><i data-lucide="x-circle"></i><span>Er ontbreken nog verplichte velden.</span></div>
+  </div>
+</div></section>
+
+<!-- ===================== 404 ===================== -->
+<section class="sec" id="p404"><div class="inner">
+  <div class="sec-tag">24 · Patronen</div>
+  <h2>404 pagina</h2>
+  <div class="p404" style="margin-top:var(--s-5)">
+    <div class="big">404</div>
+    <h2>Deze hindernis staat er niet</h2>
+    <p style="max-width:44ch;margin:0 auto var(--s-5);opacity:.9">De pagina die je zoekt is verplaatst of bestaat niet meer. Geen weigering, gewoon even terug naar de start.</p>
+    <div class="row" style="justify-content:center"><a class="btn btn-accent" href="#p404">Terug naar home</a><a class="btn btn-outline-light" href="#p404">Naar de wedstrijd</a></div>
+  </div>
+</div></section>
+
+<!-- ===================== COOKIE ===================== -->
+<section class="sec" id="cookie"><div class="inner">
+  <div class="sec-tag">25 · Patronen</div>
+  <h2>Cookiebanner en zwevende CTA</h2>
+  <p class="lead">De site heeft al een cookiebanner linksonder en een zwevende CTA rechtsonder naar het vraagprogramma. Hier in merkstijl en in jij-vorm.</p>
+  <div class="row" style="margin-top:var(--s-5);align-items:flex-end;gap:var(--s-6)">
+    <div class="cookie" role="region" aria-label="Cookie voorkeuren">
+      <h4><i data-lucide="cookie"></i>Jouw privacy</h4>
+      <p>We gebruiken cookies om de site goed te laten werken en om te zien hoe hij gebruikt wordt. Je kiest zelf wat je toestaat.</p>
+      <div class="row"><button class="btn btn-sm">Alles accepteren</button><button class="btn btn-outline btn-sm">Alleen nodig</button><button class="btn btn-ghost btn-sm">Instellingen</button></div>
+    </div>
+    <div class="float-cta"><p style="margin:0 0 var(--s-3)">Bekijk hier het vraagprogramma voor de komende wedstrijd.</p><a class="btn btn-sm" href="#cookie" style="width:100%">Bekijk</a></div>
+  </div>
+  <p style="font-size:var(--fs-small);color:var(--grey);margin-top:var(--s-4)">Geen WhatsApp of chatknop: de site gebruikt die nu niet. Contact loopt via mail en het contactformulier.</p>
+</div></section>
+
+<!-- ===================== OPEN VRAGEN ===================== -->
+<section class="sec" id="vragen"><div class="inner">
+  <div class="sec-tag">26 · Controle</div>
+  <h2>Open vragen voor de klant</h2>
+  <p class="lead">Tijdens het uitlezen van de site kwamen deze punten naar boven. We vullen niets in op gevoel. Zodra er antwoord is, passen we de stylesheet aan.</p>
+  <div class="tbl-wrap"><table>
+    <tr><th>#</th><th>Onderwerp</th><th>Wat staat er nu</th><th>Vraag</th></tr>
+    <tr><td>1</td><td>Dagindeling</td><td>Trainingen op 28 en 29 december, wedstrijd op 29 (dressuur en springen) en 30 december (cross).</td><td><b>Bevestigd.</b> Geen actie nodig.</td></tr>
+    <tr><td>2</td><td>Aantal hindernissen</td><td>Homepage USP: "+25 hindernissen". Tekst: "minimaal 20 cross hindernissen".</td><td>Welk getal communiceren we?</td></tr>
+    <tr><td>3</td><td>Trainingsprijs</td><td>€ 30 per uur per combinatie. Het formulier is inmiddels hernoemd naar 2026.</td><td>Geldt deze prijs ook voor 2026?</td></tr>
+    <tr><td>4</td><td>Juridische gegevens</td><td>Geen KVK, adres of statutaire naam op de site.</td><td>KVK-nummer, adres en exacte naam van de stichting?</td></tr>
+    <tr><td>5</td><td>Locatie</td><td>Manege Het Zwarte Water, De Mortel. Geen adres op de site.</td><td>Mogen we het adres van de manege tonen?</td></tr>
+    <tr><td>6</td><td>Logo</td><td>Alleen PNG in wit en zwart van de site.</td><td>Is er een SVG of een kleurversie?</td></tr>
+    <tr><td>7</td><td>Spelling</td><td>"Crossparcour", "manage", "gerenormeerde", "vrijwillger", "ter spraken".</td><td>Mogen we dit corrigeren naar crossparcours, manege, gerenommeerde, vrijwilliger, ter sprake?</td></tr>
+    <tr><td>8</td><td>Naam voorzitter</td><td>Bestuur: "Friet van Stiphout". Sponsorlogo: "Fried van Stiphout".</td><td>Welke schrijfwijze is juist?</td></tr>
+    <tr><td>9</td><td>SGW uitleg</td><td>Nergens uitgelegd op de site.</td><td>Mogen we "samengestelde wedstrijd" gebruiken als uitleg?</td></tr>
+    <tr><td>10</td><td>Beeld</td><td>Vooral foto's van lege hindernissen uit 2022.</td><td>Zijn er actiefoto's of video van recente edities?</td></tr>
+  </table></div>
+</div></section>
+
+<!-- ===================== TOKENS ===================== -->
+<section class="sec" id="tokens" style="border-bottom:0"><div class="inner">
+  <div class="sec-tag">27 · Afsluiting</div>
+  <h2>Tokens</h2>
+  <p class="lead">Alle CSS variabelen bij elkaar. Kopieer het blok in elk nieuw project voor Indoor SGW.</p>
+  <div class="tbl-wrap tok" style="margin-top:var(--s-5)"><table>
+    <tr><th>Variabele</th><th>Waarde</th><th>Bron of gebruik</th></tr>
+    <tr><td><span class="sw" style="background:#426C87"></span>--primary</td><td>#426C87</td><td>Kit (accent). Primaire knop</td></tr>
+    <tr><td><span class="sw" style="background:#1F506C"></span>--primary-dark</td><td>#1F506C</td><td>Kit (secondary). Hover, nav, footer, koppen</td></tr>
+    <tr><td><span class="sw" style="background:#163B50"></span>--navy</td><td>#163B50</td><td>Afgeleid. Diepe vlakken</td></tr>
+    <tr><td><span class="sw" style="background:#EAB200"></span>--accent</td><td>#EAB200</td><td>Kit. Highlight met zwarte tekst</td></tr>
+    <tr><td><span class="sw" style="background:#C99A00"></span>--accent-dark</td><td>#C99A00</td><td>Afgeleid. Hover op accent</td></tr>
+    <tr><td><span class="sw" style="background:#000"></span>--ink</td><td>#000000</td><td>Kit (text). Lopende tekst</td></tr>
+    <tr><td><span class="sw" style="background:#5B6670"></span>--grey</td><td>#5B6670</td><td>Secundaire tekst</td></tr>
+    <tr><td>--heading</td><td>Montserrat</td><td>Kit (primary, secondary, accent)</td></tr>
+    <tr><td>--body</td><td>Verdana</td><td>Kit (text)</td></tr>
+    <tr><td>--r / --r-pill</td><td>20px / 50px</td><td>Dominante radius in de bron</td></tr>
+  </table></div>
+  <div class="row" style="justify-content:space-between;margin:var(--s-6) 0 var(--s-3)"><div class="sub" style="margin:0">:root blok</div><button class="btn btn-sm btn-outline copy" data-copy><i data-lucide="copy"></i>Kopieer</button></div>
+<pre class="codeblock" id="rootcode">:root{
+  /* Merkkleuren */
+  --primary:      #426C87;
+  --primary-dark: #1F506C;
+  --navy:         #163B50;
+  --accent:       #EAB200;
+  --accent-dark:  #C99A00;
+
+  /* Tints */
+  --blue-50:  #F1F5F8;
+  --blue-100: #E2EAF0;
+  --blue-200: #C5D4DE;
+  --blue-300: #9DB5C5;
+  --accent-50:#FDF6DE;
+
+  /* Ink en neutralen */
+  --ink:      #000000;
+  --grey:     #5B6670;
+  --white:    #FFFFFF;
+  --grey-50:  #F7F8FA;
+  --grey-100: #EEF1F5;
+  --grey-200: #E1E6EC;
+  --grey-300: #C9D0DA;
+  --grey-400: #9AA3B2;
+  --grey-700: #3A434F;
+
+  /* Feedback */
+  --success: #2A7349;
+  --error:   #B3261E;
+  --warning: #8F5B00;
+
+  /* Typografie */
+  --heading: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --body:    Verdana, Geneva, "DejaVu Sans", sans-serif;
+  --display: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --fs-h1: clamp(2rem, 1.4rem + 2.6vw, 3.25rem);
+  --fs-h2: clamp(1.6rem, 1.25rem + 1.5vw, 2.5rem);
+  --fs-h3: clamp(1.25rem, 1.1rem + .6vw, 1.625rem);
+  --fs-h4: 1.125rem;
+  --fs-body: 1rem;
+  --fs-small: .875rem;
+  --fs-xs: .75rem;
+
+  /* Spacing */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px; --s-5: 24px;
+  --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px; --s-10: 128px;
+
+  /* Layout */
+  --max-w: 1200px;
+
+  /* Radius */
+  --r-xs: 4px; --r-sm: 8px; --r: 20px; --r-lg: 32px; --r-pill: 50px;
+
+  /* Schaduw */
+  --shadow-sm: 0 1px 2px rgba(22,59,80,.08), 0 2px 6px rgba(22,59,80,.06);
+  --shadow:    0 4px 14px rgba(22,59,80,.10), 0 8px 28px rgba(22,59,80,.08);
+  --shadow-lg: 0 18px 50px rgba(22,59,80,.20);
+
+  /* Motion */
+  --t: .35s cubic-bezier(.4,0,.2,1);
+  --t-lg: .6s cubic-bezier(.22,1,.36,1);
+}</pre>
+  <p style="font-size:var(--fs-xs);color:var(--grey);margin-top:var(--s-6)">Opgesteld op basis van indoorsgw.nl, oktober 2026. Development door EquiMarketing.</p>
+</div></section>
+
+</main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<script>
+(function(){
+  if (window.lucide) lucide.createIcons();
+
+  // Tabs
+  document.querySelectorAll('[data-tabs]').forEach(function(w){
+    var tabs = w.querySelectorAll('[role=tab]');
+    function sel(t){
+      tabs.forEach(function(x){ var on = x===t; x.setAttribute('aria-selected',on); x.tabIndex = on?0:-1;
+        document.getElementById(x.getAttribute('aria-controls')).hidden = !on; });
+      t.focus();
+    }
+    tabs.forEach(function(t,i){
+      t.addEventListener('click',function(){ sel(t); });
+      t.addEventListener('keydown',function(e){
+        if(e.key==='ArrowRight') sel(tabs[(i+1)%tabs.length]);
+        if(e.key==='ArrowLeft') sel(tabs[(i-1+tabs.length)%tabs.length]);
+      });
+    });
+  });
+
+  // Accordion
+  document.querySelectorAll('[data-acc] .acc-btn').forEach(function(b){
+    b.addEventListener('click',function(){
+      var item = b.closest('.acc-item'), open = !item.classList.contains('open');
+      item.classList.toggle('open',open); b.setAttribute('aria-expanded',open);
+    });
+  });
+
+  // Slider
+  document.querySelectorAll('[data-slider]').forEach(function(s){
+    var slides = s.querySelectorAll('.slide'), dots = s.querySelector('.sl-dots'), i = 0;
+    slides.forEach(function(_,n){
+      var d = document.createElement('button'); d.setAttribute('aria-label','Ga naar foto '+(n+1));
+      d.addEventListener('click',function(){ go(n); }); dots.appendChild(d);
+    });
+    function go(n){
+      i = (n+slides.length)%slides.length;
+      slides.forEach(function(x,k){ x.classList.toggle('on',k===i); x.setAttribute('aria-hidden',k!==i); });
+      dots.querySelectorAll('button').forEach(function(d,k){ d.setAttribute('aria-current',k===i); });
+    }
+    s.querySelector('.sl-prev').addEventListener('click',function(){ go(i-1); });
+    s.querySelector('.sl-next').addEventListener('click',function(){ go(i+1); });
+    s.tabIndex = 0;
+    s.addEventListener('keydown',function(e){ if(e.key==='ArrowLeft') go(i-1); if(e.key==='ArrowRight') go(i+1); });
+    go(0);
+  });
+
+  // Modal
+  var lastFocus;
+  function closeModal(m){ m.classList.remove('open'); if(lastFocus) lastFocus.focus(); }
+  document.querySelectorAll('[data-open-modal]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var m = document.getElementById(b.dataset.openModal); lastFocus = b;
+      m.classList.add('open'); setTimeout(function(){ m.querySelector('[data-close]').focus(); },50);
+    });
+  });
+  document.querySelectorAll('.modal').forEach(function(m){
+    m.addEventListener('click',function(e){ if(e.target===m || e.target.closest('[data-close]')) closeModal(m); });
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape') document.querySelectorAll('.modal.open').forEach(closeModal);
+  });
+
+  // Popover
+  document.querySelectorAll('[data-pop]').forEach(function(p){
+    var b = p.querySelector('button');
+    b.addEventListener('click',function(e){ e.stopPropagation(); var o = !p.classList.contains('open'); p.classList.toggle('open',o); b.setAttribute('aria-expanded',o); });
+    document.addEventListener('click',function(){ p.classList.remove('open'); b.setAttribute('aria-expanded',false); });
+  });
+
+  // Burger
+  document.querySelectorAll('[data-burger]').forEach(function(b){
+    b.addEventListener('click',function(){ var n = b.closest('.site-nav'), o = !n.classList.contains('open'); n.classList.toggle('open',o); b.setAttribute('aria-expanded',o); });
+  });
+
+  // Range
+  var rg = document.getElementById('rg'), rv = document.getElementById('rv');
+  if(rg) rg.addEventListener('input',function(){ rv.textContent = rg.value; });
+
+  // Reveal
+  var els = document.querySelectorAll('[data-reveal]');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(en){ en.forEach(function(x){ if(x.isIntersecting){ x.target.classList.add('in'); io.unobserve(x.target); } }); },{threshold:.3});
+    els.forEach(function(e){ io.observe(e); });
+  } else els.forEach(function(e){ e.classList.add('in'); });
+
+  // Kopieer tokens
+  document.querySelectorAll('[data-copy]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var txt = document.getElementById('rootcode').textContent;
+      (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(function(){
+        b.lastChild.textContent = 'Gekopieerd'; setTimeout(function(){ b.lastChild.textContent = 'Kopieer'; },1800);
+      }).catch(function(){});
+    });
+  });
+
+  // Actieve sectie in zijnavigatie
+  var links = document.querySelectorAll('.ds-nav a');
+  var secs = Array.prototype.map.call(links,function(a){ return document.querySelector(a.getAttribute('href')); });
+  if('IntersectionObserver' in window){
+    var so = new IntersectionObserver(function(en){ en.forEach(function(x){ if(x.isIntersecting){ links.forEach(function(a){ a.classList.toggle('on', a.getAttribute('href')==='#'+x.target.id); }); } }); },{rootMargin:'-40% 0px -55% 0px'});
+    secs.forEach(function(s){ if(s) so.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>

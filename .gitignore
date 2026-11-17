@@ -1,0 +1,15 @@
+# lokaal en privé, niet in de openbare repo
+bron/
+.claude/
+koppel-mcp.sh
+mail-*.md
+plan-*.md
+*.local.*
+.env*
+
+# gegenereerd
+*-preview.html
+assets/video/
+.vercel/
+__pycache__/
+.DS_Store

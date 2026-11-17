@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Varianten | Instagram | Indoor SGW</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#426C87;--primary-dark:#1F506C;--navy:#163B50;--ink:#0F2C3D;--gold:#EAB200;--gold-50:#FDF6DE;--blue-50:#F1F5F8;--blue-100:#E2EAF0;--blue-300:#9DB5C5;--grey:#5B6670;--line:#E1E6EC;--text:#3A434F;--head:"Montserrat",Arial,sans-serif;--body:Verdana,Geneva,sans-serif;--r:20px;--r-lg:32px;--pill:999px;--g:clamp(16px,4vw,32px);--ease:cubic-bezier(.22,1,.36,1);--shadow:0 10px 30px rgba(22,59,80,.1);--shadow-lg:0 24px 60px rgba(15,44,61,.22)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--text);font:16px/1.7 var(--body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+h1,h2,h3{font-family:var(--head);color:var(--navy);margin:0;letter-spacing:-.03em;line-height:1.05}
+p{margin:0}
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--g)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:48px;padding:0 24px;border-radius:var(--pill);border:0;cursor:pointer;font:700 14px/1 var(--head);transition:background .3s}
+.btn--navy{background:var(--navy);color:#fff}.btn--navy:hover{background:var(--primary-dark)}
+.btn--gold{background:var(--gold);color:var(--navy)}
+.round{width:52px;height:52px;border-radius:50%;border:0;display:grid;place-items:center;cursor:pointer;background:var(--navy);color:#fff;transition:background .3s,transform .3s}
+.round:hover{background:var(--primary-dark)}.round:active{transform:scale(.94)}
+.round:disabled{opacity:.35;cursor:default}
+
+/* paginakop */
+.intro{padding:72px 0 24px}
+.intro h1{font-size:clamp(34px,5vw,60px);font-weight:900}
+.intro p{margin-top:12px;max-width:60ch;color:var(--grey)}
+.variant{padding-block:72px;border-top:1px solid var(--line)}
+.variant:nth-of-type(even){background:var(--blue-50)}
+.vlabel{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.vlabel b{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--gold);font:900 18px var(--head);color:var(--navy)}
+.vlabel span{font:800 18px var(--head);color:var(--navy)}
+.vlabel em{font-style:normal;color:var(--grey);font-size:14px}
+.shead{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:36px}
+.shead h2{font-weight:800;font-size:clamp(30px,4vw,52px)}
+.shead p{max-width:42ch;color:var(--grey);margin-top:10px}
+.ctrl{display:flex;gap:8px}
+
+.ig{display:inline-grid;place-items:center}
+.ighead{display:flex;align-items:center;gap:14px}
+.avatar{width:56px;height:56px;border-radius:50%;padding:3px;background:conic-gradient(var(--gold),var(--primary),var(--gold));flex:none}
+.avatar span{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;background:var(--navy);border:3px solid #fff;color:#fff;font:900 14px var(--head)}
+
+/* A: grid */
+.grid6{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.post{position:relative;display:block;aspect-ratio:1;border-radius:var(--r);overflow:hidden}
+.post img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.post::after{content:"";position:absolute;inset:0;background:rgba(15,44,61,.55) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2'%3E%3Crect x='3' y='3' width='18' height='18' rx='5'/%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Ccircle cx='17.5' cy='6.5' r='1' fill='%23fff'/%3E%3C/svg%3E") center no-repeat;opacity:0;transition:opacity .35s}
+.post:hover::after{opacity:1}.post:hover img{transform:scale(1.06)}
+
+/* B: stories */
+.bubbles{display:flex;gap:28px;overflow-x:auto;padding:6px 2px 10px;scrollbar-width:none}
+.bubble{border:0;background:none;padding:0;cursor:pointer;display:grid;justify-items:center;gap:10px;flex:none}
+.bubble .ring{width:104px;height:104px;border-radius:50%;padding:4px;background:conic-gradient(var(--gold),var(--primary),var(--gold));transition:transform .3s var(--ease)}
+.bubble:hover .ring{transform:scale(1.06)}
+.bubble.seen .ring{background:var(--line)}
+.bubble img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:4px solid #fff}
+.bubble span{font:700 14px var(--head);color:var(--navy)}
+.story{position:fixed;inset:0;z-index:90;background:rgba(15,44,61,.96);display:none;place-items:center;padding:20px}
+.story.open{display:grid}
+.player{position:relative;width:min(400px,100%);aspect-ratio:9/16;max-height:88vh;border-radius:24px;overflow:hidden;background:#000;box-shadow:var(--shadow-lg)}
+.player img{width:100%;height:100%;object-fit:cover}
+.player::before{content:"";position:absolute;inset:0 0 auto;height:140px;background:linear-gradient(180deg,rgba(0,0,0,.55),transparent);z-index:1}
+.bars{position:absolute;top:12px;left:12px;right:12px;display:flex;gap:4px;z-index:2}
+.bars span{flex:1;height:3px;border-radius:3px;background:rgba(255,255,255,.35);overflow:hidden}
+.bars i{display:block;height:100%;width:0;background:#fff}
+.who{position:absolute;top:26px;left:14px;right:56px;z-index:2;display:flex;align-items:center;gap:10px;color:#fff;font:700 14px var(--head)}
+.who b{width:32px;height:32px;border-radius:50%;background:var(--navy);border:2px solid #fff;display:grid;place-items:center;font:900 10px var(--head)}
+.player .cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:60px 20px 22px;background:linear-gradient(180deg,transparent,rgba(0,0,0,.7));color:#fff;font:800 20px/1.2 var(--head)}
+.tap{position:absolute;top:0;bottom:0;width:40%;z-index:3;border:0;background:none;cursor:pointer}
+.tap.l{left:0}.tap.r{right:0;width:60%}
+.story .x{position:absolute;top:24px;right:20px;z-index:4;width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.15);color:#fff;cursor:pointer;display:grid;place-items:center}
+
+/* C: reels */
+.reels{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;cursor:grab;padding-bottom:4px}
+.reels::-webkit-scrollbar{display:none}
+.reels.drag{cursor:grabbing;scroll-snap-type:none}
+.reel{flex:0 0 clamp(200px,22vw,260px);aspect-ratio:9/16;border-radius:var(--r-lg);overflow:hidden;position:relative;scroll-snap-align:start;user-select:none;background:var(--navy)}
+.reel img{width:100%;height:100%;object-fit:cover;pointer-events:none;transition:transform 1s var(--ease)}
+.reel:hover img{transform:scale(1.05)}
+.reel::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(15,44,61,.85))}
+.reel .play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.9);z-index:1;width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;opacity:0;transition:.35s var(--ease)}
+.reel:hover .play{opacity:1;transform:translate(-50%,-50%)}
+.reel p{position:absolute;left:18px;right:18px;bottom:18px;z-index:1;color:#fff;font:800 17px/1.2 var(--head)}
+
+/* D: telefoon */
+.phonewrap{display:grid;grid-template-columns:1fr auto;gap:64px;align-items:center}
+.phonewrap h3{font-size:clamp(30px,4vw,52px);font-weight:800}
+.phonewrap p{margin-top:14px;color:var(--grey);max-width:40ch}
+.phonewrap .btn{margin-top:28px}
+.phone{width:320px;height:640px;border-radius:48px;background:var(--ink);padding:12px;box-shadow:var(--shadow-lg);position:relative}
+.phone::before{content:"";position:absolute;top:22px;left:50%;transform:translateX(-50%);width:90px;height:24px;border-radius:20px;background:var(--ink);z-index:2}
+.screen{width:100%;height:100%;border-radius:38px;background:#fff;overflow-y:auto;scrollbar-width:none}
+.screen::-webkit-scrollbar{display:none}
+.prof{padding:56px 16px 14px;display:flex;align-items:center;gap:14px}
+.prof .avatar{width:64px;height:64px}
+.prof strong{display:block;font:800 15px var(--head);color:var(--navy)}
+.prof small{font-size:12px;color:var(--grey)}
+.prof-btn{margin:0 16px 14px;height:34px;border-radius:10px;background:var(--navy);color:#fff;display:grid;place-items:center;font:700 13px var(--head)}
+.hl{display:flex;gap:12px;padding:0 16px 14px}
+.hl span{display:grid;justify-items:center;gap:4px;font:600 10px var(--head);color:var(--navy)}
+.hl img{width:52px;height:52px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px #fff,0 0 0 3px var(--line)}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.pgrid img{aspect-ratio:1;object-fit:cover;width:100%}
+
+/* E: uitgelicht */
+.feat{display:grid;grid-template-columns:1.3fr 1fr;gap:20px}
+.feat .main{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:1}
+.feat .main img{width:100%;height:100%;object-fit:cover}
+.feat .main figcaption{position:absolute;left:20px;right:20px;bottom:20px;padding:16px 20px;border-radius:16px;background:rgba(255,255,255,.95);font:700 15px/1.4 var(--head);color:var(--navy)}
+.side{display:flex;flex-direction:column;gap:20px}
+.mini{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.mini button{border:0;padding:0;aspect-ratio:1;border-radius:16px;overflow:hidden;cursor:pointer;opacity:.6;transition:opacity .3s,transform .3s}
+.mini button:hover{opacity:1}
+.mini button.on{opacity:1;box-shadow:0 0 0 3px var(--gold);transform:translateY(-2px)}
+.mini img{width:100%;height:100%;object-fit:cover}
+.box{background:#fff;border-radius:var(--r-lg);padding:28px;box-shadow:inset 0 0 0 1px var(--line)}
+.box h3{font-size:24px;font-weight:800;margin:14px 0 6px}
+.box p{color:var(--grey);font-size:15px;margin-bottom:20px}
+.swap{animation:sw .5s var(--ease)}
+@keyframes sw{from{opacity:0;transform:scale(1.03)}}
+
+/* F: dubbele band */
+.fwrap{position:relative;overflow:hidden;padding-block:8px;border-radius:var(--r-lg)}
+.mrow{display:flex;gap:14px;width:max-content;animation:mq 50s linear infinite}
+.mrow+.mrow{margin-top:14px;animation-direction:reverse}
+.mrow img{width:220px;height:220px;object-fit:cover;border-radius:var(--r)}
+@keyframes mq{to{transform:translateX(-50%)}}
+.fwrap:hover .mrow{animation-play-state:paused}
+.fcard{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;width:min(420px,calc(100% - 32px));background:#fff;border-radius:var(--r-lg);padding:32px;text-align:center;box-shadow:var(--shadow-lg)}
+.fcard .avatar{margin:0 auto 14px;width:72px;height:72px}
+.fcard h3{font-size:26px;font-weight:800}
+.fcard p{color:var(--grey);font-size:15px;margin:8px 0 22px}
+
+@media (max-width:900px){
+  .grid6{grid-template-columns:repeat(3,1fr)}
+  .bubble .ring{width:84px;height:84px}
+  .phonewrap{grid-template-columns:1fr;justify-items:center;gap:36px}
+  .phone{width:290px;height:580px}
+  .feat{grid-template-columns:1fr}
+  .mrow img{width:150px;height:150px}
+  .shead{flex-direction:column;align-items:flex-start}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="wrap intro">
+  <h1>Instagram: zes varianten</h1>
+  <p>Alle varianten werken. Klik, sleep en scroll. De echte posts komen straks automatisch van jullie Instagram via een plugin. Kies er één.</p>
+</header>
+
+<!-- A -->
+<section class="variant">
+  <div class="wrap">
+    <div class="vlabel"><b>A</b><span>Strak raster</span><em>Beweeg over een foto</em></div>
+    <div class="shead"><div><h2>Volg ons op Instagram</h2><p>Foto's, filmpjes en het laatste nieuws uit de hal.</p></div><a class="btn btn--navy" href="#">Volg ons</a></div>
+    <div class="grid6" id="aGrid"></div>
+  </div>
+</section>
+
+<!-- B -->
+<section class="variant">
+  <div class="wrap">
+    <div class="vlabel"><b>B</b><span>Stories</span><em>Klik op een rondje, tik links of rechts om te bladeren</em></div>
+    <div class="shead"><div><h2>Volg ons op Instagram</h2><p>Bekijk de hoogtepunten zoals je ze kent van Instagram.</p></div><a class="btn btn--navy" href="#">Volg ons</a></div>
+    <div class="bubbles" id="bBubbles"></div>
+  </div>
+</section>
+<div class="story" id="story" role="dialog" aria-modal="true" aria-label="Story bekijken">
+  <div class="player">
+    <div class="bars" id="sBars"></div>
+    <div class="who"><b>SGW</b><span id="sWho"></span></div>
+    <img id="sImg" alt="">
+    <p class="cap" id="sCap"></p>
+    <button class="tap l" type="button" aria-label="Vorige"></button><button class="tap r" type="button" aria-label="Volgende"></button>
+  </div>
+  <button class="x" type="button" aria-label="Sluiten"><svg width="16" height="16" viewBox="0 0 20 20"><path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+</div>
+
+<!-- C -->
+<section class="variant">
+  <div class="wrap">
+    <div class="vlabel"><b>C</b><span>Reels</span><em>Sleep met je muis of swipe, of gebruik de pijlen</em></div>
+    <div class="shead">
+      <div><h2>Volg ons op Instagram</h2><p>De beste momenten in beeld.</p></div>
+      <div class="ctrl"><button class="round" type="button" data-r="-1" aria-label="Vorige"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M13 8H3M7 4 3 8l4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="round" type="button" data-r="1" aria-label="Volgende"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+    </div>
+    <div class="reels" id="reels"></div>
+  </div>
+</section>
+
+<!-- D -->
+<section class="variant">
+  <div class="wrap phonewrap">
+    <div>
+      <div class="vlabel"><b>D</b><span>Telefoon</span><em>Scroll in het scherm van de telefoon</em></div>
+      <h3>Volg ons op Instagram</h3>
+      <p>Mis niks van de voorbereiding, de trainingen en de wedstrijd. Volg ons en je ziet als eerste wanneer de inschrijving opent.</p>
+      <a class="btn btn--navy" href="#">Volg ons op Instagram</a>
+    </div>
+    <div class="phone"><div class="screen">
+      <div class="prof"><div class="avatar"><span>SGW</span></div><div><strong>Indoor SGW</strong><small>De Mortel, sinds 1999</small></div></div>
+      <div class="prof-btn">Volgen</div>
+      <div class="hl" id="dHl"></div>
+      <div class="pgrid" id="dGrid"></div>
+    </div></div>
+  </div>
+</section>
+
+<!-- E -->
+<section class="variant">
+  <div class="wrap">
+    <div class="vlabel"><b>E</b><span>Uitgelicht</span><em>Klik op een kleine foto, hij komt groot in beeld</em></div>
+    <div class="feat">
+      <figure class="main" style="margin:0"><img id="eImg" alt=""><figcaption id="eCap"></figcaption></figure>
+      <div class="side">
+        <div class="box"><div class="ighead"><div class="avatar"><span>SGW</span></div><strong style="font:800 16px var(--head);color:var(--navy)">Indoor SGW</strong></div><h3>Volg ons op Instagram</h3><p>Foto's, filmpjes en het laatste nieuws uit de hal.</p><a class="btn btn--navy" href="#">Volg ons</a></div>
+        <div class="mini" id="eMini"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- F -->
+<section class="variant">
+  <div class="wrap">
+    <div class="vlabel"><b>F</b><span>Fotoband</span><em>Twee banden die tegen elkaar in bewegen, beweeg erover om te pauzeren</em></div>
+  </div>
+  <div class="fwrap">
+    <div class="mrow" id="fRow1"></div>
+    <div class="mrow" id="fRow2"></div>
+    <div class="fcard"><div class="avatar"><span>SGW</span></div><h3>Volg ons op Instagram</h3><p>Het laatste nieuws en de mooiste foto's uit de hal.</p><a class="btn btn--navy" href="#">Volg ons</a></div>
+  </div>
+</section>
+
+<div hidden id="src">
+  <img data-c="Springen in de hal" src="../assets/img/sfeer-1.jpg" alt="">
+  <img data-c="Pony over de boomstam" src="../assets/img/sfeer-2.jpg" alt="">
+  <img data-c="De heuvel" src="../assets/img/heuvel.jpg" alt="">
+  <img data-c="Rozetten voor elke klasse" src="../assets/img/sfeer-3.jpg" alt="">
+  <img data-c="De opsprong" src="../assets/img/opsprong.jpg" alt="">
+  <img data-c="Samen met de organisatie" src="../assets/img/sfeer-4.jpg" alt="">
+  <img data-c="De tonnen" src="../assets/img/tonnen.jpg" alt="">
+  <img data-c="De boerenwagen" src="../assets/img/boerenwagen.jpg" alt="">
+  <img data-c="De wagenwielen" src="../assets/img/wagenwielen.jpg" alt="">
+  <img data-c="De boomstammen" src="../assets/img/boomstammen.jpg" alt="">
+  <img data-c="Kerstbomen in het parcours" src="../assets/img/kerstbomen-15a.jpg" alt="">
+  <img data-c="Over de sprong" src="../assets/img/jump-20.jpg" alt="">
+</div>
+
+<script>
+const P = [...document.querySelectorAll('#src img')].map(i => ({src:i.src, cap:i.dataset.c}));
+const img = (p, cls) => { const i = new Image(); i.src = p.src; i.alt = p.cap; if (cls) i.className = cls; return i; };
+
+/* A */
+P.slice(0, 6).forEach(p => { const a = document.createElement('a'); a.href = '#'; a.className = 'post'; a.append(img(p)); document.getElementById('aGrid').append(a); });
+
+/* B: stories met voortgangsbalkjes en automatisch doorgaan */
+const STORIES = [
+  {name:'Training', items:[0, 4, 10]},
+  {name:'Cross', items:[1, 2, 9]},
+  {name:'Hindernissen', items:[6, 7, 8]},
+  {name:'Prijzen', items:[3, 5]}
+];
+const story = document.getElementById('story'), sBars = document.getElementById('sBars'), sImg = document.getElementById('sImg'), sCap = document.getElementById('sCap'), sWho = document.getElementById('sWho');
+const DUR = 4000; let sI = 0, iI = 0, t0 = 0, raf = 0;
+const render = () => { const s = STORIES[sI], p = P[s.items[iI]]; sImg.src = p.src; sCap.textContent = p.cap; sWho.textContent = s.name;
+  sBars.innerHTML = s.items.map((_, k) => `<span><i style="width:${k < iI ? 100 : 0}%"></i></span>`).join(''); t0 = performance.now(); };
+const step = d => { const s = STORIES[sI]; iI += d;
+  if (iI >= s.items.length) { document.querySelectorAll('.bubble')[sI].classList.add('seen'); sI++; iI = 0; if (sI >= STORIES.length) return closeStory(); }
+  if (iI < 0) { if (sI === 0) iI = 0; else { sI--; iI = STORIES[sI].items.length - 1; } } render(); };
+const loop = now => { const p = (now - t0) / DUR; const bar = sBars.children[iI]?.firstChild; if (bar) bar.style.width = Math.min(p, 1) * 100 + '%'; if (p >= 1) step(1); if (story.classList.contains('open')) raf = requestAnimationFrame(loop); };
+const openStory = i => { sI = i; iI = 0; story.classList.add('open'); render(); cancelAnimationFrame(raf); raf = requestAnimationFrame(loop); story.querySelector('.x').focus(); };
+const closeStory = () => { story.classList.remove('open'); cancelAnimationFrame(raf); };
+STORIES.forEach((s, i) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'bubble';
+  b.innerHTML = '<span class="ring"></span><span></span>'; b.firstChild.append(img(P[s.items[0]])); b.lastChild.textContent = s.name; b.onclick = () => openStory(i);
+  document.getElementById('bBubbles').append(b); });
+story.querySelector('.tap.l').onclick = () => step(-1); story.querySelector('.tap.r').onclick = () => step(1);
+story.querySelector('.x').onclick = closeStory; story.addEventListener('click', e => { if (e.target === story) closeStory(); });
+addEventListener('keydown', e => { if (!story.classList.contains('open')) return; if (e.key === 'Escape') closeStory(); if (e.key === 'ArrowRight') step(1); if (e.key === 'ArrowLeft') step(-1); });
+
+/* C: reels met slepen */
+const reels = document.getElementById('reels');
+[0, 2, 1, 4, 3, 6, 9, 5].forEach(k => { const d = document.createElement('div'); d.className = 'reel'; d.append(img(P[k]));
+  d.insertAdjacentHTML('beforeend', '<span class="play"><svg width="20" height="20" viewBox="0 0 24 24" fill="#163B50"><path d="M7 4v16l13-8z"/></svg></span><p></p>'); d.querySelector('p').textContent = P[k].cap; reels.append(d); });
+document.querySelectorAll('[data-r]').forEach(b => b.onclick = () => reels.scrollBy({left: b.dataset.r * (reels.firstChild.offsetWidth + 16), behavior:'smooth'}));
+let down = false, sx = 0, sl0 = 0;
+reels.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') return; down = true; sx = e.clientX; sl0 = reels.scrollLeft; reels.classList.add('drag'); });
+addEventListener('pointermove', e => { if (down) reels.scrollLeft = sl0 - (e.clientX - sx); });
+addEventListener('pointerup', () => { if (down) { down = false; reels.classList.remove('drag'); } });
+
+/* D: telefoon */
+STORIES.forEach(s => { const sp = document.createElement('span'); sp.append(img(P[s.items[0]])); sp.append(s.name); document.getElementById('dHl').append(sp); });
+P.forEach(p => document.getElementById('dGrid').append(img(p)));
+
+/* E: uitgelicht */
+const eImg = document.getElementById('eImg'), eCap = document.getElementById('eCap'), eMini = document.getElementById('eMini');
+const showE = i => { eImg.src = P[i].src; eImg.classList.remove('swap'); void eImg.offsetWidth; eImg.classList.add('swap'); eCap.textContent = P[i].cap;
+  [...eMini.children].forEach((b, k) => b.classList.toggle('on', k === i)); };
+P.slice(0, 6).forEach((p, i) => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', p.cap); b.append(img(p)); b.onclick = () => showE(i); eMini.append(b); });
+showE(0);
+
+/* F: twee banden, inhoud verdubbeld voor naadloze loop */
+[[P.slice(0, 6), 'fRow1'], [P.slice(6), 'fRow2']].forEach(([list, id]) => { const r = document.getElementById(id);
+  [...list, ...list].forEach((p, k) => { const i = img(p); if (k >= list.length) i.setAttribute('aria-hidden', 'true'); r.append(i); }); });
+</script>
+</body>
+</html>

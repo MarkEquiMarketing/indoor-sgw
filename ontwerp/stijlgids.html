@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stijlgids | Indoor SGW</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/indoorsgw.css">
+<style>
+/* Alleen voor deze stijlgidspagina */
+.sg-top{background:var(--navy-deep);color:rgba(255,255,255,.75);padding:64px 0 56px}
+.sg-top h1{color:#fff;font-weight:900;font-size:var(--h1-page);letter-spacing:-.045em}
+.sg-top p{max-width:60ch;margin-top:16px;font-size:var(--lead)}
+.sg-toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.sg-toc a{padding:9px 14px;border-radius:var(--pill);background:rgba(255,255,255,.1);font:700 13px/1 var(--heading);color:#fff}
+.sg-toc a:hover{background:var(--accent);color:var(--navy)}
+.sg{padding-block:72px;border-top:1px solid var(--grey-200)}
+.sg h2.sg-title{font-weight:800;font-size:var(--h2);margin-bottom:12px}
+.sg .sg-intro{color:var(--grey);max-width:60ch;margin-bottom:36px;font-size:var(--lead)}
+.sg-label{font:700 13px var(--heading);color:var(--grey);margin:32px 0 12px}
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}
+.sw{border-radius:var(--r);overflow:hidden;box-shadow:inset 0 0 0 1px var(--grey-200)}
+.sw i{display:block;height:96px}
+.sw div{padding:12px 14px;font-size:13px;line-height:1.45}
+.sw b{display:block;font:800 14px var(--heading);color:var(--navy)}
+.sw code{color:var(--grey)}
+.type-row{display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--grey-200)}
+.type-row small{font:600 13px/1.4 var(--heading);color:var(--grey)}
+.demo-dark{padding:28px;border-radius:var(--r-lg);background:var(--navy)}
+.rules{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.rule{padding:28px;border-radius:var(--r);background:var(--blue-50)}
+.rule h3{font-size:20px;font-weight:800;margin-bottom:14px}
+.rule ul{margin:0;padding-left:1.1em;display:grid;gap:8px;font-size:15px}
+.rule--no{background:#FDF0EE}
+.mini-feature{min-height:380px}
+@media (max-width:760px){.rules{grid-template-columns:1fr}.type-row{grid-template-columns:1fr;gap:6px}}
+</style>
+</head>
+<body data-phase="voor">
+
+<header class="sg-top">
+  <div class="wrap">
+    <h1>Stijlgids Indoor SGW</h1>
+    <p>De basis voor elke pagina van indoorsgw.nl, gemaakt vanuit de goedgekeurde homepage. Alles hieronder komt uit één stylesheet: <code>assets/css/indoorsgw.css</code>. Nieuwe pagina's bouwen we alleen met deze onderdelen.</p>
+    <nav class="sg-toc" aria-label="Inhoud">
+      <a href="#kleur">Kleur</a><a href="#letter">Letter</a><a href="#knoppen">Knoppen</a><a href="#koppen">Koppen</a><a href="#kaarten">Kaarten</a><a href="#interactie">Interactie</a><a href="#banden">Sliders en banden</a><a href="#regels">Regels</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="sg" id="kleur"><div class="wrap">
+  <h2 class="sg-title">Kleur</h2>
+  <p class="sg-intro">Blauw is de basis, goud is voor de hoofdactie en voor accenten. Gebruik nooit andere kleuren.</p>
+  <div class="swatches">
+    <div class="sw"><i style="background:var(--navy)"></i><div><b>Navy</b><code>--navy #163B50</code><br>Titels, donkere vlakken, knoppen</div></div>
+    <div class="sw"><i style="background:var(--navy-deep)"></i><div><b>Navy diep</b><code>--navy-deep #0F2C3D</code><br>Hero, footer, programma</div></div>
+    <div class="sw"><i style="background:var(--primary)"></i><div><b>Primair</b><code>--primary #426C87</code><br>Merkkleur, iconen</div></div>
+    <div class="sw"><i style="background:var(--primary-dark)"></i><div><b>Primair donker</b><code>--primary-dark #1F506C</code><br>Links, hover van knoppen</div></div>
+    <div class="sw"><i style="background:var(--accent)"></i><div><b>Goud</b><code>--accent #EAB200</code><br>Hoofdknop, uitgelichte dag</div></div>
+    <div class="sw"><i style="background:var(--accent-50)"></i><div><b>Goud licht</b><code>--accent-50 #FDF6DE</code><br>Zachte accenten</div></div>
+    <div class="sw"><i style="background:var(--blue-50)"></i><div><b>Blauw 50</b><code>--blue-50 #F1F5F8</code><br>Lichte vlakken, weetjes</div></div>
+    <div class="sw"><i style="background:var(--grey-200)"></i><div><b>Grijs 200</b><code>--grey-200 #E1E6EC</code><br>Randen</div></div>
+    <div class="sw"><i style="background:var(--grey)"></i><div><b>Grijs</b><code>--grey #5B6670</code><br>Introteksten onder titels</div></div>
+    <div class="sw"><i style="background:var(--text)"></i><div><b>Tekst</b><code>--text #3A434F</code><br>Lopende tekst</div></div>
+  </div>
+</div></section>
+
+<section class="sg" id="letter"><div class="wrap">
+  <h2 class="sg-title">Letter</h2>
+  <p class="sg-intro">Montserrat voor titels, knoppen en labels. Verdana voor lopende tekst. Titels zijn altijd vet en strak, nooit cursief en nooit in hoofdletters.</p>
+  <div class="type-row"><small>H1 hero<br>--h1, 900, alleen homepage</small><span style="font:900 var(--h1)/.95 var(--heading);letter-spacing:-.045em;color:var(--navy)">Dé Indoor SGW</span></div>
+  <div class="type-row"><small>H1 subpagina<br>--h1-page, 900</small><span style="font:900 var(--h1-page)/.98 var(--heading);letter-spacing:-.045em;color:var(--navy)">Trainingen</span></div>
+  <div class="type-row"><small>H2 sectietitel<br>--h2, 800, overal gelijk</small><span style="font:800 var(--h2)/1.02 var(--heading);letter-spacing:-.03em;color:var(--navy)">Drie dagen in de hal</span></div>
+  <div class="type-row"><small>H3 kaarttitel<br>22 tot 28 px, 800</small><span style="font:800 var(--h3)/1.1 var(--heading);letter-spacing:-.03em;color:var(--navy)">Dressuur en springen</span></div>
+  <div class="type-row"><small>Intro<br>--lead 17 px, grijs</small><span style="font-size:var(--lead);color:var(--grey)">Een indruk van de vorige edities. Paarden en pony's, van BB tot en met Z.</span></div>
+  <div class="type-row"><small>Tekst<br>Verdana 16 px, regel 1.7</small><span>Het begon in 1999 met een groep eventingruiters die hun paarden ook in de winter fit wilden houden.</span></div>
+  <div class="type-row"><small>Label<br>Montserrat 13 px, 700</small><span class="pill">29 en 30 december</span></div>
+</div></section>
+
+<section class="sg" id="knoppen"><div class="wrap">
+  <h2 class="sg-title">Knoppen</h2>
+  <p class="sg-intro">Altijd een pil. De tekst zegt precies wat er gebeurt, zonder pijltje of uitroepteken. Maximaal één gouden knop per blok.</p>
+  <p class="sg-label">Op een lichte achtergrond</p>
+  <div class="actions"><a class="btn btn--gold" href="#knoppen">Inschrijven voor de wedstrijd</a><a class="btn btn--navy" href="#knoppen">Aanmelden voor een training</a><a class="btn btn--navy btn--sm" href="#knoppen">Klein</a><a class="link" href="#knoppen">Bekijk het vraagprogramma <svg class="arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <p class="sg-label">Op een foto of donker vlak</p>
+  <div class="demo-dark"><div class="actions"><a class="btn btn--gold" href="#knoppen">Inschrijven voor de wedstrijd</a><a class="btn btn--glass" href="#knoppen">Aanmelden voor een training</a><a class="btn btn--white" href="#knoppen">Wit</a></div></div>
+  <p class="sg-label">Ronde knop voor sliders</p>
+  <div class="actions"><button class="round" type="button" aria-label="Vorige"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M13 8H3M7 4 3 8l4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="round" type="button" aria-label="Volgende"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="round" type="button" disabled aria-label="Uit">×</button></div>
+</div></section>
+
+<section class="sg" id="koppen"><div class="wrap">
+  <h2 class="sg-title">Koppen van secties</h2>
+  <p class="sg-intro">Elke sectie begint met dezelfde kop. Titel links, korte intro rechts. Of titel met intro eronder en knoppen rechts.</p>
+  <p class="sg-label">.head</p>
+  <div class="head"><h2>Een echte cross, maar dan binnen</h2><p>Kom je rijden of wil je eerst trainen? Hier begin je.</p></div>
+  <p class="sg-label">.slider__head of .sponsors__head</p>
+  <div class="slider__head" style="margin-bottom:0"><div><h2>Onze sponsoren</h2><p>Zonder hen geen Indoor SGW. Dankjewel!</p></div><a class="btn btn--navy btn--sm" href="#koppen">Alle sponsoren</a></div>
+</div></section>
+
+<section class="sg" id="kaarten"><div class="wrap">
+  <h2 class="sg-title">Kaarten en blokken</h2>
+  <p class="sg-intro">Ronde hoeken: 12 px klein, 20 px gewoon, 32 px groot. Geen lijnen dwars door inhoud en geen zigzag.</p>
+  <p class="sg-label">Fotokaart .feature</p>
+  <div class="duo">
+    <a class="feature mini-feature" href="#kaarten"><span class="bg"><img src="../assets/img/sfeer-1.jpg" alt=""></span><span class="when">29 en 30 december</span><h3>De wedstrijd</h3><p>Een complete SGW in de hal. Dressuur, springen en cross.</p></a>
+    <div class="day day--key"><div class="date"><strong>30</strong><span>Woensdag</span></div><h3>Crossdag</h3><p>Uitgelichte dagkaart met .day--key.</p><ul><li>Cross <b>BB tot en met Z</b></li><li>Dierenarts <b>Voor en na de cross</b></li></ul></div>
+  </div>
+  <p class="sg-label">Kaart .card en weetje .fact</p>
+  <div class="cards">
+    <a class="card" href="#kaarten"><span class="pill pill--gold" style="width:max-content">Training</span><h3>Gewone kaart</h3><p>Voor overzichten op subpagina's, zoals trainingsgroepen of nieuws.</p></a>
+    <div class="fact"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.3 7-12a7 7 0 1 0-14 0c0 5.7 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></i><div><h3>Locatie</h3><p>Manege Het Zwarte Water in De Mortel. <a href="#kaarten">Plan je route</a></p></div></div>
+  </div>
+  <p class="sg-label">Actiebalk .becomesponsor</p>
+  <div class="becomesponsor" style="margin-top:0"><div><h3>Ook sponsor worden?</h3><p>Zet je bedrijf in de schijnwerpers bij de Indoor SGW.</p></div><a class="btn btn--gold" href="#kaarten">Neem contact op</a></div>
+</div></section>
+
+<section class="sg" id="interactie"><div class="wrap">
+  <h2 class="sg-title">Interactie</h2>
+  <p class="sg-intro">De site moet je kunnen aanklikken, uitklappen en verschuiven. Gebruik deze onderdelen in plaats van lange lappen tekst.</p>
+  <p class="sg-label">Tabs</p>
+  <div class="tabs" role="tablist" aria-label="Voorbeeld">
+    <button role="tab" aria-selected="true" aria-controls="tp1" id="t1">Paard</button>
+    <button role="tab" aria-selected="false" aria-controls="tp2" id="t2">Pony</button>
+  </div>
+  <div role="tabpanel" id="tp1" aria-labelledby="t1"><p>Inhoud van de eerste tab. Wissel met klikken of met de pijltjestoetsen.</p></div>
+  <div role="tabpanel" id="tp2" aria-labelledby="t2" hidden><p>Inhoud van de tweede tab.</p></div>
+  <p class="sg-label">Accordeon</p>
+  <div class="accordion">
+    <details open><summary>Kan ik mijn training annuleren?</summary><div class="answer"><p>Voorbeeldantwoord. Een vraag per regel, het antwoord klapt uit.</p></div></details>
+    <details><summary>Waar kan mijn paard staan?</summary><div class="answer"><p>Voorbeeldantwoord.</p></div></details>
+  </div>
+</div></section>
+
+<section class="sg" id="banden">
+  <div class="wrap">
+    <h2 class="sg-title">Sliders en banden</h2>
+    <p class="sg-intro">Foto's in een sleepslider zonder bijschrift. Sponsoren altijd met logo in twee rijen die tegen elkaar in lopen.</p>
+    <div class="slider__head"><p class="sg-label" style="margin:0">Sleepslider</p><div class="slider__ctrl"><button class="round" type="button" data-slide="-1" aria-label="Vorige foto's"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M13 8H3M7 4 3 8l4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="round" type="button" data-slide="1" aria-label="Volgende foto's"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div></div>
+    <div class="slider">
+      <figure class="slide"><img src="../assets/img/sfeer-2.jpg" alt="" draggable="false"></figure>
+      <figure class="slide"><img src="../assets/img/heuvel.jpg" alt="" draggable="false"></figure>
+      <figure class="slide"><img src="../assets/img/opsprong.jpg" alt="" draggable="false"></figure>
+      <figure class="slide"><img src="../assets/img/tonnen.jpg" alt="" draggable="false"></figure>
+    </div>
+    <div class="slider__bar" aria-hidden="true"><i></i></div>
+    <p class="sg-label">Logoband</p>
+  </div>
+  <div class="marquee"><div class="track">
+    <a class="logo" href="#banden"><img src="../assets/sponsors/havens.png" alt="Havens paardenvoeders"></a>
+    <a class="logo" href="#banden"><img src="../assets/sponsors/van-boxmeer.png" alt="Van Boxmeer"></a>
+    <a class="logo" href="#banden"><img src="../assets/sponsors/wetering.png" alt="Wetering.nl"></a>
+    <a class="logo logo--name" href="#banden">Sponsor zonder logo</a>
+    <a class="logo" href="#banden"><img src="../assets/sponsors/coppelmans.png" alt="Coppelmans tuincentrum"></a>
+    <a class="logo" href="#banden"><img src="../assets/sponsors/walkro.png" alt="Walkro Grondstoffen"></a>
+  </div></div>
+</section>
+
+<section class="sg" id="regels"><div class="wrap">
+  <h2 class="sg-title">Regels</h2>
+  <p class="sg-intro">Uit de feedback op de homepage. Het volledige overzicht staat in CLAUDE.md in de projectmap.</p>
+  <div class="rules">
+    <div class="rule"><h3>Wel doen</h3><ul>
+      <li>Strak, rustig en premium. Veel ruimte, weinig tegelijk.</li>
+      <li>Vet Montserrat, ronde hoeken, alleen de huiskleuren.</li>
+      <li>Alle sectietitels even groot, met dezelfde ruimte eronder.</li>
+      <li>Interactie: slepen, tabs, uitklappen, klikken.</li>
+      <li>Sponsoren altijd met logo in een bewegende band.</li>
+      <li>Teksten in je-vorm, menselijk en in de taal van de sport.</li>
+      <li>Logo als watermerk: licht en altijd helemaal in beeld.</li>
+    </ul></div>
+    <div class="rule rule--no"><h3>Niet doen</h3><ul>
+      <li>Druk, speels of een poster-gevoel.</li>
+      <li>Zigzag-layouts of lijnen dwars door de inhoud.</li>
+      <li>Streepjes (– of —) of middenpuntjes als scheidingsteken in tekst.</li>
+      <li>Bijschriften onder sliderfoto's.</li>
+      <li>Feiten verzinnen. Twijfel je, vraag het na.</li>
+      <li>Titels die tegen het menu aan lopen.</li>
+      <li>Logo's of foto's die half afgesneden zijn.</li>
+    </ul></div>
+  </div>
+</div></section>
+</main>
+
+<script src="../assets/js/indoorsgw.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Varianten | Sponsoren | Indoor SGW</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#426C87;--primary-dark:#1F506C;--navy:#163B50;--ink:#0F2C3D;--gold:#EAB200;--gold-50:#FDF6DE;--blue-50:#F1F5F8;--blue-100:#E2EAF0;--blue-300:#9DB5C5;--grey:#5B6670;--line:#E1E6EC;--text:#3A434F;--head:"Montserrat",Arial,sans-serif;--body:Verdana,Geneva,sans-serif;--r:20px;--r-lg:32px;--pill:999px;--g:clamp(16px,4vw,32px);--ease:cubic-bezier(.22,1,.36,1);--shadow:0 10px 30px rgba(22,59,80,.1);--shadow-lg:0 24px 60px rgba(15,44,61,.22)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--text);font:16px/1.7 var(--body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+h1,h2,h3{font-family:var(--head);color:var(--navy);margin:0;letter-spacing:-.03em;line-height:1.05}
+p{margin:0}
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--g)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:48px;padding:0 24px;border-radius:var(--pill);border:0;cursor:pointer;font:700 14px/1 var(--head);transition:background .3s}
+.btn--navy{background:var(--navy);color:#fff}.btn--navy:hover{background:var(--primary-dark)}
+.btn--gold{background:var(--gold);color:var(--navy)}
+.round{width:52px;height:52px;border-radius:50%;border:0;display:grid;place-items:center;cursor:pointer;background:var(--navy);color:#fff;transition:background .3s,transform .3s}
+.round:hover{background:var(--primary-dark)}.round:active{transform:scale(.94)}
+.round:disabled{opacity:.35;cursor:default}
+
+/* paginakop */
+.intro{padding:72px 0 24px}
+.intro h1{font-size:clamp(34px,5vw,60px);font-weight:900}
+.intro p{margin-top:12px;max-width:60ch;color:var(--grey)}
+.variant{padding-block:72px;border-top:1px solid var(--line)}
+.variant:nth-of-type(even){background:var(--blue-50)}
+.vlabel{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.vlabel b{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--gold);font:900 18px var(--head);color:var(--navy)}
+.vlabel span{font:800 18px var(--head);color:var(--navy)}
+.vlabel em{font-style:normal;color:var(--grey);font-size:14px}
+.shead{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:36px}
+.shead h2{font-weight:800;font-size:clamp(30px,4vw,52px)}
+.shead p{max-width:42ch;color:var(--grey);margin-top:10px}
+.ctrl{display:flex;gap:8px}
+
+.note{font-size:13px;color:var(--grey);margin-top:-16px;margin-bottom:28px}
+.logo{display:grid;place-items:center;background:#fff;border-radius:var(--r);box-shadow:inset 0 0 0 1px var(--line);padding:18px 22px;height:110px}
+.logo img{max-height:64px;max-width:100%;object-fit:contain}
+.logo.txt{font:800 15px/1.2 var(--head);color:var(--navy);text-align:center}
+
+/* A: sterren + marquee */
+.stars{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:40px}
+.star{position:relative;display:grid;place-items:center;height:180px;background:#fff;border-radius:var(--r-lg);box-shadow:var(--shadow);transition:transform .4s var(--ease),box-shadow .4s}
+.star:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.star img{max-height:84px;max-width:70%;object-fit:contain}
+.star span{position:absolute;top:14px;left:14px;padding:5px 12px;border-radius:var(--pill);background:var(--gold-50);color:var(--navy);font:800 12px var(--head)}
+.subhead{font:800 20px var(--head);color:var(--navy);margin-bottom:18px}
+.marquee{overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee+.marquee{margin-top:14px}
+.track{display:flex;gap:14px;width:max-content;animation:mq 60s linear infinite}
+.marquee.rev .track{animation-direction:reverse}
+.marquee:hover .track{animation-play-state:paused}
+.track .logo{width:200px;flex:none}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* B: tabs per niveau */
+.tabs{display:flex;gap:6px;padding:6px;border-radius:var(--pill);background:#fff;box-shadow:inset 0 0 0 1px var(--line);width:max-content;max-width:100%;overflow-x:auto;margin-bottom:28px}
+.tabs button{border:0;background:none;padding:12px 20px;border-radius:var(--pill);cursor:pointer;font:700 14px var(--head);color:var(--grey);white-space:nowrap;transition:background .3s,color .3s}
+.tabs button[aria-selected=true]{background:var(--navy);color:#fff}
+.tabs small{opacity:.6;margin-left:6px}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+.tgrid.big{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.tgrid.big .logo{height:170px}.tgrid.big .logo img{max-height:90px}
+.pop-in{animation:pi .5s var(--ease) both}
+@keyframes pi{from{opacity:0;transform:translateY(10px)}}
+
+/* C: flipmuur */
+.flipwall{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}
+.flip{perspective:900px;height:120px;border:0;padding:0;background:none;cursor:pointer}
+.flip .in{position:relative;width:100%;height:100%;transition:transform .6s var(--ease);transform-style:preserve-3d}
+.flip:hover .in,.flip.on .in{transform:rotateY(180deg)}
+.flip .f,.flip .b{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--r);display:grid;place-items:center;padding:16px}
+.flip .f{background:#fff;box-shadow:inset 0 0 0 1px var(--line)}
+.flip .in{display:block}
+.flip .f img{width:130px;height:60px;max-width:100%;object-fit:contain}
+.flip .b{background:var(--navy);color:#fff;transform:rotateY(180deg);text-align:center;align-content:center;gap:8px}
+.flip .b strong{font:800 14px/1.25 var(--head)}
+.flip .b em{font-style:normal;font:700 12px var(--head);color:var(--gold)}
+
+/* D: spotlight */
+.spot{display:grid;grid-template-columns:1.1fr 1fr;gap:20px;align-items:stretch}
+.stage{position:relative;background:var(--navy);border-radius:var(--r-lg);padding:40px;color:#fff;display:flex;flex-direction:column;justify-content:space-between;min-height:400px;overflow:hidden}
+.stage .card{background:#fff;border-radius:var(--r);display:grid;place-items:center;height:220px;padding:28px}
+.stage .card img{max-height:140px;max-width:80%;object-fit:contain}
+.stage h3{color:#fff;font-size:28px;font-weight:800;margin-top:24px}
+.stage .row{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:16px}
+.stage .prog{height:4px;flex:1;background:rgba(255,255,255,.2);border-radius:4px;overflow:hidden}
+.stage .prog i{display:block;height:100%;width:0;background:var(--gold)}
+.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;align-content:start}
+.thumbs button{border:0;cursor:pointer;height:86px;padding:10px;border-radius:16px;background:#fff;box-shadow:inset 0 0 0 1px var(--line);display:grid;place-items:center;transition:box-shadow .3s,transform .3s}
+.thumbs button img{max-height:46px;max-width:100%;object-fit:contain;filter:grayscale(1);opacity:.6;transition:.3s}
+.thumbs button:hover img,.thumbs button.on img{filter:none;opacity:1}
+.thumbs button.on{box-shadow:inset 0 0 0 2px var(--navy);transform:translateY(-2px)}
+.swap{animation:sw .5s var(--ease)}
+@keyframes sw{from{opacity:0;transform:scale(.96)}}
+
+/* E: zoeken */
+.search{display:flex;align-items:center;gap:12px;height:56px;padding:0 22px;border-radius:var(--pill);background:#fff;box-shadow:inset 0 0 0 1px var(--line);max-width:440px;margin-bottom:28px}
+.search input{flex:1;border:0;outline:0;font:15px var(--body);color:var(--text);background:none;min-width:0}
+.search:focus-within{box-shadow:inset 0 0 0 2px var(--navy)}
+.ggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}
+.ggrid .logo{position:relative;transition:box-shadow .3s,transform .3s}
+.ggrid .logo img{filter:grayscale(1);opacity:.55;transition:.4s}
+.ggrid .logo:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
+.ggrid .logo:hover img{filter:none;opacity:1}
+.ggrid .logo[hidden]{display:none}
+.empty{padding:40px;text-align:center;color:var(--grey);background:#fff;border-radius:var(--r);box-shadow:inset 0 0 0 1px var(--line)}
+.count{font:700 14px var(--head);color:var(--grey);margin-left:auto}
+
+/* F: uitklappen */
+.fold{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.fold .logo.extra{display:none}
+.fold.open .logo.extra{display:grid;animation:pi .5s var(--ease) both}
+.foldbar{display:flex;justify-content:center;margin-top:28px}
+.fade{position:relative}
+.fade:not(.open)::after{content:"";position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(180deg,transparent,#fff);pointer-events:none}
+.variant:nth-of-type(even) .fade:not(.open)::after{background:linear-gradient(180deg,transparent,var(--blue-50))}
+.cta-s{margin-top:48px;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:32px 36px;border-radius:var(--r-lg);background:var(--navy);color:#fff}
+.cta-s h3{color:#fff;font-size:24px;font-weight:800}
+.cta-s p{color:rgba(255,255,255,.75);font-size:15px;margin-top:4px}
+
+@media (max-width:900px){
+  .stars{grid-template-columns:repeat(2,1fr)}.star{height:130px}
+  .spot{grid-template-columns:1fr}.stage{padding:24px;min-height:0}.stage .card{height:170px}
+  .thumbs{grid-template-columns:repeat(4,1fr)}.thumbs button{height:64px}
+  .fold{grid-template-columns:repeat(2,1fr)}
+  .tgrid,.ggrid,.flipwall{grid-template-columns:repeat(2,1fr)}
+  .tgrid.big{grid-template-columns:1fr}
+  .cta-s{flex-direction:column;align-items:flex-start;padding:24px}
+  .track .logo{width:150px;height:90px}
+  .shead{flex-direction:column;align-items:flex-start}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="wrap intro">
+  <h1>Onze sponsoren: zes varianten</h1>
+  <p>Alle varianten werken met de echte logo's. Hover, klik en zoek. Kies er één, dan zet ik die op de homepage.</p>
+</header>
+
+<!-- A -->
+<section class="variant">
+  <div class="wrap">
+    <div class="vlabel"><b>A</b><span>Stersponsoren plus logoband</span><em>Beweeg over de band om hem te pauzeren</em></div>
+    <div class="shead"><div><h2>Onze sponsoren</h2><p>Zonder hen geen Indoor SGW. Dank je wel!</p></div></div>
+    <div class="stars" id="aStars"></div>
+    <p class="subhead">Sponsoren, donateurs en vrienden</p>
+    <div class="marquee"><div class="track" id="aRow1"></div></div>
+    <div class="marquee rev"><div class="track" id="aRow2"></div></div>
+  </div>
+</section>
+
+<!-- B -->
+<section class="variant">
+  <div class="wrap">
+    <div class="vlabel"><b>B</b><span>Tabs per niveau</span><em>Klik op een tab om te wisselen</em></div>
+    <div class="shead"><div><h2>Onze sponsoren</h2><p>Van stersponsor tot vriend van de Indoor SGW.</p></div></div>
+    <p class="note">Let op: de indeling per niveau is nu een voorbeeld. Die vullen we in met jullie echte lijst.</p>
+    <div class="tabs" role="tablist" id="bTabs"></div>
+    <div id="bGrid"></div>
+  </div>
+</section>
+
+<!-- C -->
+<section class="variant">
+  <div class="wrap">
+    <div class="vlabel"><b>C</b><span>Draaimuur</span><em>Hover of tik op een logo, hij draait om</em></div>
+    <div class="shead"><div><h2>Onze sponsoren</h2><p>Draai een logo om en ga direct naar de sponsor.</p></div></div>
+    <div class="flipwall" id="cWall"></div>
+  </div>
+</section>
+
+<!-- D -->
+<section class="variant">
+  <div class="wrap">
+    <div class="vlabel"><b>D</b><span>Sponsor in de spotlight</span><em>Wisselt vanzelf, of klik zelf op een logo</em></div>
+    <div class="shead"><div><h2>Onze sponsoren</h2><p>Elke sponsor even in de schijnwerpers.</p></div></div>
+    <div class="spot">
+      <div class="stage">
+        <div><div class="card" id="dCard"></div><h3 id="dName"></h3></div>
+        <div class="row"><div class="prog"><i id="dProg"></i></div><a class="btn btn--gold" href="#">Bezoek website</a></div>
+      </div>
+      <div class="thumbs" id="dThumbs"></div>
+    </div>
+  </div>
+</section>
+
+<!-- E -->
+<section class="variant">
+  <div class="wrap">
+    <div class="vlabel"><b>E</b><span>Zoek een sponsor</span><em>Typ een naam, bijvoorbeeld "Peters" of "voer"</em></div>
+    <div class="shead"><div><h2>Onze sponsoren</h2><p>Beweeg over een logo en hij krijgt kleur.</p></div></div>
+    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+      <label class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5B6670" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="eQ" type="search" placeholder="Zoek een sponsor" aria-label="Zoek een sponsor"></label>
+      <span class="count" id="eCount" style="margin:0 0 28px"></span>
+    </div>
+    <div class="ggrid" id="eGrid"></div>
+    <div class="empty" id="eEmpty" hidden>Geen sponsor gevonden. Probeer een andere naam.</div>
+  </div>
+</section>
+
+<!-- F -->
+<section class="variant">
+  <div class="wrap">
+    <div class="vlabel"><b>F</b><span>Uitklappen plus sponsor worden</span><em>Klik op de knop om alle sponsoren te tonen</em></div>
+    <div class="shead"><div><h2>Onze sponsoren</h2><p>Zonder hen geen Indoor SGW. Dank je wel!</p></div></div>
+    <div class="fade" id="fWrap"><div class="fold" id="fGrid"></div></div>
+    <div class="foldbar"><button class="btn btn--navy" type="button" id="fBtn" aria-expanded="false"></button></div>
+    <div class="cta-s"><div><h3>Ook sponsor worden?</h3><p>Zet je bedrijf in de hal, op de site en in de startlijsten.</p></div><a class="btn btn--gold" href="#">Neem contact op</a></div>
+  </div>
+</section>
+
+<!-- bron: alle logo's, JS kloont hieruit -->
+<div hidden id="logos">
+  <img data-tier="ster" src="../assets/sponsors/havens.png" alt="Havens paardenvoeders">
+  <img data-tier="ster" src="../assets/sponsors/van-boxmeer.png" alt="Van Boxmeer">
+  <img data-tier="ster" src="../assets/sponsors/wetering.png" alt="Wetering.nl">
+  <img data-tier="ster" src="../assets/sponsors/coppelmans.png" alt="Coppelmans tuincentrum">
+  <img data-tier="sponsor" src="../assets/sponsors/de-wieken.png" alt="De Wieken diervoeders">
+  <img data-tier="sponsor" src="../assets/sponsors/dieroptimaal.png" alt="Dieroptimaal">
+  <img data-tier="sponsor" src="../assets/sponsors/steeghs.png" alt="Steeghs aanhangwagens">
+  <img data-tier="sponsor" src="../assets/sponsors/twan-de-bruijn.png" alt="Twan de Bruijn Trucks en Trailers">
+  <img data-tier="sponsor" src="../assets/sponsors/ruitershop-boxmeer.png" alt="Ruitershop Boxmeer">
+  <img data-tier="sponsor" src="../assets/sponsors/keizersberg.png" alt="Hotel en Restaurant Keizersberg">
+  <img data-tier="sponsor" src="../assets/sponsors/van-den-tillaart.png" alt="Van den Tillaart">
+  <img data-tier="sponsor" src="../assets/sponsors/hwc.png" alt="HWC Uitzendorganisatie">
+  <img data-tier="sponsor" src="../assets/sponsors/walkro.png" alt="Walkro Grondstoffen">
+  <img data-tier="sponsor" src="../assets/sponsors/oorlogsmuseum.png" alt="Oorlogsmuseum Overloon">
+  <img data-tier="donateur" src="../assets/sponsors/agri-wood.png" alt="Agri en Wood">
+  <img data-tier="donateur" src="../assets/sponsors/chuths.png" alt="Chuths">
+  <img data-tier="donateur" src="../assets/sponsors/equimarketing.png" alt="EquiMarketing">
+  <img data-tier="donateur" src="../assets/sponsors/fried-van-stiphout.png" alt="Africhtingstal Fried van Stiphout">
+  <img data-tier="donateur" src="../assets/sponsors/geert-henk.png" alt="Geert en Henk Trading">
+  <img data-tier="donateur" src="../assets/sponsors/huub-korsten.png" alt="Gebitsverzorging Huub Korsten">
+  <img data-tier="donateur" src="../assets/sponsors/kuijpers.png" alt="Wout Kuijpers">
+  <img data-tier="vriend" src="../assets/sponsors/loonwerk-peters.png" alt="Loonwerkbedrijf Peters">
+  <img data-tier="vriend" src="../assets/sponsors/nfe.png" alt="NFE">
+  <img data-tier="vriend" src="../assets/sponsors/schaap-agri.png" alt="Schaap Agri Service">
+  <img data-tier="vriend" src="../assets/sponsors/varkenshandel-peters.png" alt="Varkenshandel Peters">
+  <img data-tier="vriend" src="../assets/sponsors/veveha.png" alt="Firma Veveha">
+</div>
+
+<script>
+/* Sponsoren zonder logo tonen we als naamtegel */
+const TEXT_ONLY = [
+  {name:'Equipe Paardenverzekeringen', tier:'sponsor'},
+  {name:'odD Fotografie', tier:'donateur'},
+  {name:'Skiddar Saddles', tier:'vriend'},
+  {name:'Wijenberg', tier:'vriend'}
+];
+const LOGOS = [...document.querySelectorAll('#logos img')].map(i => ({name:i.alt, tier:i.dataset.tier, img:i}));
+const ALL = [...LOGOS, ...TEXT_ONLY];
+const imgOf = s => { const c = s.img.cloneNode(); c.removeAttribute('data-tier'); return c; };
+const tile = (s, cls = 'logo') => { const d = document.createElement('div'); d.className = cls;
+  if (s.img) d.append(imgOf(s)); else { d.classList.add('txt'); d.textContent = s.name; } d.title = s.name; return d; };
+
+/* A */
+LOGOS.filter(s => s.tier === 'ster').forEach(s => { const a = document.createElement('a'); a.href = '#'; a.className = 'star'; a.append(imgOf(s)); a.insertAdjacentHTML('beforeend', '<span>Stersponsor</span>'); document.getElementById('aStars').append(a); });
+const rest = ALL.filter(s => s.tier !== 'ster'), half = Math.ceil(rest.length / 2);
+[[rest.slice(0, half), 'aRow1'], [rest.slice(half), 'aRow2']].forEach(([list, id]) => { const t = document.getElementById(id);
+  list.forEach(s => t.append(tile(s))); [...t.children].forEach(c => { const k = c.cloneNode(true); k.setAttribute('aria-hidden', 'true'); t.append(k); }); });
+
+/* B */
+const TIERS = [['ster','Stersponsoren'],['sponsor','Sponsoren'],['donateur','Donateurs'],['vriend','Vrienden']];
+const bTabs = document.getElementById('bTabs'), bGrid = document.getElementById('bGrid');
+const showTier = k => { [...bTabs.children].forEach(b => b.setAttribute('aria-selected', b.dataset.k === k));
+  bGrid.className = 'tgrid' + (k === 'ster' ? ' big' : ''); bGrid.innerHTML = '';
+  ALL.filter(s => s.tier === k).forEach((s, i) => { const t = tile(s); t.classList.add('pop-in'); t.style.animationDelay = i * 40 + 'ms'; bGrid.append(t); }); };
+TIERS.forEach(([k, label]) => { const b = document.createElement('button'); b.setAttribute('role','tab'); b.dataset.k = k;
+  b.innerHTML = `${label}<small>${ALL.filter(s => s.tier === k).length}</small>`; b.onclick = () => showTier(k); bTabs.append(b); });
+showTier('ster');
+
+/* C */
+ALL.forEach(s => { const b = document.createElement('button'); b.type = 'button'; b.className = 'flip'; b.setAttribute('aria-label', s.name);
+  b.innerHTML = `<span class="in"><span class="f"></span><span class="b"><strong></strong><em>Bezoek website</em></span></span>`;
+  const f = b.querySelector('.f'); if (s.img) f.append(imgOf(s)); else { f.style.font = '800 15px var(--head)'; f.style.color = 'var(--navy)'; f.textContent = s.name; }
+  b.querySelector('strong').textContent = s.name;
+  b.onclick = () => { const on = b.classList.contains('on'); document.querySelectorAll('.flip.on').forEach(x => x.classList.remove('on')); if (!on) b.classList.add('on'); };
+  document.getElementById('cWall').append(b); });
+
+/* D: spotlight met automatisch wisselen */
+const dList = LOGOS.slice(0, 12), dCard = document.getElementById('dCard'), dName = document.getElementById('dName'), dProg = document.getElementById('dProg'), dThumbs = document.getElementById('dThumbs');
+const DUR = 4000; let dI = 0, t0 = performance.now(), paused = false;
+const showD = i => { dI = (i + dList.length) % dList.length; dCard.innerHTML = ''; const im = imgOf(dList[dI]); im.className = 'swap'; dCard.append(im);
+  dName.textContent = dList[dI].name; [...dThumbs.children].forEach((b, k) => b.classList.toggle('on', k === dI)); t0 = performance.now(); };
+dList.forEach((s, i) => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', s.name); b.append(imgOf(s)); b.onclick = () => showD(i); dThumbs.append(b); });
+const spotEl = document.querySelector('.spot'); spotEl.addEventListener('mouseenter', () => paused = true); spotEl.addEventListener('mouseleave', () => { paused = false; t0 = performance.now() - parseFloat(dProg.style.width || 0) / 100 * DUR; });
+const tick = now => { if (!paused) { const p = (now - t0) / DUR; if (p >= 1) showD(dI + 1); else dProg.style.width = p * 100 + '%'; } requestAnimationFrame(tick); };
+showD(0); if (!matchMedia('(prefers-reduced-motion:reduce)').matches) requestAnimationFrame(tick);
+
+/* E: zoeken */
+const eGrid = document.getElementById('eGrid'), eQ = document.getElementById('eQ'), eCount = document.getElementById('eCount'), eEmpty = document.getElementById('eEmpty');
+ALL.forEach(s => { const t = tile(s); t.dataset.n = s.name.toLowerCase(); eGrid.append(t); });
+const filter = () => { const q = eQ.value.trim().toLowerCase(); let n = 0;
+  [...eGrid.children].forEach(t => { const hit = !q || t.dataset.n.includes(q); t.hidden = !hit; if (hit) n++; });
+  eCount.textContent = q ? `${n} van ${ALL.length} sponsoren` : `${ALL.length} sponsoren`; eEmpty.hidden = n > 0; };
+eQ.addEventListener('input', filter); filter();
+
+/* F: uitklappen */
+const SHOW = 8, fGrid = document.getElementById('fGrid'), fWrap = document.getElementById('fWrap'), fBtn = document.getElementById('fBtn');
+ALL.forEach((s, i) => { const t = tile(s); if (i >= SHOW) t.classList.add('extra'); fGrid.append(t); });
+const fLabel = () => fBtn.textContent = fWrap.classList.contains('open') ? 'Toon minder' : `Toon alle ${ALL.length} sponsoren`;
+fBtn.onclick = () => { const open = fWrap.classList.toggle('open'); fGrid.classList.toggle('open', open); fBtn.setAttribute('aria-expanded', open); fLabel(); };
+fLabel();
+</script>
+</body>
+</html>

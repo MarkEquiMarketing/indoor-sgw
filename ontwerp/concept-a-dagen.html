@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concept A | Drie dagen | Indoor SGW</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- Concept A: Drie dagen. De data zijn de hero, met foto's in de cijfers. -->
+<style>
+:root{
+  --primary:#426C87;--primary-dark:#1F506C;--navy:#163B50;--ink:#0F2C3D;
+  --gold:#EAB200;--gold-50:#FDF6DE;--blue-50:#F1F5F8;--blue-100:#E2EAF0;--blue-300:#9DB5C5;
+  --grey:#5B6670;--text:#3A434F;--line:#E1E6EC;--white:#fff;
+  --head:"Montserrat",Arial,sans-serif;--body:Verdana,Geneva,sans-serif;
+  --r:24px;--r-lg:36px;--pill:999px;--g:clamp(16px,4vw,40px);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--white);color:var(--text);font:16px/1.7 var(--body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--head);color:var(--navy);margin:0;letter-spacing:-.035em;line-height:1}
+p{margin:0}
+.wrap{max-width:1280px;margin-inline:auto;padding-inline:var(--g)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:54px;padding:0 28px;border-radius:var(--pill);font:700 15px/1 var(--head);transition:background .3s,transform .3s var(--ease);white-space:nowrap}
+.btn:active{transform:scale(.97)}
+.btn--gold{background:var(--gold);color:var(--navy)}.btn--gold:hover{background:#F6C21C}
+.btn--navy{background:var(--navy);color:#fff}.btn--navy:hover{background:var(--primary-dark)}
+.btn--white{background:#fff;color:var(--navy)}.btn--white:hover{background:var(--blue-50)}
+
+/* nav */
+.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:22px}
+.brand{display:flex;align-items:center;gap:12px;font:800 17px var(--head);color:var(--navy)}
+.brand img{height:46px;width:auto}
+.menu{display:flex;gap:28px;font:600 15px var(--head);color:var(--navy)}
+.menu a{opacity:.75;transition:opacity .2s}.menu a:hover{opacity:1}
+
+/* hero */
+.hero{padding-top:clamp(32px,6vw,72px)}
+.hero__top{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:clamp(28px,4vw,48px)}
+.hero h1{font-weight:900;font-size:clamp(40px,6.2vw,92px);max-width:11ch}
+.hero__side{max-width:34ch;padding-bottom:8px}
+.hero__side p{color:var(--grey)}
+.hero__side .btn{margin-top:24px}
+
+.days{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.day{position:relative;border:0;cursor:pointer;text-align:left;font:inherit;color:inherit;background:var(--blue-50);border-radius:var(--r-lg);padding:20px 28px 28px;overflow:hidden;transition:background .4s var(--ease),transform .4s var(--ease)}
+.day:hover{transform:translateY(-4px)}
+.num{display:block;font:900 clamp(120px,17vw,250px)/.82 var(--head);letter-spacing:-.07em;margin-left:-.04em;
+  background-size:cover;background-position:center;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.day__meta{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-top:18px}
+.day__meta strong{font:800 20px/1.2 var(--head);color:var(--navy)}
+.day__meta span{font:600 14px/1.3 var(--head);color:var(--grey)}
+.dot{width:40px;height:40px;flex:none;border-radius:50%;background:#fff;display:grid;place-items:center;color:var(--navy);transition:background .3s,transform .4s var(--ease)}
+.day[aria-selected="true"]{background:var(--navy)}
+.day[aria-selected="true"] .day__meta strong{color:#fff}
+.day[aria-selected="true"] .day__meta span{color:rgba(255,255,255,.65)}
+.day[aria-selected="true"] .dot{background:var(--gold);transform:rotate(90deg)}
+
+/* panel */
+.panel{margin-top:14px;background:var(--navy);border-radius:var(--r-lg);color:rgba(255,255,255,.78);display:grid;grid-template-columns:1.05fr 1fr;overflow:hidden;min-height:440px}
+.panel__img{position:relative;margin:14px;border-radius:26px;overflow:hidden}
+.panel__img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:opacity .5s}
+.panel__body{padding:clamp(28px,4vw,56px) clamp(24px,4vw,56px) clamp(28px,4vw,56px) clamp(10px,2vw,24px);display:flex;flex-direction:column}
+.panel h2{color:#fff;font-weight:900;font-size:clamp(34px,3.6vw,54px)}
+.panel p{margin-top:18px;max-width:44ch;font-size:17px}
+.times{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:10px}
+.times li{display:flex;justify-content:space-between;gap:16px;padding:16px 20px;border-radius:18px;background:rgba(255,255,255,.07);font:600 15px var(--head);color:#fff}
+.times li b{color:var(--gold);font-weight:800;white-space:nowrap}
+.panel .btn{margin-top:auto;align-self:flex-start}
+.panel__cta{padding-top:32px;margin-top:auto;display:flex;gap:12px;flex-wrap:wrap}
+.fade{animation:fade .5s var(--ease)}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}}
+
+/* keuze */
+.choose{padding-block:clamp(96px,11vw,160px)}
+.choose h2{font-weight:900;font-size:clamp(36px,5vw,72px);text-align:center;max-width:16ch;margin:0 auto clamp(40px,5vw,64px)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.card{position:relative;border-radius:var(--r-lg);padding:clamp(28px,4vw,48px);min-height:420px;display:flex;flex-direction:column;overflow:hidden;isolation:isolate}
+.card h3{font-weight:900;font-size:clamp(44px,5.6vw,84px);letter-spacing:-.05em}
+.card p{margin-top:16px;max-width:36ch;font-size:17px}
+.card .btn{margin-top:auto;align-self:flex-start}
+.card--gold{background:var(--gold);color:var(--navy)}
+.card--blue{background:var(--blue-100);color:var(--text)}
+.card__img{position:absolute;right:-40px;bottom:-40px;width:58%;aspect-ratio:1;border-radius:50%;overflow:hidden;z-index:-1;border:10px solid rgba(255,255,255,.35)}
+.card__img img{width:100%;height:100%;object-fit:cover}
+.price{display:inline-flex;align-items:baseline;gap:6px;margin-top:20px;font:800 15px var(--head);color:var(--navy)}
+.price b{font-size:40px;font-weight:900;letter-spacing:-.03em}
+
+/* sponsoren */
+.spons{padding-bottom:clamp(96px,11vw,160px)}
+.spons__box{border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(28px,4vw,56px)}
+.spons__head{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-bottom:28px}
+.spons__head h2{font-size:clamp(24px,2.4vw,32px);font-weight:800}
+.names{display:flex;flex-wrap:wrap;gap:10px}
+.names span{padding:10px 18px;border-radius:var(--pill);background:var(--blue-50);font:700 14px var(--head);color:var(--primary-dark)}
+
+/* footer */
+.foot{background:var(--ink);color:rgba(255,255,255,.6);border-radius:var(--r-lg) var(--r-lg) 0 0;padding-block:72px 32px}
+.foot__grid{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.foot h2{color:#fff;font-weight:900;font-size:clamp(32px,4vw,56px);max-width:12ch}
+.foot nav{display:grid;grid-template-columns:repeat(2,auto);gap:12px 48px;font-size:15px;align-content:start}
+.foot nav a:hover{color:#fff}
+.foot__bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:64px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);font-size:14px}
+
+@media (max-width:980px){
+  .menu{display:none}
+  .hero__top{flex-direction:column;align-items:flex-start}
+  .panel{grid-template-columns:minmax(0,1fr)}
+  .times li{flex-direction:column;gap:2px}.times li b{white-space:normal}
+  .panel__img{height:280px;position:relative}
+  .panel__body{padding:12px 28px 32px}
+  .pair{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .nav .btn{height:44px;padding:0 18px;font-size:14px}
+  .days{grid-template-columns:repeat(3,1fr);gap:8px}
+  .day{padding:14px 12px 16px;border-radius:22px}
+  .num{font-size:clamp(64px,22vw,110px)}
+  .day__meta{flex-direction:column;align-items:flex-start;margin-top:10px}
+  .day__meta strong{font-size:15px}.day__meta span{font-size:12px}
+  .dot{display:none}
+  .panel{border-radius:28px}
+  .card{min-height:360px;border-radius:28px}
+  .spons__head{flex-direction:column;align-items:flex-start}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="nav">
+    <a class="brand" href="#"><img src="../assets/logo/logo-blauw.png" alt="" width="500" height="573">Indoor SGW</a>
+    <nav class="menu" aria-label="Hoofdmenu">
+      <a href="#">Wedstrijd</a><a href="#">Trainingen</a><a href="#">Hindernissen</a><a href="#">Over ons</a><a href="#">Sponsoren</a><a href="#">Contact</a>
+    </nav>
+    <a class="btn btn--gold" href="https://www.mijnknhs.nl/Game/W183853?expandHeader=True" target="_blank" rel="noopener">Inschrijven</a>
+  </header>
+</div>
+
+<main>
+  <section class="hero wrap">
+    <div class="hero__top">
+      <h1>Dé Indoor SGW van Nederland</h1>
+      <div class="hero__side">
+        <p>Elk jaar halen we de cross naar binnen bij manege Het Zwarte Water in De Mortel. Kies een dag en zie wat er gebeurt.</p>
+      </div>
+    </div>
+
+    <div class="days" role="tablist" aria-label="Kies een dag">
+      <button class="day" role="tab" aria-selected="false" data-day="0">
+        <span class="num" data-img="img-a">28</span>
+        <span class="day__meta"><span><strong>Trainen</strong><br><span>Maandag</span></span><span class="dot" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></span>
+      </button>
+      <button class="day" role="tab" aria-selected="false" data-day="1">
+        <span class="num" data-img="img-b">29</span>
+        <span class="day__meta"><span><strong>Dressuur en springen</strong><br><span>Dinsdag</span></span><span class="dot" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></span>
+      </button>
+      <button class="day" role="tab" aria-selected="true" data-day="2">
+        <span class="num" data-img="img-c">30</span>
+        <span class="day__meta"><span><strong>De cross</strong><br><span>Woensdag</span></span><span class="dot" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></span>
+      </button>
+    </div>
+
+    <div class="panel" role="tabpanel" aria-live="polite">
+      <div class="panel__img"><img id="panel-img" src="../assets/img/heuvel.jpg" alt=""></div>
+      <div class="panel__body" id="panel-body"></div>
+    </div>
+
+    <!-- bronfoto's voor de cijfers en het paneel -->
+    <div hidden>
+      <img id="img-a" src="../assets/img/hal-overzicht.jpg" alt="">
+      <img id="img-b" src="../assets/img/opsprong.jpg" alt="">
+      <img id="img-c" src="../assets/img/heuvel.jpg" alt="">
+    </div>
+  </section>
+
+  <section class="choose wrap" aria-labelledby="kies">
+    <h2 id="kies">Kom je rijden of trainen?</h2>
+    <div class="pair">
+      <a class="card card--gold" href="https://www.mijnknhs.nl/Game/W183853?expandHeader=True" target="_blank" rel="noopener">
+        <h3>Rijden</h3>
+        <p>Dressuur, springen en de cross binnen. Je schrijft je in via Mijn KNHS.</p>
+        <span class="btn btn--navy">Inschrijven voor de wedstrijd</span>
+        <div class="card__img"><img src="../assets/img/boomstammen.jpg" alt=""></div>
+      </a>
+      <a class="card card--blue" href="#">
+        <h3>Trainen</h3>
+        <p>Rijd het parcours onder begeleiding van erkende instructeurs, in een groep van je eigen niveau.</p>
+        <span class="price"><b>€30</b> per uur per combinatie</span>
+        <span class="btn btn--navy" style="margin-top:28px">Aanmelden voor een training</span>
+        <div class="card__img"><img src="../assets/img/kerstbomen-15a.jpg" alt=""></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="spons wrap" aria-labelledby="sp">
+    <div class="spons__box">
+      <div class="spons__head"><h2 id="sp">Met dank aan onze sponsoren</h2><a class="btn btn--navy" href="#">Word sponsor</a></div>
+      <div class="names" id="names"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <h2>Tot in De Mortel.</h2>
+      <nav aria-label="Footer"><a href="#">Wedstrijd</a><a href="#">Over ons</a><a href="#">Trainingen</a><a href="#">Sponsoren</a><a href="#">Hindernissen</a><a href="#">Stalling</a><a href="#">Virtual tour</a><a href="mailto:info@indoorsgw.nl">info@indoorsgw.nl</a></nav>
+    </div>
+    <div class="foot__bottom"><span>© 2026 Stichting Indoor SGW</span><span>Website door EquiMarketing</span></div>
+  </div>
+</footer>
+
+<script>
+const sponsors=["Africhtingstal Fried van Stiphout","HWC Uitzendorganisatie","Hotel & Restaurant Keizersberg","Agri & Wood","Firma Veveha","Wetering.nl","Havens paardenvoeders","Loonwerkbedrijf Peters","Van Boxmeer","Varkenshandel Peters","Chuths","Steeghs aanhangwagens","De Wieken diervoeders","Gebitsverzorging Huub Korsten","Twan de Bruijn Trucks & Trailers","Walkro Grondstoffen","Coppelmans tuincentrum","Ruitershop Boxmeer","Schaap Agri Service","EquiMarketing","Dieroptimaal","Oorlogsmuseum","Geert & Henk Trading","Equipe Paardenverzekeringen","odD Fotografie","Wout Kuijpers","Skiddar Saddles","Van den Tillaart","NFE","Wijenberg"];
+document.getElementById('names').innerHTML=sponsors.map(n=>`<span>${n}</span>`).join('');
+
+/* foto in de cijfers */
+document.querySelectorAll('.num').forEach(n=>{n.style.backgroundImage=`url("${document.getElementById(n.dataset.img).src}")`});
+
+const days=[
+  {img:'img-a',title:'Trainingsdag',text:'Een hele dag om het parcours te leren kennen. Je traint in een groep van je eigen niveau, met erkende instructeurs.',times:[['Trainingen paard en pony','8.00 tot 20.30'],['Groepen A tot en met E','€30 per uur']],cta:['Aanmelden voor een training','#']},
+  {img:'img-b',title:'Dressuur en springen',text:'In de ochtend rijden de bixieruiters. Daarna gaan de trainingen door en starten de eerste wedstrijdonderdelen.',times:[['Bixietraining','Ochtend'],['Trainingen','13.00 tot 17.30'],['Dressuur en springen','Hele dag']],cta:['Bekijk het vraagprogramma','#']},
+  {img:'img-c',title:'De cross',text:'De dag waar alles om draait. Meer dan twintig hindernissen, een echte heuvel, opsprongen en afsprongen. Alles binnen.',times:[['Crossparcours','Alle niveaus'],['Dierenartscontrole','Voor en na de cross']],cta:['Inschrijven voor de wedstrijd','https://www.mijnknhs.nl/Game/W183853?expandHeader=True']}
+];
+const tabs=[...document.querySelectorAll('.day')],body=document.getElementById('panel-body'),pimg=document.getElementById('panel-img');
+function show(i){
+  tabs.forEach((t,k)=>t.setAttribute('aria-selected',k===i));
+  const d=days[i];
+  pimg.src=document.getElementById(d.img).src;
+  body.innerHTML=`<div class="fade"><h2>${d.title}</h2><p>${d.text}</p><ul class="times">${d.times.map(t=>`<li>${t[0]}<b>${t[1]}</b></li>`).join('')}</ul></div><div class="panel__cta"><a class="btn btn--gold" href="${d.cta[1]}">${d.cta[0]}</a></div>`;
+}
+tabs.forEach((t,i)=>t.addEventListener('click',()=>show(i)));
+show(2);
+</script>
+</body>
+</html>

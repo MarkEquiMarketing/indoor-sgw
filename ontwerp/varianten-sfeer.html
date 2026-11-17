@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Varianten | Zo ziet dat eruit | Indoor SGW</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#426C87;--primary-dark:#1F506C;--navy:#163B50;--ink:#0F2C3D;--gold:#EAB200;--gold-50:#FDF6DE;--blue-50:#F1F5F8;--blue-100:#E2EAF0;--blue-300:#9DB5C5;--grey:#5B6670;--line:#E1E6EC;--text:#3A434F;--head:"Montserrat",Arial,sans-serif;--body:Verdana,Geneva,sans-serif;--r:20px;--r-lg:32px;--pill:999px;--g:clamp(16px,4vw,32px);--ease:cubic-bezier(.22,1,.36,1);--shadow:0 10px 30px rgba(22,59,80,.1);--shadow-lg:0 24px 60px rgba(15,44,61,.22)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--text);font:16px/1.7 var(--body);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+h1,h2,h3{font-family:var(--head);color:var(--navy);margin:0;letter-spacing:-.03em;line-height:1.05}
+p{margin:0}
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--g)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:48px;padding:0 24px;border-radius:var(--pill);border:0;cursor:pointer;font:700 14px/1 var(--head);transition:background .3s}
+.btn--navy{background:var(--navy);color:#fff}.btn--navy:hover{background:var(--primary-dark)}
+.btn--gold{background:var(--gold);color:var(--navy)}
+.round{width:52px;height:52px;border-radius:50%;border:0;display:grid;place-items:center;cursor:pointer;background:var(--navy);color:#fff;transition:background .3s,transform .3s}
+.round:hover{background:var(--primary-dark)}.round:active{transform:scale(.94)}
+.round:disabled{opacity:.35;cursor:default}
+
+/* paginakop */
+.intro{padding:72px 0 24px}
+.intro h1{font-size:clamp(34px,5vw,60px);font-weight:900}
+.intro p{margin-top:12px;max-width:60ch;color:var(--grey)}
+.variant{padding-block:72px;border-top:1px solid var(--line)}
+.variant:nth-of-type(even){background:var(--blue-50)}
+.vlabel{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.vlabel b{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--gold);font:900 18px var(--head);color:var(--navy)}
+.vlabel span{font:800 18px var(--head);color:var(--navy)}
+.vlabel em{font-style:normal;color:var(--grey);font-size:14px}
+.shead{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:36px}
+.shead h2{font-weight:800;font-size:clamp(30px,4vw,52px)}
+.shead p{max-width:42ch;color:var(--grey);margin-top:10px}
+.ctrl{display:flex;gap:8px}
+
+/* A: uitklappanelen */
+.acc{display:flex;gap:12px;height:520px}
+.acc button{position:relative;flex:1;border:0;padding:0;border-radius:var(--r-lg);overflow:hidden;cursor:pointer;transition:flex .7s var(--ease);background:var(--navy);text-align:left}
+.acc button.on{flex:4.5}
+.acc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.acc button::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(15,44,61,.85))}
+.acc .cap{position:absolute;left:24px;right:24px;bottom:22px;z-index:1;color:#fff;opacity:0;transform:translateY(10px);transition:.5s var(--ease) .15s}
+.acc .on .cap{opacity:1;transform:none}
+.acc .cap strong{display:block;font:800 26px/1.1 var(--head)}
+.acc .cap small{font-size:14px;color:rgba(255,255,255,.8)}
+.acc .num{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);z-index:1;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.9);display:grid;place-items:center;font:800 14px var(--head);color:var(--navy);transition:opacity .3s}
+.acc .on .num{opacity:0}
+
+/* B: sleepslider */
+.slider{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;cursor:grab;padding-bottom:4px}
+.slider::-webkit-scrollbar{display:none}
+.slider.drag{cursor:grabbing;scroll-snap-type:none}
+.slide{flex:0 0 clamp(260px,32vw,420px);scroll-snap-align:start;user-select:none}
+.slide figure{margin:0;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/5}
+.slide img{width:100%;height:100%;object-fit:cover;pointer-events:none;transition:transform 1s var(--ease)}
+.slide:hover img{transform:scale(1.04)}
+.slide h3{margin-top:16px;font-size:20px;font-weight:800}
+.slide p{font-size:14px;color:var(--grey)}
+.bar{margin-top:28px;height:4px;border-radius:4px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;width:20%;background:var(--navy);border-radius:4px;transition:width .2s}
+
+/* C: tabs */
+.tabs{display:flex;gap:6px;padding:6px;border-radius:var(--pill);background:#fff;box-shadow:inset 0 0 0 1px var(--line);width:max-content;max-width:100%;overflow-x:auto;margin-bottom:24px}
+.tabs button{border:0;background:none;padding:12px 20px;border-radius:var(--pill);cursor:pointer;font:700 14px var(--head);color:var(--grey);white-space:nowrap;transition:background .3s,color .3s}
+.tabs button[aria-selected=true]{background:var(--navy);color:#fff}
+.tabview{display:grid;grid-template-columns:2fr 1fr;gap:16px;height:520px}
+.tabview .big{position:relative;border-radius:var(--r-lg);overflow:hidden}
+.tabview .big img{width:100%;height:100%;object-fit:cover}
+.tabview .big figcaption{position:absolute;left:20px;bottom:20px;padding:12px 18px;border-radius:16px;background:rgba(255,255,255,.94);font:700 15px var(--head);color:var(--navy);max-width:80%}
+.tabview .side{display:grid;grid-template-rows:1fr 1fr;gap:16px}
+.tabview .side img{width:100%;height:100%;object-fit:cover;border-radius:var(--r-lg)}
+.fadein{animation:fi .6s var(--ease)}
+@keyframes fi{from{opacity:0;transform:scale(.985)}}
+
+/* D: grid met lightbox */
+.mosaic{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:14px}
+.mosaic button{border:0;padding:0;border-radius:var(--r);overflow:hidden;cursor:zoom-in;position:relative}
+.mosaic button:nth-child(1){grid-column:span 2;grid-row:span 2}
+.mosaic button:nth-child(6){grid-column:span 2}
+.mosaic img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.mosaic button:hover img{transform:scale(1.05)}
+.mosaic button::after{content:"";position:absolute;right:12px;top:12px;width:36px;height:36px;border-radius:50%;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23163B50' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7'/%3E%3C/svg%3E") center no-repeat;opacity:0;transition:opacity .3s}
+.mosaic button:hover::after{opacity:1}
+.lb{position:fixed;inset:0;z-index:80;background:rgba(15,44,61,.95);display:none;place-items:center;padding:24px}
+.lb.open{display:grid}
+.lb img{max-width:min(1100px,100%);max-height:78vh;border-radius:var(--r);box-shadow:var(--shadow-lg)}
+.lb p{margin-top:16px;text-align:center;color:#fff;font:700 15px var(--head)}
+.lb .round{position:absolute;top:50%;background:#fff;color:var(--navy)}
+.lb .prev{left:20px}.lb .next{right:20px}
+.lb .close{top:20px;right:20px;transform:none}
+
+/* E: kaartenstapel */
+.deckwrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.deck{position:relative;height:500px}
+.card{position:absolute;inset:0;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-lg);transition:transform .7s var(--ease),opacity .5s;background:var(--navy);cursor:pointer}
+.card img{width:100%;height:100%;object-fit:cover}
+.card figcaption{position:absolute;left:0;right:0;bottom:0;padding:60px 24px 22px;background:linear-gradient(180deg,transparent,rgba(15,44,61,.85));color:#fff;font:800 20px var(--head)}
+.deckinfo h3{font-size:clamp(26px,3vw,40px);font-weight:800}
+.deckinfo p{margin-top:14px;color:var(--grey);max-width:40ch}
+.deckinfo .ctrl{margin-top:28px;align-items:center}
+.counter{font:800 15px var(--head);color:var(--navy);margin-left:8px;font-variant-numeric:tabular-nums}
+
+/* F: hotspots */
+.spot{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:16/9;max-height:640px;width:100%}
+.spot>img{width:100%;height:100%;object-fit:cover}
+.spot::after{content:"";position:absolute;inset:0;background:rgba(15,44,61,.25);pointer-events:none}
+.hs{position:absolute;z-index:2;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;border:0;cursor:pointer;background:var(--gold);color:var(--navy);font:900 15px var(--head);box-shadow:0 0 0 0 rgba(234,178,0,.6);animation:pulse 2.2s infinite;transition:transform .3s}
+.hs:hover,.hs[aria-expanded=true]{transform:scale(1.12);animation:none;background:#fff}
+@keyframes pulse{70%{box-shadow:0 0 0 14px rgba(234,178,0,0)}100%{box-shadow:0 0 0 0 rgba(234,178,0,0)}}
+.pop{position:absolute;z-index:3;width:260px;background:#fff;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-lg);opacity:0;transform:translateY(8px);pointer-events:none;transition:.35s var(--ease)}
+.pop.on{opacity:1;transform:none;pointer-events:auto}
+.pop img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.pop div{padding:14px 18px 18px}
+.pop strong{display:block;font:800 17px var(--head);color:var(--navy)}
+.pop span{font-size:14px;color:var(--grey)}
+
+@media (max-width:900px){
+  .acc{flex-direction:column;height:640px}
+  .acc .num{display:none}
+  .tabview{grid-template-columns:1fr;height:auto}.tabview .big{aspect-ratio:4/3}.tabview .side{grid-template-columns:1fr 1fr;grid-template-rows:none}.tabview .side img{aspect-ratio:1}
+  .mosaic{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px}
+  .mosaic button:nth-child(6){grid-column:span 1}
+  .deckwrap{grid-template-columns:1fr}.deck{height:420px}
+  .spot{aspect-ratio:4/5}
+  .pop{width:220px}
+  .shead{flex-direction:column;align-items:flex-start}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="wrap intro">
+  <h1>Zo ziet dat eruit: zes varianten</h1>
+  <p>Alle varianten werken echt. Klik, sleep en probeer ze uit. Kies er één, dan zet ik die op de homepage.</p>
+</header>
+
+<!-- A -->
+<section class="variant">
+  <div class="wrap">
+    <div class="vlabel"><b>A</b><span>Uitklappanelen</span><em>Klik of hover op een strook om hem te openen</em></div>
+    <div class="shead"><div><h2>Zo ziet dat eruit</h2><p>Een indruk van de vorige edities.</p></div></div>
+    <div class="acc" id="acc">
+      <button class="on" type="button"><img src="../assets/img/sfeer-1.jpg" alt=""><span class="num">1</span><span class="cap"><strong>Springen in de hal</strong><small>Dressuur en springen op 29 december</small></span></button>
+      <button type="button"><img src="../assets/img/sfeer-2.jpg" alt=""><span class="num">2</span><span class="cap"><strong>Over de boomstam</strong><small>Ook pony's rijden mee</small></span></button>
+      <button type="button"><img src="../assets/img/heuvel.jpg" alt=""><span class="num">3</span><span class="cap"><strong>De heuvel</strong><small>Een echte heuvel, gewoon binnen</small></span></button>
+      <button type="button"><img src="../assets/img/sfeer-3.jpg" alt=""><span class="num">4</span><span class="cap"><strong>De prijsuitreiking</strong><small>Rozetten voor elke klasse</small></span></button>
+      <button type="button"><img src="../assets/img/sfeer-4.jpg" alt=""><span class="num">5</span><span class="cap"><strong>Samen met de organisatie</strong><small>Door ruiters, voor ruiters</small></span></button>
+    </div>
+  </div>
+</section>
+
+<!-- B -->
+<section class="variant">
+  <div class="wrap">
+    <div class="vlabel"><b>B</b><span>Sleepslider</span><em>Sleep met je muis of swipe, of gebruik de pijlen</em></div>
+    <div class="shead">
+      <div><h2>Zo ziet dat eruit</h2><p>Van de eerste training tot de laatste rozet.</p></div>
+      <div class="ctrl"><button class="round" type="button" data-s="-1" aria-label="Vorige"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M13 8H3M7 4 3 8l4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="round" type="button" data-s="1" aria-label="Volgende"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+    </div>
+    <div class="slider" id="slider">
+      <div class="slide"><figure><img src="../assets/img/sfeer-1.jpg" alt=""></figure><h3>Springen</h3><p>Op 29 december</p></div>
+      <div class="slide"><figure><img src="../assets/img/sfeer-2.jpg" alt=""></figure><h3>Pony's in de cross</h3><p>Op 30 december</p></div>
+      <div class="slide"><figure><img src="../assets/img/opsprong.jpg" alt=""></figure><h3>De opsprong</h3><p>Een van de vaste hindernissen</p></div>
+      <div class="slide"><figure><img src="../assets/img/sfeer-3.jpg" alt=""></figure><h3>Rozetten</h3><p>De prijsuitreiking</p></div>
+      <div class="slide"><figure><img src="../assets/img/boomstammen.jpg" alt=""></figure><h3>Boomstammen</h3><p>Natuurlijke hindernissen</p></div>
+      <div class="slide"><figure><img src="../assets/img/sfeer-4.jpg" alt=""></figure><h3>De organisatie</h3><p>Vrijwilligers sinds 1999</p></div>
+    </div>
+    <div class="bar"><i id="sbar"></i></div>
+  </div>
+</section>
+
+<!-- C -->
+<section class="variant">
+  <div class="wrap">
+    <div class="vlabel"><b>C</b><span>Tabs per onderdeel</span><em>Kies een onderdeel en de foto's wisselen mee</em></div>
+    <div class="shead"><div><h2>Zo ziet dat eruit</h2><p>Kies wat je wilt zien.</p></div></div>
+    <div class="tabs" role="tablist" id="tabs">
+      <button role="tab" aria-selected="true" data-t="0">Springen</button>
+      <button role="tab" aria-selected="false" data-t="1">Cross</button>
+      <button role="tab" aria-selected="false" data-t="2">Hindernissen</button>
+      <button role="tab" aria-selected="false" data-t="3">Prijsuitreiking</button>
+    </div>
+    <div class="tabview" id="tabview"></div>
+  </div>
+</section>
+
+<!-- D -->
+<section class="variant">
+  <div class="wrap">
+    <div class="vlabel"><b>D</b><span>Fotogrid met lightbox</span><em>Klik op een foto voor groot beeld, blader met de pijltjes of je toetsenbord</em></div>
+    <div class="shead"><div><h2>Zo ziet dat eruit</h2><p>Klik op een foto om hem groot te bekijken.</p></div><a class="btn btn--navy" href="#">Alle foto's</a></div>
+    <div class="mosaic" id="mosaic">
+      <button type="button" data-cap="Springen in de hal"><img src="../assets/img/sfeer-1.jpg" alt="Springen in de hal"></button>
+      <button type="button" data-cap="Pony over de boomstam"><img src="../assets/img/sfeer-2.jpg" alt="Pony over de boomstam"></button>
+      <button type="button" data-cap="De heuvel"><img src="../assets/img/heuvel.jpg" alt="De heuvel"></button>
+      <button type="button" data-cap="De prijsuitreiking"><img src="../assets/img/sfeer-3.jpg" alt="De prijsuitreiking"></button>
+      <button type="button" data-cap="De opsprong"><img src="../assets/img/opsprong.jpg" alt="De opsprong"></button>
+      <button type="button" data-cap="Samen met de organisatie"><img src="../assets/img/sfeer-4.jpg" alt="Samen met de organisatie"></button>
+      <button type="button" data-cap="De tonnen"><img src="../assets/img/tonnen.jpg" alt="De tonnen"></button>
+      <button type="button" data-cap="De wagenwielen"><img src="../assets/img/wagenwielen.jpg" alt="De wagenwielen"></button>
+    </div>
+  </div>
+</section>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Foto bekijken">
+  <figure style="margin:0"><img id="lbimg" alt=""><p id="lbcap"></p></figure>
+  <button class="round prev" type="button" aria-label="Vorige foto"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M13 8H3M7 4 3 8l4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <button class="round next" type="button" aria-label="Volgende foto"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <button class="round close" type="button" aria-label="Sluiten" style="background:#fff;color:var(--navy)"><svg width="16" height="16" viewBox="0 0 20 20"><path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+</div>
+
+<!-- E -->
+<section class="variant">
+  <div class="wrap deckwrap">
+    <div class="deck" id="deck">
+      <figure class="card" style="margin:0"><img src="../assets/img/sfeer-1.jpg" alt=""><figcaption>Springen in de hal</figcaption></figure>
+      <figure class="card" style="margin:0"><img src="../assets/img/sfeer-2.jpg" alt=""><figcaption>Pony's in de cross</figcaption></figure>
+      <figure class="card" style="margin:0"><img src="../assets/img/heuvel.jpg" alt=""><figcaption>De heuvel</figcaption></figure>
+      <figure class="card" style="margin:0"><img src="../assets/img/sfeer-3.jpg" alt=""><figcaption>De prijsuitreiking</figcaption></figure>
+      <figure class="card" style="margin:0"><img src="../assets/img/sfeer-4.jpg" alt=""><figcaption>De organisatie</figcaption></figure>
+    </div>
+    <div class="deckinfo">
+      <div class="vlabel"><b>E</b><span>Kaartenstapel</span><em>Klik op de foto of de pijl om door te bladeren</em></div>
+      <h3>Zo ziet dat eruit</h3>
+      <p>Blader door de stapel en zie hoe drie dagen Indoor SGW eruitzien. Van de eerste sprong tot de rozetten.</p>
+      <div class="ctrl"><button class="round" type="button" id="dprev" aria-label="Vorige"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M13 8H3M7 4 3 8l4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button class="round" type="button" id="dnext" aria-label="Volgende"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span class="counter" id="dcount">1 van 5</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- F -->
+<section class="variant">
+  <div class="wrap">
+    <div class="vlabel"><b>F</b><span>Ontdek de hal</span><em>Klik op een punt om die plek in de hal te bekijken</em></div>
+    <div class="shead"><div><h2>Ontdek de hal</h2><p>Klik op de gele punten en zie wat je op die plek tegenkomt.</p></div></div>
+    <div class="spot" id="spot">
+      <img src="../assets/img/hal-overzicht.jpg" alt="Overzicht van de hal met het crossparcours">
+      <button class="hs" type="button" style="left:22%;top:62%" data-pop="0" aria-expanded="false">1</button>
+      <button class="hs" type="button" style="left:47%;top:48%" data-pop="1" aria-expanded="false">2</button>
+      <button class="hs" type="button" style="left:66%;top:66%" data-pop="2" aria-expanded="false">3</button>
+      <button class="hs" type="button" style="left:82%;top:40%" data-pop="3" aria-expanded="false">4</button>
+      <div class="pop" id="pop"><img id="popimg" alt=""><div><strong id="popt"></strong><span id="popd"></span></div></div>
+    </div>
+  </div>
+</section>
+
+<div hidden id="src">
+  <img data-k="s1" src="../assets/img/sfeer-1.jpg" alt=""><img data-k="s2" src="../assets/img/sfeer-2.jpg" alt=""><img data-k="s3" src="../assets/img/sfeer-3.jpg" alt=""><img data-k="s4" src="../assets/img/sfeer-4.jpg" alt="">
+  <img data-k="heuvel" src="../assets/img/heuvel.jpg" alt=""><img data-k="opsprong" src="../assets/img/opsprong.jpg" alt=""><img data-k="boom" src="../assets/img/boomstammen.jpg" alt=""><img data-k="tonnen" src="../assets/img/tonnen.jpg" alt="">
+  <img data-k="wielen" src="../assets/img/wagenwielen.jpg" alt=""><img data-k="wagen" src="../assets/img/boerenwagen.jpg" alt=""><img data-k="kerst" src="../assets/img/kerstbomen-15a.jpg" alt=""><img data-k="jump" src="../assets/img/jump-20.jpg" alt="">
+</div>
+
+<script>
+const S = k => document.querySelector(`#src [data-k="${k}"]`).src;
+
+/* A */
+const acc = [...document.querySelectorAll('#acc button')];
+acc.forEach(b => { const open = () => acc.forEach(x => x.classList.toggle('on', x === b)); b.addEventListener('click', open); b.addEventListener('mouseenter', () => { if (matchMedia('(hover:hover)').matches) open(); }); });
+
+/* B */
+const sl = document.getElementById('slider'), sbar = document.getElementById('sbar');
+const upd = () => { const max = sl.scrollWidth - sl.clientWidth; sbar.style.width = (20 + 80 * (max ? sl.scrollLeft / max : 0)) + '%'; };
+sl.addEventListener('scroll', upd, {passive:true}); upd();
+document.querySelectorAll('[data-s]').forEach(b => b.addEventListener('click', () => sl.scrollBy({left: b.dataset.s * (sl.firstElementChild.offsetWidth + 20), behavior:'smooth'})));
+let down = false, sx = 0, sl0 = 0;
+sl.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') return; down = true; sx = e.clientX; sl0 = sl.scrollLeft; sl.classList.add('drag'); });
+addEventListener('pointermove', e => { if (down) sl.scrollLeft = sl0 - (e.clientX - sx); });
+addEventListener('pointerup', () => { if (!down) return; down = false; sl.classList.remove('drag'); });
+
+/* C */
+const tabData = [
+  {big:'s1', cap:'Springen in de hal op 29 december', side:['opsprong','jump']},
+  {big:'s2', cap:'De cross op 30 december, ook voor pony\'s', side:['boom','heuvel']},
+  {big:'heuvel', cap:'Meer dan twintig hindernissen, met een echte heuvel', side:['tonnen','wielen']},
+  {big:'s3', cap:'Rozetten voor elke klasse', side:['s4','kerst']}
+];
+const tv = document.getElementById('tabview'), tabs = [...document.querySelectorAll('#tabs button')];
+const showTab = i => { tabs.forEach((t,k) => t.setAttribute('aria-selected', k === i)); const d = tabData[i];
+  tv.innerHTML = `<figure class="big fadein" style="margin:0"><img src="${S(d.big)}" alt=""><figcaption>${d.cap}</figcaption></figure><div class="side fadein"><img src="${S(d.side[0])}" alt=""><img src="${S(d.side[1])}" alt=""></div>`; };
+tabs.forEach((t,i) => t.addEventListener('click', () => showTab(i))); showTab(0);
+
+/* D */
+const items = [...document.querySelectorAll('#mosaic button')], lb = document.getElementById('lb'), lbimg = document.getElementById('lbimg'), lbcap = document.getElementById('lbcap');
+let li = 0;
+const showLb = i => { li = (i + items.length) % items.length; lbimg.src = items[li].querySelector('img').src; lbcap.textContent = `${items[li].dataset.cap}  (${li + 1} van ${items.length})`; };
+items.forEach((b,i) => b.addEventListener('click', () => { showLb(i); lb.classList.add('open'); lb.querySelector('.close').focus(); }));
+lb.querySelector('.prev').onclick = () => showLb(li - 1); lb.querySelector('.next').onclick = () => showLb(li + 1);
+const closeLb = () => { lb.classList.remove('open'); items[li].focus(); };
+lb.querySelector('.close').onclick = closeLb; lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+addEventListener('keydown', e => { if (!lb.classList.contains('open')) return; if (e.key === 'Escape') closeLb(); if (e.key === 'ArrowLeft') showLb(li - 1); if (e.key === 'ArrowRight') showLb(li + 1); });
+
+/* E */
+const cards = [...document.querySelectorAll('#deck .card')]; let top = 0;
+const layout = () => cards.forEach((c,i) => { const p = (i - top + cards.length) % cards.length;
+  c.style.zIndex = cards.length - p; c.style.opacity = p > 3 ? 0 : 1;
+  c.style.transform = `translate(${p * 18}px, ${p * -14}px) rotate(${p * 3}deg) scale(${1 - p * .04})`; });
+const next = d => { top = (top + d + cards.length) % cards.length; layout(); document.getElementById('dcount').textContent = `${top + 1} van ${cards.length}`; };
+document.getElementById('dnext').onclick = () => next(1); document.getElementById('dprev').onclick = () => next(-1);
+cards.forEach(c => c.addEventListener('click', () => next(1))); layout();
+
+/* F */
+const pops = [
+  {img:'heuvel', t:'De heuvel', d:'Op en af, net als buiten. Voor alle klassen.'},
+  {img:'opsprong', t:'De opsprong', d:'Een echte opsprong met kerstbomen ernaast.'},
+  {img:'boom', t:'De boomstammen', d:'Natuurlijke hindernissen over de hele hal.'},
+  {img:'wagen', t:'De boerenwagen', d:'Een van de publieksfavorieten.'}
+];
+const spot = document.getElementById('spot'), pop = document.getElementById('pop'), hs = [...spot.querySelectorAll('.hs')];
+hs.forEach(h => h.addEventListener('click', e => { e.stopPropagation();
+  const open = h.getAttribute('aria-expanded') === 'true'; hs.forEach(x => x.setAttribute('aria-expanded', 'false'));
+  if (open) { pop.classList.remove('on'); return; }
+  h.setAttribute('aria-expanded', 'true'); const d = pops[h.dataset.pop];
+  document.getElementById('popimg').src = S(d.img); document.getElementById('popt').textContent = d.t; document.getElementById('popd').textContent = d.d;
+  const r = spot.getBoundingClientRect(), b = h.getBoundingClientRect(), w = pop.offsetWidth;
+  let x = b.left - r.left + 30, y = b.top - r.top - 40;
+  if (x + w > r.width - 12) x = b.left - r.left - w - 30 + 44; x = Math.max(12, x);
+  y = Math.max(12, Math.min(y, r.height - pop.offsetHeight - 12));
+  pop.style.left = x + 'px'; pop.style.top = y + 'px'; pop.classList.add('on'); }));
+spot.addEventListener('click', () => { pop.classList.remove('on'); hs.forEach(x => x.setAttribute('aria-expanded', 'false')); });
+</script>
+</body>
+</html>
