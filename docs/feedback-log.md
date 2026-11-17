@@ -14,6 +14,11 @@ Alle feedback op het ontwerp, met wat we ervan leren. Nieuwste bovenaan. Een les
 
 ## 17 november 2026
 
+**Bewegende banden**
+- Feedback: de sponsorbanden en de Instagram-fotoband worden links en rechts vaak wit.
+  - Oorzaak: twee keer de inhoud was op brede schermen niet genoeg, en de verschuiving klopte niet precies met de gap.
+  - Les: `indoorsgw.js` herhaalt de inhoud tot één set breder is dan de band, zet er één kopie achter en schuift precies één set op. `padding-right` is gelijk aan de gap. Snelheid in pixels per seconde, dus elke band loopt even snel. Controleren op 375, 1440 en 2560 breed.
+
 **Stylesheet en stijlgids**
 - Vraag: maak een stylesheet op basis van de homepage, als basis voor alle pagina's. Verwerk alle feedback, zodat we geen fout twee keer maken.
 - Gedaan: `assets/css/indoorsgw.css`, `assets/js/indoorsgw.js`, `ontwerp/stijlgids.html`, dit log en `CLAUDE.md`.

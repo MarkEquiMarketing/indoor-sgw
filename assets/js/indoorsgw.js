@@ -113,10 +113,26 @@
     addEventListener('pointerup', () => { if (down) { down = false; sl.classList.remove('is-drag'); } });
   });
 
-  /* Logobanden en fotobanden verdubbelen voor een naadloze loop */
-  $$('.track, .irow').forEach(row => [...row.children].forEach(c => {
-    const k = c.cloneNode(true); k.setAttribute('aria-hidden', 'true'); k.tabIndex = -1; row.appendChild(k);
-  }));
+  /* Logobanden en fotobanden: eindeloos, zonder witte randen.
+     De originele items worden herhaald tot één set breder is dan de band,
+     daarna komt er één kopie achter. De animatie schuift precies één set op. */
+  const SPEED = { track: 40, irow: 45 };   // pixels per seconde
+  const copy = c => { const k = c.cloneNode(true); k.setAttribute('aria-hidden', 'true'); k.tabIndex = -1; return k; };
+  const bands = $$('.track, .irow').map(row => ({ row, items: [...row.children] }));
+  const fillBand = ({ row, items }) => {
+    const box = row.parentElement.getBoundingClientRect().width || innerWidth;
+    row.replaceChildren(...items);
+    let guard = 0;
+    while (row.scrollWidth < box && guard++ < 20) items.forEach(c => row.appendChild(copy(c)));
+    const set = row.scrollWidth;                     // één set, inclusief padding-right = gap
+    [...row.children].forEach(c => row.appendChild(copy(c)));
+    row.style.animationDuration = (set / (row.classList.contains('irow') ? SPEED.irow : SPEED.track)) + 's';
+  };
+  const fillAll = () => bands.forEach(fillBand);
+  fillAll();
+  let lastW = innerWidth;
+  addEventListener('resize', () => { if (Math.abs(innerWidth - lastW) > 40) { lastW = innerWidth; fillAll(); } });
+  addEventListener('load', fillAll, { once: true });   // logo's en foto's hebben dan hun echte breedte
 
   /* Tabs: <div class="tabs" role="tablist"><button role="tab" aria-controls="id">,
      panelen met role="tabpanel" en id. Pijltjestoetsen werken ook. */

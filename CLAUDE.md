@@ -38,6 +38,7 @@ Nieuwe website voor de Indoor SGW (indoorsgw.nl): drie dagen trainen en wedstrij
 - **Interactief:** gebruik slepen, tabs, uitklappen en klikken waar het helpt. Accordeon voor vragen, tabs voor keuzes, sleepslider voor foto's.
 - **Foto's in sliders:** zonder bijschrift.
 - **Sponsoren:** altijd met logo, altijd in twee bewegende rijen (`.marquee` met `.track`, de tweede met `.marquee--rev`). Sponsor zonder logo: `.logo--name`.
+- **Bewegende banden** (`.track`, `.irow`): altijd eindeloos, nooit wit aan de randen. Zet alleen de originele items in de HTML; het script herhaalt ze tot het scherm vol is. Geen handmatige kopieën.
 - **Instagram:** fotoband met twee rijen en een kaart in het midden.
 - **Watermerk:** logo licht op de achtergrond (`.mark`), altijd helemaal binnen het vlak. Nooit afgesneden.
 - **Privacy:** Google Maps en YouTube laden pas na een klik.
