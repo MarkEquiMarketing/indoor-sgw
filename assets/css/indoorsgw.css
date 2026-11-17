@@ -473,6 +473,14 @@ textarea.input{height:auto;min-height:104px;padding-block:14px;resize:vertical;l
 .signup__card{position:sticky;top:100px;overflow:hidden;isolation:isolate;padding:clamp(24px,3vw,36px);border-radius:var(--r-lg);background:var(--navy);color:rgba(255,255,255,.75)}
 .mark--card{right:var(--s-3);bottom:var(--s-3);height:min(46%,200px);transform:rotate(-6deg);opacity:.05}
 .signup__kicker{font:700 14px var(--heading);color:var(--accent)}
+.datacard{padding:clamp(24px,3vw,40px);border-radius:var(--r-lg);background:#fff;box-shadow:var(--shadow)}
+.datacard h3{font-size:clamp(22px,2.2vw,28px);font-weight:800}
+.datacard dl{margin:var(--s-2) 0 0;display:grid}
+.datacard dl div{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,3fr);gap:var(--s-1) var(--s-3);padding:18px 0;border-top:1px solid var(--grey-200)}
+.datacard dl div:last-child{padding-bottom:0}
+.datacard dt{font:700 15px/1.6 var(--heading);color:var(--navy)}
+.datacard dd{margin:0;max-width:65ch}
+.fld__hint a,.form__foot small a{color:var(--primary-dark);text-decoration:underline;text-underline-offset:3px}
 .signup__list{margin:var(--s-2) 0 var(--s-3);display:grid}
 .signup__list div{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:var(--s-2);padding:12px 0;border-bottom:1px solid rgba(255,255,255,.1)}
 .signup__list dt{font:600 13px/1.4 var(--heading);color:rgba(255,255,255,.55)}
@@ -763,6 +771,13 @@ main:has(>.theater:last-child,>.section--tint:last-child,>.program:last-child)+.
 .socials{display:flex;gap:10px;margin-top:28px}
 .socials a{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.08)}
 .socials a:hover{background:var(--accent);color:var(--navy)}
+.footer__legal{display:flex;flex-wrap:wrap;gap:4px 24px}
+.footer__legal a,.footer__legal button{display:inline-flex;align-items:center;min-height:44px;margin-block:-12px;padding:0;border:0;background:none;font:inherit;color:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.footer__legal a:hover,.footer__legal button:hover{color:#fff}
+.cookies{position:fixed;left:var(--s-2);bottom:var(--s-2);z-index:55;width:min(420px,calc(100% - 2*var(--s-2)));padding:var(--s-3);border-radius:var(--r-lg);background:var(--navy);color:rgba(255,255,255,.78);box-shadow:var(--shadow-lg);font-size:15px;line-height:1.55}
+.cookies b{display:block;margin-bottom:6px;font:800 18px/1.3 var(--heading);color:#fff}
+.cookies__actions{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s-1);margin-top:var(--s-2)}
+.cookies a{display:inline-flex;align-items:center;min-height:44px;margin-top:4px;color:#fff;font-size:14px;text-decoration:underline;text-underline-offset:3px}
 .footer__bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:28px;border-top:1px solid rgba(255,255,255,.1);font-size:14px}
 .wordmark{font:900 clamp(64px,15.5vw,220px)/.78 var(--heading);letter-spacing:-.06em;color:rgba(255,255,255,.05);white-space:nowrap;margin-bottom:-.06em;user-select:none;text-align:center}
 .mbar{display:none}
@@ -825,6 +840,8 @@ body:not([data-phase=voor]) .only-voor,body:not([data-phase=live]) .only-live,bo
   .feature{min-height:440px;padding:24px}
 }
 @media (max-width:640px){
+  .datacard dl div{grid-template-columns:minmax(0,1fr);gap:4px}
+  .cookies{left:10px;bottom:10px;width:calc(100% - 20px);padding:var(--s-2) var(--s-2) 8px}
   /* Smalle telefoons: lange knopteksten mogen naar een tweede regel, labels in rijtjes ook */
   .btn{white-space:normal;height:auto;min-height:54px;padding-block:14px;line-height:1.25;text-align:center}
   .day li b{white-space:normal;text-align:right}
@@ -873,6 +890,7 @@ body:not([data-phase=voor]) .only-voor,body:not([data-phase=live]) .only-live,bo
   .mbar strong{font:800 14px/1.2 var(--heading)}
   .mbar .btn{height:46px;padding:0 20px}
   .show-mbar .mbar{transform:none}
+  .has-cookies .mbar{display:none}
   [data-phase=voor] .mbar{gap:8px;padding:8px}
   [data-phase=voor] .mbar__txt{display:none}
   [data-phase=voor] .mbar .btn{flex:1 1 0;padding:0 12px}

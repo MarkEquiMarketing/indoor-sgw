@@ -28,6 +28,7 @@ PAGES = {
     'uitslagen': 'uitslagen.html',
     'trainingen': 'trainingen.html',
     '404': '404.html',
+    'privacy': 'privacy.html',
 }
 def url(key, live):
     return PAGES.get(key) or LIVE + live
@@ -126,7 +127,7 @@ def footer():
       <div><h4>Meedoen</h4><ul>{li('trainingen', 'Trainingen', 'trainingen/')}{li('hindernissen', 'Hindernissen', 'hindernissen/')}{li('tour', 'Virtual tour', 'virtual-tour/')}{li('stalling', 'Stalling', 'stalling/')}</ul></div>
       <div><h4>Organisatie</h4><ul>{li('over', 'Over ons', 'over-ons/')}{li('sponsoren', 'Sponsoren', 'sponsoren/')}{li('contact', 'Contact', 'contact/')}<li><a href="mailto:info@indoorsgw.nl">info@indoorsgw.nl</a></li></ul></div>
     </div>
-    <div class="footer__bottom"><span>© 2026 Stichting Indoor SGW</span><span>Website door EquiMarketing</span></div>
+    <div class="footer__bottom"><span>© 2026 Stichting Indoor SGW</span><span class="footer__legal"><a href="{url('privacy', 'privacy/')}">Privacyverklaring</a><button type="button" data-cookies hidden>Cookievoorkeur</button></span><span>Website door EquiMarketing</span></div>
   </div>
   <div class="wordmark" aria-hidden="true">Indoor SGW</div>
 </footer>'''

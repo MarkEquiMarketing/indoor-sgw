@@ -16,6 +16,11 @@
     next: 'December 2027'
   };
 
+  /* Statistieken. Leeg = geen meting en geen cookiemelding (regel: geen melding zonder tracker).
+     Vul een GA4-ID in (G-XXXXXXX) en pas dan ook de privacyverklaring aan, kop "Cookies".
+     ?cookies=demo toont de melding om te testen, zonder iets te laden. */
+  const STATS = { ga4: '' };
+
   /* Fase van de site: voor, live of na. ?fase=live forceert een fase. */
   const autoPhase = () => Date.now() < EVENT.start ? 'voor' : Date.now() < EVENT.end ? 'live' : 'na';
   const setPhase = phase => {
@@ -593,4 +598,54 @@
     });
     select(tabs.find(t => t.getAttribute('aria-selected') === 'true') || tabs[0]);
   });
+
+  /* Cookiemelding. Alleen als er een tracker is (STATS.ga4) of met ?cookies=demo.
+     De keuze staat in één cookie, sgw_stats (ja of nee, 182 dagen). Pas na ja laadt GA4. */
+  (() => {
+    const demo = new URLSearchParams(location.search).get('cookies') === 'demo';
+    if (!STATS.ga4 && !demo) return;
+    const KEY = 'sgw_stats';
+    const read = () => (document.cookie.match(new RegExp('(?:^|; )' + KEY + '=(ja|nee)')) || [])[1];
+    const write = v => { document.cookie = `${KEY}=${v}; max-age=${182 * 864e2}; path=/; SameSite=Lax${location.protocol === 'https:' ? '; Secure' : ''}`; };
+    const load = () => {
+      if (demo || window.gtag) return;
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { dataLayer.push(arguments); };
+      gtag('js', new Date()); gtag('config', STATS.ga4);
+      const s = document.createElement('script');
+      s.async = true; s.src = `https://www.googletagmanager.com/gtag/js?id=${STATS.ga4}`;
+      document.head.appendChild(s);
+    };
+    const clearGa = () => document.cookie.split('; ').map(c => c.split('=')[0]).filter(n => /^_ga/.test(n)).forEach(n => {
+      [location.hostname, '.' + location.hostname.replace(/^www\./, '')].forEach(d => { document.cookie = `${n}=; max-age=0; path=/; domain=${d}`; });
+      document.cookie = `${n}=; max-age=0; path=/`;
+    });
+    let box;
+    const close = () => { box?.remove(); box = null; document.body.classList.remove('has-cookies'); };
+    const open = () => {
+      if (box) return;
+      box = document.createElement('div');
+      box.className = 'cookies';
+      box.setAttribute('role', 'dialog');
+      box.setAttribute('aria-label', 'Cookies');
+      box.innerHTML = '<p><b>Mogen we meten hoe je de site gebruikt?</b>Met Google Analytics zien we welke pagina\'s goed werken. Zeg je nee, dan meten we niets.</p>'
+        + '<div class="cookies__actions"><button class="btn btn--white btn--sm" type="button" data-consent="ja">Ja, dat is goed</button><button class="btn btn--glass btn--sm" type="button" data-consent="nee">Nee, liever niet</button></div>'
+        + '<a href="privacy.html#cookies">Lees de privacyverklaring</a>';
+      document.body.appendChild(box);
+      document.body.classList.add('has-cookies');
+      box.addEventListener('click', e => {
+        const b = e.target.closest('[data-consent]');
+        if (!b) return;
+        const was = read();
+        write(b.dataset.consent);
+        close();
+        if (b.dataset.consent === 'ja') load();
+        else if (was === 'ja' && !demo) { clearGa(); location.reload(); }
+      });
+    };
+    $$('[data-cookies]').forEach(b => { b.hidden = false; b.addEventListener('click', open); });
+    const choice = read();
+    if (choice === 'ja') load();
+    else if (!choice || demo) open();
+  })();
 })();
