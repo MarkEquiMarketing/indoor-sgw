@@ -133,8 +133,9 @@ def footer():
 
 def mbar():
     return f'''<div class="mbar" aria-label="Snel inschrijven">
-  <div><small>28, 29 en 30 december</small><strong>Indoor SGW 2026</strong></div>
-  <a class="btn btn--gold only-voor" href="{KNHS}" target="_blank" rel="noopener">Inschrijven</a>
+  <div class="mbar__txt"><small>28, 29 en 30 december</small><strong>Indoor SGW 2026</strong></div>
+  <a class="btn btn--gold only-voor" href="{url('trainingen', 'trainingen/')}#aanmelden" aria-label="Aanmelden voor een training">Training</a>
+  <a class="btn btn--glass only-voor" href="{KNHS}" target="_blank" rel="noopener" aria-label="Inschrijven voor de wedstrijd bij de KNHS">Wedstrijd</a>
   <a class="btn btn--gold only-live" href="{url('startlijsten', 'wedstrijd/startlijsten/')}">Startlijsten</a>
   <a class="btn btn--gold only-na" href="{url('uitslagen', 'wedstrijd/uitslagen/')}">Uitslagen</a>
 </div>'''

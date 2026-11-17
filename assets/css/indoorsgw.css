@@ -873,6 +873,9 @@ body:not([data-phase=voor]) .only-voor,body:not([data-phase=live]) .only-live,bo
   .mbar strong{font:800 14px/1.2 var(--heading)}
   .mbar .btn{height:46px;padding:0 20px}
   .show-mbar .mbar{transform:none}
+  [data-phase=voor] .mbar{gap:8px;padding:8px}
+  [data-phase=voor] .mbar__txt{display:none}
+  [data-phase=voor] .mbar .btn{flex:1 1 0;padding:0 12px}
   .people{grid-template-columns:minmax(0,1fr)}
   .tour__now{flex-direction:column;align-items:flex-start;gap:16px}
   .tour__ctrl{justify-content:flex-start;width:100%}
