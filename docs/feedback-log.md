@@ -23,6 +23,11 @@ Alle feedback op het ontwerp, met wat we ervan leren. Nieuwste bovenaan. Een les
 
 ## 17 november 2026
 
+**Virtual tour: witte strook boven de footer**
+- Feedback: de witruimte tussen de bioscoop en de footer slaat nergens op.
+  - Gedaan: de footer loopt nu direct onder de ronde hoeken van de bioscoop door.
+  - Les: ruimte boven de footer is er om inhoud los te laten. Na een beeldvullend blok is dat niet nodig.
+
 **Wedstrijdpagina's en trainingen**
 - Vraag: maak Trainingen, De wedstrijd, Vraagprogramma, Startlijsten, Crossparcours en Uitslagen. Niet ingewikkeld, wel mooi en makkelijk klikken. Liefst zonder dat je een pdf moet downloaden.
   - Gedaan: de pdf's van de huidige site staan in een lijstenkijker op de pagina zelf. Zoek op je naam of je paard, dan lichten de lijsten op waar je in staat en zie je je naam in goud.

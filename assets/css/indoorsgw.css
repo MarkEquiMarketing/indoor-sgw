@@ -667,6 +667,9 @@ a.slot:hover{background:#fff;box-shadow:inset 0 0 0 1px var(--blue-300)}
 
 /* 10  FOOTER EN MOBIELE BALK ---------------------------------------------- */
 .footer{background:var(--navy-deep);color:rgba(255,255,255,.62);padding-top:88px;margin-top:var(--space);overflow:hidden}
+/* Eindigt de pagina met een beeldvullend blok (bioscoop), dan loopt de footer er direct onder door, zonder witte strook */
+.theater{position:relative;z-index:1}
+main:has(>.theater:last-child)+.footer{--tuck:var(--r-lg);margin-top:calc(-1*var(--tuck));padding-top:calc(88px + var(--tuck))}
 .footer__top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px;padding-bottom:64px}
 .footer h4{font:700 14px var(--heading);color:#fff;margin:0 0 20px}
 .footer ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
@@ -752,6 +755,7 @@ body:not([data-phase=voor]) .only-voor,body:not([data-phase=live]) .only-live,bo
   .insta__card{padding:24px}
   .cta{border-radius:var(--r)}
   .page-hero,.tour,.theater{border-radius:0 0 var(--r) var(--r)}
+  main:has(>.theater:last-child)+.footer{--tuck:var(--r)}
   .footer__top{grid-template-columns:1fr}
   .footer{padding-bottom:72px}
   .accordion summary{padding:18px 20px}.accordion .answer{padding:0 20px 20px}
