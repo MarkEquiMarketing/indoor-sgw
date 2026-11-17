@@ -28,6 +28,11 @@ Alle feedback op het ontwerp, met wat we ervan leren. Nieuwste bovenaan. Een les
 
 ## 17 november 2026
 
+**Mobiele balk: training of wedstrijd**
+- Feedback: de knop "Inschrijven" onderaan op mobiel ging naar de KNHS. Wie wil trainen, klikt daar ook op en komt verkeerd uit.
+  - Gedaan: voor het evenement twee knoppen naast elkaar, "Training" (goud, naar aanmelden) en "Wedstrijd" (naar Mijn KNHS). Tijdens en na blijft het één knop: startlijsten of uitslagen.
+  - Les: een knop die "inschrijven" zegt, moet zeggen waarvoor. Twee soorten inschrijven, dus twee knoppen.
+
 **Audit van de hele site**
 - Vraag: alles nalopen. Pagina's van de oude site, ontwerp, mobiel, responsive, en de stijlgids bijwerken.
   - Oude site: alle gepubliceerde pagina's hebben een nieuwe versie. Alleen "Training betalen" niet (zie open vragen). Er was geen 404 en geen privacyverklaring.
