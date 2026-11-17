@@ -14,8 +14,26 @@ Alle feedback op het ontwerp, met wat we ervan leren. Nieuwste bovenaan. Een les
 - De namen van de hindernissen in de tour zijn werknamen op basis van de foto's (Boomstammen, Bank, Opsprong, Heuvel ...). Kloppen ze, en welke foto's horen bij het parcours van 2026?
 - De voorzitter heet op de Over ons-pagina "Friet van Stiphout", bij de sponsoren "Fried van Stiphout". Welke is goed?
 - Virtual tour: de posters zijn nu eigen foto's. Mogen we de YouTube-thumbnails downloaden en zelf hosten?
+- Contactformulier: hoe gaat het verzenden? Bijvoorbeeld via Gravity Forms op de WordPress-site, of een kleine functie op Vercel met een mailservice. Nu toont het formulier alleen de bevestiging.
+- Virtual tour: wat komt er onder de video's? Niets (zoals nu), of extra secties?
 
 ## 17 november 2026
+
+**Spacing, contact, stalling en virtual tour**
+- Feedback: controleer de spacing overal en leg hem vast in de stylesheet.
+  - Gemeten: tussen twee witte secties zat soms 152 en soms 304 px, en boven de footer 392 px.
+  - Les: één raster van 8 px (gangbaar in design systems). Tussen secties 64 px mobiel tot 120 px desktop, onder een kop 32 tot 48, tussen blokken 16 tot 24. Twee secties met dezelfde achtergrond krijgen samen één keer ruimte. De stylesheet regelt dat zelf.
+- Feedback: bij stalling zat de afsluiter "Je stal is geregeld" tegen het lichtblauwe vlak aan.
+  - Les: een blok zit nooit tegen een gekleurd vlak aan. Na een gekleurde sectie houdt de volgende sectie zijn ruimte.
+- Feedback: bij "Hier vind je ons" en "Goed om te weten" moeten de drie blokjes samen net zo hoog zijn als de kaart ernaast.
+  - Les: blokken naast elkaar zijn even hoog.
+- Feedback: geen kruimelpad op de pagina's.
+- Idee: ronde hoeken onder de kop van een subpagina, vriendelijker dan een rechte lijn.
+  - Gedaan op de subpagina's, de homepage blijft zoals hij is.
+- Feedback: op contact liever een contactformulier dan mailadressen.
+  - Gedaan: formulier met onderwerp, naam, mail, telefoon, paard en vraag. Bij stalling verwijst een tip naar de planner. De mailadressen staan klein ernaast.
+- Feedback: de afsluiter "Liever zelf in de hal?" onder de virtual tour is onzin.
+  - Gedaan: weggehaald. Wat er wel onder komt, is een open vraag.
 
 **Contact, Stalling en Sponsoren**
 - Vraag: maak de contactpagina, de stallingpagina en de sponsorenpagina.

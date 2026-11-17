@@ -315,6 +315,25 @@
     update();
   }
 
+  /* Contactformulier: onderwerp kiezen en versturen.
+     Verzenden is nog niet gekoppeld (open vraag in het feedbacklog); nu tonen we de bevestiging. */
+  const contact = $('[data-contact]');
+  if (contact) {
+    const done = $('[data-contact-done]'), hint = $('[data-hint]', contact);
+    const topics = $$('input[name=onderwerp]', contact);
+    const update = () => { hint.hidden = !topics.some(r => r.checked && r.value === 'stalling'); };
+    topics.forEach(r => r.addEventListener('change', update));
+    contact.addEventListener('submit', e => {
+      e.preventDefault();
+      $('[data-done-mail]', done).textContent = contact.elements.email.value;
+      contact.hidden = true; done.hidden = false; done.focus();
+    });
+    $('[data-contact-again]', done).addEventListener('click', () => {
+      contact.reset(); update(); done.hidden = true; contact.hidden = false;
+    });
+    update();
+  }
+
   /* Sponsorwand: zoeken op naam */
   const wallSearch = $('[data-wall-search]');
   if (wallSearch) {

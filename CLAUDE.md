@@ -24,7 +24,7 @@ Nieuwe website voor de Indoor SGW (indoorsgw.nl): drie dagen trainen en wedstrij
 ## Nieuwe pagina bouwen
 
 1. Begin vanaf een bestaande subpagina, zoals `ontwerp/over-ons.html`: zelfde `<head>` (met favicon), footer en `<script src="../assets/js/indoorsgw.js" defer>`. Menu en footer zet je met `python3 tools/nav.py`.
-2. Vervang de hero door een `.page-hero` met `.crumbs`, `h1`, korte intro en hooguit twee knoppen.
+2. Vervang de hero door een `.page-hero` met `h1`, korte intro en hooguit twee knoppen. Geen kruimelpad.
 3. Bouw alleen met onderdelen uit de stylesheet. Zie `ontwerp/stijlgids.html`. Mist er iets, voeg het toe aan `indoorsgw.css` in het juiste hoofdstuk en zet het in de stijlgids. Geen losse `<style>` per pagina.
 4. Zet `aria-current="page"` op het actieve menu-item.
 5. Maak een preview, controleer desktop (1440) en mobiel (375), en kijk of er niets buiten beeld loopt.
@@ -35,7 +35,8 @@ Nieuwe website voor de Indoor SGW (indoorsgw.nl): drie dagen trainen en wedstrij
 - **Kleur:** alleen de tokens. Blauw en navy als basis, goud (`--accent`) voor de hoofdactie en één uitgelicht element per blok.
 - **Letter:** Montserrat vet voor titels en knoppen, Verdana voor tekst. Geen hoofdletterlabels, geen cursief.
 - **Titels:** elke sectietitel gebruikt `var(--h2)` en gewicht 800, met `var(--head-gap)` eronder. Hero h1 alleen op de homepage (`--h1`), subpagina's gebruiken `--h1-page`. Titels mogen nooit tegen het menu aan lopen.
-- **Hero:** inhoud in het midden uitgelijnd, knoppen in het midden, infobalk onderaan.
+- **Hero:** inhoud in het midden uitgelijnd, knoppen in het midden, infobalk onderaan. De kop van een subpagina (`.page-hero`, `.tour`, `.theater`) heeft ronde hoeken onder. Geen kruimelpad.
+- **Ruimte:** alles uit het 8px-raster, met de tokens bovenaan de stylesheet. Tussen secties `--space` (64 mobiel, 120 desktop), onder een sectiekop `--head-gap`, tussen blokken `--gap`. Nooit een eigen waarde. Twee secties met dezelfde achtergrond krijgen samen één keer ruimte, de stylesheet regelt dat. Een blok zit nooit tegen een gekleurd vlak aan. Blokken naast elkaar zijn even hoog.
 - **Vorm:** ronde hoeken (12, 20, 32 px, knoppen als pil). Geen zigzag, geen lijnen dwars door inhoud.
 - **Interactief:** gebruik slepen, tabs, uitklappen en klikken waar het helpt. Accordeon voor vragen, tabs voor keuzes, sleepslider voor foto's.
 - **Foto's in sliders:** zonder bijschrift.
@@ -45,7 +46,7 @@ Nieuwe website voor de Indoor SGW (indoorsgw.nl): drie dagen trainen en wedstrij
 - **Watermerk:** logo licht op de achtergrond (`.mark`), altijd helemaal binnen het vlak. Nooit afgesneden.
 - **Privacy:** Google Maps en YouTube laden pas na een klik. Enige uitzondering: de achtergrondvideo in de homepage-hero (`data-yt`, youtube-nocookie, gedempt, alleen desktop), op verzoek van Mark.
 - **Menu:** één bron in `tools/nav.py` (Over ons en Wedstrijd met submenu, zoals op indoorsgw.nl). Nooit het menu per pagina met de hand aanpassen. Nieuwe pagina: zet hem in `PAGES` en draai `python3 tools/nav.py`.
-- **Elke pagina één sterk interactief element:** verhaal met jaartal (over ons), parcours-tour (hindernissen), beeldvullende bioscoop (virtual tour), onderwerpkiezer (contact), verblijfplanner (stalling), sponsorwand met zoeken (sponsoren). Rustig eromheen.
+- **Elke pagina één sterk interactief element:** verhaal met jaartal (over ons), parcours-tour (hindernissen), beeldvullende bioscoop (virtual tour), contactformulier met onderwerp (contact), verblijfplanner (stalling), sponsorwand met zoeken (sponsoren). Rustig eromheen.
 - **Fase:** `body[data-phase]` is `voor`, `live` of `na`. Gebruik `.only-voor`, `.only-live`, `.only-na`. Data van het evenement staan bovenaan `indoorsgw.js`.
 
 ## Tekstregels

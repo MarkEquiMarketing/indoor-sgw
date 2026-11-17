@@ -21,7 +21,6 @@
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-  <symbol id="crumb" viewBox="0 0 8 8"><path d="M2.5 1.5 5 4 2.5 6.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </svg>
 
 <header class="nav">
@@ -74,9 +73,8 @@
   <section class="page-hero" aria-labelledby="page-title">
     <div class="page-hero__bg"><img src="../assets/img/sfeer-2.jpg" alt="" width="1200" height="800" fetchpriority="high"></div>
     <div class="wrap">
-      <nav class="crumbs" aria-label="Kruimelpad"><a href="homepage.html">Home</a><svg width="8" height="8" aria-hidden="true"><use href="#crumb"/></svg><span aria-current="page">Contact</span></nav>
       <h1 id="page-title">Vraag het ons gewoon</h1>
-      <p>Onze vrijwilligers helpen je graag. Kies waar je vraag over gaat, dan mail je meteen de juiste persoon.</p>
+      <p>Onze vrijwilligers helpen je graag. Stel je vraag hieronder, dan komt hij meteen bij de juiste persoon.</p>
       <div class="actions">
         <a class="btn btn--gold" href="#vraag">Stel je vraag</a>
         <a class="btn btn--glass" href="#vragen">Bekijk de veelgestelde vragen</a>
@@ -87,70 +85,52 @@
   <section class="section" id="vraag" aria-labelledby="vraag-title">
     <div class="wrap">
       <div class="head">
-        <h2 id="vraag-title">Waar gaat je vraag over?</h2>
-        <p>Mail je van ons, dan komt dat altijd van info@indoorsgw.nl of secretariaat@indoorsgw.nl.</p>
+        <h2 id="vraag-title">Stel je vraag</h2>
+        <p>Kies waar je vraag over gaat. Dan komt hij meteen bij de juiste persoon.</p>
       </div>
-      <div class="tabs" role="tablist" aria-label="Onderwerp van je vraag">
-        <button type="button" role="tab" id="tab-wedstrijd" aria-controls="panel-wedstrijd" aria-selected="true">Wedstrijd en startlijsten</button>
-        <button type="button" role="tab" id="tab-training" aria-controls="panel-training" aria-selected="false">Trainingen</button>
-        <button type="button" role="tab" id="tab-stalling" aria-controls="panel-stalling" aria-selected="false">Stalling en overnachten</button>
-        <button type="button" role="tab" id="tab-sponsoring" aria-controls="panel-sponsoring" aria-selected="false">Sponsoring</button>
-        <button type="button" role="tab" id="tab-anders" aria-controls="panel-anders" aria-selected="false">Iets anders</button>
-      </div>
-      <div class="mailbox" role="tabpanel" id="panel-wedstrijd" aria-labelledby="tab-wedstrijd">
-        <div><h3>Wedstrijd en startlijsten</h3><p>Vragen over je inschrijving, de startlijsten of afmelden? Mail het secretariaat. Inschrijven zelf gaat via <a href="https://www.mijnknhs.nl/Game/W183853?expandHeader=True" target="_blank" rel="noopener">Mijn KNHS</a>.</p></div>
-        <div class="mailbox__to">
-          <small>Mail naar</small>
-          <strong>secretariaat@indoorsgw.nl</strong>
-          <div class="actions">
-            <a class="btn btn--gold" href="mailto:secretariaat@indoorsgw.nl?subject=Vraag%20over%20de%20wedstrijd">Mail naar secretariaat</a>
-            <button class="btn btn--navy" type="button" data-copy="secretariaat@indoorsgw.nl">Kopieer adres</button>
+      <div class="contact">
+        <!-- Verzenden is nog niet gekoppeld. Zie de open vraag in docs/feedback-log.md. -->
+        <form class="form" data-contact>
+          <fieldset>
+            <legend>Waar gaat je vraag over?</legend>
+            <div class="topics">
+              <label class="topic"><input type="radio" name="onderwerp" value="wedstrijd" data-to="secretariaat@indoorsgw.nl" checked><span>Wedstrijd en startlijsten</span></label>
+              <label class="topic"><input type="radio" name="onderwerp" value="training" data-to="info@indoorsgw.nl"><span>Trainingen</span></label>
+              <label class="topic"><input type="radio" name="onderwerp" value="stalling" data-to="info@indoorsgw.nl"><span>Stalling en overnachten</span></label>
+              <label class="topic"><input type="radio" name="onderwerp" value="sponsoring" data-to="info@indoorsgw.nl"><span>Sponsoring</span></label>
+              <label class="topic"><input type="radio" name="onderwerp" value="anders" data-to="info@indoorsgw.nl"><span>Iets anders</span></label>
+            </div>
+          </fieldset>
+          <p class="form__hint" data-hint hidden>Stalling en overnachten regel je direct bij Het Zwarte Water. <a href="stalling.html">Plan je verblijf</a>, dan staat je mail meteen klaar.</p>
+          <div class="form__row">
+            <div><label for="f-naam">Je naam</label><input class="input" id="f-naam" name="naam" autocomplete="name" required></div>
+            <div><label for="f-mail">Je mailadres</label><input class="input" id="f-mail" name="email" type="email" autocomplete="email" required></div>
           </div>
-        </div>
-      </div>
-      <div class="mailbox" role="tabpanel" id="panel-training" aria-labelledby="tab-training" hidden>
-        <div><h3>Trainingen</h3><p>Vragen over een training, je groep of je tijd? Mail ons. Een training annuleer je kosteloos tot 15 december.</p></div>
-        <div class="mailbox__to">
-          <small>Mail naar</small>
-          <strong>info@indoorsgw.nl</strong>
-          <div class="actions">
-            <a class="btn btn--gold" href="mailto:info@indoorsgw.nl?subject=Vraag%20over%20een%20training">Mail naar info</a>
-            <button class="btn btn--navy" type="button" data-copy="info@indoorsgw.nl">Kopieer adres</button>
+          <div class="form__row">
+            <div><label for="f-tel">Je telefoonnummer <small>(mag leeg)</small></label><input class="input" id="f-tel" name="telefoon" type="tel" autocomplete="tel"></div>
+            <div><label for="f-paard">Naam van je paard of pony <small>(mag leeg)</small></label><input class="input" id="f-paard" name="paard"></div>
           </div>
-        </div>
-      </div>
-      <div class="mailbox" role="tabpanel" id="panel-stalling" aria-labelledby="tab-stalling" hidden>
-        <div><h3>Stalling en overnachten</h3><p>Stalling voor je paard en overnachten regel je direct bij Het Zwarte Water. <a href="stalling.html">Plan je verblijf</a> en je mail staat meteen klaar.</p></div>
-        <div class="mailbox__to">
-          <small>Mail naar</small>
-          <strong>info@hetzwartewater.nl</strong>
-          <div class="actions">
-            <a class="btn btn--gold" href="mailto:info@hetzwartewater.nl?subject=Stalling%20Indoor%20SGW">Mail naar Het Zwarte Water</a>
-            <button class="btn btn--navy" type="button" data-copy="info@hetzwartewater.nl">Kopieer adres</button>
+          <div><label for="f-vraag">Je vraag</label><textarea class="input" id="f-vraag" name="vraag" rows="6" required></textarea></div>
+          <div class="form__foot">
+            <small>We zijn allemaal vrijwilligers en reageren zo snel mogelijk.</small>
+            <button class="btn btn--gold" type="submit">Verstuur je vraag</button>
           </div>
+        </form>
+        <div class="form form__done" data-contact-done tabindex="-1" hidden>
+          <i><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></i>
+          <h3>Bedankt, je vraag is binnen</h3>
+          <p>We mailen je terug op <b data-done-mail></b>.</p>
+          <button class="btn btn--navy" type="button" data-contact-again>Nog een vraag stellen</button>
         </div>
-      </div>
-      <div class="mailbox" role="tabpanel" id="panel-sponsoring" aria-labelledby="tab-sponsoring" hidden>
-        <div><h3>Sponsoring</h3><p>Wil je sponsor worden of heb je een vraag over je sponsoring? Mail ons, dan nemen we contact met je op.</p></div>
-        <div class="mailbox__to">
-          <small>Mail naar</small>
-          <strong>info@indoorsgw.nl</strong>
-          <div class="actions">
-            <a class="btn btn--gold" href="mailto:info@indoorsgw.nl?subject=Sponsoring%20Indoor%20SGW">Mail naar info</a>
-            <button class="btn btn--navy" type="button" data-copy="info@indoorsgw.nl">Kopieer adres</button>
-          </div>
-        </div>
-      </div>
-      <div class="mailbox" role="tabpanel" id="panel-anders" aria-labelledby="tab-anders" hidden>
-        <div><h3>Iets anders</h3><p>Voor al het andere. We lezen alles en reageren zo snel mogelijk.</p></div>
-        <div class="mailbox__to">
-          <small>Mail naar</small>
-          <strong>info@indoorsgw.nl</strong>
-          <div class="actions">
-            <a class="btn btn--gold" href="mailto:info@indoorsgw.nl?subject=Vraag%20aan%20de%20Indoor%20SGW">Mail naar info</a>
-            <button class="btn btn--navy" type="button" data-copy="info@indoorsgw.nl">Kopieer adres</button>
-          </div>
-        </div>
+        <aside class="aside" aria-labelledby="mail-title">
+          <h3 id="mail-title">Liever zelf mailen?</h3>
+          <p>Dat kan natuurlijk ook.</p>
+          <ul>
+            <li><small>Wedstrijd en startlijsten</small><a href="mailto:secretariaat@indoorsgw.nl">secretariaat@indoorsgw.nl</a></li>
+            <li><small>Al het andere</small><a href="mailto:info@indoorsgw.nl">info@indoorsgw.nl</a></li>
+            <li><small>Stalling en overnachten</small><a href="mailto:info@hetzwartewater.nl">info@hetzwartewater.nl</a></li>
+          </ul>
+        </aside>
       </div>
     </div>
   </section>
