@@ -29,6 +29,14 @@ Alle feedback op het ontwerp, met wat we ervan leren. Nieuwste bovenaan. Een les
 
 ## 17 november 2026
 
+**Overstap naar een eigen platform (Laravel)**
+- Besluit: de site wordt een Laravel-platform op dezelfde Cloud86-hosting als nu, in een eigen privé repo. Dit ontwerp blijft de bron voor de stijl.
+- Rollen: admin, manager (alles behalve team en instellingen) en trainer. Ruiters krijgen geen account, maar een persoonlijke link in de mail.
+- Trainingen: de ruiter kiest een voorkeursdag, het team plant dag en uur zelf. Per aanmelding staat of betalen nodig is, met een knop "Stuur betaalverzoek". Bij de wachtlijst kiest het team wie de plek krijgt.
+- Trainers krijgen een login en zien op hun telefoon hun eigen lessen. Per trainer een export naar Excel en pdf om te printen.
+- De huidige aanmeldingen komen uit de Google Sheet over. De site gaat in januari naar het nieuwe jaar.
+- Les: controle na elk blok, alleen van wat er gebouwd is.
+
 **Privacyverklaring en cookiemelding**
 - Vraag: een privacyverklaring bouwen, en is er een cookiebanner?
   - Gedaan: `privacy.html`. Sterk element: kies wat je doet (training, betalen, wedstrijd, contact, foto's, website) en zie in een kaart wat, waarom, wie en hoe lang. Daaronder de vaste tekst: wie zijn wij, cookies, delen, je rechten.
