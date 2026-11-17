@@ -19,7 +19,7 @@ Nieuwe website voor de Indoor SGW (indoorsgw.nl): drie dagen trainen en wedstrij
 | `ontwerp/over-ons.html`, `hindernissen.html`, `virtual-tour.html`, `contact.html`, `stalling.html`, `sponsoren.html`, `wedstrijd.html`, `vraagprogramma.html`, `startlijsten.html`, `crossparcours.html`, `uitslagen.html`, `trainingen.html` | De subpagina's die al ontworpen zijn. |
 | `tools/nav.py` | Zet menu, mobiel menu, mobiele balk onderaan en footer op elke pagina. Eén bron voor de menustructuur. |
 | `tools/onderdelen.py` | Zet het overzicht "Alle onderdelen" in de stijlgids. Draai na elke wijziging aan de stylesheet. |
-| `ontwerp/404.html` | Pagina niet gevonden. |
+| `ontwerp/404.html`, `ontwerp/privacy.html` | Pagina niet gevonden, privacyverklaring. |
 | `tools/preview.py` | Maakt een losse preview met alles erin (zie Werkwijze). |
 | `index.html` | Overzicht voor de preview op Vercel. |
 
@@ -48,6 +48,7 @@ Nieuwe website voor de Indoor SGW (indoorsgw.nl): drie dagen trainen en wedstrij
 - **Instagram:** fotoband met twee rijen en een kaart in het midden.
 - **Watermerk:** logo licht op de achtergrond (`.mark`), altijd helemaal binnen het vlak. Nooit afgesneden.
 - **Privacy:** Google Maps en YouTube laden pas na een klik. Enige uitzondering: de achtergrondvideo in de homepage-hero (`data-yt`, youtube-nocookie, gedempt, alleen desktop), op verzoek van Mark.
+- **Cookies:** geen melding zonder tracker. Nu meet de site niets, dus geen melding. Komt er statistiek bij, vul dan `STATS.ga4` in bovenaan `indoorsgw.js`: dan verschijnt de melding (`.cookies`) met ja en nee even groot, en laadt GA4 pas na ja. Pas in dezelfde stap de kop "Cookies" in `privacy.html` aan. De privacyverklaring zegt precies wat de code doet. Testen: `?cookies=demo`.
 - **Mobiele balk** (`.mbar`, alleen mobiel): voor het evenement twee knoppen, Training en Wedstrijd. Tijdens startlijsten, na uitslagen. Komt uit `tools/nav.py`.
 - **Menu:** één bron in `tools/nav.py` (Over ons en Wedstrijd met submenu, zoals op indoorsgw.nl). Nooit het menu per pagina met de hand aanpassen. Nieuwe pagina: zet hem in `PAGES` en draai `python3 tools/nav.py`.
 - **Elke pagina één sterk interactief element:** verhaal met jaartal (over ons), parcours-tour (hindernissen), beeldvullende bioscoop (virtual tour), tabs per onderwerp met het juiste paneel en formulier (contact), verblijfplanner (stalling), sponsorwand met zoeken (sponsoren), fototegels (wedstrijd), klassekiezer (vraagprogramma, crossparcours), lijstenkijker met zoeken (startlijsten, uitslagen), aanmelden in drie stappen met meelopende aanmelding (trainingen). Rustig eromheen.

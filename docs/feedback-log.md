@@ -23,10 +23,18 @@ Alle feedback op het ontwerp, met wat we ervan leren. Nieuwste bovenaan. Een les
 - Trainingen: de site zegt "€ 30 per uur", het formulier rekent € 30 per aanmelding. Is één training één uur? Dan zeggen we overal "€ 30 per training van een uur".
 - Trainingen: mag je in het nieuwe systeem meerdere paarden in één keer aanmelden en in één keer betalen? Nu is het één aanmelding en één betaling per paard.
 - Trainingen: waarvoor vragen we de leeftijd? Voor de indeling, of voor de Bixie?
-- Privacyverklaring: de oude site heeft er geen, maar we vragen nu naam, telefoon en mail (aanmelden, contact) en betalen via Mollie. Wie schrijft hem? De stijl staat klaar (`.prose`).
-- "Training betalen" (nabetalen op de oude site): vervalt als het nieuwe aanmeldsysteem een betaallink per mail stuurt. Klopt dat?
+- "Training betalen" blijft (Mark, 17 november). Hoe die pagina werkt, legt Mark nog uit.
+- Privacyverklaring: de bewaartermijnen zijn een voorstel (aanmelding en vragen een jaar, betalingen zeven jaar). Het bestuur moet ze bevestigen, net als "je instructeur krijgt alleen wat nodig is voor de indeling" en "bij ons ziet de penningmeester het".
+- Statistieken: de oude site gebruikt Google Analytics met CookieYes. Willen we dat op de nieuwe site ook? Dan komt de cookiemelding aan (staat klaar).
 
 ## 17 november 2026
+
+**Privacyverklaring en cookiemelding**
+- Vraag: een privacyverklaring bouwen, en is er een cookiebanner?
+  - Gedaan: `privacy.html`. Sterk element: kies wat je doet (training, betalen, wedstrijd, contact, foto's, website) en zie in een kaart wat, waarom, wie en hoe lang. Daaronder de vaste tekst: wie zijn wij, cookies, delen, je rechten.
+  - Gedaan: link in de footer en bij beide formulieren.
+  - Cookiemelding: gebouwd maar slapend. Volgens de standaard uit laravel-11 (regel T4): geen melding zonder tracker. De nieuwe site meet nu niets.
+  - Les: de privacyverklaring en de cookiemelding zeggen precies wat de code doet. Verandert de meting, dan veranderen ze mee.
 
 **Mobiele balk: training of wedstrijd**
 - Feedback: de knop "Inschrijven" onderaan op mobiel ging naar de KNHS. Wie wil trainen, klikt daar ook op en komt verkeerd uit.
