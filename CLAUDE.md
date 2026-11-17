@@ -17,7 +17,9 @@ Nieuwe website voor de Indoor SGW (indoorsgw.nl): drie dagen trainen en wedstrij
 | `content/teksten.md` | De teksten van de huidige site. Bron voor feiten. |
 | `docs/feedback-log.md` | Alle feedback met datum, wat we ervan leerden. |
 | `ontwerp/over-ons.html`, `hindernissen.html`, `virtual-tour.html`, `contact.html`, `stalling.html`, `sponsoren.html`, `wedstrijd.html`, `vraagprogramma.html`, `startlijsten.html`, `crossparcours.html`, `uitslagen.html`, `trainingen.html` | De subpagina's die al ontworpen zijn. |
-| `tools/nav.py` | Zet menu, mobiel menu en footer op elke pagina. Eén bron voor de menustructuur. |
+| `tools/nav.py` | Zet menu, mobiel menu, mobiele balk onderaan en footer op elke pagina. Eén bron voor de menustructuur. |
+| `tools/onderdelen.py` | Zet het overzicht "Alle onderdelen" in de stijlgids. Draai na elke wijziging aan de stylesheet. |
+| `ontwerp/404.html` | Pagina niet gevonden. |
 | `tools/preview.py` | Maakt een losse preview met alles erin (zie Werkwijze). |
 | `index.html` | Overzicht voor de preview op Vercel. |
 
@@ -25,7 +27,7 @@ Nieuwe website voor de Indoor SGW (indoorsgw.nl): drie dagen trainen en wedstrij
 
 1. Begin vanaf een bestaande subpagina, zoals `ontwerp/over-ons.html`: zelfde `<head>` (met favicon), footer en `<script src="../assets/js/indoorsgw.js" defer>`. Menu en footer zet je met `python3 tools/nav.py`.
 2. Vervang de hero door een `.page-hero` met `h1`, korte intro en hooguit twee knoppen. Geen kruimelpad.
-3. Bouw alleen met onderdelen uit de stylesheet. Zie `ontwerp/stijlgids.html`. Mist er iets, voeg het toe aan `indoorsgw.css` in het juiste hoofdstuk en zet het in de stijlgids. Geen losse `<style>` per pagina.
+3. Bouw alleen met onderdelen uit de stylesheet. Zie `ontwerp/stijlgids.html`. Mist er iets, voeg het toe aan `indoorsgw.css` in het juiste hoofdstuk en zet het in de stijlgids. Geen losse `<style>` per pagina en geen `style=""` in de HTML: maak er een class of variant voor (zoals `.stats--2`). Draai daarna `python3 tools/onderdelen.py`.
 4. Zet `aria-current="page"` op het actieve menu-item.
 5. Maak een preview, controleer desktop (1440) en mobiel (375), en kijk of er niets buiten beeld loopt.
 

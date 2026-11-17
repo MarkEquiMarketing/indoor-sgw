@@ -19,7 +19,7 @@
 <body>
 <a class="skip" href="#inhoud">Ga naar de inhoud</a>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<svg class="sprite" width="0" height="0" aria-hidden="true">
   <symbol id="arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </svg>
 
@@ -51,8 +51,8 @@
 
 <div class="sheet" id="sheet" aria-hidden="true">
   <div class="sheet__top">
-    <img src="../assets/logo/logo-wit.png" alt="Indoor SGW" width="500" height="573" style="height:42px;width:auto">
-    <button class="menu-btn" type="button" style="display:grid" aria-label="Menu sluiten" data-close>
+    <img src="../assets/logo/logo-wit.png" alt="Indoor SGW" width="500" height="573" class="sheet__logo">
+    <button class="menu-btn" type="button" aria-label="Menu sluiten" data-close>
       <svg width="20" height="20" viewBox="0 0 20 20"><path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
   </div>
@@ -121,9 +121,9 @@
               <legend class="signup__title" tabindex="-1">Met welk paard of welke pony?</legend>
               <div class="form__grid">
                 <div class="fld"><label for="su-paard">Naam van je paard of pony</label><input class="input" id="su-paard" name="paard" required></div>
-                <div class="fld"><label for="su-type">Paard of pony</label><select class="input select" id="su-type" name="type" required><option value="" selected disabled>Kies</option><option value="Paard">Paard</option><option value="A Pony">A pony</option><option value="B Pony">B pony</option><option value="C Pony">C pony</option><option value="D Pony">D pony</option><option value="E Pony">E pony</option></select></div>
-                <div class="fld"><label for="su-sgw">Ervaring met SGW <small>hoogste klasse</small></label><select class="input select" id="su-sgw" name="ervaring_sgw" required><option value="" selected disabled>Kies</option><option value="Ervaring B Niveau">B</option><option value="Ervaring L Niveau">L</option><option value="Ervaring M Niveau">M</option><option value="Ervaring Z Niveau">Z</option><option value="Geen SGW ervaring">Nog geen ervaring</option></select></div>
-                <div class="fld"><label for="su-spring">Ervaring met springen <small>hoogste klasse</small></label><select class="input select" id="su-spring" name="ervaring_springen" required><option value="" selected disabled>Kies</option><option value="Ervaring B Niveau">B</option><option value="Ervaring L Niveau">L</option><option value="Ervaring M Niveau">M</option><option value="Ervaring Z Niveau">Z</option><option value="Geen spring ervaring">Nog geen ervaring</option></select></div>
+                <div class="fld"><label for="su-type">Paard of pony</label><select class="input" id="su-type" name="type" required><option value="" selected disabled>Kies</option><option value="Paard">Paard</option><option value="A Pony">A pony</option><option value="B Pony">B pony</option><option value="C Pony">C pony</option><option value="D Pony">D pony</option><option value="E Pony">E pony</option></select></div>
+                <div class="fld"><label for="su-sgw">Ervaring met SGW <small>hoogste klasse</small></label><select class="input" id="su-sgw" name="ervaring_sgw" required><option value="" selected disabled>Kies</option><option value="Ervaring B Niveau">B</option><option value="Ervaring L Niveau">L</option><option value="Ervaring M Niveau">M</option><option value="Ervaring Z Niveau">Z</option><option value="Geen SGW ervaring">Nog geen ervaring</option></select></div>
+                <div class="fld"><label for="su-spring">Ervaring met springen <small>hoogste klasse</small></label><select class="input" id="su-spring" name="ervaring_springen" required><option value="" selected disabled>Kies</option><option value="Ervaring B Niveau">B</option><option value="Ervaring L Niveau">L</option><option value="Ervaring M Niveau">M</option><option value="Ervaring Z Niveau">Z</option><option value="Geen spring ervaring">Nog geen ervaring</option></select></div>
               </div>
               <div class="fld" data-group="soort"><p class="fld__label">Welke training?</p>
                 <div class="options">
@@ -213,7 +213,7 @@
   <div class="wrap">
     <div class="footer__top">
       <div class="footer__intro">
-        <img src="../assets/logo/logo-wit.png" alt="Indoor SGW" width="500" height="573" style="height:60px;width:auto">
+        <img src="../assets/logo/logo-wit.png" alt="Indoor SGW" width="500" height="573" class="footer__logo">
         <p>Dé Indoor SGW van Nederland. Dit jaar op 28, 29 en 30 december bij manege Het Zwarte Water in De Mortel.</p>
         <div class="socials">
           <a href="https://www.facebook.com/indoorsgw/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H8v4h2v8h4v-8h3l1-4h-4V8z"/></svg></a>
@@ -233,8 +233,8 @@
 <div class="mbar" aria-label="Snel inschrijven">
   <div><small>28, 29 en 30 december</small><strong>Indoor SGW 2026</strong></div>
   <a class="btn btn--gold only-voor" href="https://www.mijnknhs.nl/Game/W183853?expandHeader=True" target="_blank" rel="noopener">Inschrijven</a>
-  <a class="btn btn--gold only-live" href="https://www.indoorsgw.nl/wedstrijd/startlijsten/">Startlijsten</a>
-  <a class="btn btn--gold only-na" href="https://www.indoorsgw.nl/wedstrijd/uitslagen/">Uitslagen</a>
+  <a class="btn btn--gold only-live" href="startlijsten.html">Startlijsten</a>
+  <a class="btn btn--gold only-na" href="uitslagen.html">Uitslagen</a>
 </div>
 
 <script src="../assets/js/indoorsgw.js" defer></script>

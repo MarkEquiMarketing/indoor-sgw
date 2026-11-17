@@ -41,17 +41,30 @@
 .rule ul{margin:0;padding-left:1.1em;display:grid;gap:8px;font-size:15px}
 .rule--no{background:#FDF0EE}
 .mini-feature{min-height:380px}
+.sg-tablewrap{overflow-x:auto;border-radius:var(--r);box-shadow:inset 0 0 0 1px var(--grey-200)}
+.sg-table{width:100%;border-collapse:collapse;font-size:14px}
+.sg-table th,.sg-table td{padding:12px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--grey-200)}
+.sg-table thead th{font:700 13px var(--heading);color:var(--grey);background:#fff}
+.sg-table code{display:inline-block;margin:0 4px 4px 0;font-size:12px;color:var(--navy)}
+.sg-table a{color:var(--primary-dark);text-decoration:underline;text-underline-offset:3px}
+.sg-chrow th{background:var(--blue-50);font:800 14px var(--heading);color:var(--navy)}
+.sg-muted{color:var(--grey)}
+.sg-gap{margin-top:24px}
+.sg-demo{padding:clamp(20px,3vw,40px);border-radius:var(--r-lg);background:var(--blue-50)}
 @media (max-width:760px){.rules{grid-template-columns:1fr}.type-row{grid-template-columns:1fr;gap:6px}}
 </style>
 </head>
 <body data-phase="voor">
+<svg class="sprite" width="0" height="0" aria-hidden="true">
+  <symbol id="arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
 
 <header class="sg-top">
   <div class="wrap">
     <h1>Stijlgids Indoor SGW</h1>
     <p>De basis voor elke pagina van indoorsgw.nl, gemaakt vanuit de goedgekeurde homepage. Alles hieronder komt uit één stylesheet: <code>assets/css/indoorsgw.css</code>. Nieuwe pagina's bouwen we alleen met deze onderdelen.</p>
     <nav class="sg-toc" aria-label="Inhoud">
-      <a href="#kleur">Kleur</a><a href="#letter">Letter</a><a href="#knoppen">Knoppen</a><a href="#koppen">Koppen</a><a href="#kaarten">Kaarten</a><a href="#interactie">Interactie</a><a href="#banden">Sliders en banden</a><a href="#responsive">Responsive</a><a href="#regels">Regels</a>
+      <a href="#kleur">Kleur</a><a href="#letter">Letter</a><a href="#knoppen">Knoppen</a><a href="#koppen">Koppen</a><a href="#kaarten">Kaarten</a><a href="#interactie">Interactie</a><a href="#formulieren">Formulieren</a><a href="#blokken">Wedstrijdblokken</a><a href="#banden">Sliders en banden</a><a href="#responsive">Responsive</a><a href="#regels">Regels</a><a href="#onderdelen">Alle onderdelen</a>
     </nav>
   </div>
 </header>
@@ -116,7 +129,7 @@
   </div>
   <p class="sg-label">Kaart .card en weetje .fact</p>
   <div class="cards">
-    <a class="card" href="#kaarten"><span class="pill pill--gold" style="width:max-content">Training</span><h3>Gewone kaart</h3><p>Voor overzichten op subpagina's, zoals trainingsgroepen of nieuws.</p></a>
+    <a class="card" href="#kaarten"><span class="pill pill--gold">Training</span><h3>Gewone kaart</h3><p>Voor overzichten op subpagina's, zoals trainingsgroepen of nieuws.</p></a>
     <div class="fact"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.3 7-12a7 7 0 1 0-14 0c0 5.7 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></i><div><h3>Locatie</h3><p>Manege Het Zwarte Water in De Mortel. <a href="#kaarten">Plan je route</a></p></div></div>
   </div>
   <p class="sg-label">Actiebalk .becomesponsor</p>
@@ -136,6 +149,15 @@
   <p>Tabs zitten altijd in dezelfde witte balk met rand en schaduw, op elke achtergrond. De gekozen tab is navy. Zo zie je meteen dat je kunt wisselen.</p>
   <p class="sg-label">Afsluiter (.cta)</p>
   <p>Foto links, titel, tekst en knoppen samen rechts. Op mobiel de foto boven. Geen titel los in een hoek, geen lege vlakken.</p>
+  <div class="cta">
+    <div class="bg"><img src="../assets/img/sfeer-2.jpg" alt="" width="1200" height="800" loading="lazy"></div>
+    <img class="mark mark--cta" src="../assets/logo/logo-wit.png" alt="" aria-hidden="true">
+    <h2>Klaar om te trainen?</h2>
+    <div>
+      <p>Voorbeeldtekst van twee regels. Zeg kort wat er gebeurt als je op de knop klikt.</p>
+      <div class="actions"><a class="btn btn--gold" href="trainingen.html#aanmelden">Aanmelden voor een training</a><a class="btn btn--glass" href="hindernissen.html">Bekijk de hindernissen</a></div>
+    </div>
+  </div>
   <p class="sg-label">Accordeon</p>
   <div class="accordion">
     <details open><summary>Kan ik mijn training annuleren?</summary><div class="answer"><p>Voorbeeldantwoord. Een vraag per regel, het antwoord klapt uit.</p></div></details>
@@ -171,17 +193,17 @@
   <h2 class="sg-title">Grote pagina-onderdelen</h2>
   <p class="sg-intro">Eén sterk interactief element per pagina. Ze staan in hoofdstuk 7 en 8 van de stylesheet, het script in indoorsgw.js.</p>
   <div class="cards">
-    <a class="card" href="over-ons.html"><span class="pill" style="width:max-content">.story en .team</span><h3>Verhaal met jaartal</h3><p>Het jaartal telt mee van 1999 naar nu terwijl de zinnen oplichten. Daaronder het bestuur met groepsfoto.</p></a>
-    <a class="card" href="hindernissen.html"><span class="pill" style="width:max-content">.tour en .fences</span><h3>Parcours-tour</h3><p>Schermvullende foto's. Bij elke klik spring je over de hindernis, het logo rijdt mee over de lijn. Met finish.</p></a>
-    <a class="card" href="virtual-tour.html"><span class="pill" style="width:max-content">.theater</span><h3>Bioscoop</h3><p>Beeldvullend scherm met de video's in een balk eronder. YouTube laadt pas na klikken.</p></a>
-    <a class="card" href="contact.html"><span class="pill" style="width:max-content">.desk en .form</span><h3>Contact met tabs</h3><p>Tabs per onderwerp. Links wie je vraag leest en wat goed is om te weten, rechts alleen de velden die erbij horen. contact.html#sponsoring opent meteen de goede tab.</p></a>
-    <a class="card" href="stalling.html"><span class="pill" style="width:max-content">.planner</span><h3>Verblijfplanner</h3><p>Kies aankomst, vertrek, paarden en wensen. De mail aan Het Zwarte Water staat meteen klaar.</p></a>
-    <a class="card" href="sponsoren.html"><span class="pill" style="width:max-content">.wall</span><h3>Sponsorwand</h3><p>Alle sponsoren met logo, met zoeken op naam. Boven de wand blijven de twee bewegende banden.</p></a>
-    <a class="card" href="startlijsten.html"><span class="pill" style="width:max-content">.viewer</span><h3>Lijstenkijker</h3><p>Pdf's en tekeningen direct op de site, zonder downloaden. Zoek op naam of paard: de lijsten met een treffer lichten op, de naam wordt goud gemarkeerd.</p></a>
-    <a class="card" href="trainingen.html#aanmelden"><span class="pill" style="width:max-content">.signup en .steps</span><h3>Aanmelden in stappen</h3><p>Drie stappen met keuzekaarten. Rechts loopt de aanmelding mee met de prijs. Elke stap wordt gecontroleerd voor je verder kunt, met een duidelijke melding bij het veld.</p></a>
-    <a class="card" href="crossparcours.html"><span class="pill" style="width:max-content">.picker en .stats</span><h3>Klassekiezer</h3><p>Tabs per klasse met de cijfers groot. De belangrijkste waarde in goud.</p></a>
-    <a class="card" href="wedstrijd.html"><span class="pill" style="width:max-content">.hub en .tile</span><h3>Fototegels</h3><p>Klik door naar een onderdeel. Pil linksboven met de stand van zaken.</p></a>
-    <a class="card" href="uitslagen.html"><span class="pill" style="width:max-content">.slots en .notice</span><h3>Wat komt eraan</h3><p>Rustige rijen met datum en een pil "Volgt". Een notice voor één belangrijke opmerking.</p></a>
+    <a class="card" href="over-ons.html"><span class="pill">.story en .team</span><h3>Verhaal met jaartal</h3><p>Het jaartal telt mee van 1999 naar nu terwijl de zinnen oplichten. Daaronder het bestuur met groepsfoto.</p></a>
+    <a class="card" href="hindernissen.html"><span class="pill">.tour en .fences</span><h3>Parcours-tour</h3><p>Schermvullende foto's. Bij elke klik spring je over de hindernis, het logo rijdt mee over de lijn. Met finish.</p></a>
+    <a class="card" href="virtual-tour.html"><span class="pill">.theater</span><h3>Bioscoop</h3><p>Beeldvullend scherm met de video's in een balk eronder. YouTube laadt pas na klikken.</p></a>
+    <a class="card" href="contact.html"><span class="pill">.desk en .form</span><h3>Contact met tabs</h3><p>Tabs per onderwerp. Links wie je vraag leest en wat goed is om te weten, rechts alleen de velden die erbij horen. contact.html#sponsoring opent meteen de goede tab.</p></a>
+    <a class="card" href="stalling.html"><span class="pill">.planner</span><h3>Verblijfplanner</h3><p>Kies aankomst, vertrek, paarden en wensen. De mail aan Het Zwarte Water staat meteen klaar.</p></a>
+    <a class="card" href="sponsoren.html"><span class="pill">.wall</span><h3>Sponsorwand</h3><p>Alle sponsoren met logo, met zoeken op naam. Boven de wand blijven de twee bewegende banden.</p></a>
+    <a class="card" href="startlijsten.html"><span class="pill">.viewer</span><h3>Lijstenkijker</h3><p>Pdf's en tekeningen direct op de site, zonder downloaden. Zoek op naam of paard: de lijsten met een treffer lichten op, de naam wordt goud gemarkeerd.</p></a>
+    <a class="card" href="trainingen.html#aanmelden"><span class="pill">.signup en .steps</span><h3>Aanmelden in stappen</h3><p>Drie stappen met keuzekaarten. Rechts loopt de aanmelding mee met de prijs. Elke stap wordt gecontroleerd voor je verder kunt, met een duidelijke melding bij het veld.</p></a>
+    <a class="card" href="crossparcours.html"><span class="pill">.picker en .stats</span><h3>Klassekiezer</h3><p>Tabs per klasse met de cijfers groot. De belangrijkste waarde in goud.</p></a>
+    <a class="card" href="wedstrijd.html"><span class="pill">.hub en .tile</span><h3>Fototegels</h3><p>Klik door naar een onderdeel. Pil linksboven met de stand van zaken.</p></a>
+    <a class="card" href="uitslagen.html"><span class="pill">.slots en .notice</span><h3>Wat komt eraan</h3><p>Rustige rijen met datum en een pil "Volgt". Een notice voor één belangrijke opmerking.</p></a>
   </div>
   <p class="sg-label">Menu met submenu</p>
   <p>Over ons en Wedstrijd klappen uit. Desktop: hover of klik. Mobiel: uitklappen in het menu. Pas de structuur aan in <code>tools/nav.py</code> en draai het script, dan is elke pagina gelijk.</p>
@@ -214,6 +236,59 @@
   </div>
 </div></section>
 
+<section class="sg" id="formulieren"><div class="wrap">
+  <h2 class="sg-title">Formulieren</h2>
+  <p class="sg-intro">Eén veld is altijd een <code>.fld</code> met label en invoer. Twee of drie keuzes worden kaarten, vier of meer een keuzelijst. Een fout staat onder het veld, in woorden.</p>
+  <div class="sg-demo"><div class="signup__main">
+    <div class="form__grid">
+      <div class="fld"><label for="sg-naam">Naam</label><input class="input" id="sg-naam" placeholder="Gewoon tekst"></div>
+      <div class="fld"><label for="sg-type">Paard of pony <small>keuzelijst</small></label><select class="input" id="sg-type" required><option value="" selected disabled>Kies</option><option>Paard</option><option>A pony</option><option>B pony</option></select></div>
+      <div class="fld is-invalid"><label for="sg-mail">E-mailadres</label><input class="input" id="sg-mail" value="sanne@"><p class="fld__error">Dit lijkt geen goed e-mailadres.</p></div>
+      <div class="fld"><label for="sg-opm">Opmerkingen <small>niet verplicht</small></label><textarea class="input" id="sg-opm" rows="2"></textarea></div>
+    </div>
+    <p class="sg-label">Twee keuzes: .options</p>
+    <div class="options">
+      <label class="option"><input type="radio" name="sg-soort" checked><span><b>SGW training</b><small>Op 28 of 29 december.</small><em>€ 30</em></span></label>
+      <label class="option"><input type="radio" name="sg-soort"><span><b>Bixietraining</b><small>Alleen 29 december in de ochtend.</small><em>€ 20</em></span></label>
+    </div>
+    <p class="sg-label">Meer dan één kiezen mag: .picks (bijvoorbeeld dagen)</p>
+    <div class="picks"><label class="pick"><input type="checkbox" checked><span>Dinsdag 29</span></label><label class="pick"><input type="checkbox"><span>Woensdag 30</span></label></div>
+    <p class="sg-label">Akkoord: .consent</p>
+    <label class="consent"><input type="checkbox"><span>Ik ga akkoord met de voorwaarden.</span></label>
+    <p class="sg-label">Stappen: .steps (alleen bij een echt stappenplan)</p>
+    <ol class="steps" aria-label="Voorbeeld stappen"><li><button type="button" class="steps__item is-done"><b>1</b><span>Ruiter</span></button></li><li><button type="button" class="steps__item" aria-current="step"><b>2</b><span>Paard of pony</span></button></li><li><button type="button" class="steps__item" disabled><b>3</b><span>Training en betalen</span></button></li></ol>
+  </div></div>
+  <p>Het complete voorbeeld met meelopende aanmelding staat op <a href="trainingen.html#aanmelden">Trainingen</a>. Contact gebruikt dezelfde velden in <code>.desk</code>.</p>
+</div></section>
+
+<section class="sg" id="blokken"><div class="wrap">
+  <h2 class="sg-title">Wedstrijdblokken</h2>
+  <p class="sg-intro">Voor de pagina's onder Wedstrijd. Rustig, met één ding in goud.</p>
+  <p class="sg-label">Fototegels: .hub met .tile</p>
+  <div class="hub">
+    <a class="tile" href="vraagprogramma.html"><img src="../assets/img/sfeer-4.jpg" alt="" width="1200" height="800" loading="lazy"><span class="pill pill--gold">Bij de KNHS</span><h3>Vraagprogramma<svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></h3><p>Pil linksboven zegt hoe het ervoor staat.</p></a>
+    <a class="tile" href="startlijsten.html"><img src="../assets/img/hal-overzicht.jpg" alt="" width="1200" height="800" loading="lazy"><span class="pill">Volgt</span><h3>Startlijsten<svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></h3><p>Eén gouden pil per rij.</p></a>
+    <a class="tile" href="uitslagen.html"><img src="../assets/img/opsprong.jpg" alt="" width="1200" height="800" loading="lazy"><span class="pill">Archief online</span><h3>Uitslagen<svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></h3><p>De hele tegel is klikbaar.</p></a>
+  </div>
+  <p class="sg-label">Wat komt eraan: .slots en .notice</p>
+  <div class="slots slots--2">
+    <div class="slot"><span class="slot__date"><b>29</b><small>dec</small></span><div><h3>Dressuur en springen</h3><p>Dinsdag 29 december</p></div><span class="pill">Volgt</span></div>
+    <div class="slot"><span class="slot__date"><b>30</b><small>dec</small></span><div><h3>Cross</h3><p>Woensdag 30 december</p></div><span class="pill">Volgt</span></div>
+  </div>
+  <p class="notice"><i aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 7v6M12 17v.01"/><circle cx="12" cy="12" r="9.5"/></svg></i><span><b>Let op:</b> één belangrijke opmerking per sectie.</span></p>
+  <p class="sg-label">Grote cijfers: .stats (met .stats--2 voor twee kolommen) en .plate</p>
+  <div class="stats">
+    <div class="stat"><small>Lengte</small><strong>1.207<span>m</span></strong></div>
+    <div class="stat"><small>Snelheid</small><strong>350<span>m/min</span></strong></div>
+    <div class="stat stat--key"><small>Optimale tijd</small><strong>3:27</strong></div>
+  </div>
+  <div class="demo-dark sg-gap"><div class="plate"><small>Wedstrijdnummer</small><strong>W183853</strong></div></div>
+  <p class="sg-label">Lijstenkijker: .viewer</p>
+  <p>Pdf's en tekeningen direct op de site met zoeken op naam. Zie <a href="startlijsten.html#lijsten">Startlijsten</a> en <a href="uitslagen.html#archief">Uitslagen</a>. Werkt alleen online, niet in een losse preview.</p>
+  <p class="sg-label">Lange tekst: .prose</p>
+  <p>Voor tekstpagina's zoals een privacyverklaring: koppen, alinea's en lijsten met de juiste ruimte en hooguit 68 tekens breed.</p>
+</div></section>
+
 <section class="sg" id="regels"><div class="wrap">
   <h2 class="sg-title">Regels</h2>
   <p class="sg-intro">Uit de feedback op de homepage. Het volledige overzicht staat in CLAUDE.md in de projectmap.</p>
@@ -240,6 +315,133 @@
       <li>Logo's of foto's die half afgesneden zijn.</li>
     </ul></div>
   </div>
+</div></section>
+<section class="sg" id="onderdelen"><div class="wrap">
+  <h2 class="sg-title">Alle onderdelen</h2>
+  <p class="sg-intro">Alles wat in de stylesheet staat, per hoofdstuk, met de pagina's waar het gebruikt wordt. Dit overzicht maakt <code>python3 tools/onderdelen.py</code>. Draai dat na elke wijziging aan de stylesheet.</p>
+  <!-- onderdelen:start -->
+<div class="sg-tablewrap"><table class="sg-table"><thead><tr><th>Onderdeel</th><th>Delen en varianten</th><th>Gebruikt op</th></tr></thead><tbody>
+<tr class="sg-chrow"><th colspan="3">Basis</th></tr>
+<tr><td><code>.card</code></td><td></td><td><a href="vraagprogramma.html">vraagprogramma</a></td></tr>
+<tr><td><code>.pill</code></td><td><code>--glass</code> <code>--gold</code></td><td><a href="404.html">404</a>, <a href="startlijsten.html">startlijsten</a>, <a href="uitslagen.html">uitslagen</a>, <a href="virtual-tour.html">virtual-tour</a>, <a href="vraagprogramma.html">vraagprogramma</a>, <a href="wedstrijd.html">wedstrijd</a></td></tr>
+<tr class="sg-chrow"><th colspan="3">Layout en koppen</th></tr>
+<tr><td><code>.head</code></td><td></td><td>elke pagina</td></tr>
+<tr><td><code>.program</code></td><td><code>__bg</code></td><td><a href="homepage.html">homepage</a></td></tr>
+<tr><td><code>.prose</code></td><td></td><td><span class="sg-muted">alleen in script of stijlgids</span></td></tr>
+<tr><td><code>.section</code></td><td><code>--flush</code> <code>--tint</code></td><td>elke pagina</td></tr>
+<tr><td><code>.slider</code></td><td><code>__bar</code> <code>__ctrl</code> <code>__head</code></td><td><a href="homepage.html">homepage</a></td></tr>
+<tr><td><code>.sponsors</code></td><td><code>__head</code></td><td><a href="homepage.html">homepage</a>, <a href="sponsoren.html">sponsoren</a></td></tr>
+<tr class="sg-chrow"><th colspan="3">Knoppen en links</th></tr>
+<tr><td><code>.actions</code></td><td></td><td>elke pagina</td></tr>
+<tr><td><code>.arrow</code></td><td><code>--back</code></td><td><a href="404.html">404</a>, <a href="hindernissen.html">hindernissen</a>, <a href="homepage.html">homepage</a>, <a href="virtual-tour.html">virtual-tour</a>, <a href="wedstrijd.html">wedstrijd</a></td></tr>
+<tr><td><code>.btn</code></td><td><code>--glass</code> <code>--gold</code> <code>--navy</code> <code>--sm</code> <code>--white</code></td><td>elke pagina</td></tr>
+<tr><td><code>.link</code></td><td></td><td><a href="homepage.html">homepage</a></td></tr>
+<tr><td><code>.round</code></td><td><code>--glass</code></td><td><a href="hindernissen.html">hindernissen</a>, <a href="homepage.html">homepage</a></td></tr>
+<tr class="sg-chrow"><th colspan="3">Navigatie</th></tr>
+<tr><td><code>.brand</code></td><td></td><td>elke pagina</td></tr>
+<tr><td><code>.logo-dark</code></td><td></td><td>elke pagina</td></tr>
+<tr><td><code>.logo-light</code></td><td></td><td>elke pagina</td></tr>
+<tr><td><code>.menu</code></td><td><code>__toggle</code></td><td>elke pagina</td></tr>
+<tr><td><code>.menu-btn</code></td><td></td><td>elke pagina</td></tr>
+<tr><td><code>.nav</code></td><td><code>__bar</code></td><td>elke pagina</td></tr>
+<tr><td><code>.sheet</code></td><td><code>__logo</code> <code>__top</code></td><td>elke pagina</td></tr>
+<tr><td><code>.sub</code></td><td></td><td>elke pagina</td></tr>
+<tr class="sg-chrow"><th colspan="3">Hero en paginakop</th></tr>
+<tr><td><code>.count</code></td><td></td><td><a href="homepage.html">homepage</a></td></tr>
+<tr><td><code>.hero</code></td><td><code>__bg</code> <code>__content</code> <code>__intro</code> <code>__lead</code> <code>__video</code></td><td><a href="homepage.html">homepage</a></td></tr>
+<tr><td><code>.info</code></td><td></td><td><a href="homepage.html">homepage</a></td></tr>
+<tr><td><code>.infobar</code></td><td></td><td><a href="homepage.html">homepage</a></td></tr>
+<tr><td><code>.page-hero</code></td><td><code>__bg</code></td><td><a href="404.html">404</a>, <a href="contact.html">contact</a>, <a href="crossparcours.html">crossparcours</a>, <a href="over-ons.html">over-ons</a>, <a href="sponsoren.html">sponsoren</a>, <a href="stalling.html">stalling</a>, <a href="startlijsten.html">startlijsten</a>, <a href="trainingen.html">trainingen</a>, <a href="uitslagen.html">uitslagen</a>, <a href="vraagprogramma.html">vraagprogramma</a>, <a href="wedstrijd.html">wedstrijd</a></td></tr>
+<tr><td><code>.play</code></td><td></td><td><a href="homepage.html">homepage</a></td></tr>
+<tr><td><code>.status</code></td><td></td><td><a href="homepage.html">homepage</a></td></tr>
+<tr><td><code>.theater</code></td><td><code>__bar</code> <code>__barin</code> <code>__stage</code></td><td><a href="virtual-tour.html">virtual-tour</a></td></tr>
+<tr><td><code>.tour</code></td><td><code>__ctrl</code> <code>__finish</code> <code>__now</code> <code>__panel</code> <code>__shot</code> <code>__shots</code> <code>__top</code></td><td><a href="hindernissen.html">hindernissen</a></td></tr>
+<tr class="sg-chrow"><th colspan="3">Kaarten en blokken</th></tr>
+<tr><td><code>.about</code></td><td><code>__img</code></td><td><a href="homepage.html">homepage</a></td></tr>
+<tr><td><code>.answer</code></td><td></td><td><a href="contact.html">contact</a>, <a href="trainingen.html">trainingen</a></td></tr>
+<tr><td><code>.badge</code></td><td></td><td><a href="homepage.html">homepage</a></td></tr>
+<tr><td><code>.becomesponsor</code></td><td></td><td><a href="homepage.html">homepage</a></td></tr>
+<tr><td><code>.bg</code></td><td></td><td><a href="hindernissen.html">hindernissen</a>, <a href="homepage.html">homepage</a>, <a href="over-ons.html">over-ons</a>, <a href="sponsoren.html">sponsoren</a>, <a href="stalling.html">stalling</a>, <a href="trainingen.html">trainingen</a>, <a href="vraagprogramma.html">vraagprogramma</a>, <a href="wedstrijd.html">wedstrijd</a></td></tr>
+<tr><td><code>.cards</code></td><td></td><td><a href="vraagprogramma.html">vraagprogramma</a></td></tr>
+<tr><td><code>.check</code></td><td></td><td><a href="stalling.html">stalling</a></td></tr>
+<tr><td><code>.checks</code></td><td></td><td><a href="stalling.html">stalling</a></td></tr>
+<tr><td><code>.chip</code></td><td></td><td><a href="stalling.html">stalling</a></td></tr>
+<tr><td><code>.chips</code></td><td></td><td><a href="stalling.html">stalling</a></td></tr>
+<tr><td><code>.consent</code></td><td></td><td><a href="trainingen.html">trainingen</a></td></tr>
+<tr><td><code>.cta</code></td><td></td><td><a href="hindernissen.html">hindernissen</a>, <a href="homepage.html">homepage</a>, <a href="over-ons.html">over-ons</a>, <a href="sponsoren.html">sponsoren</a>, <a href="stalling.html">stalling</a>, <a href="trainingen.html">trainingen</a>, <a href="vraagprogramma.html">vraagprogramma</a>, <a href="wedstrijd.html">wedstrijd</a></td></tr>
+<tr><td><code>.date</code></td><td></td><td><a href="homepage.html">homepage</a>, <a href="trainingen.html">trainingen</a>, <a href="wedstrijd.html">wedstrijd</a></td></tr>
+<tr><td><code>.day</code></td><td><code>--key</code></td><td><a href="homepage.html">homepage</a>, <a href="trainingen.html">trainingen</a>, <a href="wedstrijd.html">wedstrijd</a></td></tr>
+<tr><td><code>.days</code></td><td></td><td><a href="homepage.html">homepage</a>, <a href="trainingen.html">trainingen</a>, <a href="wedstrijd.html">wedstrijd</a></td></tr>
+<tr><td><code>.desk</code></td><td><code>__info</code> <code>__main</code> <code>__stal</code> <code>__to</code></td><td><a href="contact.html">contact</a></td></tr>
+<tr><td><code>.doc</code></td><td><code>__hits</code></td><td><a href="crossparcours.html">crossparcours</a>, <a href="startlijsten.html">startlijsten</a>, <a href="uitslagen.html">uitslagen</a></td></tr>
+<tr><td><code>.duo</code></td><td></td><td><a href="homepage.html">homepage</a></td></tr>
+<tr><td><code>.fact</code></td><td><code>--key</code> <code>--white</code></td><td><a href="contact.html">contact</a>, <a href="homepage.html">homepage</a>, <a href="stalling.html">stalling</a></td></tr>
+<tr><td><code>.facts</code></td><td></td><td><a href="contact.html">contact</a>, <a href="homepage.html">homepage</a>, <a href="stalling.html">stalling</a></td></tr>
+<tr><td><code>.feature</code></td><td><code>__foot</code></td><td><a href="homepage.html">homepage</a></td></tr>
+<tr><td><code>.field</code></td><td></td><td><a href="stalling.html">stalling</a></td></tr>
+<tr><td><code>.fld</code></td><td><code>__error</code> <code>__hint</code> <code>__label</code></td><td><a href="trainingen.html">trainingen</a></td></tr>
+<tr><td><code>.form</code></td><td><code>__done</code> <code>__foot</code> <code>__grid</code></td><td><a href="contact.html">contact</a>, <a href="trainingen.html">trainingen</a></td></tr>
+<tr><td><code>.hub</code></td><td></td><td><a href="404.html">404</a>, <a href="wedstrijd.html">wedstrijd</a></td></tr>
+<tr><td><code>.input</code></td><td></td><td><a href="contact.html">contact</a>, <a href="trainingen.html">trainingen</a></td></tr>
+<tr><td><code>.map</code></td><td><code>__load</code></td><td><a href="contact.html">contact</a>, <a href="homepage.html">homepage</a>, <a href="stalling.html">stalling</a></td></tr>
+<tr><td><code>.mark</code></td><td><code>--about</code> <code>--card</code> <code>--cta</code> <code>--desk</code> <code>--program</code></td><td><a href="contact.html">contact</a>, <a href="hindernissen.html">hindernissen</a>, <a href="homepage.html">homepage</a>, <a href="over-ons.html">over-ons</a>, <a href="sponsoren.html">sponsoren</a>, <a href="stalling.html">stalling</a>, <a href="trainingen.html">trainingen</a>, <a href="vraagprogramma.html">vraagprogramma</a>, <a href="wedstrijd.html">wedstrijd</a></td></tr>
+<tr><td><code>.notice</code></td><td></td><td><a href="crossparcours.html">crossparcours</a>, <a href="startlijsten.html">startlijsten</a></td></tr>
+<tr><td><code>.option</code></td><td></td><td><a href="trainingen.html">trainingen</a></td></tr>
+<tr><td><code>.options</code></td><td></td><td><a href="trainingen.html">trainingen</a></td></tr>
+<tr><td><code>.people</code></td><td></td><td><a href="over-ons.html">over-ons</a></td></tr>
+<tr><td><code>.person</code></td><td><code>--lead</code></td><td><a href="over-ons.html">over-ons</a></td></tr>
+<tr><td><code>.pick</code></td><td></td><td><a href="contact.html">contact</a></td></tr>
+<tr><td><code>.picker</code></td><td></td><td><a href="crossparcours.html">crossparcours</a>, <a href="vraagprogramma.html">vraagprogramma</a></td></tr>
+<tr><td><code>.picks</code></td><td></td><td><a href="contact.html">contact</a></td></tr>
+<tr><td><code>.planner</code></td><td><code>__form</code> <code>__sum</code></td><td><a href="stalling.html">stalling</a></td></tr>
+<tr><td><code>.plate</code></td><td></td><td><a href="vraagprogramma.html">vraagprogramma</a></td></tr>
+<tr><td><code>.practical</code></td><td></td><td><a href="contact.html">contact</a>, <a href="homepage.html">homepage</a>, <a href="stalling.html">stalling</a></td></tr>
+<tr><td><code>.quick</code></td><td></td><td><a href="homepage.html">homepage</a></td></tr>
+<tr><td><code>.search</code></td><td></td><td><a href="sponsoren.html">sponsoren</a>, <a href="startlijsten.html">startlijsten</a>, <a href="uitslagen.html">uitslagen</a></td></tr>
+<tr><td><code>.signup</code></td><td><code>__body</code> <code>__card</code> <code>__done</code> <code>__foot</code> <code>__kicker</code> <code>__list</code> <code>__main</code> <code>__name</code> <code>__note</code> <code>__price</code> <code>__step</code> <code>__title</code></td><td><a href="trainingen.html">trainingen</a></td></tr>
+<tr><td><code>.slot</code></td><td><code>__date</code></td><td><a href="startlijsten.html">startlijsten</a>, <a href="uitslagen.html">uitslagen</a></td></tr>
+<tr><td><code>.slots</code></td><td><code>--2</code></td><td><a href="startlijsten.html">startlijsten</a>, <a href="uitslagen.html">uitslagen</a></td></tr>
+<tr><td><code>.sponsor</code></td><td><code>__logo</code> <code>__name</code></td><td><a href="sponsoren.html">sponsoren</a></td></tr>
+<tr><td><code>.stat</code></td><td><code>--key</code></td><td><a href="crossparcours.html">crossparcours</a>, <a href="vraagprogramma.html">vraagprogramma</a></td></tr>
+<tr><td><code>.stats</code></td><td><code>__note</code> <code>--2</code></td><td><a href="crossparcours.html">crossparcours</a>, <a href="vraagprogramma.html">vraagprogramma</a></td></tr>
+<tr><td><code>.stepper</code></td><td></td><td><a href="stalling.html">stalling</a></td></tr>
+<tr><td><code>.steps</code></td><td><code>__item</code></td><td><a href="trainingen.html">trainingen</a></td></tr>
+<tr><td><code>.story</code></td><td><code>__lines</code> <code>__year</code></td><td><a href="over-ons.html">over-ons</a></td></tr>
+<tr><td><code>.sum</code></td><td><code>__big</code> <code>__mail</code> <code>__note</code></td><td><a href="stalling.html">stalling</a></td></tr>
+<tr><td><code>.tabs</code></td><td><code>--form</code></td><td><a href="contact.html">contact</a>, <a href="crossparcours.html">crossparcours</a>, <a href="uitslagen.html">uitslagen</a>, <a href="vraagprogramma.html">vraagprogramma</a></td></tr>
+<tr><td><code>.team</code></td><td><code>__img</code></td><td><a href="over-ons.html">over-ons</a></td></tr>
+<tr><td><code>.ticks</code></td><td></td><td><a href="contact.html">contact</a></td></tr>
+<tr><td><code>.tile</code></td><td></td><td><a href="404.html">404</a>, <a href="wedstrijd.html">wedstrijd</a></td></tr>
+<tr><td><code>.tool</code></td><td></td><td><a href="crossparcours.html">crossparcours</a>, <a href="startlijsten.html">startlijsten</a>, <a href="uitslagen.html">uitslagen</a></td></tr>
+<tr><td><code>.viewer</code></td><td><code>__bar</code> <code>__count</code> <code>__group</code> <code>__list</code> <code>__msg</code> <code>__pages</code> <code>__side</code> <code>__stage</code> <code>__tools</code></td><td><a href="crossparcours.html">crossparcours</a>, <a href="startlijsten.html">startlijsten</a>, <a href="uitslagen.html">uitslagen</a></td></tr>
+<tr><td><code>.wall</code></td><td><code>__count</code> <code>__empty</code> <code>__tools</code></td><td><a href="sponsoren.html">sponsoren</a></td></tr>
+<tr><td><code>.when</code></td><td></td><td><a href="homepage.html">homepage</a></td></tr>
+<tr class="sg-chrow"><th colspan="3">Sliders, banden en media</th></tr>
+<tr><td><code>.clip</code></td><td><code>__img</code> <code>__txt</code></td><td><a href="virtual-tour.html">virtual-tour</a></td></tr>
+<tr><td><code>.course</code></td><td><code>__done</code> <code>__rider</code></td><td><a href="hindernissen.html">hindernissen</a></td></tr>
+<tr><td><code>.fence</code></td><td></td><td><a href="hindernissen.html">hindernissen</a></td></tr>
+<tr><td><code>.fences</code></td><td></td><td><a href="hindernissen.html">hindernissen</a></td></tr>
+<tr><td><code>.finish</code></td><td></td><td><a href="hindernissen.html">hindernissen</a></td></tr>
+<tr><td><code>.insta</code></td><td><code>__avatar</code> <code>__band</code> <code>__card</code></td><td><a href="homepage.html">homepage</a></td></tr>
+<tr><td><code>.irow</code></td><td><code>--rev</code></td><td><a href="homepage.html">homepage</a></td></tr>
+<tr><td><code>.logo</code></td><td><code>--name</code></td><td><a href="homepage.html">homepage</a>, <a href="sponsoren.html">sponsoren</a></td></tr>
+<tr><td><code>.marquee</code></td><td><code>--rev</code></td><td><a href="homepage.html">homepage</a>, <a href="sponsoren.html">sponsoren</a></td></tr>
+<tr><td><code>.reel</code></td><td></td><td><a href="virtual-tour.html">virtual-tour</a></td></tr>
+<tr><td><code>.screen</code></td><td><code>__note</code> <code>__now</code> <code>__over</code> <code>__play</code> <code>__poster</code> <code>__yt</code></td><td><a href="virtual-tour.html">virtual-tour</a></td></tr>
+<tr><td><code>.slide</code></td><td></td><td><a href="homepage.html">homepage</a></td></tr>
+<tr><td><code>.track</code></td><td></td><td><a href="homepage.html">homepage</a>, <a href="sponsoren.html">sponsoren</a></td></tr>
+<tr class="sg-chrow"><th colspan="3">Interactie</th></tr>
+<tr><td><code>.accordion</code></td><td></td><td><a href="contact.html">contact</a>, <a href="trainingen.html">trainingen</a></td></tr>
+<tr><td><code>.modal</code></td><td><code>__box</code> <code>__close</code></td><td><span class="sg-muted">alleen in script of stijlgids</span></td></tr>
+<tr class="sg-chrow"><th colspan="3">Footer en mobiele balk</th></tr>
+<tr><td><code>.footer</code></td><td><code>__bottom</code> <code>__intro</code> <code>__logo</code> <code>__top</code></td><td>elke pagina</td></tr>
+<tr><td><code>.mbar</code></td><td></td><td>elke pagina</td></tr>
+<tr><td><code>.socials</code></td><td></td><td>elke pagina</td></tr>
+<tr><td><code>.wordmark</code></td><td></td><td>elke pagina</td></tr>
+<tr class="sg-chrow"><th colspan="3">Fase van de site en watermerk</th></tr>
+<tr><td><code>.demo</code></td><td></td><td><a href="homepage.html">homepage</a></td></tr>
+</tbody></table></div>
+<!-- onderdelen:eind -->
 </div></section>
 </main>
 

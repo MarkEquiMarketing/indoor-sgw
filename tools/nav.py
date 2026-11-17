@@ -27,6 +27,7 @@ PAGES = {
     'cross': 'crossparcours.html',
     'uitslagen': 'uitslagen.html',
     'trainingen': 'trainingen.html',
+    '404': '404.html',
 }
 def url(key, live):
     return PAGES.get(key) or LIVE + live
@@ -93,8 +94,8 @@ def nav(current):
 
 <div class="sheet" id="sheet" aria-hidden="true">
   <div class="sheet__top">
-    <img src="../assets/logo/logo-wit.png" alt="Indoor SGW" width="500" height="573" style="height:42px;width:auto">
-    <button class="menu-btn" type="button" style="display:grid" aria-label="Menu sluiten" data-close>
+    <img src="../assets/logo/logo-wit.png" alt="Indoor SGW" width="500" height="573" class="sheet__logo">
+    <button class="menu-btn" type="button" aria-label="Menu sluiten" data-close>
       <svg width="20" height="20" viewBox="0 0 20 20"><path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
   </div>
@@ -113,7 +114,7 @@ def footer():
   <div class="wrap">
     <div class="footer__top">
       <div class="footer__intro">
-        <img src="../assets/logo/logo-wit.png" alt="Indoor SGW" width="500" height="573" style="height:60px;width:auto">
+        <img src="../assets/logo/logo-wit.png" alt="Indoor SGW" width="500" height="573" class="footer__logo">
         <p>Dé Indoor SGW van Nederland. Dit jaar op 28, 29 en 30 december bij manege Het Zwarte Water in De Mortel.</p>
         <div class="socials">
           <a href="https://www.facebook.com/indoorsgw/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H8v4h2v8h4v-8h3l1-4h-4V8z"/></svg></a>
@@ -130,6 +131,14 @@ def footer():
   <div class="wordmark" aria-hidden="true">Indoor SGW</div>
 </footer>'''
 
+def mbar():
+    return f'''<div class="mbar" aria-label="Snel inschrijven">
+  <div><small>28, 29 en 30 december</small><strong>Indoor SGW 2026</strong></div>
+  <a class="btn btn--gold only-voor" href="{KNHS}" target="_blank" rel="noopener">Inschrijven</a>
+  <a class="btn btn--gold only-live" href="{url('startlijsten', 'wedstrijd/startlijsten/')}">Startlijsten</a>
+  <a class="btn btn--gold only-na" href="{url('uitslagen', 'wedstrijd/uitslagen/')}">Uitslagen</a>
+</div>'''
+
 def main():
     root = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'ontwerp')
     keys = {v: k for k, v in PAGES.items()}
@@ -142,6 +151,7 @@ def main():
             continue
         h = re.sub(r'<header class="nav">.*?(?=<main id="inhoud">)', lambda m: nav(keys.get(name, '')), h, flags=re.S)
         h = re.sub(r'<footer class="footer">.*?</footer>', lambda m: footer(), h, flags=re.S)
+        h = re.sub(r'<div class="mbar".*?</div>\n</div>|<div class="mbar".*?\n</div>', lambda m: mbar(), h, count=1, flags=re.S)
         open(f, 'w', encoding='utf8').write(h)
         print('menu bijgewerkt:', name)
 

@@ -55,6 +55,8 @@ p{margin:0}
 .skip:focus{top:16px}
 :focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:8px}
 [hidden]{display:none!important}
+.card .pill{width:max-content}
+.sprite{position:absolute;width:0;height:0;overflow:hidden}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* 3  LAYOUT EN KOPPEN ------------------------------------------------------ */
@@ -130,6 +132,8 @@ a:hover .arrow,button:hover .arrow{transform:translateX(3px)}
 .sheet{position:fixed;inset:0;z-index:50;background:var(--navy-deep);padding:24px var(--gutter);display:flex;flex-direction:column;opacity:0;visibility:hidden;transition:opacity var(--t),visibility var(--t)}
 .menu-open .sheet{opacity:1;visibility:visible}
 .sheet__top{display:flex;justify-content:space-between;align-items:center}
+.sheet__logo{height:42px;width:auto}
+.sheet .menu-btn{display:grid}
 .sheet ul{list-style:none;margin:48px 0 auto;padding:0}
 .sheet ul a{display:block;padding:14px 0;font:800 30px/1.1 var(--heading);color:#fff;letter-spacing:-.02em;border-bottom:1px solid rgba(255,255,255,.08)}
 .sheet .btn{width:100%}
@@ -393,7 +397,6 @@ textarea.input{height:auto;min-height:150px;padding:16px 18px;line-height:1.6;re
 .planner__form{display:grid;gap:28px;padding:clamp(24px,3vw,36px);border-radius:var(--r-lg);background:var(--blue-50)}
 .field h3{margin-bottom:12px;font-size:17px;font-weight:800;letter-spacing:-.01em}
 .chips{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
-.chips--2{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
 .chip{padding:14px 16px;border:0;border-radius:14px;background:#fff;box-shadow:inset 0 0 0 1px var(--grey-200);text-align:left;cursor:pointer;font:700 15px/1.2 var(--heading);color:var(--navy);transition:background var(--t),color var(--t),box-shadow var(--t)}
 .chip small{display:block;margin-top:3px;font:600 12px var(--heading);color:var(--grey)}
 .chip:hover:not(:disabled){box-shadow:inset 0 0 0 1px var(--blue-300)}
@@ -532,6 +535,7 @@ a.slot:hover{background:#fff;box-shadow:inset 0 0 0 1px var(--blue-300)}
 
 /* Grote cijfers per keuze (proef, lengte, snelheid, tijd) */
 .picker .tabs{margin-bottom:var(--s-3)}
+.stats--2{--cols:2}
 .stats{display:grid;grid-template-columns:repeat(var(--cols,3),minmax(0,1fr));gap:var(--s-1);padding:var(--s-1);border-radius:var(--r-lg);background:var(--navy)}
 .stat{padding:clamp(22px,3vw,36px);border-radius:24px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.7)}
 .stat small{display:block;font:600 14px var(--heading);color:rgba(255,255,255,.65)}
@@ -743,6 +747,7 @@ a.slot:hover{background:#fff;box-shadow:inset 0 0 0 1px var(--blue-300)}
 .modal__close{position:absolute;top:14px;right:14px;z-index:2;width:44px;height:44px;border-radius:50%;border:0;background:#fff;color:var(--navy);cursor:pointer;display:grid;place-items:center}
 
 /* 10  FOOTER EN MOBIELE BALK ---------------------------------------------- */
+.footer__logo{height:60px;width:auto}
 .footer{background:var(--navy-deep);color:rgba(255,255,255,.62);padding-top:88px;margin-top:var(--space);overflow:hidden}
 /* Eindigt de pagina met een gekleurd vlak (bioscoop, lichtblauwe of navy sectie), dan krijgt dat vlak ronde hoeken onder
    en loopt de footer er direct onder door. Nooit een witte strook tussen een gekleurd vlak en de footer. */
@@ -771,7 +776,7 @@ body:not([data-phase=voor]) .only-voor,body:not([data-phase=live]) .only-live,bo
 .demo button[aria-pressed=true]{background:var(--navy);color:#fff}
 
 /* Logo als watermerk: altijd helemaal binnen het vlak, nooit afgesneden */
-.has-mark{position:relative;overflow:hidden}
+.has-mark{position:relative;overflow:hidden;isolation:isolate}
 .mark{position:absolute;z-index:-1;pointer-events:none;user-select:none;height:auto;width:auto;max-width:46%;object-fit:contain}
 .program .mark,.cta .mark{z-index:0}
 .program>.wrap,.cta>h2,.cta>div:not(.bg){position:relative;z-index:1}

@@ -23,8 +23,19 @@ Alle feedback op het ontwerp, met wat we ervan leren. Nieuwste bovenaan. Een les
 - Trainingen: de site zegt "€ 30 per uur", het formulier rekent € 30 per aanmelding. Is één training één uur? Dan zeggen we overal "€ 30 per training van een uur".
 - Trainingen: mag je in het nieuwe systeem meerdere paarden in één keer aanmelden en in één keer betalen? Nu is het één aanmelding en één betaling per paard.
 - Trainingen: waarvoor vragen we de leeftijd? Voor de indeling, of voor de Bixie?
+- Privacyverklaring: de oude site heeft er geen, maar we vragen nu naam, telefoon en mail (aanmelden, contact) en betalen via Mollie. Wie schrijft hem? De stijl staat klaar (`.prose`).
+- "Training betalen" (nabetalen op de oude site): vervalt als het nieuwe aanmeldsysteem een betaallink per mail stuurt. Klopt dat?
 
 ## 17 november 2026
+
+**Audit van de hele site**
+- Vraag: alles nalopen. Pagina's van de oude site, ontwerp, mobiel, responsive, en de stijlgids bijwerken.
+  - Oude site: alle gepubliceerde pagina's hebben een nieuwe versie. Alleen "Training betalen" niet (zie open vragen). Er was geen 404 en geen privacyverklaring.
+  - Gedaan: een 404 ("Deze hindernis staat er niet") met de drie meest gezochte pagina's.
+  - Gedaan: de mobiele balk onderaan komt nu uit `tools/nav.py`. Op de nieuwe pagina's linkte hij nog naar de oude site.
+  - Gedaan: alle `style=""` uit de HTML naar classes (`.sheet__logo`, `.footer__logo`, `.sprite`, `.stats--2`, `.card .pill`). Ongebruikte `.chips--2` weg. "Lees ons verhaal" op home gaat naar de nieuwe Over ons.
+  - Gedaan: stijlgids aangevuld met Formulieren, Wedstrijdblokken, een echte afsluiter en "Alle onderdelen", een overzicht dat `tools/onderdelen.py` maakt uit de stylesheet.
+  - Les: geen inline stijl, en de stijlgids komt voor een deel automatisch uit de stylesheet, zodat hij niet achterloopt.
 
 **Aanmelden: stap paard of pony rustiger**
 - Feedback: de stap "Paard of pony" was rommelig. Een rij knoppen (A pony, B pony, C pony ...) terwijl je er maar één kiest.
