@@ -51,6 +51,14 @@ Nieuwe website voor de Indoor SGW (indoorsgw.nl): drie dagen trainen en wedstrij
 - **Pdf's:** startlijsten, uitslagen en tekeningen tonen we in de lijstenkijker (`[data-viewer]`, PDF.js van cdnjs, laadt pas als hij in beeld komt). De pdf's blijven op indoorsgw.nl en lopen via `/pdf/` (rewrite in `vercel.json`). Zet nooit een pdf of andere lijst met deelnemers in deze repo.
 - **Fase:** `body[data-phase]` is `voor`, `live` of `na`. Gebruik `.only-voor`, `.only-live`, `.only-na`. Data van het evenement staan bovenaan `indoorsgw.js`.
 
+## Responsive
+
+- **Uitlijning:** midden alleen voor de hero en korte losse meldingen (bevestiging, lege staat, kaart in de Instagram-band), hooguit drie regels. Al het andere links: sectiekoppen, lopende tekst, kaarten, lijsten, formulieren, afsluiters, footer. Op mobiel blijft links ook links, nooit lange tekst centreren. Getallen en tijden in een rijtje staan rechts.
+- **Breakpoints:** de stylesheet heeft er drie. Vanaf 1080 kolommen naast elkaar en de sectiekop met intro rechts. Onder 1080 intro onder de titel, grote blokken onder elkaar, tegels in twee kolommen. Onder 640 alles in één kolom, knoppen volle breedte, foto boven de tekst. Geen eigen breakpoints per pagina.
+- **Nooit breder dan het scherm:** kolommen altijd `minmax(0,1fr)`, nooit kale `1fr`. Lange mailadressen breken af. Knopteksten mogen op een telefoon naar twee regels. Tabs, banden en sliders schuiven binnen hun eigen vlak, de pagina zelf nooit.
+- **Leesbaar en klikbaar:** intro's hooguit ongeveer 45 tekens breed, lopende tekst 65. Alles wat je aanklikt minstens 44 px hoog. Foto's met vaste verhouding en `object-fit: cover`.
+- **Controle:** 320, 375, 768, 1024 en 1440 breed. `document.documentElement.scrollWidth` gelijk aan de breedte, niets buiten beeld.
+
 ## Tekstregels
 
 - Nederlands, je-vorm, menselijk en kort. Schrijf zoals een ruiter praat.
@@ -72,7 +80,7 @@ Nieuwe website voor de Indoor SGW (indoorsgw.nl): drie dagen trainen en wedstrij
 - **Preview:** `python3 tools/preview.py ontwerp/<pagina>.html` maakt `ontwerp/<pagina>-preview.html` met CSS, JS en verkleinde foto's erin. De ingebouwde browser opent alleen bestanden tot ongeveer 500 KB. Is de preview groter, verklein dan de foto's in het script.
 - De ingebouwde browser weigert soms nieuwe bestandsnamen. Werkt een preview niet, kopieer hem dan tijdelijk naar `ontwerp/homepage-preview.html` om te testen, en bouw daarna de homepage-preview opnieuw.
 - Previews staan in `.gitignore` en gaan niet naar GitHub.
-- **Controle:** desktop 1440 breed en mobiel 375 breed, `document.documentElement.scrollWidth` gelijk aan de breedte, interacties echt uitproberen.
+- **Controle:** 320, 375, 768, 1024 en 1440 breed (zie Responsive), `document.documentElement.scrollWidth` gelijk aan de breedte, interacties echt uitproberen.
 - **Deploy:** push naar `main` op GitHub, Vercel bouwt automatisch. Geen build-stap, het is een statische site.
 - Bewaar een kopie voordat je iets groots aan de homepage verandert.
 

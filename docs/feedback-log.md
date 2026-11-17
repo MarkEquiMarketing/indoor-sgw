@@ -23,6 +23,15 @@ Alle feedback op het ontwerp, met wat we ervan leren. Nieuwste bovenaan. Een les
 
 ## 17 november 2026
 
+**Responsive audit en regels**
+- Vraag: controleer of alles overal goed responsive is, en leg vast wat waar links of midden staat.
+  - Gecontroleerd: 14 pagina's op 320, 375, 414, 768, 1024, 1280 en 1440 breed.
+  - Gevonden: op 320 breed (kleine telefoon) liepen afsluiters, dagen, feitenblokjes, planner, slots en sponsorwand buiten beeld. Oorzaak: kolommen die niet konden krimpen, knopteksten die niet mochten afbreken en lange mailadressen.
+  - Gedaan: alle kolommen in de stylesheet zijn nu `minmax(0,1fr)`, knoppen breken af op een telefoon, mailadressen ook. Daarna overal opnieuw gemeten: niets loopt meer buiten beeld.
+  - Les: test ook de kleinste telefoon. Een grid met kale `1fr` wordt zo breed als zijn langste woord.
+- Regels voor uitlijning en schermen staan nu in CLAUDE.md (Responsive) en in de stijlgids.
+- Trainingen: de foto in de afsluiter was onscherp, vervangen door een scherpe actiefoto.
+
 **Afsluiters en tabs**
 - Feedback: de afsluiters (zoals "Doe je mee?") hebben grote lege vlakken, met de titel los linksonder.
   - Gedaan: overal een foto links en titel, tekst en knoppen als één groep rechts. Op mobiel de foto boven.

@@ -51,7 +51,7 @@
     <h1>Stijlgids Indoor SGW</h1>
     <p>De basis voor elke pagina van indoorsgw.nl, gemaakt vanuit de goedgekeurde homepage. Alles hieronder komt uit één stylesheet: <code>assets/css/indoorsgw.css</code>. Nieuwe pagina's bouwen we alleen met deze onderdelen.</p>
     <nav class="sg-toc" aria-label="Inhoud">
-      <a href="#kleur">Kleur</a><a href="#letter">Letter</a><a href="#knoppen">Knoppen</a><a href="#koppen">Koppen</a><a href="#kaarten">Kaarten</a><a href="#interactie">Interactie</a><a href="#banden">Sliders en banden</a><a href="#regels">Regels</a>
+      <a href="#kleur">Kleur</a><a href="#letter">Letter</a><a href="#knoppen">Knoppen</a><a href="#koppen">Koppen</a><a href="#kaarten">Kaarten</a><a href="#interactie">Interactie</a><a href="#banden">Sliders en banden</a><a href="#responsive">Responsive</a><a href="#regels">Regels</a>
     </nav>
   </div>
 </header>
@@ -185,6 +185,33 @@
   </div>
   <p class="sg-label">Menu met submenu</p>
   <p>Over ons en Wedstrijd klappen uit. Desktop: hover of klik. Mobiel: uitklappen in het menu. Pas de structuur aan in <code>tools/nav.py</code> en draai het script, dan is elke pagina gelijk.</p>
+</div></section>
+
+<section class="sg" id="responsive"><div class="wrap">
+  <h2 class="sg-title">Responsive</h2>
+  <p class="sg-intro">Hoe de site zich gedraagt van een kleine telefoon (320) tot een groot scherm (1440). Elke pagina wordt op deze breedtes gecontroleerd.</p>
+  <div class="rules">
+    <div class="rule"><h3>Uitlijning</h3><ul>
+      <li>Midden: alleen de hero, en korte losse meldingen zoals een bevestiging, een lege zoekresultaat of de kaart in de Instagram-band. Hooguit drie regels.</li>
+      <li>Links: al het andere. Sectiekoppen, lopende tekst, kaarten, lijsten, formulieren, afsluiters en de footer.</li>
+      <li>Op mobiel blijft links ook links. Nooit lange tekst centreren, dat leest onrustig.</li>
+      <li>Getallen en tijden in een rijtje (zoals bij de dagen) staan rechts.</li>
+    </ul></div>
+    <div class="rule"><h3>Wat er verandert per scherm</h3><ul>
+      <li>Vanaf 1080 breed (laptop): kolommen naast elkaar, sectiekop met de intro rechts.</li>
+      <li>Onder 1080 (tablet): intro onder de titel, grote blokken onder elkaar, tegels in twee kolommen.</li>
+      <li>Onder 640 (telefoon): alles in één kolom, knoppen over de volle breedte, foto boven de tekst.</li>
+      <li>Tabs, banden en sliders schuiven binnen hun eigen vlak. De pagina zelf schuift nooit opzij.</li>
+    </ul></div>
+    <div class="rule"><h3>Zo bouw je het</h3><ul>
+      <li>Kolommen altijd met minmax(0,1fr), dan kan een lange naam de pagina niet breder maken.</li>
+      <li>Lange mailadressen en links breken af. Knopteksten mogen op een telefoon naar twee regels.</li>
+      <li>Tekst nooit breder dan ongeveer 45 tekens voor een intro en 65 voor lopende tekst.</li>
+      <li>Alles wat je aanklikt is minstens 44 px hoog.</li>
+      <li>Foto's met een vaste verhouding en object-fit: cover, zodat ze nooit vervormen.</li>
+      <li>Controleer op 320, 375, 768, 1024 en 1440. Overal moet scrollWidth gelijk zijn aan de breedte.</li>
+    </ul></div>
+  </div>
 </div></section>
 
 <section class="sg" id="regels"><div class="wrap">
