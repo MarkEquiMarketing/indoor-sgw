@@ -16,8 +16,19 @@ Alle feedback op het ontwerp, met wat we ervan leren. Nieuwste bovenaan. Een les
 - Virtual tour: de posters zijn nu eigen foto's. Mogen we de YouTube-thumbnails downloaden en zelf hosten?
 - Contactformulier: hoe gaat het verzenden? Bijvoorbeeld via Gravity Forms op de WordPress-site, of een kleine functie op Vercel met een mailservice. Nu toont het formulier alleen de bevestiging.
 - Virtual tour: wat komt er onder de video's? Niets (zoals nu), of extra secties?
+- Uitslagen 2024 B pony's: er staan twee versies online (update 2 van december en een van januari). We tonen nu die van januari. Klopt dat?
+- Crossparcours: we tonen de cijfers van 2025 als voorbeeld. Mag dat, of liever leeg tot 2026 bekend is?
+- Vraagprogramma: welke proef is het in de Z?
+- Startlijsten en uitslagen 2026: wie zet ze online, en blijven het pdf's? Dan hoeft er alleen een regel bij in de pagina.
 
 ## 17 november 2026
+
+**Wedstrijdpagina's en trainingen**
+- Vraag: maak Trainingen, De wedstrijd, Vraagprogramma, Startlijsten, Crossparcours en Uitslagen. Niet ingewikkeld, wel mooi en makkelijk klikken. Liefst zonder dat je een pdf moet downloaden.
+  - Gedaan: de pdf's van de huidige site staan in een lijstenkijker op de pagina zelf. Zoek op je naam of je paard, dan lichten de lijsten op waar je in staat en zie je je naam in goud.
+  - Les: een bezoeker wil iets vinden, niet iets openen. Laat de inhoud zien en geef een zoekveld.
+- Feedback: de knop "Bekijk de video" in de hero van de homepage is overbodig, de video speelt al.
+  - Gedaan: vervangen door "Rij een rondje over het parcours" naar de hindernissen.
 
 **Contact: tabs per onderwerp**
 - Feedback: de sectie "Stel je vraag" was rommelig. Liever tabs erboven, met per keuze het juiste formulier en de juiste informatie.

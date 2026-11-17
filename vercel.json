@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/pdf/:path*", "destination": "https://www.indoorsgw.nl/wp-content/uploads/:path*" }
+  ]
+}

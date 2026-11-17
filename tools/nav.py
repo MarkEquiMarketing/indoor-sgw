@@ -21,6 +21,12 @@ PAGES = {
     'contact': 'contact.html',
     'stalling': 'stalling.html',
     'sponsoren': 'sponsoren.html',
+    'wedstrijd': 'wedstrijd.html',
+    'vraagprogramma': 'vraagprogramma.html',
+    'startlijsten': 'startlijsten.html',
+    'cross': 'crossparcours.html',
+    'uitslagen': 'uitslagen.html',
+    'trainingen': 'trainingen.html',
 }
 def url(key, live):
     return PAGES.get(key) or LIVE + live

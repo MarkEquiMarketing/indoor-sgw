@@ -346,6 +346,152 @@
     if (radios.some(r => r.value === start)) { set(start); $('#vraag').scrollIntoView(); } else set(radios[0].value);
   }
 
+  /* Trainingen: reken uit wat het kost. € 30 per uur per combinatie. */
+  const calc = $('[data-calc]');
+  if (calc) {
+    const PRICE = 30, days = $$('[data-day]', calc);
+    let combi = 1, hours = 1;
+    const update = () => {
+      const on = days.filter(d => d.getAttribute('aria-pressed') === 'true');
+      const total = on.length * combi * hours * PRICE;
+      $('[data-total]', calc).textContent = '€ ' + total;
+      $('[data-combi]', calc).textContent = combi;
+      $('[data-hours]', calc).textContent = hours;
+      const names = on.map(d => d.dataset.name);
+      const p = combi === 1 ? 'paard of pony' : `${combi} paarden of pony's`;
+      $('[data-calc-text]', calc).textContent =
+        `${names.join(' en ')}\n${p}, ${hours} uur per dag\n€ ${PRICE} per uur per combinatie`;
+    };
+    days.forEach(d => d.addEventListener('click', () => {
+      const pressed = d.getAttribute('aria-pressed') === 'true';
+      if (pressed && days.filter(x => x.getAttribute('aria-pressed') === 'true').length === 1) return; // minstens één dag
+      d.setAttribute('aria-pressed', !pressed); update();
+    }));
+    $$('[data-combi-step]', calc).forEach(b => b.addEventListener('click', () => { combi = Math.min(12, Math.max(1, combi + +b.dataset.combiStep)); update(); }));
+    $$('[data-hours-step]', calc).forEach(b => b.addEventListener('click', () => { hours = Math.min(6, Math.max(1, hours + +b.dataset.hoursStep)); update(); }));
+    update();
+  }
+
+  /* Keuze met grote cijfers (klasse kiezen): radio's in [data-pick], panelen met data-pick-panel */
+  $$('[data-pick]').forEach(p => {
+    const radios = $$('input[type=radio]', p);
+    const set = animate => {
+      const v = radios.find(r => r.checked)?.value;
+      $$('[data-pick-panel]', p).forEach(el => { el.hidden = el.dataset.pickPanel !== v; });
+      if (animate) { p.classList.remove('is-swapping'); void p.offsetWidth; p.classList.add('is-swapping'); }
+    };
+    radios.forEach(r => r.addEventListener('change', () => set(true)));
+    set();
+  });
+
+  /* Pdf-lezer: startlijsten, uitslagen en tekeningen bekijken op de site, met zoeken op naam.
+     De pdf's staan in de mediabibliotheek van indoorsgw.nl. PDF_BASE is het pad waarop de site ze
+     laadt (op Vercel via een doorverwijzing in vercel.json, op WordPress zelf /wp-content/uploads/).
+     pdf.js laadt pas als er een lezer in beeld komt. */
+  const PDF_BASE = location.hostname.endsWith('indoorsgw.nl') ? '/wp-content/uploads/' : '/pdf/';
+  const PDF_LIVE = 'https://www.indoorsgw.nl/wp-content/uploads/';
+  const PDFJS = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/';
+  let pdfjs;
+  const loadPdfjs = () => pdfjs || (pdfjs = new Promise((ok, fail) => {
+    const s = document.createElement('script');
+    s.src = PDFJS + 'pdf.min.js';
+    s.onload = () => { window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS + 'pdf.worker.min.js'; ok(window.pdfjsLib); };
+    s.onerror = fail; document.head.appendChild(s);
+  }));
+  $$('[data-viewer]').forEach(v => {
+    const docs = $$('.doc', v), pages = $('[data-v-pages]', v), title = $('[data-v-title]', v), meta = $('[data-v-meta]', v);
+    const open = $('[data-v-open]', v), search = $('[data-v-search]', v), count = $('[data-v-count]', v), years = $$('[data-v-year]', v);
+    const files = new Map(), texts = new Map();
+    let current = null, zoom = 1, query = '', timer;
+    const msg = (text, busy) => { const p = document.createElement('p'); p.className = 'viewer__msg'; p.innerHTML = (busy ? '<i></i>' : '') + text; pages.replaceChildren(p); };
+    const getPdf = file => files.get(file) || files.set(file, loadPdfjs().then(lib => lib.getDocument(PDF_BASE + file).promise)).get(file);
+    const getText = file => texts.get(file) || texts.set(file, getPdf(file).then(async pdf => {
+      const out = [];
+      for (let n = 1; n <= pdf.numPages; n++) out.push((await (await pdf.getPage(n)).getTextContent()).items.map(i => i.str).join(' ').toLowerCase());
+      return out;
+    })).get(file);
+    const visible = () => docs.filter(d => !d.closest('[hidden]'));
+
+    const show = async btn => {
+      current = btn;
+      docs.forEach(d => d.setAttribute('aria-pressed', d === btn));
+      title.textContent = btn.dataset.title;
+      meta.textContent = btn.dataset.meta || '';
+      const img = btn.dataset.img;
+      open.href = img || PDF_LIVE + btn.dataset.pdf;
+      open.textContent = img ? 'Open afbeelding' : 'Download pdf';
+      if (img) { const im = new Image(); im.src = img; im.alt = btn.dataset.title; pages.replaceChildren(im); return; }
+      msg('Lijst laden', true);
+      try {
+        const pdf = await getPdf(btn.dataset.pdf);
+        if (current !== btn) return;
+        meta.textContent = [btn.dataset.meta, pdf.numPages === 1 ? '1 pagina' : `${pdf.numPages} pagina's`].filter(Boolean).join(', ');
+        const width = Math.max(240, pages.clientWidth - (innerWidth < 640 ? 24 : 48)), dpr = Math.min(2, devicePixelRatio || 1);
+        let firstHit = null;
+        for (let n = 1; n <= pdf.numPages; n++) {
+          const page = await pdf.getPage(n);
+          if (current !== btn) return;
+          const base = page.getViewport({ scale: 1 }), css = width * zoom / base.width, vp = page.getViewport({ scale: css * dpr });
+          const c = document.createElement('canvas');
+          c.width = vp.width; c.height = vp.height; c.style.width = vp.width / dpr + 'px';
+          const ctx = c.getContext('2d');
+          await page.render({ canvasContext: ctx, viewport: vp }).promise;
+          if (query) {
+            ctx.fillStyle = 'rgba(234,178,0,.38)';
+            (await page.getTextContent()).items.forEach(it => {
+              if (!it.str.toLowerCase().includes(query)) return;
+              const [x1, y1, x2, y2] = vp.convertToViewportRectangle([it.transform[4], it.transform[5] - 2, it.transform[4] + it.width, it.transform[5] + it.height + 1]);
+              ctx.fillRect(Math.min(x1, x2) - 2, Math.min(y1, y2), Math.abs(x2 - x1) + 4, Math.abs(y2 - y1));
+              firstHit = firstHit || c;
+            });
+          }
+          if (n === 1) pages.replaceChildren();
+          pages.append(c);
+        }
+        pages.scrollTo({ top: firstHit ? firstHit.offsetTop - 16 : 0 });
+      } catch (e) {
+        if (current === btn) msg('Deze lijst kon niet laden. Probeer de knop rechtsboven.');
+      }
+    };
+
+    const find = async () => {
+      query = search.value.trim().toLowerCase();
+      v.classList.toggle('is-searching', !!query);
+      const list = visible().filter(d => d.dataset.pdf);
+      docs.forEach(d => { d.classList.remove('is-miss'); const b = $('.doc__hits', d); if (b) b.hidden = true; });
+      if (!query) { count.textContent = ''; if (current) show(current); return; }
+      count.textContent = 'Zoeken';
+      const q = query;
+      const hits = await Promise.all(list.map(d => getText(d.dataset.pdf).then(t => t.reduce((s, p) => s + p.split(q).length - 1, 0)).catch(() => 0)));
+      if (q !== query) return;
+      list.forEach((d, i) => {
+        d.classList.toggle('is-miss', !hits[i]);
+        const b = $('.doc__hits', d); b.textContent = hits[i]; b.hidden = !hits[i];
+      });
+      const found = list.filter((d, i) => hits[i]);
+      count.textContent = found.length ? `Gevonden in ${found.length} ${found.length === 1 ? 'lijst' : 'lijsten'}` : `Niet gevonden. Let op de spelling, of zoek op een deel van de naam.`;
+      show(found.includes(current) ? current : found[0] || current);
+    };
+    if (search) {
+      $('.doc__hits', docs[0]) || docs.forEach(d => d.insertAdjacentHTML('beforeend', '<b class="doc__hits" hidden></b>'));
+      search.addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(find, 300); });
+    }
+    docs.forEach(d => d.addEventListener('click', () => show(d)));
+    years.forEach(r => r.addEventListener('change', () => {
+      $$('[data-year]', v).forEach(g => { g.hidden = g.dataset.year !== r.value; });
+      const first = visible()[0];
+      if (search && query) { current = first; find(); } else show(first);
+    }));
+    $$('[data-v-zoom]', v).forEach(b => b.addEventListener('click', () => {
+      zoom = b.dataset.vZoom === '0' ? 1 : Math.min(2.5, Math.max(.6, zoom + +b.dataset.vZoom * .25));
+      if (current && !current.dataset.img) show(current);
+    }));
+    if (years.length) $$('[data-year]', v).forEach(g => { g.hidden = g.dataset.year !== years.find(r => r.checked).value; });
+    // Eerste lijst laden zodra de lezer in beeld komt
+    const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { io.disconnect(); show(visible()[0]); } }, { rootMargin: '200px' });
+    io.observe(v);
+  });
+
   /* Sponsorwand: zoeken op naam */
   const wallSearch = $('[data-wall-search]');
   if (wallSearch) {

@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crossparcours | Indoor SGW</title>
+<link rel="icon" href="../assets/favicon/favicon.ico" sizes="48x48">
+<link rel="icon" href="../assets/favicon/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
+<link rel="manifest" href="../assets/favicon/site.webmanifest">
+<meta name="theme-color" content="#163B50">
+<meta name="description" content="Crossparcours van de Indoor SGW: lengte, snelheid en optimale tijd per klasse, en de parcourstekening.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- Crossparcours. Stijl en script staan in assets/, regels in CLAUDE.md. Menu en footer: python3 tools/nav.py -->
+<link rel="stylesheet" href="../assets/css/indoorsgw.css">
+</head>
+<body>
+<a class="skip" href="#inhoud">Ga naar de inhoud</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="nav">
+  <div class="nav__bar">
+    <a class="brand" href="homepage.html" aria-label="Indoor SGW, naar de homepage">
+      <img class="logo-light" src="../assets/logo/logo-wit.png" alt="" width="500" height="573">
+      <img class="logo-dark" src="../assets/logo/logo-blauw.png" alt="" width="500" height="573">
+      <span>Indoor SGW</span>
+    </a>
+    <nav aria-label="Hoofdmenu">
+      <ul class="menu">
+        <li class="has-sub"><button class="menu__toggle" type="button" aria-expanded="false" aria-controls="sub-over">Over ons<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <ul class="sub" id="sub-over"><li><a href="over-ons.html">Over ons<small>Sinds 1999, door vrijwilligers</small></a></li><li><a href="hindernissen.html">Hindernissen<small>Rij alvast een rondje over het parcours</small></a></li><li><a href="virtual-tour.html">Virtual tour<small>Video's van eerdere edities</small></a></li></ul></li>
+        <li class="has-sub"><button class="menu__toggle is-current" type="button" aria-expanded="false" aria-controls="sub-wedstrijd">Wedstrijd<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <ul class="sub" id="sub-wedstrijd"><li><a href="wedstrijd.html">De wedstrijd<small>Dressuur, springen en cross</small></a></li><li><a href="vraagprogramma.html">Vraagprogramma<small>Rubrieken en startgelden bij de KNHS</small></a></li><li><a href="startlijsten.html">Startlijsten<small>Zodra ze definitief zijn</small></a></li><li><a href="crossparcours.html" aria-current="page">Crossparcours<small>Lengtes, snelheden en de tekening</small></a></li><li><a href="uitslagen.html">Uitslagen<small>Zodra ze definitief zijn</small></a></li></ul></li>
+        <li><a href="trainingen.html">Trainingen</a></li>
+        <li><a href="sponsoren.html">Sponsoren</a></li>
+        <li><a href="stalling.html">Stalling</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--gold btn--sm" href="https://www.mijnknhs.nl/Game/W183853?expandHeader=True" target="_blank" rel="noopener">Inschrijven</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="sheet" aria-label="Menu openen">
+      <svg width="20" height="20" viewBox="0 0 20 20"><path d="M3 6h14M3 14h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="sheet" id="sheet" aria-hidden="true">
+  <div class="sheet__top">
+    <img src="../assets/logo/logo-wit.png" alt="Indoor SGW" width="500" height="573" style="height:42px;width:auto">
+    <button class="menu-btn" type="button" style="display:grid" aria-label="Menu sluiten" data-close>
+      <svg width="20" height="20" viewBox="0 0 20 20"><path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <ul>
+    <li><a href="homepage.html">Home</a></li>
+    <li><details><summary>Over ons</summary><ul><li><a href="over-ons.html">Over ons</a></li><li><a href="hindernissen.html">Hindernissen</a></li><li><a href="virtual-tour.html">Virtual tour</a></li></ul></details></li>
+    <li><details open><summary>Wedstrijd</summary><ul><li><a href="wedstrijd.html">De wedstrijd</a></li><li><a href="vraagprogramma.html">Vraagprogramma</a></li><li><a href="startlijsten.html">Startlijsten</a></li><li><a href="crossparcours.html" aria-current="page">Crossparcours</a></li><li><a href="uitslagen.html">Uitslagen</a></li></ul></details></li>
+    <li><a href="trainingen.html">Trainingen</a></li>
+    <li><a href="sponsoren.html">Sponsoren</a></li>
+    <li><a href="stalling.html">Stalling</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a class="btn btn--gold" href="https://www.mijnknhs.nl/Game/W183853?expandHeader=True" target="_blank" rel="noopener">Inschrijven voor de wedstrijd</a>
+</div>
+
+<main id="inhoud">
+
+  <section class="page-hero" aria-labelledby="page-title">
+    <div class="page-hero__bg"><img src="../assets/img/heuvel.jpg" alt="" width="1200" height="800" fetchpriority="high"></div>
+    <div class="wrap">
+      <h1 id="page-title">Het crossparcours</h1>
+      <p>Het parcours voor 2026 maken we binnenkort bekend. Bekijk alvast de lengte, snelheid en optimale tijd per klasse van vorig jaar.</p>
+      <div class="actions">
+        <a class="btn btn--gold" href="#klasse">Kies je klasse</a>
+        <a class="btn btn--glass" href="hindernissen.html">Rij een rondje over het parcours</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="klasse" aria-labelledby="klasse-title">
+    <div class="wrap">
+      <div class="head"><h2 id="klasse-title">Jouw klasse in 2025</h2><p>De cijfers voor 2026 volgen zodra het parcours klaar is.</p></div>
+      <div class="picker" data-pick>
+        <div class="tabs" role="radiogroup" aria-label="Kies je klasse"><label><input type="radio" name="klasse" value="b-pony" checked><span>CDE-B pony's</span></label><label><input type="radio" name="klasse" value="b-intro"><span>B-intro paarden</span></label><label><input type="radio" name="klasse" value="b-paard"><span>B paarden</span></label><label><input type="radio" name="klasse" value="l-pony"><span>CDE-L pony's</span></label><label><input type="radio" name="klasse" value="l-paard"><span>L paarden</span></label><label><input type="radio" name="klasse" value="m-paard"><span>M paarden</span></label></div>
+        <div class="stats" data-pick-panel="b-pony">
+          <div class="stat"><small>Lengte</small><strong>1.207<span>m</span></strong></div>
+          <div class="stat"><small>Snelheid</small><strong>350<span>m/min</span></strong></div>
+          <div class="stat stat--key"><small>Optimale tijd</small><strong>3:27</strong></div>
+        </div><div class="stats" data-pick-panel="b-intro" hidden>
+          <div class="stat"><small>Lengte</small><strong>1.207<span>m</span></strong></div>
+          <div class="stat"><small>Snelheid</small><strong>350<span>m/min</span></strong></div>
+          <div class="stat stat--key"><small>Optimale tijd</small><strong>3:27</strong></div>
+        </div><div class="stats" data-pick-panel="b-paard" hidden>
+          <div class="stat"><small>Lengte</small><strong>1.207<span>m</span></strong></div>
+          <div class="stat"><small>Snelheid</small><strong>375<span>m/min</span></strong></div>
+          <div class="stat stat--key"><small>Optimale tijd</small><strong>3:14</strong></div>
+        </div><div class="stats" data-pick-panel="l-pony" hidden>
+          <div class="stat"><small>Lengte</small><strong>1.207<span>m</span></strong></div>
+          <div class="stat"><small>Snelheid</small><strong>375<span>m/min</span></strong></div>
+          <div class="stat stat--key"><small>Optimale tijd</small><strong>3:14</strong></div>
+        </div><div class="stats" data-pick-panel="l-paard" hidden>
+          <div class="stat"><small>Lengte</small><strong>1.207<span>m</span></strong></div>
+          <div class="stat"><small>Snelheid</small><strong>400<span>m/min</span></strong></div>
+          <div class="stat stat--key"><small>Optimale tijd</small><strong>3:02</strong></div>
+        </div><div class="stats" data-pick-panel="m-paard" hidden>
+          <div class="stat"><small>Lengte</small><strong>1.207<span>m</span></strong></div>
+          <div class="stat"><small>Snelheid</small><strong>425<span>m/min</span></strong></div>
+          <div class="stat stat--key"><small>Optimale tijd</small><strong>2:51</strong></div>
+        </div>
+      </div>
+      <p class="stats__note">De optimale tijd is de lengte gedeeld door de snelheid.</p>
+      <p class="notice"><i aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 7v6M12 17v.01"/><circle cx="12" cy="12" r="9.5"/></svg></i><span><b>Let op:</b> de dierenarts controleert je paard of pony voor én na de cross.</span></p>
+    </div>
+  </section>
+
+  <section class="section section--tint" aria-labelledby="tekening-title">
+    <div class="wrap">
+      <div class="head"><h2 id="tekening-title">Tekening en tijden</h2><p>De tekening van 2026 komt hier zodra hij klaar is. Bekijk tot die tijd die van eerdere jaren.</p></div>
+      <div class="viewer" data-viewer>
+        <div class="viewer__side">
+          <div class="tabs" role="radiogroup" aria-label="Kies een jaar"><label><input type="radio" name="jaar" value="2025" data-v-year checked><span>2025</span></label><label><input type="radio" name="jaar" value="2024" data-v-year><span>2024</span></label></div>
+<div class="viewer__list"><div class="viewer__group" data-year="2025"><h3>Tekening</h3><button class="doc" type="button" data-img="https://www.indoorsgw.nl/wp-content/uploads/2025/12/1767019364562-04d8e463-08db-4140-b1ac-ac88379abe25_1.jpg" data-title="Parcourstekening 2025" data-meta="Afbeelding"><i aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 6"/><circle cx="15.5" cy="8.5" r="1.5"/></svg></i><span>Parcourstekening 2025<small>Afbeelding</small></span></button></div><div class="viewer__group" data-year="2024"><h3>Tekening en tijden</h3><button class="doc" type="button" data-pdf="2024/12/Parcourstekening-2024-1.pdf" data-title="Parcourstekening 2024" data-meta="Pdf"><i aria-hidden="true"><svg width="16" height="18" viewBox="0 0 16 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M2 1h8l4 4v14H2z"/><path d="M10 1v4h4M5 10h6M5 14h6"/></svg></i><span>Parcourstekening 2024<small>Pdf</small></span></button><button class="doc" type="button" data-pdf="2024/12/Hindernis-optimale-tijd-2024-1.pdf" data-title="Optimale tijd per hindernis" data-meta="Pdf"><i aria-hidden="true"><svg width="16" height="18" viewBox="0 0 16 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M2 1h8l4 4v14H2z"/><path d="M10 1v4h4M5 10h6M5 14h6"/></svg></i><span>Optimale tijd per hindernis<small>Pdf</small></span></button></div></div>
+        </div>
+        <div class="viewer__stage">
+          <div class="viewer__bar">
+            <div><strong data-v-title>Lijst</strong><small data-v-meta></small></div>
+            <div class="viewer__tools">
+              <button class="tool" type="button" data-v-zoom="-1" aria-label="Kleiner">&minus;</button>
+              <button class="tool" type="button" data-v-zoom="1" aria-label="Groter">+</button>
+              <a class="btn btn--white btn--sm" href="#" target="_blank" rel="noopener" data-v-open>Download pdf</a>
+            </div>
+          </div>
+          <div class="viewer__pages" data-v-pages tabindex="0" aria-label="Voorbeeld van de lijst"><p class="viewer__msg">De lijst laadt zodra je hier bent.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div class="footer__intro">
+        <img src="../assets/logo/logo-wit.png" alt="Indoor SGW" width="500" height="573" style="height:60px;width:auto">
+        <p>Dé Indoor SGW van Nederland. Dit jaar op 28, 29 en 30 december bij manege Het Zwarte Water in De Mortel.</p>
+        <div class="socials">
+          <a href="https://www.facebook.com/indoorsgw/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H8v4h2v8h4v-8h3l1-4h-4V8z"/></svg></a>
+          <a href="https://www.instagram.com/indoorsgw/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="mailto:info@indoorsgw.nl" aria-label="Mail ons"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+        </div>
+      </div>
+      <div><h4>Wedstrijd</h4><ul><li><a href="wedstrijd.html">De wedstrijd</a></li><li><a href="vraagprogramma.html">Vraagprogramma</a></li><li><a href="startlijsten.html">Startlijsten</a></li><li><a href="uitslagen.html">Uitslagen</a></li><li><a href="crossparcours.html">Crossparcours</a></li></ul></div>
+      <div><h4>Meedoen</h4><ul><li><a href="trainingen.html">Trainingen</a></li><li><a href="hindernissen.html">Hindernissen</a></li><li><a href="virtual-tour.html">Virtual tour</a></li><li><a href="stalling.html">Stalling</a></li></ul></div>
+      <div><h4>Organisatie</h4><ul><li><a href="over-ons.html">Over ons</a></li><li><a href="sponsoren.html">Sponsoren</a></li><li><a href="contact.html">Contact</a></li><li><a href="mailto:info@indoorsgw.nl">info@indoorsgw.nl</a></li></ul></div>
+    </div>
+    <div class="footer__bottom"><span>© 2026 Stichting Indoor SGW</span><span>Website door EquiMarketing</span></div>
+  </div>
+  <div class="wordmark" aria-hidden="true">Indoor SGW</div>
+</footer>
+
+<div class="mbar" aria-label="Snel inschrijven">
+  <div><small>28, 29 en 30 december</small><strong>Indoor SGW 2026</strong></div>
+  <a class="btn btn--gold only-voor" href="https://www.mijnknhs.nl/Game/W183853?expandHeader=True" target="_blank" rel="noopener">Inschrijven</a>
+  <a class="btn btn--gold only-live" href="https://www.indoorsgw.nl/wedstrijd/startlijsten/">Startlijsten</a>
+  <a class="btn btn--gold only-na" href="https://www.indoorsgw.nl/wedstrijd/uitslagen/">Uitslagen</a>
+</div>
+
+<script src="../assets/js/indoorsgw.js" defer></script>
+</body>
+</html>
