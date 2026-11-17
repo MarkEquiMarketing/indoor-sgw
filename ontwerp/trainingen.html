@@ -76,8 +76,8 @@
       <h1 id="page-title">Trainen in de indoorhal</h1>
       <p>Op 28 en 29 december verzorgen we trainingen voor paarden-, pony- en bixieruiters. Verken onder begeleiding het parcours en laat je paard wennen aan de hal.</p>
       <div class="actions">
-        <a class="btn btn--gold" href="https://www.indoorsgw.nl/trainingen/">Aanmelden voor een training</a>
-        <a class="btn btn--glass" href="#kosten">Reken uit wat het kost</a>
+        <a class="btn btn--gold" href="#aanmelden">Aanmelden voor een training</a>
+        <a class="btn btn--glass" href="#vragen-title">Lees eerst hoe het werkt</a>
       </div>
     </div>
   </section>
@@ -85,32 +85,93 @@
   <section class="section" aria-labelledby="dagen-title">
     <div class="wrap">
       <div class="head"><h2 id="dagen-title">Twee dagen trainen</h2><p>Werk aan ritme, balans en vertrouwen, op het parcours van de wedstrijd.</p></div>
-      <div class="days"><article class="day day--key"><div class="date"><strong>28</strong><span>Maandag</span></div><h3>Trainingsdag</h3><p>De hele dag trainen, voor paarden en pony's (A tot en met E).</p><ul><li>Tijd<b>8.00 tot 20.30 uur</b></li><li>Prijs<b>€ 30 per uur</b></li></ul></article><article class="day"><div class="date"><strong>29</strong><span>Dinsdag</span></div><h3>Trainen naast de wedstrijd</h3><p>In de middag, terwijl de wedstrijd loopt.</p><ul><li>Tijd<b>13.00 tot 17.30 uur</b></li><li>Prijs<b>€ 30 per uur</b></li></ul></article><article class="day"><div class="date"><strong>29</strong><span>Dinsdag</span></div><h3>Bixietraining</h3><p>Voor de kleinste ruiters.</p><ul><li>Tijd<b>In de ochtend</b></li><li>Prijs<b>€ 20</b></li></ul></article></div>
+      <div class="days"><article class="day day--key"><div class="date"><strong>28</strong><span>Maandag</span></div><h3>Trainingsdag</h3><p>De hele dag trainen, voor paarden en pony's (A tot en met E).</p><ul><li>Tijd<b>8.00 tot 20.30 uur</b></li><li>Inschrijfgeld<b>€ 30</b></li></ul></article><article class="day"><div class="date"><strong>29</strong><span>Dinsdag</span></div><h3>Trainen naast de wedstrijd</h3><p>In de middag, terwijl de wedstrijd loopt.</p><ul><li>Tijd<b>13.00 tot 17.30 uur</b></li><li>Inschrijfgeld<b>€ 30</b></li></ul></article><article class="day"><div class="date"><strong>29</strong><span>Dinsdag</span></div><h3>Bixietraining</h3><p>Voor de kleinste ruiters.</p><ul><li>Tijd<b>In de ochtend</b></li><li>Inschrijfgeld<b>€ 20</b></li></ul></article></div>
     </div>
   </section>
 
-  <section class="section section--tint" id="kosten" aria-labelledby="kosten-title">
+  <section class="section section--tint" id="aanmelden" aria-labelledby="aanmelden-title">
     <div class="wrap">
-      <div class="head"><h2 id="kosten-title">Reken het uit</h2><p>€ 30 per uur per combinatie. Kies je dagen en je paarden, dan zie je meteen wat het kost.</p></div>
-      <div class="planner" data-calc>
-        <div class="planner__form">
-          <div class="field"><h3>Op welke dag train je?</h3>
-            <div class="chips chips--2">
-              <button class="chip" type="button" aria-pressed="true" data-day="28" data-name="Maandag 28 december">Maandag 28<small>8.00 tot 20.30 uur</small></button>
-              <button class="chip" type="button" aria-pressed="false" data-day="29" data-name="dinsdag 29 december">Dinsdag 29<small>13.00 tot 17.30 uur</small></button>
-            </div></div>
-          <div class="field"><h3>Met hoeveel paarden of pony's?</h3>
-            <div class="stepper"><button type="button" data-combi-step="-1" aria-label="Eén minder">&minus;</button><output data-combi>1</output><button type="button" data-combi-step="1" aria-label="Eén meer">+</button></div></div>
-          <div class="field"><h3>Hoeveel uur per dag?</h3>
-            <div class="stepper"><button type="button" data-hours-step="-1" aria-label="Eén uur minder">&minus;</button><output data-hours>1</output><button type="button" data-hours-step="1" aria-label="Eén uur meer">+</button></div></div>
+      <div class="head"><h2 id="aanmelden-title">Aanmelden voor een training</h2><p>In drie stappen. Meld per paard of pony één training aan, je betaalt direct bij je aanmelding.</p></div>
+      <!-- Ontwerp: verzenden en betalen zijn nog niet gekoppeld. De velden en waarden zijn gelijk aan het Gravity Forms-formulier "Inschrijven Trainingen Indoor SGW 2026". -->
+      <form class="signup" data-signup novalidate>
+        <ol class="steps" aria-label="Stappen">
+          <li><button type="button" class="steps__item" data-step-tab="1" aria-current="step"><b>1</b><span>Ruiter</span></button></li>
+          <li><button type="button" class="steps__item" data-step-tab="2" disabled><b>2</b><span>Paard of pony</span></button></li>
+          <li><button type="button" class="steps__item" data-step-tab="3" disabled><b>3</b><span>Training en betalen</span></button></li>
+        </ol>
+        <div class="signup__body">
+          <div class="signup__main">
+            <fieldset class="signup__step" data-step="1">
+              <legend class="signup__title" tabindex="-1">Wie rijdt er?</legend>
+              <div class="signup__name">
+                <div class="fld"><label for="su-voornaam">Voornaam</label><input class="input" id="su-voornaam" name="voornaam" autocomplete="given-name" required></div>
+                <div class="fld"><label for="su-tussen">Tussenvoegsel</label><input class="input" id="su-tussen" name="tussenvoegsel" autocomplete="additional-name"></div>
+                <div class="fld"><label for="su-achternaam">Achternaam</label><input class="input" id="su-achternaam" name="achternaam" autocomplete="family-name" required></div>
+              </div>
+              <div class="form__grid">
+                <div class="fld"><label for="su-leeftijd">Leeftijd</label><input class="input" id="su-leeftijd" name="leeftijd" type="number" inputmode="numeric" min="3" max="99" required></div>
+                <div class="fld"><label for="su-tel">Telefoon</label><input class="input" id="su-tel" name="telefoon" type="tel" autocomplete="tel" required></div>
+                <div class="fld"><label for="su-mail">E-mailadres</label><input class="input" id="su-mail" name="email" type="email" autocomplete="email" required></div>
+                <div class="fld"><label for="su-mail2">Nog een keer je e-mailadres</label><input class="input" id="su-mail2" name="email_bevestigen" type="email" autocomplete="email" required data-match="email"></div>
+              </div>
+              <div class="signup__foot"><span></span><button class="btn btn--navy" type="button" data-next>Verder naar paard of pony</button></div>
+            </fieldset>
+
+            <fieldset class="signup__step" data-step="2" hidden>
+              <legend class="signup__title" tabindex="-1">Met welk paard of welke pony?</legend>
+              <div class="fld"><label for="su-paard">Naam van je paard of pony</label><input class="input" id="su-paard" name="paard" required></div>
+              <div class="fld" data-group="type"><p class="fld__label">Paard of pony</p><div class="picks"><label class="pick"><input type="radio" name="type" value="A Pony" required><span>A pony</span></label><label class="pick"><input type="radio" name="type" value="B Pony"><span>B pony</span></label><label class="pick"><input type="radio" name="type" value="C Pony"><span>C pony</span></label><label class="pick"><input type="radio" name="type" value="D Pony"><span>D pony</span></label><label class="pick"><input type="radio" name="type" value="E Pony"><span>E pony</span></label><label class="pick"><input type="radio" name="type" value="Paard"><span>Paard</span></label></div></div>
+              <div class="form__grid">
+                <div class="fld" data-group="ervaring_sgw"><p class="fld__label">Ervaring met SGW <small>hoogste klasse</small></p><div class="picks"><label class="pick"><input type="radio" name="ervaring_sgw" value="Ervaring B Niveau" required><span>B</span></label><label class="pick"><input type="radio" name="ervaring_sgw" value="Ervaring L Niveau"><span>L</span></label><label class="pick"><input type="radio" name="ervaring_sgw" value="Ervaring M Niveau"><span>M</span></label><label class="pick"><input type="radio" name="ervaring_sgw" value="Ervaring Z Niveau"><span>Z</span></label><label class="pick"><input type="radio" name="ervaring_sgw" value="Geen SGW ervaring"><span>Nog geen ervaring</span></label></div></div>
+                <div class="fld" data-group="ervaring_springen"><p class="fld__label">Ervaring met springen <small>hoogste klasse</small></p><div class="picks"><label class="pick"><input type="radio" name="ervaring_springen" value="Ervaring B Niveau" required><span>B</span></label><label class="pick"><input type="radio" name="ervaring_springen" value="Ervaring L Niveau"><span>L</span></label><label class="pick"><input type="radio" name="ervaring_springen" value="Ervaring M Niveau"><span>M</span></label><label class="pick"><input type="radio" name="ervaring_springen" value="Ervaring Z Niveau"><span>Z</span></label><label class="pick"><input type="radio" name="ervaring_springen" value="Geen spring ervaring"><span>Nog geen ervaring</span></label></div></div>
+              </div>
+              <div class="fld" data-group="soort"><p class="fld__label">Welke training?</p>
+                <div class="options">
+                  <label class="option"><input type="radio" name="soort" value="Standaard SGW training" data-price="30" required><span><b>SGW training</b><small>Op 28 of 29 december, voor paarden en pony's.</small><em>€ 30</em></span></label>
+                  <label class="option"><input type="radio" name="soort" value="Bixie training (uitsluitend 29 december in de ochtend)" data-price="20" data-bixie><span><b>Bixietraining</b><small>Voor de kleinste ruiters. Alleen op 29 december in de ochtend.</small><em>€ 20</em></span></label>
+                </div>
+              </div>
+              <div class="signup__foot"><button class="btn btn--white" type="button" data-prev>Terug</button><button class="btn btn--navy" type="button" data-next>Verder naar training en betalen</button></div>
+            </fieldset>
+
+            <fieldset class="signup__step" data-step="3" hidden>
+              <legend class="signup__title" tabindex="-1">Wanneer wil je trainen?</legend>
+              <div class="fld" data-group="dag"><p class="fld__label">Voorkeursdag</p>
+                <div class="options">
+                  <label class="option" data-day-for="standaard"><input type="radio" name="dag" value="28 december training"><span><b>Maandag 28 december</b><small>Tussen 8.00 en 20.30 uur</small></span></label>
+                  <label class="option" data-day-for="standaard"><input type="radio" name="dag" value="29 december training"><span><b>Dinsdag 29 december</b><small>Tussen 13.00 en 17.30 uur</small></span></label>
+                  <label class="option" data-day-for="bixie" hidden><input type="radio" name="dag" value="29 december Bixie (ochtend)"><span><b>Dinsdag 29 december</b><small>In de ochtend</small></span></label>
+                </div>
+                <p class="fld__hint">Je voorkeur is een wens, geen vaste plaatsing. We doen ons uiterste best, maar kunnen niet garanderen dat je op die dag traint.</p>
+              </div>
+              <div class="fld"><label for="su-opm">Wil je ons nog iets laten weten? <small>niet verplicht</small></label><textarea class="input" id="su-opm" name="opmerkingen" rows="3" placeholder="Bijvoorbeeld: graag in hetzelfde groepje als een vriendin."></textarea></div>
+              <div class="fld" data-group="akkoord"><label class="consent"><input type="checkbox" name="akkoord" value="1" required><span>Ik schrijf deze combinatie in en betaal de kosten die daarbij horen. Ik weet dat mijn voorkeursdag niet gegarandeerd is.</span></label></div>
+              <div class="signup__foot"><button class="btn btn--white" type="button" data-prev>Terug</button><button class="btn btn--gold" type="submit">Aanmelden en betalen</button></div>
+            </fieldset>
+
+            <div class="signup__done" data-signup-done hidden tabindex="-1">
+              <i aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></i>
+              <h3>Je bent aangemeld, <span data-out="voornaam"></span>!</h3>
+              <p>Leuk dat je komt trainen. We kijken ernaar uit om jou en <span data-out="paard"></span> te verwelkomen bij Manege Het Zwarte Water in De Mortel. Je krijgt een bevestiging per mail.</p>
+              <p>De startlijst van de trainingen zetten we op de site zodra hij definitief is. Kun je toch niet? Mail dan op tijd naar <a href="mailto:secretariaat@indoorsgw.nl">secretariaat@indoorsgw.nl</a>, dan krijgt iemand anders je plek.</p>
+              <div class="actions"><button class="btn btn--navy" type="button" data-again>Nog een paard of pony aanmelden</button><a class="btn btn--white" href="startlijsten.html">Bekijk de startlijsten</a></div>
+            </div>
+          </div>
+
+          <aside class="signup__card" aria-label="Jouw aanmelding" aria-live="polite">
+            <img class="mark mark--card" src="../assets/logo/logo-wit.png" alt="" aria-hidden="true">
+            <p class="signup__kicker">Jouw aanmelding</p>
+            <dl class="signup__list">
+              <div><dt>Ruiter</dt><dd data-out="ruiter">Nog invullen</dd></div>
+              <div><dt>Paard of pony</dt><dd data-out="combinatie">Nog invullen</dd></div>
+              <div><dt>Training</dt><dd data-out="training">Nog kiezen</dd></div>
+              <div><dt>Voorkeursdag</dt><dd data-out="dag">Nog kiezen</dd></div>
+            </dl>
+            <div class="signup__price"><strong data-out="prijs">€ 30</strong><span>inschrijfgeld</span></div>
+            <p class="signup__note">Je betaalt direct bij je aanmelding. Kosteloos annuleren kan tot 15 december.</p>
+          </aside>
         </div>
-        <div class="planner__sum" aria-live="polite">
-          <div class="sum__big"><div><strong data-total>€ 30</strong><span>totaal</span></div></div>
-          <p class="sum__mail" data-calc-text></p>
-          <a class="btn btn--gold" href="https://www.indoorsgw.nl/trainingen/">Aanmelden voor een training</a>
-          <p class="sum__note">Je betaalt direct bij je inschrijving. Kosteloos annuleren kan tot 15 december.</p>
-        </div>
-      </div>
+      </form>
     </div>
   </section>
 
@@ -120,7 +181,7 @@
       <div class="accordion">
         <details><summary>Wie geeft de trainingen?</summary><div class="answer"><p>Gerenommeerde instructeurs, waaronder de bondscoach van de landelijke ruiters.</p></div></details>
         <details><summary>Hoe worden de groepen ingedeeld?</summary><div class="answer"><p>We proberen zoveel mogelijk gelijke niveaus in één groep te plaatsen. Voorkeuren kun je opgeven, maar we kunnen niet garanderen dat we ze allemaal inplannen.</p></div></details>
-        <details><summary>Ik kom met meer paarden of pony's</summary><div class="answer"><p>Vul het formulier per paard of pony opnieuw in. Zo kunnen we alles goed en overzichtelijk verwerken.</p></div></details>
+        <details><summary>Ik kom met meer paarden of pony's</summary><div class="answer"><p>Meld per paard of pony apart aan. Na je aanmelding kun je meteen nog een paard of pony aanmelden, je eigen gegevens staan dan al klaar.</p></div></details>
         <details><summary>Wanneer betaal ik?</summary><div class="answer"><p>Direct bij je inschrijving.</p></div></details>
         <details><summary>Kan ik annuleren?</summary><div class="answer"><p>Tot 15 december kosteloos. Daarna blijven de volledige trainingskosten staan.</p></div></details>
         <details><summary>Kan ik trainen én meedoen aan de wedstrijd?</summary><div class="answer"><p>Ja, dat kan allebei. <a href="wedstrijd.html">Alles over de wedstrijd</a></p></div></details>
@@ -136,9 +197,9 @@
         <img class="mark mark--cta" src="../assets/logo/logo-wit.png" alt="" aria-hidden="true">
         <h2 id="cta-title">Klaar om te trainen?</h2>
         <div>
-          <p>Schrijf je in per paard of pony. Na je inschrijving delen we je in op niveau.</p>
+          <p>Meld je aan per paard of pony. Daarna delen we je in op niveau.</p>
           <div class="actions">
-            <a class="btn btn--gold" href="https://www.indoorsgw.nl/trainingen/">Aanmelden voor een training</a>
+            <a class="btn btn--gold" href="#aanmelden">Aanmelden voor een training</a>
             <a class="btn btn--glass" href="hindernissen.html">Bekijk de hindernissen</a>
           </div>
         </div>

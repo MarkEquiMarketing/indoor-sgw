@@ -346,30 +346,101 @@
     if (radios.some(r => r.value === start)) { set(start); $('#vraag').scrollIntoView(); } else set(radios[0].value);
   }
 
-  /* Trainingen: reken uit wat het kost. € 30 per uur per combinatie. */
-  const calc = $('[data-calc]');
-  if (calc) {
-    const PRICE = 30, days = $$('[data-day]', calc);
-    let combi = 1, hours = 1;
-    const update = () => {
-      const on = days.filter(d => d.getAttribute('aria-pressed') === 'true');
-      const total = on.length * combi * hours * PRICE;
-      $('[data-total]', calc).textContent = '€ ' + total;
-      $('[data-combi]', calc).textContent = combi;
-      $('[data-hours]', calc).textContent = hours;
-      const names = on.map(d => d.dataset.name);
-      const p = combi === 1 ? 'paard of pony' : `${combi} paarden of pony's`;
-      $('[data-calc-text]', calc).textContent =
-        `${names.join(' en ')}\n${p}, ${hours} uur per dag\n€ ${PRICE} per uur per combinatie`;
+  /* Aanmelden voor een training: drie stappen, per stap controleren, de aanmelding loopt rechts mee.
+     Velden en waarden zijn gelijk aan het huidige Gravity Forms-formulier. Verzenden en betalen
+     (Mollie) zijn in dit ontwerp nog niet gekoppeld: na stap 3 zie je de bevestiging. */
+  const su = $('[data-signup]');
+  if (su) {
+    const steps = $$('[data-step]', su), tabs = $$('[data-step-tab]', su), done = $('[data-signup-done]', su);
+    const F = su.elements, v = n => (F[n] && F[n].value || '').trim();
+    let cur = 1, reached = 1;
+    const out = (k, text, empty) => $$(`[data-out="${k}"]`, su).forEach(el => {
+      el.textContent = text || empty || ''; el.classList.toggle('is-empty', !text);
+    });
+    const bixie = () => !!$('[name=soort][data-bixie]', su).checked;
+    const syncDays = () => {
+      const b = bixie();
+      $$('[data-day-for]', su).forEach(o => {
+        const show = (o.dataset.dayFor === 'bixie') === b;
+        o.hidden = !show;
+        const r = $('input', o);
+        if (!show) r.checked = false;
+        if (b && show) r.checked = true;            // Bixie kan alleen op 29 december in de ochtend
+      });
     };
-    days.forEach(d => d.addEventListener('click', () => {
-      const pressed = d.getAttribute('aria-pressed') === 'true';
-      if (pressed && days.filter(x => x.getAttribute('aria-pressed') === 'true').length === 1) return; // minstens één dag
-      d.setAttribute('aria-pressed', !pressed); update();
+    const update = () => {
+      const naam = [v('voornaam'), v('tussenvoegsel'), v('achternaam')].filter(Boolean).join(' ');
+      out('ruiter', naam, 'Nog invullen');
+      out('voornaam', v('voornaam'));
+      out('paard', v('paard') || 'je paard');
+      out('combinatie', [v('paard'), F.type.value && F.type.value.replace('Pony', 'pony')].filter(Boolean).join(', '), 'Nog invullen');
+      const soort = $('[name=soort]:checked', su);
+      out('training', soort ? $('b', soort.nextElementSibling).textContent : '', 'Nog kiezen');
+      const dag = $('[name=dag]:checked', su);
+      out('dag', dag ? $('b', dag.nextElementSibling).textContent + (bixie() ? ', ochtend' : '') : '', soort ? 'Geen voorkeur' : 'Nog kiezen');
+      out('prijs', '€ ' + (soort ? soort.dataset.price : 30));
+    };
+    const clear = fld => { fld.classList.remove('is-invalid'); const e = $('.fld__error', fld); if (e) e.remove(); };
+    const fail = (fld, msg) => {
+      fld.classList.add('is-invalid');
+      const e = document.createElement('p'); e.className = 'fld__error'; e.textContent = msg; e.setAttribute('role', 'alert');
+      fld.append(e);
+    };
+    const check = n => {
+      let first = null;
+      $$('.fld', steps[n - 1]).forEach(fld => {
+        clear(fld);
+        const input = $('input:not([type=radio]):not([type=checkbox]),textarea', fld);
+        const group = fld.dataset.group, radios = group && $$(`[name="${group}"]`, fld);
+        let msg = '';
+        if (group && radios.length && $$('[required]', fld).length && !radios.some(r => r.checked))
+          msg = radios[0].type === 'checkbox' ? 'Vink dit aan om je aan te melden.' : 'Maak een keuze.';
+        else if (input && input.required && !input.value.trim()) msg = 'Vul dit in.';
+        else if (input && input.type === 'email' && input.value && !input.checkValidity()) msg = 'Dit lijkt geen goed e-mailadres.';
+        else if (input && input.dataset.match && input.value.trim().toLowerCase() !== v(input.dataset.match).toLowerCase()) msg = 'De twee e-mailadressen zijn niet gelijk.';
+        else if (input && input.type === 'number' && input.value && !input.checkValidity()) msg = 'Vul een leeftijd in tussen 3 en 99.';
+        if (msg) { fail(fld, msg); first = first || $('input,textarea', fld); }
+      });
+      if (first) first.focus({ preventScroll: false });
+      return !first;
+    };
+    const go = n => {
+      cur = n; reached = Math.max(reached, n);
+      steps.forEach((s, i) => { s.hidden = i !== n - 1; });
+      done.hidden = true;
+      tabs.forEach((t, i) => {
+        t.disabled = i + 1 > reached;
+        t.classList.toggle('is-done', i + 1 < reached || (i + 1 < n));
+        if (i + 1 === n) t.setAttribute('aria-current', 'step'); else t.removeAttribute('aria-current');
+      });
+      const top = su.getBoundingClientRect().top;
+      if (top < 0) su.scrollIntoView({ behavior: calm ? 'auto' : 'smooth', block: 'start' });
+      $('.signup__title', steps[n - 1]).focus({ preventScroll: true });
+    };
+    $$('[data-next]', su).forEach(b => b.addEventListener('click', () => { if (check(cur)) go(cur + 1); }));
+    $$('[data-prev]', su).forEach(b => b.addEventListener('click', () => go(cur - 1)));
+    tabs.forEach(t => t.addEventListener('click', () => {
+      const n = +t.dataset.stepTab;
+      if (n > cur && !check(cur)) return;           // vooruit alleen als deze stap klopt
+      go(n);
     }));
-    $$('[data-combi-step]', calc).forEach(b => b.addEventListener('click', () => { combi = Math.min(12, Math.max(1, combi + +b.dataset.combiStep)); update(); }));
-    $$('[data-hours-step]', calc).forEach(b => b.addEventListener('click', () => { hours = Math.min(6, Math.max(1, hours + +b.dataset.hoursStep)); update(); }));
-    update();
+    su.addEventListener('input', e => { const f = e.target.closest('.fld'); if (f && f.classList.contains('is-invalid')) clear(f); update(); });
+    su.addEventListener('change', e => { if (e.target.name === 'soort') syncDays(); const f = e.target.closest('.fld'); if (f) clear(f); update(); });
+    su.addEventListener('submit', e => {
+      e.preventDefault();
+      if (!check(3)) return;
+      // Hier komt straks: aanmelding opslaan, betaling aanmaken bij Mollie en doorsturen naar de betaalpagina.
+      steps.forEach(s => { s.hidden = true; });
+      tabs.forEach(t => { t.classList.add('is-done'); t.removeAttribute('aria-current'); t.disabled = true; });
+      done.hidden = false; done.focus();
+    });
+    $('[data-again]', su).addEventListener('click', () => {
+      // De ruiter blijft staan, paard, training en dag beginnen opnieuw
+      ['paard', 'opmerkingen'].forEach(n => { F[n].value = ''; });
+      $$('[name=type],[name=ervaring_sgw],[name=ervaring_springen],[name=soort],[name=dag],[name=akkoord]', su).forEach(r => { r.checked = false; });
+      syncDays(); update(); reached = 2; go(2);
+    });
+    syncDays(); update();
   }
 
   /* Keuze met grote cijfers (klasse kiezen): radio's in [data-pick], panelen met data-pick-panel */

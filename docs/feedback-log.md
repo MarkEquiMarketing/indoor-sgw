@@ -20,8 +20,19 @@ Alle feedback op het ontwerp, met wat we ervan leren. Nieuwste bovenaan. Een les
 - Crossparcours: we tonen de cijfers van 2025 als voorbeeld. Mag dat, of liever leeg tot 2026 bekend is?
 - Vraagprogramma: welke proef is het in de Z?
 - Startlijsten en uitslagen 2026: wie zet ze online, en blijven het pdf's? Dan hoeft er alleen een regel bij in de pagina.
+- Trainingen: de site zegt "€ 30 per uur", het formulier rekent € 30 per aanmelding. Is één training één uur? Dan zeggen we overal "€ 30 per training van een uur".
+- Trainingen: mag je in het nieuwe systeem meerdere paarden in één keer aanmelden en in één keer betalen? Nu is het één aanmelding en één betaling per paard.
+- Trainingen: waarvoor vragen we de leeftijd? Voor de indeling, of voor de Bixie?
 
 ## 17 november 2026
+
+**Aanmelden voor een training**
+- Vraag: in plaats van "Reken het uit" een echte aanmelding, als mooie configurator, met dezelfde stappen en velden als het huidige formulier. Later bouwen in Laravel met Mollie.
+  - Uitgezocht in Gravity Forms (formulier 1, "Inschrijven Trainingen Indoor SGW 2026"): drie pagina's. Ruiter (naam, leeftijd, telefoon, e-mail twee keer), paard of pony (naam, type A tot en met E pony of paard, ervaring SGW, ervaring springen, soort training), training (voorkeursdag, opmerkingen, akkoord, bedrag, betalen via Mollie).
+  - Prijs: € 30 per aanmelding, Bixie € 20. Eén voorkeursdag per aanmelding. De oude rekenhulp met uren en meerdere dagen klopte daar niet mee en is weg.
+  - Gedaan: drie stappen met keuzeknoppen en keuzekaarten, rechts een kaart die meeloopt met de prijs. Kies je Bixie, dan staat de dag meteen op 29 december in de ochtend. Na de aanmelding kun je meteen nog een paard of pony aanmelden, je eigen gegevens blijven staan.
+  - Alle knoppen "Aanmelden voor een training" gaan nu naar trainingen.html#aanmelden.
+  - Les: haal stappen en prijzen uit het echte formulier, niet uit de tekst op de site.
 
 **Responsive audit en regels**
 - Vraag: controleer of alles overal goed responsive is, en leg vast wat waar links of midden staat.
