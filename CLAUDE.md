@@ -46,7 +46,7 @@ Nieuwe website voor de Indoor SGW (indoorsgw.nl): drie dagen trainen en wedstrij
 - **Watermerk:** logo licht op de achtergrond (`.mark`), altijd helemaal binnen het vlak. Nooit afgesneden.
 - **Privacy:** Google Maps en YouTube laden pas na een klik. Enige uitzondering: de achtergrondvideo in de homepage-hero (`data-yt`, youtube-nocookie, gedempt, alleen desktop), op verzoek van Mark.
 - **Menu:** één bron in `tools/nav.py` (Over ons en Wedstrijd met submenu, zoals op indoorsgw.nl). Nooit het menu per pagina met de hand aanpassen. Nieuwe pagina: zet hem in `PAGES` en draai `python3 tools/nav.py`.
-- **Elke pagina één sterk interactief element:** verhaal met jaartal (over ons), parcours-tour (hindernissen), beeldvullende bioscoop (virtual tour), contactformulier met onderwerp (contact), verblijfplanner (stalling), sponsorwand met zoeken (sponsoren). Rustig eromheen.
+- **Elke pagina één sterk interactief element:** verhaal met jaartal (over ons), parcours-tour (hindernissen), beeldvullende bioscoop (virtual tour), tabs per onderwerp met het juiste paneel en formulier (contact), verblijfplanner (stalling), sponsorwand met zoeken (sponsoren). Rustig eromheen.
 - **Fase:** `body[data-phase]` is `voor`, `live` of `na`. Gebruik `.only-voor`, `.only-live`, `.only-na`. Data van het evenement staan bovenaan `indoorsgw.js`.
 
 ## Tekstregels

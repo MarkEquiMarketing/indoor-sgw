@@ -315,23 +315,35 @@
     update();
   }
 
-  /* Contactformulier: onderwerp kiezen en versturen.
+  /* Contact: tabs per onderwerp. Elke tab toont het juiste paneel en de juiste velden.
+     contact.html#sponsoring opent meteen de goede tab.
      Verzenden is nog niet gekoppeld (open vraag in het feedbacklog); nu tonen we de bevestiging. */
-  const contact = $('[data-contact]');
-  if (contact) {
-    const done = $('[data-contact-done]'), hint = $('[data-hint]', contact);
-    const topics = $$('input[name=onderwerp]', contact);
-    const update = () => { hint.hidden = !topics.some(r => r.checked && r.value === 'stalling'); };
-    topics.forEach(r => r.addEventListener('change', update));
-    contact.addEventListener('submit', e => {
+  const desk = $('[data-desk]');
+  if (desk) {
+    const radios = $$('input[name=onderwerp]', desk), form = $('[data-contact]', desk), done = $('[data-contact-done]', desk);
+    const set = (v, animate) => {
+      radios.forEach(r => { r.checked = r.value === v; });
+      $$('[data-topic]', desk).forEach(el => { el.hidden = el.dataset.topic !== v; });
+      $$('[data-show]', desk).forEach(el => {
+        const on = el.dataset.show.split(' ').includes(v);
+        el.hidden = !on;
+        if (el !== form) $$('input,select,textarea', el).forEach(i => { i.disabled = !on; });
+      });
+      done.hidden = true;
+      if (animate) { desk.classList.remove('is-swapping'); void desk.offsetWidth; desk.classList.add('is-swapping'); }
+    };
+    radios.forEach(r => r.addEventListener('change', () => { set(r.value, true); history.replaceState(null, '', '#' + r.value); }));
+    form.addEventListener('submit', e => {
       e.preventDefault();
-      $('[data-done-mail]', done).textContent = contact.elements.email.value;
-      contact.hidden = true; done.hidden = false; done.focus();
+      $('[data-done-who]', done).textContent = radios.find(r => r.checked).dataset.who;
+      $('[data-done-mail]', done).textContent = form.elements.email.value;
+      form.hidden = true; done.hidden = false; done.focus();
     });
     $('[data-contact-again]', done).addEventListener('click', () => {
-      contact.reset(); update(); done.hidden = true; contact.hidden = false;
+      const v = radios.find(r => r.checked).value; form.reset(); set(v, true);
     });
-    update();
+    const start = location.hash.slice(1);
+    if (radios.some(r => r.value === start)) { set(start); $('#vraag').scrollIntoView(); } else set(radios[0].value);
   }
 
   /* Sponsorwand: zoeken op naam */

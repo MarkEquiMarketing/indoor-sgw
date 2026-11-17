@@ -19,6 +19,11 @@ Alle feedback op het ontwerp, met wat we ervan leren. Nieuwste bovenaan. Een les
 
 ## 17 november 2026
 
+**Contact: tabs per onderwerp**
+- Feedback: de sectie "Stel je vraag" was rommelig. Liever tabs erboven, met per keuze het juiste formulier en de juiste informatie.
+  - Gedaan: tabs per onderwerp boven één blok. Links een navy paneel met wie je vraag leest, het mailadres en wat goed is om te weten. Rechts alleen de velden die bij het onderwerp horen. Stalling heeft geen formulier, maar een knop naar de planner, want dat loopt via Het Zwarte Water.
+  - Les: één blok met een duidelijke keuze erboven is rustiger dan losse vlakken naast elkaar. Laat per keuze alleen zien wat nodig is.
+
 **Spacing, contact, stalling en virtual tour**
 - Feedback: controleer de spacing overal en leg hem vast in de stylesheet.
   - Gemeten: tussen twee witte secties zat soms 152 en soms 304 px, en boven de footer 392 px.

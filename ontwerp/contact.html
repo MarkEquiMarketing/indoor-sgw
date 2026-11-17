@@ -86,51 +86,88 @@
     <div class="wrap">
       <div class="head">
         <h2 id="vraag-title">Stel je vraag</h2>
-        <p>Kies waar je vraag over gaat. Dan komt hij meteen bij de juiste persoon.</p>
+        <p>Kies je onderwerp. Dan zie je meteen wat goed is om te weten, en komt je vraag bij de juiste persoon.</p>
       </div>
-      <div class="contact">
-        <!-- Verzenden is nog niet gekoppeld. Zie de open vraag in docs/feedback-log.md. -->
-        <form class="form" data-contact>
-          <fieldset>
-            <legend>Waar gaat je vraag over?</legend>
-            <div class="topics">
-              <label class="topic"><input type="radio" name="onderwerp" value="wedstrijd" data-to="secretariaat@indoorsgw.nl" checked><span>Wedstrijd en startlijsten</span></label>
-              <label class="topic"><input type="radio" name="onderwerp" value="training" data-to="info@indoorsgw.nl"><span>Trainingen</span></label>
-              <label class="topic"><input type="radio" name="onderwerp" value="stalling" data-to="info@indoorsgw.nl"><span>Stalling en overnachten</span></label>
-              <label class="topic"><input type="radio" name="onderwerp" value="sponsoring" data-to="info@indoorsgw.nl"><span>Sponsoring</span></label>
-              <label class="topic"><input type="radio" name="onderwerp" value="anders" data-to="info@indoorsgw.nl"><span>Iets anders</span></label>
-            </div>
-          </fieldset>
-          <p class="form__hint" data-hint hidden>Stalling en overnachten regel je direct bij Het Zwarte Water. <a href="stalling.html">Plan je verblijf</a>, dan staat je mail meteen klaar.</p>
-          <div class="form__row">
-            <div><label for="f-naam">Je naam</label><input class="input" id="f-naam" name="naam" autocomplete="name" required></div>
-            <div><label for="f-mail">Je mailadres</label><input class="input" id="f-mail" name="email" type="email" autocomplete="email" required></div>
+      <div data-desk>
+      <div class="tabs tabs--form" role="radiogroup" aria-label="Waar gaat je vraag over?">
+        <label><input type="radio" name="onderwerp" value="wedstrijd" data-who="Het secretariaat" checked><span>Wedstrijd en startlijsten</span></label>
+        <label><input type="radio" name="onderwerp" value="training" data-who="De organisatie"><span>Trainingen</span></label>
+        <label><input type="radio" name="onderwerp" value="stalling" data-who="Het Zwarte Water"><span>Stalling</span></label>
+        <label><input type="radio" name="onderwerp" value="sponsoring" data-who="De organisatie"><span>Sponsoring</span></label>
+        <label><input type="radio" name="onderwerp" value="anders" data-who="De organisatie"><span>Iets anders</span></label>
+      </div>
+      <div class="desk">
+        <div class="desk__info">
+          <img class="mark mark--desk" src="../assets/logo/logo-wit.png" alt="" aria-hidden="true">
+          <div data-topic="wedstrijd">
+            <div class="desk__to"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></i><div><small>Je vraag gaat naar</small><strong>Het secretariaat</strong><a href="mailto:secretariaat@indoorsgw.nl">secretariaat@indoorsgw.nl</a></div></div>
+            <h3>Wedstrijd en startlijsten</h3>
+            <p>Een vraag over je inschrijving, de startlijst of afmelden? Het secretariaat helpt je verder.</p>
+            <ul class="ticks"><li>Inschrijven gaat via <a href="https://www.mijnknhs.nl/Game/W183853?expandHeader=True" target="_blank" rel="noopener">Mijn KNHS</a>, wedstrijd W183853.</li><li>Dinsdag 29 december dressuur en springen, woensdag 30 december de cross.</li><li>De startlijsten staan online zodra ze definitief zijn.</li></ul>
           </div>
-          <div class="form__row">
-            <div><label for="f-tel">Je telefoonnummer <small>(mag leeg)</small></label><input class="input" id="f-tel" name="telefoon" type="tel" autocomplete="tel"></div>
-            <div><label for="f-paard">Naam van je paard of pony <small>(mag leeg)</small></label><input class="input" id="f-paard" name="paard"></div>
+          <div data-topic="training" hidden>
+            <div class="desk__to"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></i><div><small>Je vraag gaat naar</small><strong>De organisatie</strong><a href="mailto:info@indoorsgw.nl">info@indoorsgw.nl</a></div></div>
+            <h3>Trainingen</h3>
+            <p>Een vraag over een training, je groep of je tijd? We denken graag met je mee.</p>
+            <ul class="ticks"><li>€ 30 per uur per combinatie.</li><li>Trainen kan op maandag 28 en dinsdag 29 december.</li><li>Kosteloos annuleren tot 15 december.</li></ul>
           </div>
-          <div><label for="f-vraag">Je vraag</label><textarea class="input" id="f-vraag" name="vraag" rows="6" required></textarea></div>
-          <div class="form__foot">
-            <small>We zijn allemaal vrijwilligers en reageren zo snel mogelijk.</small>
-            <button class="btn btn--gold" type="submit">Verstuur je vraag</button>
+          <div data-topic="stalling" hidden>
+            <div class="desk__to"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></i><div><small>Je vraag gaat naar</small><strong>Het Zwarte Water</strong><a href="mailto:info@hetzwartewater.nl">info@hetzwartewater.nl</a></div></div>
+            <h3>Stalling en overnachten</h3>
+            <p>Stalling voor je paard en overnachten regel je direct bij de manege. Dat loopt niet via ons.</p>
+            <ul class="ticks"><li>Overnachten in je vrachtwagen kan alleen met je eigen stroom.</li><li>Manege Het Zwarte Water in De Mortel.</li></ul>
           </div>
-        </form>
-        <div class="form form__done" data-contact-done tabindex="-1" hidden>
-          <i><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></i>
-          <h3>Bedankt, je vraag is binnen</h3>
-          <p>We mailen je terug op <b data-done-mail></b>.</p>
-          <button class="btn btn--navy" type="button" data-contact-again>Nog een vraag stellen</button>
+          <div data-topic="sponsoring" hidden>
+            <div class="desk__to"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></i><div><small>Je vraag gaat naar</small><strong>De organisatie</strong><a href="mailto:info@indoorsgw.nl">info@indoorsgw.nl</a></div></div>
+            <h3>Sponsoring</h3>
+            <p>Sponsor worden of een vraag over je sponsoring? Laat je gegevens achter, dan nemen we contact met je op.</p>
+            <ul class="ticks"><li>Je logo komt op de site, bij <a href="sponsoren.html">alle sponsoren</a>.</li><li>Loes van Erp-Mooren vertelt je graag over de mogelijkheden.</li></ul>
+          </div>
+          <div data-topic="anders" hidden>
+            <div class="desk__to"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></i><div><small>Je vraag gaat naar</small><strong>De organisatie</strong><a href="mailto:info@indoorsgw.nl">info@indoorsgw.nl</a></div></div>
+            <h3>Iets anders</h3>
+            <p>Voor al het andere. We lezen alles.</p>
+            <ul class="ticks"><li>We zijn allemaal vrijwilligers en reageren zo snel mogelijk.</li><li>Sinds 1999 organiseren we de Indoor SGW.</li></ul>
+          </div>
         </div>
-        <aside class="aside" aria-labelledby="mail-title">
-          <h3 id="mail-title">Liever zelf mailen?</h3>
-          <p>Dat kan natuurlijk ook.</p>
-          <ul>
-            <li><small>Wedstrijd en startlijsten</small><a href="mailto:secretariaat@indoorsgw.nl">secretariaat@indoorsgw.nl</a></li>
-            <li><small>Al het andere</small><a href="mailto:info@indoorsgw.nl">info@indoorsgw.nl</a></li>
-            <li><small>Stalling en overnachten</small><a href="mailto:info@hetzwartewater.nl">info@hetzwartewater.nl</a></li>
-          </ul>
-        </aside>
+        <div class="desk__main">
+          <!-- Verzenden is nog niet gekoppeld. Zie de open vraag in docs/feedback-log.md. -->
+          <form class="form" data-contact data-show="wedstrijd training sponsoring anders">
+            <div class="form__grid">
+              <div><label for="f-naam">Je naam</label><input class="input" id="f-naam" name="naam" autocomplete="name" required></div>
+              <div data-show="sponsoring"><label for="f-bedrijf">Je bedrijf</label><input class="input" id="f-bedrijf" name="bedrijf" autocomplete="organization" required></div>
+              <div><label for="f-mail">Je mailadres</label><input class="input" id="f-mail" name="email" type="email" autocomplete="email" required></div>
+              <div data-show="wedstrijd training sponsoring"><label for="f-tel">Je telefoonnummer <small>(mag leeg)</small></label><input class="input" id="f-tel" name="telefoon" type="tel" autocomplete="tel"></div>
+              <div data-show="wedstrijd training"><label for="f-paard">Naam van je paard of pony <small>(mag leeg)</small></label><input class="input" id="f-paard" name="paard"></div>
+              <fieldset class="span-2" data-show="wedstrijd"><legend>Over welke dag gaat het?</legend><div class="picks">
+                <label class="pick"><input type="radio" name="dag" value="dinsdag 29"><span>Dinsdag 29, dressuur en springen</span></label>
+                <label class="pick"><input type="radio" name="dag" value="woensdag 30"><span>Woensdag 30, cross</span></label></div></fieldset>
+              <fieldset class="span-2" data-show="training"><legend>Op welke dag wil je trainen?</legend><div class="picks">
+                <label class="pick"><input type="radio" name="dag" value="maandag 28"><span>Maandag 28</span></label>
+                <label class="pick"><input type="radio" name="dag" value="dinsdag 29"><span>Dinsdag 29</span></label></div></fieldset>
+              <div class="span-2"><label for="f-vraag">Je vraag</label><textarea class="input" id="f-vraag" name="vraag" rows="5" required></textarea></div>
+            </div>
+            <div class="form__foot">
+              <small>We zijn allemaal vrijwilligers en reageren zo snel mogelijk.</small>
+              <button class="btn btn--gold" type="submit">Verstuur je vraag</button>
+            </div>
+          </form>
+          <div class="form form__done" data-contact-done tabindex="-1" hidden>
+            <i><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></i>
+            <h3>Bedankt, je vraag is binnen</h3>
+            <p><span data-done-who>Het secretariaat</span> mailt je terug op <b data-done-mail></b>.</p>
+            <button class="btn btn--navy" type="button" data-contact-again>Nog een vraag stellen</button>
+          </div>
+          <div class="desk__stal" data-show="stalling" hidden>
+            <h3>Plan je verblijf</h3>
+            <p>Kies je dagen, je paarden en wat je nodig hebt. Dan staat je mail aan Het Zwarte Water meteen klaar.</p>
+            <div class="actions">
+              <a class="btn btn--gold" href="stalling.html">Plan je verblijf</a>
+              <a class="btn btn--navy" href="mailto:info@hetzwartewater.nl?subject=Stalling%20Indoor%20SGW">Mail Het Zwarte Water</a>
+            </div>
+          </div>
+        </div>
+      </div>
       </div>
     </div>
   </section>
