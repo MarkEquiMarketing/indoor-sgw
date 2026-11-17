@@ -11,7 +11,7 @@ Uitvoer:  ontwerp/homepage-preview.html  (staat in .gitignore)
 import base64, io, os, re, sys
 from PIL import Image
 
-MAX_PHOTO, MAX_LOGO, QUALITY = 260, 110, 35
+MAX_PHOTO, MAX_LOGO, QUALITY = 240, 110, 35
 
 def photo(path):
     im = Image.open(path)

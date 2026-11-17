@@ -16,7 +16,7 @@ Nieuwe website voor de Indoor SGW (indoorsgw.nl): drie dagen trainen en wedstrij
 | `ontwerp/varianten-*.html`, `concept-*.html` | Eerdere keuzes. Alleen ter naslag. |
 | `content/teksten.md` | De teksten van de huidige site. Bron voor feiten. |
 | `docs/feedback-log.md` | Alle feedback met datum, wat we ervan leerden. |
-| `ontwerp/over-ons.html`, `hindernissen.html`, `virtual-tour.html` | De eerste subpagina's. |
+| `ontwerp/over-ons.html`, `hindernissen.html`, `virtual-tour.html`, `contact.html`, `stalling.html`, `sponsoren.html` | De subpagina's die al ontworpen zijn. |
 | `tools/nav.py` | Zet menu, mobiel menu en footer op elke pagina. Eén bron voor de menustructuur. |
 | `tools/preview.py` | Maakt een losse preview met alles erin (zie Werkwijze). |
 | `index.html` | Overzicht voor de preview op Vercel. |
@@ -45,7 +45,7 @@ Nieuwe website voor de Indoor SGW (indoorsgw.nl): drie dagen trainen en wedstrij
 - **Watermerk:** logo licht op de achtergrond (`.mark`), altijd helemaal binnen het vlak. Nooit afgesneden.
 - **Privacy:** Google Maps en YouTube laden pas na een klik. Enige uitzondering: de achtergrondvideo in de homepage-hero (`data-yt`, youtube-nocookie, gedempt, alleen desktop), op verzoek van Mark.
 - **Menu:** één bron in `tools/nav.py` (Over ons en Wedstrijd met submenu, zoals op indoorsgw.nl). Nooit het menu per pagina met de hand aanpassen. Nieuwe pagina: zet hem in `PAGES` en draai `python3 tools/nav.py`.
-- **Elke pagina één sterk interactief element:** verhaal met jaartal (over ons), parcours-tour (hindernissen), bioscoop (virtual tour). Rustig eromheen.
+- **Elke pagina één sterk interactief element:** verhaal met jaartal (over ons), parcours-tour (hindernissen), beeldvullende bioscoop (virtual tour), onderwerpkiezer (contact), verblijfplanner (stalling), sponsorwand met zoeken (sponsoren). Rustig eromheen.
 - **Fase:** `body[data-phase]` is `voor`, `live` of `na`. Gebruik `.only-voor`, `.only-live`, `.only-na`. Data van het evenement staan bovenaan `indoorsgw.js`.
 
 ## Tekstregels

@@ -240,34 +240,92 @@
     render();
   }
 
-  /* Bioscoop (virtual tour): kies een video, het scherm wisselt mee. YouTube laadt pas na klikken. */
+  /* Bioscoop (virtual tour): beeldvullend scherm, wisselen via de balk of met de pijltjes.
+     YouTube laadt pas na klikken. Speelt er al een video, dan start de nieuwe meteen. */
   const theater = $('.theater');
   if (theater) {
-    const clips = $$('.clip', theater), box = $('.screen__box', theater), poster = $('.screen__poster', theater);
-    const img = $('.screen__poster img', theater), glow = $('.screen__glow img', theater);
-    const title = $('[data-screen-title]', theater), dur = $('[data-screen-dur]', theater), yt = $('[data-screen-yt]', theater);
+    const clips = $$('.clip', theater), stage = $('.theater__stage', theater), poster = $('.screen__poster', theater);
+    const img = $('img', poster), title = $('[data-screen-title]', theater), dur = $('[data-screen-dur]', theater), yt = $('[data-screen-yt]', theater);
     let cur = Math.max(0, clips.findIndex(c => c.getAttribute('aria-pressed') === 'true'));
     const play = () => {
       const c = clips[cur], f = document.createElement('iframe');
       f.src = `https://www.youtube-nocookie.com/embed/${c.dataset.id}?autoplay=1&rel=0`;
       f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; f.allowFullscreen = true; f.title = c.dataset.title;
-      poster.hidden = true; box.appendChild(f); f.focus();
+      poster.hidden = true; stage.appendChild(f);
     };
     const select = k => {
-      const c = clips[k], playing = !!$('iframe', box);
+      const c = clips[k], playing = !!$('iframe', stage);
       cur = k; clips.forEach(x => x.setAttribute('aria-pressed', x === c));
-      $('iframe', box)?.remove(); poster.hidden = false;
+      $('iframe', stage)?.remove();
+      if (!playing) poster.hidden = false;
       theater.classList.add('is-switch');
       setTimeout(() => {
-        img.src = glow.src = c.dataset.poster; title.textContent = c.dataset.title; dur.textContent = c.dataset.duration;
+        img.src = c.dataset.poster; title.textContent = c.dataset.title; dur.textContent = c.dataset.duration;
         yt.href = 'https://www.youtube.com/watch?v=' + c.dataset.id;
         theater.classList.remove('is-switch');
         if (playing) play();
-      }, calm ? 0 : 250);
-      if (box.getBoundingClientRect().top < 60) box.scrollIntoView({behavior: calm ? 'auto' : 'smooth', block: 'center'});
+      }, playing || calm ? 0 : 250);
+      c.scrollIntoView({block: 'nearest', inline: 'nearest'});
     };
-    poster.addEventListener('click', play);
-    clips.forEach((c, k) => c.addEventListener('click', () => { if (k !== cur || !$('iframe', box)) select(k); }));
+    poster.addEventListener('click', e => { if (!e.target.closest('a')) play(); });
+    clips.forEach((c, k) => c.addEventListener('click', () => { if (k !== cur) select(k); else if (!$('iframe', stage)) play(); }));
+    addEventListener('keydown', e => {
+      if (!['ArrowRight', 'ArrowLeft'].includes(e.key) || e.target.closest('input, textarea')) return;
+      const r = theater.getBoundingClientRect();
+      if (r.top < innerHeight / 2 && r.bottom > innerHeight / 2) { e.preventDefault(); select((cur + (e.key === 'ArrowRight' ? 1 : -1) + clips.length) % clips.length); }
+    });
+  }
+
+  /* Kopieerknop: data-copy="tekst" */
+  $$('[data-copy]').forEach(b => b.addEventListener('click', async () => {
+    const label = b.textContent;
+    try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = 'Gekopieerd'; }
+    catch { b.textContent = b.dataset.copy; }
+    setTimeout(() => { b.textContent = label; }, 2000);
+  }));
+
+  /* Verblijfplanner (stalling): dagen, paarden en wensen worden een mail aan Het Zwarte Water */
+  const planner = $('[data-planner]');
+  if (planner) {
+    const DAYS = {27: 'zondag 27', 28: 'maandag 28', 29: 'dinsdag 29', 30: 'woensdag 30', 31: 'donderdag 31'};
+    const arrive = $$('[data-arrive]', planner), leave = $$('[data-leave]', planner), needs = $$('[data-need]', planner);
+    let a = 28, l = 30, horses = 1;
+    const update = () => {
+      arrive.forEach(b => b.setAttribute('aria-pressed', +b.dataset.arrive === a));
+      leave.forEach(b => { b.setAttribute('aria-pressed', +b.dataset.leave === l); b.disabled = +b.dataset.leave <= a; });
+      const nights = l - a, has = k => needs.find(n => n.dataset.need === k).checked;
+      const p = horses === 1 ? 'paard' : 'paarden';
+      $('[data-nights]', planner).textContent = nights;
+      $('[data-nights]', planner).nextElementSibling.textContent = nights === 1 ? 'nacht' : 'nachten';
+      $('[data-count]', planner).textContent = horses;
+      $('[data-count]', planner).nextElementSibling.textContent = p;
+      $('[data-horses]', planner).textContent = horses;
+      const lines = [`Ik kom naar de Indoor SGW van ${DAYS[a]} tot ${DAYS[l]} december (${nights} ${nights === 1 ? 'nacht' : 'nachten'}).`];
+      if (has('stal')) lines.push(`Ik zoek stalling voor ${horses} ${p}.`);
+      if (has('slapen')) lines.push('Ik wil zelf ook overnachten.');
+      if (has('truck')) lines.push('Ik slaap in mijn vrachtwagen, met eigen stroom.');
+      const text = `Hallo,\n\n${lines.join('\n')}\n\nKunnen jullie dit voor me regelen?\n\nGroet,`;
+      $('[data-mailtext]', planner).textContent = text;
+      $('[data-mailto]', planner).href = 'mailto:info@hetzwartewater.nl?subject=' + encodeURIComponent('Stalling Indoor SGW') + '&body=' + encodeURIComponent(text);
+    };
+    arrive.forEach(b => b.addEventListener('click', () => { a = +b.dataset.arrive; if (l <= a) l = a + 1; update(); }));
+    leave.forEach(b => b.addEventListener('click', () => { l = +b.dataset.leave; update(); }));
+    $$('[data-step]', planner).forEach(b => b.addEventListener('click', () => { horses = Math.min(12, Math.max(1, horses + +b.dataset.step)); update(); }));
+    needs.forEach(n => n.addEventListener('change', update));
+    update();
+  }
+
+  /* Sponsorwand: zoeken op naam */
+  const wallSearch = $('[data-wall-search]');
+  if (wallSearch) {
+    const items = $$('[data-wall] li'), count = $('[data-wall-count]'), empty = $('[data-wall-empty]');
+    wallSearch.addEventListener('input', () => {
+      const q = wallSearch.value.trim().toLowerCase();
+      let n = 0;
+      items.forEach(li => { const show = !q || li.dataset.name.includes(q); li.hidden = !show; n += show; });
+      count.textContent = n === 1 ? '1 sponsor' : `${n} sponsoren`;
+      empty.hidden = n > 0;
+    });
   }
 
   /* Tabs: <div class="tabs" role="tablist"><button role="tab" aria-controls="id">,

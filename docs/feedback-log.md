@@ -4,8 +4,8 @@ Alle feedback op het ontwerp, met wat we ervan leren. Nieuwste bovenaan. Een les
 
 ## Open vragen
 
-- Welke sponsoren zijn echt stersponsor? (De indeling op de keuzepagina was een voorbeeld.)
-- Wat is de Instagram-naam? Alle Instagram-knoppen wijzen nu naar instagram.com.
+- Welke sponsoren zijn echt stersponsor? (De indeling op de keuzepagina was een voorbeeld.) De sponsorwand toont nu iedereen even groot.
+- Van een paar sponsoren (zoals Peters, Maassen en Van Boxmeer) weten we de website niet. Die kaarten linken nu nergens heen.
 - Komt er een eigen hero-video (`assets/video/hero.mp4`, 10 tot 20 seconden, max 4 MB)?
 - Geldt BB tot en met Z voor alle onderdelen?
 - Is er op 29 december 's middags training naast de wedstrijd?
@@ -16,6 +16,16 @@ Alle feedback op het ontwerp, met wat we ervan leren. Nieuwste bovenaan. Een les
 - Virtual tour: de posters zijn nu eigen foto's. Mogen we de YouTube-thumbnails downloaden en zelf hosten?
 
 ## 17 november 2026
+
+**Contact, Stalling en Sponsoren**
+- Vraag: maak de contactpagina, de stallingpagina en de sponsorenpagina.
+  - Gedaan: contact met een onderwerpkiezer (tabs) die het juiste mailadres laat zien, plus veelgestelde vragen en de kaart. Stalling met een verblijfplanner die de mail aan Het Zwarte Water klaarzet. Sponsoren met de twee logobanden en een sponsorwand met zoeken.
+  - Les: de mailadressen komen uit de bekende feiten. Geen formulier dat zelf mailt, je mailt met je eigen mailprogramma.
+- Antwoord: Instagram is instagram.com/indoorsgw, Facebook is facebook.com/indoorsgw.
+
+**Virtual tour**
+- Feedback: de bioscoop is "een beetje lelijk". Liever een volledig scherm met de video, en makkelijk wisselen.
+  - Les: de video vult het hele scherm, de keuze staat in een smalle balk eronder. Pijltjestoetsen wisselen ook. Geen sier eromheen.
 
 **Over ons, Hindernissen en Virtual tour**
 - Vraag: bouw deze drie pagina's binnen het concept en de stylesheet. Creatief, interactief en next level. Over ons "dik en leuk, maar simpel".

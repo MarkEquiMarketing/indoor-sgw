@@ -38,9 +38,9 @@
         <li class="has-sub"><button class="menu__toggle" type="button" aria-expanded="false" aria-controls="sub-wedstrijd">Wedstrijd<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
           <ul class="sub" id="sub-wedstrijd"><li><a href="https://www.indoorsgw.nl/wedstrijd/">De wedstrijd<small>Dressuur, springen en cross</small></a></li><li><a href="https://www.indoorsgw.nl/wedstrijd/vraagprogramma/">Vraagprogramma<small>Rubrieken en startgelden bij de KNHS</small></a></li><li><a href="https://www.indoorsgw.nl/wedstrijd/startlijsten/">Startlijsten<small>Zodra ze definitief zijn</small></a></li><li><a href="https://www.indoorsgw.nl/crossparcour/">Crossparcours<small>Lengtes, snelheden en de tekening</small></a></li><li><a href="https://www.indoorsgw.nl/wedstrijd/uitslagen/">Uitslagen<small>Zodra ze definitief zijn</small></a></li></ul></li>
         <li><a href="https://www.indoorsgw.nl/trainingen/">Trainingen</a></li>
-        <li><a href="https://www.indoorsgw.nl/sponsoren/">Sponsoren</a></li>
-        <li><a href="https://www.indoorsgw.nl/stalling/">Stalling</a></li>
-        <li><a href="https://www.indoorsgw.nl/contact/">Contact</a></li>
+        <li><a href="sponsoren.html">Sponsoren</a></li>
+        <li><a href="stalling.html">Stalling</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
     <a class="btn btn--gold btn--sm" href="https://www.mijnknhs.nl/Game/W183853?expandHeader=True" target="_blank" rel="noopener">Inschrijven</a>
@@ -62,9 +62,9 @@
     <li><details open><summary>Over ons</summary><ul><li><a href="over-ons.html">Over ons</a></li><li><a href="hindernissen.html">Hindernissen</a></li><li><a href="virtual-tour.html" aria-current="page">Virtual tour</a></li></ul></details></li>
     <li><details><summary>Wedstrijd</summary><ul><li><a href="https://www.indoorsgw.nl/wedstrijd/">De wedstrijd</a></li><li><a href="https://www.indoorsgw.nl/wedstrijd/vraagprogramma/">Vraagprogramma</a></li><li><a href="https://www.indoorsgw.nl/wedstrijd/startlijsten/">Startlijsten</a></li><li><a href="https://www.indoorsgw.nl/crossparcour/">Crossparcours</a></li><li><a href="https://www.indoorsgw.nl/wedstrijd/uitslagen/">Uitslagen</a></li></ul></details></li>
     <li><a href="https://www.indoorsgw.nl/trainingen/">Trainingen</a></li>
-    <li><a href="https://www.indoorsgw.nl/sponsoren/">Sponsoren</a></li>
-    <li><a href="https://www.indoorsgw.nl/stalling/">Stalling</a></li>
-    <li><a href="https://www.indoorsgw.nl/contact/">Contact</a></li>
+    <li><a href="sponsoren.html">Sponsoren</a></li>
+    <li><a href="stalling.html">Stalling</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
   <a class="btn btn--gold" href="https://www.mijnknhs.nl/Game/W183853?expandHeader=True" target="_blank" rel="noopener">Inschrijven voor de wedstrijd</a>
 </div>
@@ -72,38 +72,33 @@
 <main id="inhoud">
 
   <section class="theater" aria-labelledby="page-title">
-    <div class="wrap">
-      <div class="theater__head">
-        <nav class="crumbs" aria-label="Kruimelpad"><a href="homepage.html">Home</a><svg width="8" height="8" aria-hidden="true"><use href="#crumb"/></svg><a href="over-ons.html">Over ons</a><svg width="8" height="8" aria-hidden="true"><use href="#crumb"/></svg><span aria-current="page">Virtual tour</span></nav>
-        <h1 id="page-title">Virtual tour</h1>
-        <p>Zes video's van eerdere edities. Kijk mee in de hal, van het opbouwen tot de cross.</p>
-      </div>
-      <div class="screen">
-        <div class="screen__glow" aria-hidden="true"><img src="../assets/img/sfeer-1.jpg" alt=""></div>
-        <div class="screen__box">
-          <button class="screen__poster" type="button">
-            <img src="../assets/img/sfeer-1.jpg" alt="" width="1200" height="800" fetchpriority="high">
-            <span class="screen__play" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>
-            <span class="screen__meta"><span class="sr-only">Video afspelen: </span><strong data-screen-title>Indoor SGW 2019</strong><span class="pill" data-screen-dur>1:54</span></span>
-          </button>
-        </div>
-        <div class="screen__foot">
-          <p>De video laadt pas als je op afspelen klikt.</p>
-          <a class="link link--light" data-screen-yt href="https://www.youtube.com/watch?v=1oJZW6ZUh3w" target="_blank" rel="noopener">Open op YouTube <svg class="arrow"><use href="#arrow"/></svg></a>
+    <div class="theater__stage">
+      <div class="screen__poster">
+        <img src="../assets/img/sfeer-1.jpg" alt="" width="1200" height="800" fetchpriority="high">
+        <div class="wrap screen__over">
+          <nav class="crumbs" aria-label="Kruimelpad"><a href="homepage.html">Home</a><svg width="8" height="8" aria-hidden="true"><use href="#crumb"/></svg><a href="over-ons.html">Over ons</a><svg width="8" height="8" aria-hidden="true"><use href="#crumb"/></svg><span aria-current="page">Virtual tour</span></nav>
+          <h1 id="page-title">Virtual tour</h1>
+          <p class="screen__now"><strong data-screen-title>Indoor SGW 2019</strong><span class="pill pill--glass" data-screen-dur>1:54</span></p>
+          <button class="screen__play" type="button" aria-label="Video afspelen"><svg width="32" height="32" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></button>
+          <p class="screen__note">De video laadt pas als je op afspelen klikt. <a class="screen__yt" data-screen-yt href="https://www.youtube.com/watch?v=1oJZW6ZUh3w" target="_blank" rel="noopener">Open op YouTube <svg class="arrow"><use href="#arrow"/></svg></a></p>
         </div>
       </div>
-      <ul class="reel" aria-label="Kies een video">
-        <li><button class="clip" type="button" aria-pressed="true" data-id="1oJZW6ZUh3w" data-title="Indoor SGW 2019" data-duration="1:54" data-poster="../assets/img/sfeer-1.jpg"><span class="clip__img"><img src="../assets/img/sfeer-1.jpg" alt="" width="1200" height="800" loading="lazy"><span class="clip__dur">1:54</span></span><b>2019</b><small>Indoor SGW</small></button></li>
-        <li><button class="clip" type="button" aria-pressed="false" data-id="EpY6Kyj8T04" data-title="Indoor SGW 2018" data-duration="1:48" data-poster="../assets/img/sfeer-2.jpg"><span class="clip__img"><img src="../assets/img/sfeer-2.jpg" alt="" width="1200" height="800" loading="lazy"><span class="clip__dur">1:48</span></span><b>2018</b><small>Indoor SGW</small></button></li>
-        <li><button class="clip" type="button" aria-pressed="false" data-id="koEeGeU-f40" data-title="Opbouwen 2018" data-duration="2:03" data-poster="../assets/img/hal-overzicht.jpg"><span class="clip__img"><img src="../assets/img/hal-overzicht.jpg" alt="" width="1200" height="800" loading="lazy"><span class="clip__dur">2:03</span></span><b>2018</b><small>Opbouwen</small></button></li>
-        <li><button class="clip" type="button" aria-pressed="false" data-id="lpBwqd3hCdY" data-title="Indoor SGW 2017" data-duration="2:04" data-poster="../assets/img/sfeer-3.jpg"><span class="clip__img"><img src="../assets/img/sfeer-3.jpg" alt="" width="1200" height="800" loading="lazy"><span class="clip__dur">2:04</span></span><b>2017</b><small>Indoor SGW</small></button></li>
-        <li><button class="clip" type="button" aria-pressed="false" data-id="KeEZNWHp5yg" data-title="Indoor SGW 2015" data-duration="1:56" data-poster="../assets/img/sfeer-4.jpg"><span class="clip__img"><img src="../assets/img/sfeer-4.jpg" alt="" width="1200" height="800" loading="lazy"><span class="clip__dur">1:56</span></span><b>2015</b><small>Indoor SGW</small></button></li>
-        <li><button class="clip" type="button" aria-pressed="false" data-id="hJZHLlc5tRo" data-title="Indoor SGW 2014" data-duration="1:35" data-poster="../assets/img/jump-20.jpg"><span class="clip__img"><img src="../assets/img/jump-20.jpg" alt="" width="1200" height="800" loading="lazy"><span class="clip__dur">1:35</span></span><b>2014</b><small>Indoor SGW</small></button></li>
-      </ul>
+    </div>
+    <div class="theater__bar">
+      <div class="wrap theater__barin">
+        <ul class="reel" aria-label="Kies een video">
+        <li><button class="clip" type="button" aria-pressed="true" data-id="1oJZW6ZUh3w" data-title="Indoor SGW 2019" data-duration="1:54" data-poster="../assets/img/sfeer-1.jpg"><span class="clip__img"><img src="../assets/img/sfeer-1.jpg" alt="" width="1200" height="800" loading="lazy"></span><span class="clip__txt"><b>2019</b><small>Indoor SGW</small></span></button></li>
+        <li><button class="clip" type="button" aria-pressed="false" data-id="EpY6Kyj8T04" data-title="Indoor SGW 2018" data-duration="1:48" data-poster="../assets/img/sfeer-2.jpg"><span class="clip__img"><img src="../assets/img/sfeer-2.jpg" alt="" width="1200" height="800" loading="lazy"></span><span class="clip__txt"><b>2018</b><small>Indoor SGW</small></span></button></li>
+        <li><button class="clip" type="button" aria-pressed="false" data-id="koEeGeU-f40" data-title="Opbouwen 2018" data-duration="2:03" data-poster="../assets/img/hal-overzicht.jpg"><span class="clip__img"><img src="../assets/img/hal-overzicht.jpg" alt="" width="1200" height="800" loading="lazy"></span><span class="clip__txt"><b>2018</b><small>Opbouwen</small></span></button></li>
+        <li><button class="clip" type="button" aria-pressed="false" data-id="lpBwqd3hCdY" data-title="Indoor SGW 2017" data-duration="2:04" data-poster="../assets/img/sfeer-3.jpg"><span class="clip__img"><img src="../assets/img/sfeer-3.jpg" alt="" width="1200" height="800" loading="lazy"></span><span class="clip__txt"><b>2017</b><small>Indoor SGW</small></span></button></li>
+        <li><button class="clip" type="button" aria-pressed="false" data-id="KeEZNWHp5yg" data-title="Indoor SGW 2015" data-duration="1:56" data-poster="../assets/img/sfeer-4.jpg"><span class="clip__img"><img src="../assets/img/sfeer-4.jpg" alt="" width="1200" height="800" loading="lazy"></span><span class="clip__txt"><b>2015</b><small>Indoor SGW</small></span></button></li>
+        <li><button class="clip" type="button" aria-pressed="false" data-id="hJZHLlc5tRo" data-title="Indoor SGW 2014" data-duration="1:35" data-poster="../assets/img/jump-20.jpg"><span class="clip__img"><img src="../assets/img/jump-20.jpg" alt="" width="1200" height="800" loading="lazy"></span><span class="clip__txt"><b>2014</b><small>Indoor SGW</small></span></button></li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <section class="section " aria-labelledby="cta-title">
+  <section class="section" aria-labelledby="cta-title">
     <div class="wrap">
       <div class="cta">
         <div class="bg"><img src="../assets/img/opsprong.jpg" alt="" width="1200" height="672" loading="lazy"></div>
@@ -129,14 +124,14 @@
         <img src="../assets/logo/logo-wit.png" alt="Indoor SGW" width="500" height="573" style="height:60px;width:auto">
         <p>Dé Indoor SGW van Nederland. Dit jaar op 28, 29 en 30 december bij manege Het Zwarte Water in De Mortel.</p>
         <div class="socials">
-          <a href="https://www.facebook.com/" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H8v4h2v8h4v-8h3l1-4h-4V8z"/></svg></a>
-          <a href="https://www.instagram.com/" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="https://www.facebook.com/indoorsgw/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H8v4h2v8h4v-8h3l1-4h-4V8z"/></svg></a>
+          <a href="https://www.instagram.com/indoorsgw/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
           <a href="mailto:info@indoorsgw.nl" aria-label="Mail ons"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
         </div>
       </div>
       <div><h4>Wedstrijd</h4><ul><li><a href="https://www.indoorsgw.nl/wedstrijd/">De wedstrijd</a></li><li><a href="https://www.indoorsgw.nl/wedstrijd/vraagprogramma/">Vraagprogramma</a></li><li><a href="https://www.indoorsgw.nl/wedstrijd/startlijsten/">Startlijsten</a></li><li><a href="https://www.indoorsgw.nl/wedstrijd/uitslagen/">Uitslagen</a></li><li><a href="https://www.indoorsgw.nl/crossparcour/">Crossparcours</a></li></ul></div>
-      <div><h4>Meedoen</h4><ul><li><a href="https://www.indoorsgw.nl/trainingen/">Trainingen</a></li><li><a href="hindernissen.html">Hindernissen</a></li><li><a href="virtual-tour.html">Virtual tour</a></li><li><a href="https://www.indoorsgw.nl/stalling/">Stalling</a></li></ul></div>
-      <div><h4>Organisatie</h4><ul><li><a href="over-ons.html">Over ons</a></li><li><a href="https://www.indoorsgw.nl/sponsoren/">Sponsoren</a></li><li><a href="https://www.indoorsgw.nl/contact/">Contact</a></li><li><a href="mailto:info@indoorsgw.nl">info@indoorsgw.nl</a></li></ul></div>
+      <div><h4>Meedoen</h4><ul><li><a href="https://www.indoorsgw.nl/trainingen/">Trainingen</a></li><li><a href="hindernissen.html">Hindernissen</a></li><li><a href="virtual-tour.html">Virtual tour</a></li><li><a href="stalling.html">Stalling</a></li></ul></div>
+      <div><h4>Organisatie</h4><ul><li><a href="over-ons.html">Over ons</a></li><li><a href="sponsoren.html">Sponsoren</a></li><li><a href="contact.html">Contact</a></li><li><a href="mailto:info@indoorsgw.nl">info@indoorsgw.nl</a></li></ul></div>
     </div>
     <div class="footer__bottom"><span>© 2026 Stichting Indoor SGW</span><span>Website door EquiMarketing</span></div>
   </div>

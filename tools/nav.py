@@ -18,6 +18,9 @@ PAGES = {
     'over': 'over-ons.html',
     'hindernissen': 'hindernissen.html',
     'tour': 'virtual-tour.html',
+    'contact': 'contact.html',
+    'stalling': 'stalling.html',
+    'sponsoren': 'sponsoren.html',
 }
 def url(key, live):
     return PAGES.get(key) or LIVE + live
@@ -107,8 +110,8 @@ def footer():
         <img src="../assets/logo/logo-wit.png" alt="Indoor SGW" width="500" height="573" style="height:60px;width:auto">
         <p>Dé Indoor SGW van Nederland. Dit jaar op 28, 29 en 30 december bij manege Het Zwarte Water in De Mortel.</p>
         <div class="socials">
-          <a href="https://www.facebook.com/" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H8v4h2v8h4v-8h3l1-4h-4V8z"/></svg></a>
-          <a href="https://www.instagram.com/" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="https://www.facebook.com/indoorsgw/" target="_blank" rel="noopener" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H8v4h2v8h4v-8h3l1-4h-4V8z"/></svg></a>
+          <a href="https://www.instagram.com/indoorsgw/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
           <a href="mailto:info@indoorsgw.nl" aria-label="Mail ons"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
         </div>
       </div>
