@@ -23,6 +23,19 @@ Alle feedback op het ontwerp, met wat we ervan leren. Nieuwste bovenaan. Een les
 
 ## 17 november 2026
 
+**Afsluiters en tabs**
+- Feedback: de afsluiters (zoals "Doe je mee?") hebben grote lege vlakken, met de titel los linksonder.
+  - Gedaan: overal een foto links en titel, tekst en knoppen als één groep rechts. Op mobiel de foto boven.
+  - Les: houd titel, tekst en knoppen bij elkaar. Een vlak dat alleen leeg is, voegt niets toe.
+- Feedback: bij "Welke proef rijd je?" zie je niet dat het tabs zijn, de balk viel weg tegen de lichtblauwe achtergrond.
+  - Gedaan: alle tabs zitten nu in dezelfde witte balk met rand en schaduw, ook op contact en in de lijstenkijker.
+  - Les: een onderdeel moet er op elke achtergrond hetzelfde uitzien. Geef het een eigen vlak dat niet afhangt van de sectie.
+
+**Witte strook boven de footer, overal**
+- Feedback: bij startlijsten zat weer een witte strook tussen het lichtblauwe vlak en de footer.
+  - Gecontroleerd op alle pagina's: startlijsten, uitslagen en crossparcours eindigen met een lichtblauwe sectie.
+  - Gedaan: één regel in de stylesheet. Een gekleurd vlak aan het eind krijgt ronde hoeken onder en de footer loopt er direct onder door. Geldt ook voor nieuwe pagina's.
+
 **Virtual tour: witte strook boven de footer**
 - Feedback: de witruimte tussen de bioscoop en de footer slaat nergens op.
   - Gedaan: de footer loopt nu direct onder de ronde hoeken van de bioscoop door.
