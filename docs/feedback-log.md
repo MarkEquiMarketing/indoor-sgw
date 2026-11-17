@@ -26,6 +26,11 @@ Alle feedback op het ontwerp, met wat we ervan leren. Nieuwste bovenaan. Een les
 
 ## 17 november 2026
 
+**Aanmelden: stap paard of pony rustiger**
+- Feedback: de stap "Paard of pony" was rommelig. Een rij knoppen (A pony, B pony, C pony ...) terwijl je er maar één kiest.
+  - Gedaan: type, ervaring SGW en ervaring springen zijn nu keuzelijsten, twee aan twee naast elkaar. Soort training en voorkeursdag blijven kaarten, want daar zijn het er maar twee.
+  - Les: twee of drie keuzes als kaarten, vier of meer als keuzelijst.
+
 **Aanmelden voor een training**
 - Vraag: in plaats van "Reken het uit" een echte aanmelding, als mooie configurator, met dezelfde stappen en velden als het huidige formulier. Later bouwen in Laravel met Mollie.
   - Uitgezocht in Gravity Forms (formulier 1, "Inschrijven Trainingen Indoor SGW 2026"): drie pagina's. Ruiter (naam, leeftijd, telefoon, e-mail twee keer), paard of pony (naam, type A tot en met E pony of paard, ervaring SGW, ervaring springen, soort training), training (voorkeursdag, opmerkingen, akkoord, bedrag, betalen via Mollie).

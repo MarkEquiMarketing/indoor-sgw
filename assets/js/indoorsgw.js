@@ -390,16 +390,16 @@
       let first = null;
       $$('.fld', steps[n - 1]).forEach(fld => {
         clear(fld);
-        const input = $('input:not([type=radio]):not([type=checkbox]),textarea', fld);
+        const input = $('input:not([type=radio]):not([type=checkbox]),textarea,select', fld);
         const group = fld.dataset.group, radios = group && $$(`[name="${group}"]`, fld);
         let msg = '';
         if (group && radios.length && $$('[required]', fld).length && !radios.some(r => r.checked))
           msg = radios[0].type === 'checkbox' ? 'Vink dit aan om je aan te melden.' : 'Maak een keuze.';
-        else if (input && input.required && !input.value.trim()) msg = 'Vul dit in.';
+        else if (input && input.required && !input.value.trim()) msg = input.tagName === 'SELECT' ? 'Maak een keuze.' : 'Vul dit in.';
         else if (input && input.type === 'email' && input.value && !input.checkValidity()) msg = 'Dit lijkt geen goed e-mailadres.';
         else if (input && input.dataset.match && input.value.trim().toLowerCase() !== v(input.dataset.match).toLowerCase()) msg = 'De twee e-mailadressen zijn niet gelijk.';
         else if (input && input.type === 'number' && input.value && !input.checkValidity()) msg = 'Vul een leeftijd in tussen 3 en 99.';
-        if (msg) { fail(fld, msg); first = first || $('input,textarea', fld); }
+        if (msg) { fail(fld, msg); first = first || $('input,textarea,select', fld); }
       });
       if (first) first.focus({ preventScroll: false });
       return !first;
@@ -436,8 +436,8 @@
     });
     $('[data-again]', su).addEventListener('click', () => {
       // De ruiter blijft staan, paard, training en dag beginnen opnieuw
-      ['paard', 'opmerkingen'].forEach(n => { F[n].value = ''; });
-      $$('[name=type],[name=ervaring_sgw],[name=ervaring_springen],[name=soort],[name=dag],[name=akkoord]', su).forEach(r => { r.checked = false; });
+      ['paard', 'opmerkingen', 'type', 'ervaring_sgw', 'ervaring_springen'].forEach(n => { F[n].value = ''; });
+      $$('[name=soort],[name=dag],[name=akkoord]', su).forEach(r => { r.checked = false; });
       syncDays(); update(); reached = 2; go(2);
     });
     syncDays(); update();
