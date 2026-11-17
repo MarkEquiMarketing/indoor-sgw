@@ -37,6 +37,7 @@ def main(src):
     h = re.sub(r'<script src="([^"]+\.js)"( defer)?></script>',
                lambda m: '<script>\n' + open(resolve(m.group(1)), encoding='utf8').read() + '\n</script>', h)
     h = re.sub(r'(?<![-\w])src="([^"]+\.(?:jpe?g|png))"', lambda m: f'src="{photo(resolve(m.group(1)))}"', h)
+    h = re.sub(r'data-poster="([^"]+\.(?:jpe?g|png))"', lambda m: f'data-poster="{photo(resolve(m.group(1)))}"', h)
     h = re.sub(r'\sposter="[^"]*"', '', h)            # video-poster niet nodig in de preview
     out = src[:-5] + '-preview.html'
     open(out, 'w', encoding='utf8').write(h)

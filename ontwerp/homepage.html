@@ -25,17 +25,18 @@
 
 <header class="nav">
   <div class="nav__bar">
-    <a class="brand" href="https://www.indoorsgw.nl/" aria-label="Indoor SGW, naar de homepage">
+    <a class="brand" href="homepage.html" aria-label="Indoor SGW, naar de homepage">
       <img class="logo-light" src="../assets/logo/logo-wit.png" alt="" width="500" height="573">
       <img class="logo-dark" src="../assets/logo/logo-blauw.png" alt="" width="500" height="573">
       <span>Indoor SGW</span>
     </a>
     <nav aria-label="Hoofdmenu">
       <ul class="menu">
-        <li><a href="https://www.indoorsgw.nl/wedstrijd/">Wedstrijd</a></li>
+        <li class="has-sub"><button class="menu__toggle" type="button" aria-expanded="false" aria-controls="sub-over">Over ons<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <ul class="sub" id="sub-over"><li><a href="over-ons.html">Over ons<small>Sinds 1999, door vrijwilligers</small></a></li><li><a href="hindernissen.html">Hindernissen<small>Rij alvast een rondje over het parcours</small></a></li><li><a href="virtual-tour.html">Virtual tour<small>Video's van eerdere edities</small></a></li></ul></li>
+        <li class="has-sub"><button class="menu__toggle" type="button" aria-expanded="false" aria-controls="sub-wedstrijd">Wedstrijd<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <ul class="sub" id="sub-wedstrijd"><li><a href="https://www.indoorsgw.nl/wedstrijd/">De wedstrijd<small>Dressuur, springen en cross</small></a></li><li><a href="https://www.indoorsgw.nl/wedstrijd/vraagprogramma/">Vraagprogramma<small>Rubrieken en startgelden bij de KNHS</small></a></li><li><a href="https://www.indoorsgw.nl/wedstrijd/startlijsten/">Startlijsten<small>Zodra ze definitief zijn</small></a></li><li><a href="https://www.indoorsgw.nl/crossparcour/">Crossparcours<small>Lengtes, snelheden en de tekening</small></a></li><li><a href="https://www.indoorsgw.nl/wedstrijd/uitslagen/">Uitslagen<small>Zodra ze definitief zijn</small></a></li></ul></li>
         <li><a href="https://www.indoorsgw.nl/trainingen/">Trainingen</a></li>
-        <li><a href="https://www.indoorsgw.nl/hindernissen/">Hindernissen</a></li>
-        <li><a href="https://www.indoorsgw.nl/over-ons/">Over ons</a></li>
         <li><a href="https://www.indoorsgw.nl/sponsoren/">Sponsoren</a></li>
         <li><a href="https://www.indoorsgw.nl/stalling/">Stalling</a></li>
         <li><a href="https://www.indoorsgw.nl/contact/">Contact</a></li>
@@ -56,10 +57,10 @@
     </button>
   </div>
   <ul>
-    <li><a href="https://www.indoorsgw.nl/wedstrijd/">Wedstrijd</a></li>
+    <li><a href="homepage.html" aria-current="page">Home</a></li>
+    <li><details><summary>Over ons</summary><ul><li><a href="over-ons.html">Over ons</a></li><li><a href="hindernissen.html">Hindernissen</a></li><li><a href="virtual-tour.html">Virtual tour</a></li></ul></details></li>
+    <li><details><summary>Wedstrijd</summary><ul><li><a href="https://www.indoorsgw.nl/wedstrijd/">De wedstrijd</a></li><li><a href="https://www.indoorsgw.nl/wedstrijd/vraagprogramma/">Vraagprogramma</a></li><li><a href="https://www.indoorsgw.nl/wedstrijd/startlijsten/">Startlijsten</a></li><li><a href="https://www.indoorsgw.nl/crossparcour/">Crossparcours</a></li><li><a href="https://www.indoorsgw.nl/wedstrijd/uitslagen/">Uitslagen</a></li></ul></details></li>
     <li><a href="https://www.indoorsgw.nl/trainingen/">Trainingen</a></li>
-    <li><a href="https://www.indoorsgw.nl/hindernissen/">Hindernissen</a></li>
-    <li><a href="https://www.indoorsgw.nl/over-ons/">Over ons</a></li>
     <li><a href="https://www.indoorsgw.nl/sponsoren/">Sponsoren</a></li>
     <li><a href="https://www.indoorsgw.nl/stalling/">Stalling</a></li>
     <li><a href="https://www.indoorsgw.nl/contact/">Contact</a></li>
@@ -71,8 +72,8 @@
 
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero__bg"><img src="../assets/img/hal-overzicht.jpg" alt="" width="1200" height="799" fetchpriority="high"></div>
-    <!-- Korte stille loop van de aftermovie (10 tot 20 seconden, mp4, max 4 MB). Ontbreekt het bestand, dan blijft de foto staan. -->
-    <video class="hero__video" muted loop playsinline preload="none" poster="../assets/img/hal-overzicht.jpg" data-src="../assets/video/hero.mp4" aria-hidden="true"></video>
+    <!-- Achtergrondvideo: dezelfde als op de huidige homepage. Laadt alleen op desktop, gedempt. De foto blijft eronder staan. -->
+    <div class="hero__video" data-yt="KNsBjiQE_gk" aria-hidden="true"></div>
     <div class="wrap hero__content">
       <div class="hero__intro">
       <span class="status only-live"><i></i>Nu live in De Mortel</span>
@@ -341,8 +342,8 @@
         </div>
       </div>
       <div><h4>Wedstrijd</h4><ul><li><a href="https://www.indoorsgw.nl/wedstrijd/">De wedstrijd</a></li><li><a href="https://www.indoorsgw.nl/wedstrijd/vraagprogramma/">Vraagprogramma</a></li><li><a href="https://www.indoorsgw.nl/wedstrijd/startlijsten/">Startlijsten</a></li><li><a href="https://www.indoorsgw.nl/wedstrijd/uitslagen/">Uitslagen</a></li><li><a href="https://www.indoorsgw.nl/crossparcour/">Crossparcours</a></li></ul></div>
-      <div><h4>Meedoen</h4><ul><li><a href="https://www.indoorsgw.nl/trainingen/">Trainingen</a></li><li><a href="https://www.indoorsgw.nl/hindernissen/">Hindernissen</a></li><li><a href="https://www.indoorsgw.nl/virtual-tour/">Virtual tour</a></li><li><a href="https://www.indoorsgw.nl/stalling/">Stalling</a></li></ul></div>
-      <div><h4>Organisatie</h4><ul><li><a href="https://www.indoorsgw.nl/over-ons/">Over ons</a></li><li><a href="https://www.indoorsgw.nl/sponsoren/">Sponsoren</a></li><li><a href="https://www.indoorsgw.nl/contact/">Contact</a></li><li><a href="mailto:info@indoorsgw.nl">info@indoorsgw.nl</a></li></ul></div>
+      <div><h4>Meedoen</h4><ul><li><a href="https://www.indoorsgw.nl/trainingen/">Trainingen</a></li><li><a href="hindernissen.html">Hindernissen</a></li><li><a href="virtual-tour.html">Virtual tour</a></li><li><a href="https://www.indoorsgw.nl/stalling/">Stalling</a></li></ul></div>
+      <div><h4>Organisatie</h4><ul><li><a href="over-ons.html">Over ons</a></li><li><a href="https://www.indoorsgw.nl/sponsoren/">Sponsoren</a></li><li><a href="https://www.indoorsgw.nl/contact/">Contact</a></li><li><a href="mailto:info@indoorsgw.nl">info@indoorsgw.nl</a></li></ul></div>
     </div>
     <div class="footer__bottom"><span>© 2026 Stichting Indoor SGW</span><span>Website door EquiMarketing</span></div>
   </div>

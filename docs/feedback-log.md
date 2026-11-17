@@ -11,8 +11,21 @@ Alle feedback op het ontwerp, met wat we ervan leren. Nieuwste bovenaan. Een les
 - Is er op 29 december 's middags training naast de wedstrijd?
 - Meer dan twintig of minimaal 25 hindernissen?
 - Wat is "Bixietraining"? Bezoekers kennen het woord misschien niet. Korte uitleg toevoegen?
+- De namen van de hindernissen in de tour zijn werknamen op basis van de foto's (Boomstammen, Bank, Opsprong, Heuvel ...). Kloppen ze, en welke foto's horen bij het parcours van 2026?
+- De voorzitter heet op de Over ons-pagina "Friet van Stiphout", bij de sponsoren "Fried van Stiphout". Welke is goed?
+- Virtual tour: de posters zijn nu eigen foto's. Mogen we de YouTube-thumbnails downloaden en zelf hosten?
 
 ## 17 november 2026
+
+**Over ons, Hindernissen en Virtual tour**
+- Vraag: bouw deze drie pagina's binnen het concept en de stylesheet. Creatief, interactief en next level. Over ons "dik en leuk, maar simpel".
+  - Gedaan: over ons met een verhaal waarin het jaartal van 1999 naar 2026 meetelt, plus het bestuur. Hindernissen als tour waarin je over elke hindernis springt, met een finish. Virtual tour als bioscoop met de zes video's.
+- Vraag: het menu moet kloppen met de huidige site, inclusief submenu's.
+  - Les: Over ons (Over ons, Hindernissen, Virtual tour) en Wedstrijd (Wedstrijd, Vraagprogramma, Startlijsten, Crossparcours, Uitslagen) klappen uit. Het menu staat op één plek: `tools/nav.py`.
+- Vraag: de hero van de homepage krijgt dezelfde achtergrondvideo als nu op indoorsgw.nl.
+  - Gedaan: YouTube-achtergrond (gedempt, zonder knoppen, alleen desktop). De foto blijft eronder staan voor mobiel en als de video laadt.
+- Vraag: favicon toevoegen zoals op een normale site.
+  - Gedaan: wit logo op een navy tegel, in alle formaten, plus een webmanifest.
 
 **Bewegende banden**
 - Feedback: de sponsorbanden en de Instagram-fotoband worden links en rechts vaak wit.

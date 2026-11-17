@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hindernissen | Indoor SGW</title>
+<link rel="icon" href="../assets/favicon/favicon.ico" sizes="48x48">
+<link rel="icon" href="../assets/favicon/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
+<link rel="manifest" href="../assets/favicon/site.webmanifest">
+<meta name="theme-color" content="#163B50">
+<meta name="description" content="Rij alvast een rondje over het parcours van de Indoor SGW. Van een echte heuvel tot opsprongen, allemaal binnen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- Hindernissen. Stijl en script staan in assets/, regels in CLAUDE.md. Menu en footer: python3 tools/nav.py -->
+<link rel="stylesheet" href="../assets/css/indoorsgw.css">
+</head>
+<body>
+<a class="skip" href="#inhoud">Ga naar de inhoud</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="crumb" viewBox="0 0 8 8"><path d="M2.5 1.5 5 4 2.5 6.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="nav">
+  <div class="nav__bar">
+    <a class="brand" href="homepage.html" aria-label="Indoor SGW, naar de homepage">
+      <img class="logo-light" src="../assets/logo/logo-wit.png" alt="" width="500" height="573">
+      <img class="logo-dark" src="../assets/logo/logo-blauw.png" alt="" width="500" height="573">
+      <span>Indoor SGW</span>
+    </a>
+    <nav aria-label="Hoofdmenu">
+      <ul class="menu">
+        <li class="has-sub"><button class="menu__toggle is-current" type="button" aria-expanded="false" aria-controls="sub-over">Over ons<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <ul class="sub" id="sub-over"><li><a href="over-ons.html">Over ons<small>Sinds 1999, door vrijwilligers</small></a></li><li><a href="hindernissen.html" aria-current="page">Hindernissen<small>Rij alvast een rondje over het parcours</small></a></li><li><a href="virtual-tour.html">Virtual tour<small>Video's van eerdere edities</small></a></li></ul></li>
+        <li class="has-sub"><button class="menu__toggle" type="button" aria-expanded="false" aria-controls="sub-wedstrijd">Wedstrijd<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <ul class="sub" id="sub-wedstrijd"><li><a href="https://www.indoorsgw.nl/wedstrijd/">De wedstrijd<small>Dressuur, springen en cross</small></a></li><li><a href="https://www.indoorsgw.nl/wedstrijd/vraagprogramma/">Vraagprogramma<small>Rubrieken en startgelden bij de KNHS</small></a></li><li><a href="https://www.indoorsgw.nl/wedstrijd/startlijsten/">Startlijsten<small>Zodra ze definitief zijn</small></a></li><li><a href="https://www.indoorsgw.nl/crossparcour/">Crossparcours<small>Lengtes, snelheden en de tekening</small></a></li><li><a href="https://www.indoorsgw.nl/wedstrijd/uitslagen/">Uitslagen<small>Zodra ze definitief zijn</small></a></li></ul></li>
+        <li><a href="https://www.indoorsgw.nl/trainingen/">Trainingen</a></li>
+        <li><a href="https://www.indoorsgw.nl/sponsoren/">Sponsoren</a></li>
+        <li><a href="https://www.indoorsgw.nl/stalling/">Stalling</a></li>
+        <li><a href="https://www.indoorsgw.nl/contact/">Contact</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--gold btn--sm" href="https://www.mijnknhs.nl/Game/W183853?expandHeader=True" target="_blank" rel="noopener">Inschrijven</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="sheet" aria-label="Menu openen">
+      <svg width="20" height="20" viewBox="0 0 20 20"><path d="M3 6h14M3 14h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="sheet" id="sheet" aria-hidden="true">
+  <div class="sheet__top">
+    <img src="../assets/logo/logo-wit.png" alt="Indoor SGW" width="500" height="573" style="height:42px;width:auto">
+    <button class="menu-btn" type="button" style="display:grid" aria-label="Menu sluiten" data-close>
+      <svg width="20" height="20" viewBox="0 0 20 20"><path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <ul>
+    <li><a href="homepage.html">Home</a></li>
+    <li><details open><summary>Over ons</summary><ul><li><a href="over-ons.html">Over ons</a></li><li><a href="hindernissen.html" aria-current="page">Hindernissen</a></li><li><a href="virtual-tour.html">Virtual tour</a></li></ul></details></li>
+    <li><details><summary>Wedstrijd</summary><ul><li><a href="https://www.indoorsgw.nl/wedstrijd/">De wedstrijd</a></li><li><a href="https://www.indoorsgw.nl/wedstrijd/vraagprogramma/">Vraagprogramma</a></li><li><a href="https://www.indoorsgw.nl/wedstrijd/startlijsten/">Startlijsten</a></li><li><a href="https://www.indoorsgw.nl/crossparcour/">Crossparcours</a></li><li><a href="https://www.indoorsgw.nl/wedstrijd/uitslagen/">Uitslagen</a></li></ul></details></li>
+    <li><a href="https://www.indoorsgw.nl/trainingen/">Trainingen</a></li>
+    <li><a href="https://www.indoorsgw.nl/sponsoren/">Sponsoren</a></li>
+    <li><a href="https://www.indoorsgw.nl/stalling/">Stalling</a></li>
+    <li><a href="https://www.indoorsgw.nl/contact/">Contact</a></li>
+  </ul>
+  <a class="btn btn--gold" href="https://www.mijnknhs.nl/Game/W183853?expandHeader=True" target="_blank" rel="noopener">Inschrijven voor de wedstrijd</a>
+</div>
+
+<main id="inhoud">
+
+  <section class="tour" aria-labelledby="page-title" aria-roledescription="carrousel">
+    <div class="tour__shots">
+      <img class="tour__shot is-on" src="../assets/img/hindernissen/h01.jpg" alt="Hindernis 1: Boomstammen" data-name="Boomstammen" width="1436" height="805" fetchpriority="high">
+      <img class="tour__shot" src="../assets/img/hindernissen/h02.jpg" alt="Hindernis 2: Bank" data-name="Bank" width="1436" height="805" decoding="async">
+      <img class="tour__shot" src="../assets/img/hindernissen/h03.jpg" alt="Hindernis 3: Opsprong" data-name="Opsprong" width="1436" height="805" decoding="async">
+      <img class="tour__shot" src="../assets/img/hindernissen/h04.jpg" alt="Hindernis 4: Heuvel" data-name="Heuvel" width="1436" height="805" decoding="async">
+      <img class="tour__shot" src="../assets/img/hindernissen/h05.jpg" alt="Hindernis 5: Kerstbomen" data-name="Kerstbomen" width="1436" height="805" decoding="async">
+      <img class="tour__shot" src="../assets/img/hindernissen/h06.jpg" alt="Hindernis 6: Wagenwielen" data-name="Wagenwielen" width="1436" height="805" decoding="async">
+      <img class="tour__shot" src="../assets/img/hindernissen/h07.jpg" alt="Hindernis 7: Boerenwagen" data-name="Boerenwagen" width="1436" height="805" decoding="async">
+      <img class="tour__shot" src="../assets/img/hindernissen/h08.jpg" alt="Hindernis 8: Slagboom" data-name="Slagboom" width="1436" height="805" decoding="async">
+      <img class="tour__shot" src="../assets/img/hindernissen/h09.jpg" alt="Hindernis 9: Trog" data-name="Trog" width="1436" height="805" decoding="async">
+      <img class="tour__shot" src="../assets/img/hindernissen/h10.jpg" alt="Hindernis 10: Haag" data-name="Haag" width="1436" height="805" decoding="async">
+      <img class="tour__shot" src="../assets/img/hindernissen/h11.jpg" alt="Hindernis 11: Balk" data-name="Balk" width="1436" height="805" decoding="async">
+      <img class="tour__shot" src="../assets/img/hindernissen/h12.jpg" alt="Hindernis 12: Stapel stammen" data-name="Stapel stammen" width="1436" height="805" decoding="async">
+      <img class="tour__shot" src="../assets/img/hindernissen/h13.jpg" alt="Hindernis 13: Muurtje" data-name="Muurtje" width="1436" height="805" decoding="async">
+      <img class="tour__shot" src="../assets/img/hindernissen/h14.jpg" alt="Hindernis 14: Huisje" data-name="Huisje" width="1436" height="805" decoding="async">
+      <img class="tour__shot" src="../assets/img/hindernissen/h15.jpg" alt="Hindernis 15: Tafel" data-name="Tafel" width="1436" height="805" decoding="async">
+      <img class="tour__shot" src="../assets/img/hindernissen/h16.jpg" alt="Hindernis 16: Trap" data-name="Trap" width="1436" height="805" decoding="async">
+      <img class="tour__shot" src="../assets/img/hindernissen/h17.jpg" alt="Hindernis 17: Kist" data-name="Kist" width="1436" height="805" decoding="async">
+      <img class="tour__shot" src="../assets/img/hindernissen/h18.jpg" alt="Hindernis 18: Tonnen" data-name="Tonnen" width="1436" height="805" decoding="async">
+      <img class="tour__shot" src="../assets/img/hindernissen/overzicht.jpg" alt="Het hele parcours in de hal" data-name="Finish" width="1436" height="957" decoding="async">
+    </div>
+
+    <div class="wrap tour__top">
+      <nav class="crumbs" aria-label="Kruimelpad"><a href="homepage.html">Home</a><svg width="8" height="8" aria-hidden="true"><use href="#crumb"/></svg><a href="over-ons.html">Over ons</a><svg width="8" height="8" aria-hidden="true"><use href="#crumb"/></svg><span aria-current="page">Hindernissen</span></nav>
+      <h1 id="page-title">De hindernissen</h1>
+      <p>Van een echte heuvel tot opsprongen. Rij hier alvast een rondje over het parcours van eerdere edities.</p>
+    </div>
+
+    <div class="tour__finish">
+      <div class="finish">
+        <img src="../assets/logo/logo-blauw.png" alt="" width="500" height="573">
+        <h2>Finish!</h2>
+        <p>Zin om ze echt te springen? Je schrijft je in voor de wedstrijd via Mijn KNHS.</p>
+        <div class="actions">
+          <a class="btn btn--gold" href="https://www.mijnknhs.nl/Game/W183853?expandHeader=True" target="_blank" rel="noopener">Inschrijven voor de wedstrijd</a>
+          <button class="btn btn--navy" type="button" data-tour-restart>Nog een rondje rijden</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap tour__panel">
+      <div class="tour__now">
+        <div aria-live="polite"><small data-tour-num>Hindernis 1 van 18</small><h2 data-tour-name>Boomstammen</h2></div>
+        <div class="tour__ctrl">
+          <button class="btn btn--glass" type="button" data-tour-play aria-pressed="false">Rij het hele rondje</button>
+          <button class="round round--glass" type="button" data-tour="-1" aria-label="Terug naar de vorige hindernis"><svg class="arrow arrow--back"><use href="#arrow"/></svg></button>
+          <button class="btn btn--gold" type="button" data-tour="1">Spring over deze hindernis <svg class="arrow"><use href="#arrow"/></svg></button>
+        </div>
+      </div>
+      <div class="course">
+        <span class="course__done"></span>
+        <button type="button" aria-label="Naar hindernis 1: Boomstammen"></button>
+        <button type="button" aria-label="Naar hindernis 2: Bank"></button>
+        <button type="button" aria-label="Naar hindernis 3: Opsprong"></button>
+        <button type="button" aria-label="Naar hindernis 4: Heuvel"></button>
+        <button type="button" aria-label="Naar hindernis 5: Kerstbomen"></button>
+        <button type="button" aria-label="Naar hindernis 6: Wagenwielen"></button>
+        <button type="button" aria-label="Naar hindernis 7: Boerenwagen"></button>
+        <button type="button" aria-label="Naar hindernis 8: Slagboom"></button>
+        <button type="button" aria-label="Naar hindernis 9: Trog"></button>
+        <button type="button" aria-label="Naar hindernis 10: Haag"></button>
+        <button type="button" aria-label="Naar hindernis 11: Balk"></button>
+        <button type="button" aria-label="Naar hindernis 12: Stapel stammen"></button>
+        <button type="button" aria-label="Naar hindernis 13: Muurtje"></button>
+        <button type="button" aria-label="Naar hindernis 14: Huisje"></button>
+        <button type="button" aria-label="Naar hindernis 15: Tafel"></button>
+        <button type="button" aria-label="Naar hindernis 16: Trap"></button>
+        <button type="button" aria-label="Naar hindernis 17: Kist"></button>
+        <button type="button" aria-label="Naar hindernis 18: Tonnen"></button>
+        <span class="course__rider" aria-hidden="true"><img src="../assets/logo/logo-blauw.png" alt="" width="500" height="573"></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="alle-title">
+    <div class="wrap">
+      <div class="head">
+        <h2 id="alle-title">Alle hindernissen op een rij</h2>
+        <p>Klik op een hindernis en je springt er meteen naartoe. Het parcours verandert elk jaar een beetje.</p>
+      </div>
+      <ul class="fences">
+        <li><button class="fence" type="button" data-fence="0"><img src="../assets/img/hindernissen/t01.jpg" alt="" width="520" height="292" loading="lazy"><b>1</b><span>Boomstammen</span></button></li>
+        <li><button class="fence" type="button" data-fence="1"><img src="../assets/img/hindernissen/t02.jpg" alt="" width="520" height="292" loading="lazy"><b>2</b><span>Bank</span></button></li>
+        <li><button class="fence" type="button" data-fence="2"><img src="../assets/img/hindernissen/t03.jpg" alt="" width="520" height="292" loading="lazy"><b>3</b><span>Opsprong</span></button></li>
+        <li><button class="fence" type="button" data-fence="3"><img src="../assets/img/hindernissen/t04.jpg" alt="" width="520" height="292" loading="lazy"><b>4</b><span>Heuvel</span></button></li>
+        <li><button class="fence" type="button" data-fence="4"><img src="../assets/img/hindernissen/t05.jpg" alt="" width="520" height="292" loading="lazy"><b>5</b><span>Kerstbomen</span></button></li>
+        <li><button class="fence" type="button" data-fence="5"><img src="../assets/img/hindernissen/t06.jpg" alt="" width="520" height="292" loading="lazy"><b>6</b><span>Wagenwielen</span></button></li>
+        <li><button class="fence" type="button" data-fence="6"><img src="../assets/img/hindernissen/t07.jpg" alt="" width="520" height="292" loading="lazy"><b>7</b><span>Boerenwagen</span></button></li>
+        <li><button class="fence" type="button" data-fence="7"><img src="../assets/img/hindernissen/t08.jpg" alt="" width="520" height="292" loading="lazy"><b>8</b><span>Slagboom</span></button></li>
+        <li><button class="fence" type="button" data-fence="8"><img src="../assets/img/hindernissen/t09.jpg" alt="" width="520" height="292" loading="lazy"><b>9</b><span>Trog</span></button></li>
+        <li><button class="fence" type="button" data-fence="9"><img src="../assets/img/hindernissen/t10.jpg" alt="" width="520" height="292" loading="lazy"><b>10</b><span>Haag</span></button></li>
+        <li><button class="fence" type="button" data-fence="10"><img src="../assets/img/hindernissen/t11.jpg" alt="" width="520" height="292" loading="lazy"><b>11</b><span>Balk</span></button></li>
+        <li><button class="fence" type="button" data-fence="11"><img src="../assets/img/hindernissen/t12.jpg" alt="" width="520" height="292" loading="lazy"><b>12</b><span>Stapel stammen</span></button></li>
+        <li><button class="fence" type="button" data-fence="12"><img src="../assets/img/hindernissen/t13.jpg" alt="" width="520" height="292" loading="lazy"><b>13</b><span>Muurtje</span></button></li>
+        <li><button class="fence" type="button" data-fence="13"><img src="../assets/img/hindernissen/t14.jpg" alt="" width="520" height="292" loading="lazy"><b>14</b><span>Huisje</span></button></li>
+        <li><button class="fence" type="button" data-fence="14"><img src="../assets/img/hindernissen/t15.jpg" alt="" width="520" height="292" loading="lazy"><b>15</b><span>Tafel</span></button></li>
+        <li><button class="fence" type="button" data-fence="15"><img src="../assets/img/hindernissen/t16.jpg" alt="" width="520" height="292" loading="lazy"><b>16</b><span>Trap</span></button></li>
+        <li><button class="fence" type="button" data-fence="16"><img src="../assets/img/hindernissen/t17.jpg" alt="" width="520" height="292" loading="lazy"><b>17</b><span>Kist</span></button></li>
+        <li><button class="fence" type="button" data-fence="17"><img src="../assets/img/hindernissen/t18.jpg" alt="" width="520" height="292" loading="lazy"><b>18</b><span>Tonnen</span></button></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--flush" aria-labelledby="cta-title">
+    <div class="wrap">
+      <div class="cta">
+        <div class="bg"><img src="../assets/img/heuvel.jpg" alt="" width="1200" height="672" loading="lazy"></div>
+        <img class="mark mark--cta" src="../assets/logo/logo-wit.png" alt="" aria-hidden="true">
+        <h2 id="cta-title">Zelf over deze hindernissen?</h2>
+        <div>
+          <p>Schrijf je in voor de wedstrijd of kom eerst trainen. Op 28 december kun je de hele dag terecht voor een training.</p>
+          <div class="actions">
+            <a class="btn btn--gold" href="https://www.mijnknhs.nl/Game/W183853?expandHeader=True" target="_blank" rel="noopener">Inschrijven voor de wedstrijd</a>
+            <a class="btn btn--glass" href="https://www.indoorsgw.nl/trainingen/">Aanmelden voor een training</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div class="footer__intro">
+        <img src="../assets/logo/logo-wit.png" alt="Indoor SGW" width="500" height="573" style="height:60px;width:auto">
+        <p>Dé Indoor SGW van Nederland. Dit jaar op 28, 29 en 30 december bij manege Het Zwarte Water in De Mortel.</p>
+        <div class="socials">
+          <a href="https://www.facebook.com/" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H8v4h2v8h4v-8h3l1-4h-4V8z"/></svg></a>
+          <a href="https://www.instagram.com/" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="mailto:info@indoorsgw.nl" aria-label="Mail ons"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+        </div>
+      </div>
+      <div><h4>Wedstrijd</h4><ul><li><a href="https://www.indoorsgw.nl/wedstrijd/">De wedstrijd</a></li><li><a href="https://www.indoorsgw.nl/wedstrijd/vraagprogramma/">Vraagprogramma</a></li><li><a href="https://www.indoorsgw.nl/wedstrijd/startlijsten/">Startlijsten</a></li><li><a href="https://www.indoorsgw.nl/wedstrijd/uitslagen/">Uitslagen</a></li><li><a href="https://www.indoorsgw.nl/crossparcour/">Crossparcours</a></li></ul></div>
+      <div><h4>Meedoen</h4><ul><li><a href="https://www.indoorsgw.nl/trainingen/">Trainingen</a></li><li><a href="hindernissen.html">Hindernissen</a></li><li><a href="virtual-tour.html">Virtual tour</a></li><li><a href="https://www.indoorsgw.nl/stalling/">Stalling</a></li></ul></div>
+      <div><h4>Organisatie</h4><ul><li><a href="over-ons.html">Over ons</a></li><li><a href="https://www.indoorsgw.nl/sponsoren/">Sponsoren</a></li><li><a href="https://www.indoorsgw.nl/contact/">Contact</a></li><li><a href="mailto:info@indoorsgw.nl">info@indoorsgw.nl</a></li></ul></div>
+    </div>
+    <div class="footer__bottom"><span>© 2026 Stichting Indoor SGW</span><span>Website door EquiMarketing</span></div>
+  </div>
+  <div class="wordmark" aria-hidden="true">Indoor SGW</div>
+</footer>
+
+<div class="mbar" aria-label="Snel inschrijven">
+  <div><small>28, 29 en 30 december</small><strong>Indoor SGW 2026</strong></div>
+  <a class="btn btn--gold only-voor" href="https://www.mijnknhs.nl/Game/W183853?expandHeader=True" target="_blank" rel="noopener">Inschrijven</a>
+  <a class="btn btn--gold only-live" href="https://www.indoorsgw.nl/wedstrijd/startlijsten/">Startlijsten</a>
+  <a class="btn btn--gold only-na" href="https://www.indoorsgw.nl/wedstrijd/uitslagen/">Uitslagen</a>
+</div>
+
+<script src="../assets/js/indoorsgw.js" defer></script>
+</body>
+</html>

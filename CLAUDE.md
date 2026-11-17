@@ -16,12 +16,14 @@ Nieuwe website voor de Indoor SGW (indoorsgw.nl): drie dagen trainen en wedstrij
 | `ontwerp/varianten-*.html`, `concept-*.html` | Eerdere keuzes. Alleen ter naslag. |
 | `content/teksten.md` | De teksten van de huidige site. Bron voor feiten. |
 | `docs/feedback-log.md` | Alle feedback met datum, wat we ervan leerden. |
+| `ontwerp/over-ons.html`, `hindernissen.html`, `virtual-tour.html` | De eerste subpagina's. |
+| `tools/nav.py` | Zet menu, mobiel menu en footer op elke pagina. Eén bron voor de menustructuur. |
 | `tools/preview.py` | Maakt een losse preview met alles erin (zie Werkwijze). |
 | `index.html` | Overzicht voor de preview op Vercel. |
 
 ## Nieuwe pagina bouwen
 
-1. Begin vanaf `ontwerp/homepage.html`: zelfde `<head>`, navigatie, footer, mobiel menu en `<script src="../assets/js/indoorsgw.js" defer>`.
+1. Begin vanaf een bestaande subpagina, zoals `ontwerp/over-ons.html`: zelfde `<head>` (met favicon), footer en `<script src="../assets/js/indoorsgw.js" defer>`. Menu en footer zet je met `python3 tools/nav.py`.
 2. Vervang de hero door een `.page-hero` met `.crumbs`, `h1`, korte intro en hooguit twee knoppen.
 3. Bouw alleen met onderdelen uit de stylesheet. Zie `ontwerp/stijlgids.html`. Mist er iets, voeg het toe aan `indoorsgw.css` in het juiste hoofdstuk en zet het in de stijlgids. Geen losse `<style>` per pagina.
 4. Zet `aria-current="page"` op het actieve menu-item.
@@ -41,7 +43,9 @@ Nieuwe website voor de Indoor SGW (indoorsgw.nl): drie dagen trainen en wedstrij
 - **Bewegende banden** (`.track`, `.irow`): altijd eindeloos, nooit wit aan de randen. Zet alleen de originele items in de HTML; het script herhaalt ze tot het scherm vol is. Geen handmatige kopieën.
 - **Instagram:** fotoband met twee rijen en een kaart in het midden.
 - **Watermerk:** logo licht op de achtergrond (`.mark`), altijd helemaal binnen het vlak. Nooit afgesneden.
-- **Privacy:** Google Maps en YouTube laden pas na een klik.
+- **Privacy:** Google Maps en YouTube laden pas na een klik. Enige uitzondering: de achtergrondvideo in de homepage-hero (`data-yt`, youtube-nocookie, gedempt, alleen desktop), op verzoek van Mark.
+- **Menu:** één bron in `tools/nav.py` (Over ons en Wedstrijd met submenu, zoals op indoorsgw.nl). Nooit het menu per pagina met de hand aanpassen. Nieuwe pagina: zet hem in `PAGES` en draai `python3 tools/nav.py`.
+- **Elke pagina één sterk interactief element:** verhaal met jaartal (over ons), parcours-tour (hindernissen), bioscoop (virtual tour). Rustig eromheen.
 - **Fase:** `body[data-phase]` is `voor`, `live` of `na`. Gebruik `.only-voor`, `.only-live`, `.only-na`. Data van het evenement staan bovenaan `indoorsgw.js`.
 
 ## Tekstregels

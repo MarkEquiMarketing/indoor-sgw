@@ -119,6 +119,32 @@ a:hover .arrow,button:hover .arrow{transform:translateX(3px)}
 .sheet ul{list-style:none;margin:48px 0 auto;padding:0}
 .sheet ul a{display:block;padding:14px 0;font:800 30px/1.1 var(--heading);color:#fff;letter-spacing:-.02em;border-bottom:1px solid rgba(255,255,255,.08)}
 .sheet .btn{width:100%}
+/* Submenu. Desktop: uitklapper onder het menu-item (hover of klik). Mobiel: <details> in het menu. */
+.has-sub{position:relative}
+.menu__toggle{display:flex;align-items:center;gap:7px;padding:10px 12px 10px 14px;border:0;border-radius:var(--pill);background:none;cursor:pointer;font:600 14px/1 var(--heading);color:rgba(255,255,255,.88);transition:background var(--t),color var(--t)}
+.menu__toggle svg{transition:transform var(--t)}
+.menu__toggle:hover,.has-sub.open .menu__toggle,.menu__toggle.is-current{background:rgba(255,255,255,.12);color:#fff}
+.scrolled .menu__toggle{color:var(--text)}
+.scrolled .menu__toggle:hover,.scrolled .has-sub.open .menu__toggle,.scrolled .menu__toggle.is-current{background:var(--blue-50);color:var(--navy)}
+.has-sub.open .menu__toggle svg{transform:rotate(180deg)}
+.sub{position:absolute;top:calc(100% + 12px);left:50%;width:300px;list-style:none;margin:0;padding:8px;border-radius:var(--r);background:#fff;box-shadow:var(--shadow-lg);opacity:0;visibility:hidden;transform:translate(-50%,8px);transition:opacity var(--t),transform var(--t),visibility var(--t)}
+.sub::before{content:"";position:absolute;left:0;right:0;top:-12px;height:12px}
+.has-sub.open .sub{opacity:1;visibility:visible;transform:translate(-50%,0)}
+@media (hover:hover){.has-sub:hover .sub{opacity:1;visibility:visible;transform:translate(-50%,0)}.has-sub:hover .menu__toggle svg{transform:rotate(180deg)}}
+.menu .sub a,.scrolled .menu .sub a{padding:12px 14px;border-radius:12px;font:700 15px/1.2 var(--heading);color:var(--navy)}
+.menu .sub a:hover,.menu .sub a[aria-current=page],.scrolled .menu .sub a:hover,.scrolled .menu .sub a[aria-current=page]{background:var(--blue-50);color:var(--navy)}
+.sub small{display:block;margin-top:4px;font:400 13px/1.4 var(--body);color:var(--grey)}
+.sheet{overflow-y:auto}
+.sheet ul ul{margin:0;padding:0 0 14px}
+.sheet summary{list-style:none;display:flex;justify-content:space-between;align-items:center;padding:14px 0;font:800 30px/1.1 var(--heading);color:#fff;letter-spacing:-.02em;border-bottom:1px solid rgba(255,255,255,.08);cursor:pointer}
+.sheet summary::-webkit-details-marker{display:none}
+.sheet summary::after{content:"";width:11px;height:11px;margin-right:6px;border-right:2.5px solid var(--accent);border-bottom:2.5px solid var(--accent);transform:translateY(-3px) rotate(45deg);transition:transform var(--t)}
+.sheet details[open] summary{border-bottom-color:transparent}
+.sheet details[open] summary::after{transform:translateY(3px) rotate(225deg)}
+.sheet details[open]{border-bottom:1px solid rgba(255,255,255,.08)}
+.sheet ul ul a{padding:10px 0 10px 2px;font:700 19px/1.2 var(--heading);color:rgba(255,255,255,.75);border:0}
+.sheet ul ul a[aria-current=page],.sheet ul a[aria-current=page]{color:var(--accent)}
+.sheet>.btn{flex:none;margin-top:32px}
 
 /* 6  HERO EN PAGINAKOP ----------------------------------------------------- */
 /* Homepage: foto of video, inhoud in het midden, infobalk onderaan */
@@ -126,7 +152,9 @@ a:hover .arrow,button:hover .arrow{transform:translateX(3px)}
 .hero__bg{position:absolute;inset:0;z-index:-2}
 .hero__bg img{width:100%;height:100%;object-fit:cover;object-position:50% 55%;transform:scale(1.06);animation:settle 2.4s var(--ease) forwards}
 @keyframes settle{to{transform:scale(1)}}
-.hero__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;opacity:0;transition:opacity 1.2s ease}
+/* Achtergrondvideo: data-yt (YouTube, gedempt, alleen desktop) of een eigen mp4. Foto blijft eronder staan. */
+.hero__video{position:absolute;inset:0;z-index:-2;overflow:hidden;pointer-events:none;opacity:0;transition:opacity 1.6s ease}
+.hero__video iframe,.hero__video video{position:absolute;top:50%;left:50%;min-width:100%;min-height:100%;aspect-ratio:16/9;width:auto;height:auto;border:0;object-fit:cover;transform:translate(-50%,-50%) scale(1.2)}
 .hero__video.on{opacity:1}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse 70% 55% at 50% 48%,rgba(15,44,61,.62) 0%,rgba(15,44,61,.3) 60%,rgba(15,44,61,.15) 100%),linear-gradient(180deg,rgba(15,44,61,.55) 0%,rgba(15,44,61,.2) 30%,rgba(15,44,61,.75) 70%,rgba(15,44,61,.97) 100%)}
 .hero__content{display:flex;flex-direction:column;align-items:center;text-align:center;width:100%;min-height:max(700px,100svh);padding-top:140px;padding-bottom:var(--gutter)}
@@ -252,6 +280,30 @@ a.card:hover{transform:translateY(-3px);box-shadow:inset 0 0 0 1px var(--blue-30
 .card h3{font-size:20px;font-weight:800}
 .card p{font-size:15px;color:var(--grey)}
 
+/* Verhaal met meelopend jaartal (over ons). Het jaartal telt mee terwijl je scrolt. */
+.story{display:grid;grid-template-columns:1fr 1.25fr;gap:clamp(40px,7vw,104px)}
+.story__year{position:sticky;top:calc(50vh - 110px);align-self:start}
+.story__year small{display:block;margin-bottom:10px;font:700 15px var(--heading);color:var(--grey)}
+.story__year strong{display:block;font:900 clamp(96px,13vw,190px)/.85 var(--heading);color:var(--navy);letter-spacing:-.06em;font-variant-numeric:tabular-nums}
+.story__year span{display:block;height:6px;max-width:300px;margin-top:32px;border-radius:6px;background:var(--grey-200);overflow:hidden}
+.story__year i{display:block;height:100%;width:0;border-radius:6px;background:var(--accent)}
+.story__lines{display:grid;gap:clamp(56px,14vh,140px);padding-block:14vh}
+.story__lines p{font:800 clamp(26px,2.8vw,40px)/1.2 var(--heading);color:var(--navy);letter-spacing:-.025em;opacity:.16;transform:translateY(12px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.story__lines p.on{opacity:1;transform:none}
+
+/* Team met groepsfoto (over ons) */
+.team{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(32px,5vw,72px);align-items:center}
+.team__img{margin:0}
+.team__img img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r-lg)}
+.people{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.person{display:flex;align-items:center;gap:14px;padding:12px 16px 12px 12px;border-radius:var(--r);background:#fff;box-shadow:inset 0 0 0 1px var(--grey-200);transition:box-shadow var(--t),transform var(--t)}
+.person:hover{transform:translateY(-2px);box-shadow:inset 0 0 0 1px var(--blue-300),var(--shadow)}
+.person i{flex:none;width:44px;height:44px;border-radius:14px;background:var(--navy);color:#fff;display:grid;place-items:center;font:800 15px var(--heading);font-style:normal;letter-spacing:-.02em}
+.person b{display:block;font:700 15px/1.25 var(--heading);color:var(--navy)}
+.person small{display:block;font-size:13px;color:var(--grey)}
+.person--lead{grid-column:1/-1;background:var(--accent-50);box-shadow:none}
+.person--lead i{background:var(--accent);color:var(--navy)}
+
 /* 8  SLIDERS, BANDEN EN MEDIA --------------------------------------------- */
 /* Sleepslider: foto's zonder bijschrift */
 .slider__ctrl{display:flex;gap:8px;flex:none}
@@ -291,6 +343,95 @@ a.card:hover{transform:translateY(-3px);box-shadow:inset 0 0 0 1px var(--blue-30
 .insta__avatar{width:72px;height:72px;object-fit:contain;margin:0 auto 14px;padding:10px;border-radius:50%;background:var(--blue-50)}
 .insta__card h2{font-weight:800;font-size:clamp(26px,2.6vw,34px)}
 .insta__card p{color:var(--grey);font-size:15px;margin:8px 0 22px}
+
+/* Parcours-tour (hindernissen). Foto's vullen het beeld; bij volgende spring je over de hindernis. */
+.tour{position:relative;min-height:max(700px,100svh);display:flex;flex-direction:column;background:var(--navy-deep);color:#fff;overflow:hidden;isolation:isolate;touch-action:pan-y}
+.tour__shots{position:absolute;inset:0;z-index:-2}
+.tour__shot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0}
+.tour__shot.is-on{opacity:1}
+.tour__shot.is-leaving{animation:jump-out 1.1s cubic-bezier(.5,0,.3,1) forwards}
+.tour__shot.is-entering{animation:jump-in 1.1s var(--ease) forwards}
+.tour__shot.is-back-out{animation:back-out .6s ease forwards}
+.tour__shot.is-back-in{animation:back-in .7s var(--ease) forwards}
+@keyframes jump-out{0%{opacity:1;transform:none;filter:none}35%{opacity:1;transform:scale(1.12)}65%{opacity:1;transform:scale(1.4) translateY(7%);filter:blur(1px)}100%{opacity:0;transform:scale(1.9) translateY(-6%);filter:blur(8px)}}
+@keyframes jump-in{0%,40%{opacity:0;transform:scale(.8);filter:blur(6px)}85%{opacity:1;transform:scale(1.02) translateY(-1.2%);filter:none}100%{opacity:1;transform:none}}
+@keyframes back-out{to{opacity:0;transform:scale(.92)}}
+@keyframes back-in{from{opacity:0;transform:scale(1.15)}to{opacity:1;transform:none}}
+.tour::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(15,44,61,.78) 0%,rgba(15,44,61,.15) 30%,rgba(15,44,61,.1) 52%,rgba(15,44,61,.94) 100%)}
+.tour__top{padding-top:clamp(130px,15vw,170px);text-align:center;transition:opacity .5s}
+.tour__top h1{color:#fff;font-weight:900;font-size:var(--h1-page);letter-spacing:-.045em;line-height:.98;text-shadow:0 2px 24px rgba(10,30,42,.45)}
+.tour__top p{max-width:52ch;margin:16px auto 0;font-size:var(--lead);color:rgba(255,255,255,.85);text-shadow:0 1px 12px rgba(10,30,42,.5)}
+.tour__panel{margin-top:auto;padding-top:48px;padding-bottom:var(--gutter)}
+.tour__now{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:22px;transition:opacity .5s}
+.tour__now small{display:block;margin-bottom:8px;font:700 14px var(--heading);color:rgba(255,255,255,.72);font-variant-numeric:tabular-nums}
+.tour__now h2{color:#fff;font-weight:800;font-size:var(--h2)}
+.tour__ctrl{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px}
+.round--glass{background:rgba(255,255,255,.14);box-shadow:inset 0 0 0 1px rgba(255,255,255,.3);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.round--glass:hover{background:rgba(255,255,255,.26)}
+.arrow--back{transform:scaleX(-1)!important}
+.tour.is-finish .tour__now,.tour.is-finish .tour__top{opacity:0;pointer-events:none}
+/* Lijn met alle hindernissen. Het logo rijdt mee en springt bij elke hindernis. */
+.course{position:relative;display:flex;justify-content:space-between;align-items:center;height:48px;padding-inline:16px}
+.course::before{content:"";position:absolute;left:16px;right:16px;top:50%;height:2px;background:rgba(255,255,255,.25)}
+.course__done{position:absolute;left:16px;top:50%;height:2px;width:0;background:var(--accent);transition:width 1s var(--ease)}
+.course button{position:relative;width:12px;height:12px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer;transition:background var(--t),transform var(--t)}
+.course button::after{content:"";position:absolute;inset:-12px -6px}
+.course button:hover{transform:scale(1.5)}
+.course button.done{background:var(--accent)}
+.course__rider{position:absolute;top:50%;left:0;width:48px;height:48px;margin:-24px 0 0 -24px;border-radius:50%;background:#fff;box-shadow:var(--shadow-lg);display:grid;place-items:center;pointer-events:none;transition:left 1s var(--ease)}
+.course__rider img{height:32px;width:auto}
+.course__rider.hop{animation:hop 1s var(--ease)}
+@keyframes hop{45%{transform:translateY(-26px) rotate(-8deg)}75%{transform:translateY(2px)}}
+.tour__finish{position:absolute;inset:0;z-index:2;display:grid;place-items:center;padding:var(--gutter);opacity:0;visibility:hidden;transition:opacity .6s,visibility .6s}
+.tour.is-finish .tour__finish{opacity:1;visibility:visible}
+.finish{max-width:540px;padding:clamp(28px,4vw,44px);border-radius:var(--r-lg);background:#fff;color:var(--text);text-align:center;box-shadow:var(--shadow-lg)}
+.finish img{height:64px;width:auto;margin:0 auto 18px}
+.finish h2{font-weight:800;font-size:var(--h2)}
+.finish p{margin:12px auto 28px;max-width:40ch;color:var(--grey)}
+.finish .actions{justify-content:center}
+
+/* Alle hindernissen als raster. Klik en de tour springt erheen. */
+.fences{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.fence{position:relative;display:block;width:100%;aspect-ratio:4/5;padding:0;border:0;border-radius:var(--r);overflow:hidden;cursor:pointer;background:var(--navy);isolation:isolate;text-align:left}
+.fence img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1.2s var(--ease)}
+.fence:hover img{transform:scale(1.06)}
+.fence::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(15,44,61,0) 45%,rgba(15,44,61,.9))}
+.fence b{position:absolute;top:12px;left:12px;width:34px;height:34px;border-radius:10px;background:rgba(255,255,255,.92);display:grid;place-items:center;font:800 14px var(--heading);color:var(--navy)}
+.fence span{position:absolute;left:14px;right:14px;bottom:12px;font:800 16px/1.2 var(--heading);color:#fff}
+.fence[aria-current=true] b{background:var(--accent)}
+.fence[aria-current=true]{box-shadow:0 0 0 3px var(--accent)}
+
+/* Bioscoop (virtual tour). Groot scherm met gloed, video laadt pas na klikken. */
+.theater{position:relative;isolation:isolate;overflow:hidden;background:var(--navy-deep);color:rgba(255,255,255,.8);padding:clamp(140px,16vw,180px) 0 var(--space)}
+.theater__head{text-align:center;margin-bottom:clamp(40px,5vw,64px)}
+.theater__head h1{color:#fff;font-weight:900;font-size:var(--h1-page);letter-spacing:-.045em;line-height:.98}
+.theater__head p{max-width:52ch;margin:20px auto 0;font-size:var(--lead)}
+.screen{position:relative;max-width:980px;margin-inline:auto}
+.screen__glow{position:absolute;inset:8% 6%;z-index:-1;filter:blur(80px) saturate(1.5);opacity:.6;transition:opacity .6s}
+.screen__glow img{width:100%;height:100%;object-fit:cover}
+.screen__box{position:relative;aspect-ratio:16/9;border-radius:var(--r-lg);overflow:hidden;background:#000;box-shadow:var(--shadow-lg)}
+.screen__poster{position:absolute;inset:0;display:block;width:100%;height:100%;padding:0;border:0;background:none;cursor:pointer;color:#fff;isolation:isolate}
+.screen__poster img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1.2s var(--ease),opacity .25s}
+.screen__poster:hover img{transform:scale(1.03)}
+.screen__poster::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(15,44,61,.1) 40%,rgba(15,44,61,.85))}
+.screen__play{position:absolute;top:50%;left:50%;width:clamp(72px,9vw,104px);aspect-ratio:1;border-radius:50%;background:var(--accent);color:var(--navy);display:grid;place-items:center;transform:translate(-50%,-50%);animation:pulse 2.4s infinite;transition:transform var(--t)}
+.screen__poster:hover .screen__play{transform:translate(-50%,-50%) scale(1.08)}
+.screen__meta{position:absolute;left:clamp(20px,3vw,32px);bottom:clamp(18px,3vw,28px);display:flex;align-items:center;gap:14px;text-align:left}
+.screen__meta strong{font:800 clamp(22px,3vw,40px)/1 var(--heading);color:#fff;letter-spacing:-.03em}
+.screen iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.theater.is-switch .screen__poster img,.theater.is-switch .screen__glow{opacity:0}
+.screen__foot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:16px;font-size:14px;color:rgba(255,255,255,.6)}
+.link--light{color:#fff}
+.reel{list-style:none;max-width:980px;margin:36px auto 0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.clip{display:block;width:100%;padding:0;border:0;background:none;text-align:left;cursor:pointer;color:rgba(255,255,255,.65)}
+.clip__img{position:relative;display:block;aspect-ratio:16/10;border-radius:14px;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);transition:box-shadow var(--t)}
+.clip__img img{width:100%;height:100%;object-fit:cover;opacity:.55;transition:opacity var(--t),transform 1s var(--ease)}
+.clip:hover .clip__img img{opacity:.9;transform:scale(1.05)}
+.clip[aria-pressed=true] .clip__img{box-shadow:0 0 0 3px var(--accent)}
+.clip[aria-pressed=true] .clip__img img{opacity:1}
+.clip__dur{position:absolute;right:8px;bottom:8px;padding:5px 8px;border-radius:8px;background:rgba(15,44,61,.82);color:#fff;font:700 12px/1 var(--heading)}
+.clip b{display:block;margin-top:12px;font:800 22px/1 var(--heading);color:#fff;letter-spacing:-.03em}
+.clip small{display:block;margin-top:5px;font:600 13px var(--heading)}
 
 /* 9  INTERACTIE ------------------------------------------------------------ */
 /* Accordeon (veelgestelde vragen, voorwaarden). Werkt met <details>, zonder JS. */
@@ -361,6 +502,12 @@ body:not([data-phase=voor]) .only-voor,body:not([data-phase=live]) .only-live,bo
   .days,.about,.cta,.practical{grid-template-columns:1fr}
   .map{min-height:340px}
   .footer__top{grid-template-columns:1fr 1fr}
+  .story,.team{grid-template-columns:1fr}
+  .story__year{top:76px;z-index:2;padding:16px 0 24px;background:linear-gradient(180deg,#fff 75%,rgba(255,255,255,0))}
+  .story__year strong{font-size:84px}.story__year span{margin-top:18px}
+  .story__lines{padding-block:4vh 10vh}
+  .fences{grid-template-columns:repeat(3,1fr)}
+  .reel{grid-template-columns:repeat(3,1fr)}
 }
 @media (max-width:700px){
   .duo{grid-template-columns:1fr}
@@ -398,11 +545,24 @@ body:not([data-phase=voor]) .only-voor,body:not([data-phase=live]) .only-live,bo
   .mbar strong{font:800 14px/1.2 var(--heading)}
   .mbar .btn{height:46px;padding:0 20px}
   .show-mbar .mbar{transform:none}
+  .people{grid-template-columns:1fr}
+  .tour__now{flex-direction:column;align-items:flex-start;gap:16px}
+  .tour__ctrl{justify-content:flex-start;width:100%}
+  .tour__ctrl .btn--gold{flex:1}
+  .course{padding-inline:10px}.course::before{left:10px;right:10px}.course__done{left:10px}
+  .course button{width:8px;height:8px}
+  .course__rider{width:40px;height:40px;margin:-20px 0 0 -20px}.course__rider img{height:26px}
+  .fences{grid-template-columns:1fr 1fr;gap:10px}
+  .reel{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin-inline:calc(var(--gutter)*-1);padding-inline:var(--gutter);gap:12px}
+  .reel::-webkit-scrollbar{display:none}
+  .reel li{flex:0 0 42%;scroll-snap-align:start}
+  .screen__box{border-radius:20px}.screen__meta{gap:10px}.screen__meta .pill{display:none}
   .demo{top:auto;bottom:84px;left:10px}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .reveal{opacity:1;transform:none}
+  .story__lines p{opacity:1;transform:none}
   .track,.irow{flex-wrap:wrap;width:auto}
   .track [aria-hidden],.irow [aria-hidden]{display:none}
 }

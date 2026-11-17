@@ -38,7 +38,7 @@
   $$('.demo button').forEach(b => b.addEventListener('click', () => setPhase(b.dataset.phase)));
 
   /* Navigatie wordt wit zodra je scrolt. Mobiele balk verschijnt na de hero. */
-  const top = $('.hero, .page-hero'), finalCta = $('.cta');
+  const top = $('.hero, .page-hero, .tour, .theater'), finalCta = $('.cta');
   const onScroll = () => {
     document.body.classList.toggle('scrolled', scrollY > 40);
     if (!top) return;
@@ -62,11 +62,35 @@
     $$('a', sheet).forEach(a => a.addEventListener('click', () => setMenu(false)));
   }
 
-  /* Achtergrondvideo in de hero: alleen op grotere schermen en zonder 'minder beweging' */
+  /* Submenu: klik opent en sluit, klik ernaast of Escape sluit. Hover regelt de CSS. */
+  const closeSubs = except => $$('.has-sub.open').forEach(li => {
+    if (li === except) return;
+    li.classList.remove('open'); $('.menu__toggle', li).setAttribute('aria-expanded', 'false');
+  });
+  $$('.has-sub').forEach(li => {
+    const btn = $('.menu__toggle', li);
+    btn.addEventListener('click', () => {
+      const open = !li.classList.contains('open');
+      closeSubs(li); li.classList.toggle('open', open); btn.setAttribute('aria-expanded', open);
+    });
+    li.addEventListener('mouseleave', () => { if (matchMedia('(hover:hover)').matches) closeSubs(); });
+  });
+  document.addEventListener('click', e => { if (!e.target.closest('.has-sub')) closeSubs(); });
+
+  /* Achtergrondvideo in de hero: alleen op grotere schermen en zonder 'minder beweging'.
+     data-yt="id" laadt YouTube gedempt en zonder knoppen, data-src laadt een eigen mp4. */
   const vid = $('.hero__video');
   if (vid && innerWidth > 760 && !calm) {
-    vid.addEventListener('playing', () => vid.classList.add('on'), {once:true});
-    vid.src = vid.dataset.src; vid.play().catch(() => {});
+    if (vid.dataset.yt) {
+      const id = vid.dataset.yt, f = document.createElement('iframe');
+      f.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}&controls=0&disablekb=1&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3`;
+      f.allow = 'autoplay; encrypted-media'; f.tabIndex = -1; f.title = 'Achtergrondvideo';
+      f.addEventListener('load', () => setTimeout(() => vid.classList.add('on'), 1800), {once:true});
+      vid.appendChild(f);
+    } else if (vid.tagName === 'VIDEO' && vid.dataset.src) {
+      vid.addEventListener('playing', () => vid.classList.add('on'), {once:true});
+      vid.src = vid.dataset.src; vid.play().catch(() => {});
+    }
   }
 
   /* Video in een modal, laadt pas na klikken (geen YouTube-cookies vooraf) */
@@ -86,6 +110,7 @@
     if (e.key !== 'Escape') return;
     if (modal?.classList.contains('open')) closeModal();
     else if (document.body.classList.contains('menu-open')) setMenu(false);
+    else closeSubs();
   });
 
   /* Kaart laadt pas na klikken, zo gaat er niets naar Google zonder dat je dat wilt */
@@ -133,6 +158,117 @@
   let lastW = innerWidth;
   addEventListener('resize', () => { if (Math.abs(innerWidth - lastW) > 40) { lastW = innerWidth; fillAll(); } });
   addEventListener('load', fillAll, { once: true });   // logo's en foto's hebben dan hun echte breedte
+
+  /* Verhaal (over ons): het jaartal telt mee met het scrollen, de zinnen lichten op. */
+  const story = $('.story');
+  if (story) {
+    const year = $('.story__year strong', story), bar = $('.story__year i', story), lines = $$('.story__lines p', story);
+    const from = +story.dataset.from, to = +story.dataset.to;
+    const tick = () => {
+      // 1999 bij de eerste zin, 2026 bij de laatste: het jaartal loopt mee met het verhaal
+      const vh = innerHeight, a = lines[0].getBoundingClientRect().top, z = lines[lines.length - 1].getBoundingClientRect().top;
+      const p = Math.min(1, Math.max(0, (vh * .66 - a) / Math.max(1, z - a)));
+      year.textContent = Math.round(from + (to - from) * p);
+      bar.style.width = (p * 100) + '%';
+      lines.forEach(l => l.classList.toggle('on', calm || l.getBoundingClientRect().top < vh * .66));
+    };
+    let ticking = false;
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { tick(); ticking = false; }); } }, {passive:true});
+    tick();
+  }
+
+  /* Parcours-tour (hindernissen): van hindernis naar hindernis springen.
+     De laatste foto is de finish. Pijltjestoetsen, swipen en de lijn werken ook. */
+  const tour = $('.tour');
+  if (tour) {
+    const shots = $$('.tour__shot', tour), dots = $$('.course button', tour), fences = $$('[data-fence]');
+    const N = dots.length;                        // aantal hindernissen; shots[N] is de finish
+    const num = $('[data-tour-num]', tour), name = $('[data-tour-name]', tour);
+    const rider = $('.course__rider', tour), done = $('.course__done', tour), playBtn = $('[data-tour-play]', tour);
+    const prev = $('[data-tour="-1"]', tour), next = $('[data-tour="1"]', tour);
+    let i = 0, busy = false, timer = null;
+    const place = () => {
+      const d = dots[Math.min(i, N - 1)], x = d.offsetLeft + d.offsetWidth / 2;
+      rider.style.left = x + 'px'; done.style.width = Math.max(0, x - done.offsetLeft) + 'px';
+      dots.forEach((b, k) => b.classList.toggle('done', k <= i));
+    };
+    const render = () => {
+      tour.classList.toggle('is-finish', i === N);
+      if (i < N) { num.textContent = `Hindernis ${i + 1} van ${N}`; name.textContent = shots[i].dataset.name; }
+      dots.forEach((b, k) => b.setAttribute('aria-current', k === i));
+      fences.forEach((b, k) => b.setAttribute('aria-current', k === i));
+      prev.disabled = i === 0; next.disabled = i === N;
+      place();
+    };
+    const stop = () => { clearInterval(timer); timer = null; if (playBtn) { playBtn.textContent = 'Rij het hele rondje'; playBtn.setAttribute('aria-pressed', 'false'); } };
+    const go = (to, byUser = true) => {
+      if (busy || to === i || to < 0 || to > N) return;
+      if (byUser) stop();
+      const a = shots[i], b = shots[to], fwd = to > i;
+      i = to; render();
+      if (calm) { a.classList.remove('is-on'); b.classList.add('is-on'); return; }
+      busy = true;
+      a.classList.add(fwd ? 'is-leaving' : 'is-back-out');
+      b.classList.add('is-on', fwd ? 'is-entering' : 'is-back-in');
+      if (fwd) { rider.classList.remove('hop'); void rider.offsetWidth; rider.classList.add('hop'); }
+      setTimeout(() => { a.classList.remove('is-on', 'is-leaving', 'is-back-out'); b.classList.remove('is-entering', 'is-back-in'); busy = false; }, fwd ? 1100 : 700);
+    };
+    prev.addEventListener('click', () => go(i - 1));
+    next.addEventListener('click', () => go(i + 1));
+    dots.forEach((b, k) => b.addEventListener('click', () => go(k)));
+    $('[data-tour-restart]', tour)?.addEventListener('click', () => go(0));
+    fences.forEach((b, k) => b.addEventListener('click', () => {
+      tour.scrollIntoView({behavior: calm ? 'auto' : 'smooth'}); setTimeout(() => go(k), calm ? 0 : 450);
+    }));
+    playBtn?.addEventListener('click', () => {
+      if (timer) return stop();
+      if (i === N) go(0, false);
+      playBtn.textContent = 'Stop het rondje'; playBtn.setAttribute('aria-pressed', 'true');
+      timer = setInterval(() => { if (i >= N) stop(); else go(i + 1, false); }, 2600);
+      setTimeout(() => { if (timer) go(i + 1, false); }, 800);
+    });
+    addEventListener('keydown', e => {
+      if (!['ArrowRight', 'ArrowLeft'].includes(e.key) || e.target.closest('input, textarea, [role=tablist]')) return;
+      const r = tour.getBoundingClientRect();
+      if (r.top < innerHeight / 2 && r.bottom > innerHeight / 2) { e.preventDefault(); go(i + (e.key === 'ArrowRight' ? 1 : -1)); }
+    });
+    let sx = null;
+    tour.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse' && !e.target.closest('button, a')) sx = e.clientX; });
+    tour.addEventListener('pointerup', e => { if (sx !== null && Math.abs(e.clientX - sx) > 50) go(i + (e.clientX < sx ? 1 : -1)); sx = null; });
+    tour.addEventListener('pointercancel', () => { sx = null; });
+    addEventListener('resize', place);
+    render();
+  }
+
+  /* Bioscoop (virtual tour): kies een video, het scherm wisselt mee. YouTube laadt pas na klikken. */
+  const theater = $('.theater');
+  if (theater) {
+    const clips = $$('.clip', theater), box = $('.screen__box', theater), poster = $('.screen__poster', theater);
+    const img = $('.screen__poster img', theater), glow = $('.screen__glow img', theater);
+    const title = $('[data-screen-title]', theater), dur = $('[data-screen-dur]', theater), yt = $('[data-screen-yt]', theater);
+    let cur = Math.max(0, clips.findIndex(c => c.getAttribute('aria-pressed') === 'true'));
+    const play = () => {
+      const c = clips[cur], f = document.createElement('iframe');
+      f.src = `https://www.youtube-nocookie.com/embed/${c.dataset.id}?autoplay=1&rel=0`;
+      f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; f.allowFullscreen = true; f.title = c.dataset.title;
+      poster.hidden = true; box.appendChild(f); f.focus();
+    };
+    const select = k => {
+      const c = clips[k], playing = !!$('iframe', box);
+      cur = k; clips.forEach(x => x.setAttribute('aria-pressed', x === c));
+      $('iframe', box)?.remove(); poster.hidden = false;
+      theater.classList.add('is-switch');
+      setTimeout(() => {
+        img.src = glow.src = c.dataset.poster; title.textContent = c.dataset.title; dur.textContent = c.dataset.duration;
+        yt.href = 'https://www.youtube.com/watch?v=' + c.dataset.id;
+        theater.classList.remove('is-switch');
+        if (playing) play();
+      }, calm ? 0 : 250);
+      if (box.getBoundingClientRect().top < 60) box.scrollIntoView({behavior: calm ? 'auto' : 'smooth', block: 'center'});
+    };
+    poster.addEventListener('click', play);
+    clips.forEach((c, k) => c.addEventListener('click', () => { if (k !== cur || !$('iframe', box)) select(k); }));
+  }
 
   /* Tabs: <div class="tabs" role="tablist"><button role="tab" aria-controls="id">,
      panelen met role="tabpanel" en id. Pijltjestoetsen werken ook. */
