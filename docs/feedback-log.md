@@ -25,7 +25,18 @@ Alle feedback op het ontwerp, met wat we ervan leren. Nieuwste bovenaan. Een les
 - Trainingen: waarvoor vragen we de leeftijd? Voor de indeling, of voor de Bixie?
 - "Training betalen" blijft (Mark, 17 november). Hoe die pagina werkt, legt Mark nog uit.
 - Privacyverklaring: de bewaartermijnen zijn een voorstel (aanmelding en vragen een jaar, betalingen zeven jaar). Het bestuur moet ze bevestigen, net als "je instructeur krijgt alleen wat nodig is voor de indeling" en "bij ons ziet de penningmeester het".
+- Voorzitter: "Friet van Stiphout" op over ons, terwijl de sponsor "Fried van Stiphout" heet. Typfout?
+- Training "bondscoach van de landelijke ruiters": in het Engels en Duits vertaald als bondscoach van de verenigingsruiters. Klopt die betekenis?
 - Statistieken: de oude site gebruikt Google Analytics met CookieYes. Willen we dat op de nieuwe site ook? Dan komt de cookiemelding aan (staat klaar).
+
+## 18 november 2026
+
+**De site in drie talen**
+- Wens: de hele site ook in het Engels en Duits, met een taalkeuze. Teksten nalopen op spelling en menselijke toon, per taal.
+  - Besluit: Nederlands op de oude adressen, Engels onder /en/, Duits onder /de/. Paginanamen in de link blijven Nederlands. Taalkeuze in het menu (desktop: uitklapper, mobiel: drie knoppen onder in het menu).
+  - Aanmelden, de eigen pagina, betalen en alle mails aan de ruiter gaan in de taal waarin hij zich aanmeldde. Beheer en mails aan het team blijven Nederlands.
+  - Les: ook in het Engels en Duits geen streepjes of middenpuntjes. Duits in de du-vorm, Engels in Brits Engels, met de taal van de sport (dressage, show jumping, cross-country; Dressur, Springen, Gelände, nennen).
+- Gevonden: het contactformulier stuurde het onderwerp niet mee, dus elke vraag werd afgewezen. Opgelost.
 
 ## 17 november 2026
 
